@@ -1,0 +1,41 @@
+{
+  "site": {
+    "role": "AI Product Designer",
+    "heroLabel": "Currently open for work",
+    "intro": "Shaping workflow and teams with AI-first system thinking",
+    "heroDescription": "A minimal portfolio for end-to-end product work, from discovery and structure to delivery and adoption.",
+    "seoTitle": "Quentin Gillon — AI Product Designer",
+    "seoDescription": "Portfolio for an AI Product Designer focused on design systems, workflow, and AI-first product thinking."
+  },
+  "home": {
+    "viewWork": "View work →",
+    "getInTouch": "Get in touch"
+  },
+  "navigation": {
+    "backHome": "Back home"
+  },
+  "sections": {
+    "theTension": "The tension",
+    "coreQuestion": "Core question",
+    "whyDirectionWon": "Why this direction won",
+    "signalN": "Signal {n}",
+    "observation": "Observation",
+    "implication": "Implication",
+    "decision": "Decision",
+    "decisionCriterion": "Decision criterion",
+    "explorationAndSolution": "Exploration and Solution",
+    "selected": "Selected",
+    "explored": "Explored",
+    "avoidedCost": "Avoided cost",
+    "acceptedCost": "Accepted cost",
+    "chosenDirection": "Chosen direction",
+    "upside": "Upside",
+    "risk": "Risk",
+    "whatChanged": "What changed",
+    "before": "Before",
+    "after": "After",
+    "productMoments": "Product moments",
+    "otherUseCases": "Other use cases",
+    "moreWork": "More product work from the same portfolio system."
+  }
+}

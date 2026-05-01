@@ -1,0 +1,36 @@
+# dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+
+# production builds
+dist/
+build/
+
+# test and coverage output
+coverage/
+
+# env files
+.env
+.env*.local
+
+# logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# local editor / agent state
+.claude/settings.local.json
+.codex/config.toml
+
+# OS files
+.DS_Store
+Thumbs.db
