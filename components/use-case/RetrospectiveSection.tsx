@@ -5,20 +5,21 @@ import type { RetrospectiveSectionData } from "@/content/use-cases/types";
 
 type RetrospectiveSectionProps = {
   retrospective: RetrospectiveSectionData;
+  id?: string;
 };
 
 export const RetrospectiveSection = ({
   retrospective,
+  id,
 }: RetrospectiveSectionProps) => {
   const dontLabel = retrospective.dontLabel ?? "NE PLUS";
   const doLabel = retrospective.doLabel ?? "MAIS PLUTÔT";
 
   return (
-    <Section>
+    <Section id={id}>
       <Container>
-        {/* Heading: Teko Light 40px, leading-[1.2], no tracking — matches Figma H3 spec */}
         <div className="mb-12">
-          <h2 className="font-display font-light text-[2.5rem] leading-[1.2] text-muted">
+          <h2 className="type-section-title text-muted">
             {retrospective.title}
           </h2>
         </div>

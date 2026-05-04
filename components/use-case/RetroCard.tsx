@@ -21,13 +21,13 @@ export const RetroCard = ({ text, variant, label }: RetroCardProps) => {
           : "border-[color:var(--color-positive)]",
       )}
     >
-      <p className="text-center font-sans text-lg font-normal leading-[1.7] tracking-[-0.04em] text-ink">
+      <p className="type-body-lg text-center text-ink">
         {text}
       </p>
       <span
         className={clsx(
-          "absolute bottom-1 left-1",
-          "whitespace-nowrap font-display text-2xl font-light uppercase leading-[1.2]",
+          "absolute bottom-0 left-2",
+          "type-eyebrow whitespace-nowrap",
           isDont
             ? "text-[color:var(--color-negative)]"
             : "text-[color:var(--color-positive)]",

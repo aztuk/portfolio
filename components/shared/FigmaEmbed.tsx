@@ -5,7 +5,7 @@ import clsx from "clsx";
 
 import { FigmaBadge, FigmaBadgeIcon } from "@/components/shared/FigmaBadge";
 import type { FigmaAsset } from "@/content/use-cases/types";
-import { buildFigmaEmbedUrl } from "@/lib/figma";
+import { buildFigmaEmbedUrl, isFigmaPrototypeUrl } from "@/lib/figma";
 
 const FIGMA_LOAD_TIMEOUT_MS = 10_000;
 
@@ -16,6 +16,7 @@ type FigmaEmbedProps = {
   className?: string;
   iframeClassName?: string;
   showPageNavigation?: boolean;
+  disableInteraction?: boolean;
 };
 
 const RetryIcon = () => (
@@ -35,6 +36,7 @@ export const FigmaEmbed = ({
   className,
   iframeClassName,
   showPageNavigation = false,
+  disableInteraction = false,
 }: FigmaEmbedProps) => {
   const pages = item.pages ?? [];
   const [activePageIndex, setActivePageIndex] = useState(0);
@@ -44,6 +46,8 @@ export const FigmaEmbed = ({
   const activePage = pages[activePageIndex];
   const src = activePage?.src ?? item.src;
   const title = activePage?.label ?? item.title ?? "Figma preview";
+  const isPrototype = item.mode === "prototype" || isFigmaPrototypeUrl(src);
+  const embedMode: NonNullable<FigmaAsset["mode"]> = isPrototype ? "prototype" : (item.mode ?? "file");
 
   useEffect(() => {
     setStatus("loading");
@@ -54,7 +58,7 @@ export const FigmaEmbed = ({
   const retry = () => setAttempt((value) => value + 1);
 
   return (
-    <div className={clsx("relative h-full w-full bg-canvas", className)}>
+    <div className={clsx("relative h-full w-full overflow-hidden bg-canvas", className)}>
       {showPageNavigation && pages.length > 1 && (
         <div className="absolute left-4 top-4 z-20 flex max-w-[calc(100%-2rem)] gap-2 overflow-x-auto rounded-full border border-white/10 bg-black/45 p-1 backdrop-blur-md">
           {pages.map((page, index) => (
@@ -63,7 +67,7 @@ export const FigmaEmbed = ({
               type="button"
               onClick={() => setActivePageIndex(index)}
               className={clsx(
-                "shrink-0 rounded-full px-3 py-1.5 font-sans text-xs transition-colors",
+                "type-body-xs shrink-0 rounded-full px-3 py-1.5 transition-colors",
                 index === activePageIndex
                   ? "bg-white text-dark"
                   : "text-white/70 hover:bg-white/10 hover:text-white",
@@ -77,7 +81,7 @@ export const FigmaEmbed = ({
 
       <iframe
         key={`${src}-${attempt}`}
-        src={buildFigmaEmbedUrl(src, item.mode)}
+        src={buildFigmaEmbedUrl(src, embedMode)}
         title={title}
         className={clsx("h-full w-full border-0", iframeClassName)}
         onLoad={() => {
@@ -86,12 +90,16 @@ export const FigmaEmbed = ({
         }}
       />
 
+      {disableInteraction && (
+        <div className="absolute inset-0 z-10" aria-hidden />
+      )}
+
       <FigmaBadge size="md" className="pointer-events-none absolute bottom-3 right-3 z-30" />
 
       {status === "loading" && (
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-canvas">
           <div className="h-8 w-8 animate-spin rounded-full border-2 border-white/20 border-t-white" />
-          <p className="font-sans text-sm text-muted">Chargement Figma...</p>
+          <p className="type-body-sm text-muted">Chargement Figma...</p>
         </div>
       )}
 
@@ -100,7 +108,7 @@ export const FigmaEmbed = ({
           <button
             type="button"
             onClick={retry}
-            className="flex items-center gap-2 rounded-full bg-black/40 px-4 py-2 font-sans text-xs text-white/70 backdrop-blur-sm transition-all hover:bg-black/60 hover:text-white"
+            className="type-body-xs flex items-center gap-2 rounded-full bg-black/40 px-4 py-2 text-white/70 backdrop-blur-sm transition-all hover:bg-black/60 hover:text-white"
           >
             <RetryIcon />
             Ecran noir ? Recharger
@@ -111,11 +119,11 @@ export const FigmaEmbed = ({
       {status === "timeout" && (
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-canvas">
           <FigmaBadgeIcon />
-          <p className="font-sans text-sm text-muted">Chargement Figma echoue</p>
+          <p className="type-body-sm text-muted">Chargement Figma echoue</p>
           <button
             type="button"
             onClick={retry}
-            className="flex items-center gap-2 rounded-full border border-white/20 px-5 py-2.5 font-sans text-sm text-white transition-colors hover:border-white/40 hover:bg-white/10"
+            className="type-control flex items-center gap-2 rounded-full border border-white/20 px-5 py-2.5 text-white transition-colors hover:border-white/40 hover:bg-white/10"
           >
             <RetryIcon />
             Reessayer

@@ -19,6 +19,7 @@ type DecisionMediaProps = {
   item: GalleryItem;
   isThumbnail?: boolean;
   isAuthenticated?: boolean;
+  sizes?: string;
 };
 
 const mediaLabel = (item: GalleryItem) => {
@@ -26,7 +27,30 @@ const mediaLabel = (item: GalleryItem) => {
   return item.alt;
 };
 
-const DecisionMedia = ({ item, isThumbnail = false, isAuthenticated = true }: DecisionMediaProps) => {
+const getDecisionMediaLayout = (item: GalleryItem) => {
+  if (item.format === "mobile") {
+    return {
+      wrapper: "w-[min(78vw,288px)] max-w-[288px]",
+      frame: "aspect-[9/19.5] rounded-[32px]",
+      inner: "rounded-[31px]",
+      sizes: "(min-width: 1024px) 288px, 78vw",
+    };
+  }
+
+  return {
+    wrapper: "w-[95%] max-w-[1000px]",
+    frame: "aspect-[1200/750] rounded-[30px]",
+    inner: "rounded-[29px]",
+    sizes: "(min-width: 1280px) 1000px, 95vw",
+  };
+};
+
+const DecisionMedia = ({
+  item,
+  isThumbnail = false,
+  isAuthenticated = true,
+  sizes,
+}: DecisionMediaProps) => {
   if (item.protected && !isAuthenticated) {
     return <LockedAsset isThumbnail={isThumbnail} />;
   }
@@ -34,7 +58,10 @@ const DecisionMedia = ({ item, isThumbnail = false, isAuthenticated = true }: De
   if (item.type === "video") {
     return (
       <video
-        className="h-full w-full object-cover"
+        className={clsx(
+          "h-full w-full",
+          isThumbnail || item.format === "mobile" ? "object-cover object-center" : "object-contain",
+        )}
         autoPlay={!isThumbnail}
         loop
         muted
@@ -72,7 +99,7 @@ const DecisionMedia = ({ item, isThumbnail = false, isAuthenticated = true }: De
       );
     }
 
-    return <FigmaEmbed item={item} showPageNavigation />;
+    return <FigmaEmbed item={item} showPageNavigation disableInteraction={item.disableInteraction} />;
   }
 
   return (
@@ -84,7 +111,7 @@ const DecisionMedia = ({ item, isThumbnail = false, isAuthenticated = true }: De
         "z-10 object-contain",
         !isThumbnail && "opacity-90",
       )}
-      sizes={isThumbnail ? "82px" : "(min-width: 1280px) 1242px, 100vw"}
+      sizes={isThumbnail ? "82px" : sizes}
       unoptimized
     />
     );
@@ -106,13 +133,13 @@ const CostColumn = ({ title, items, tone, withDivider = false }: CostColumnProps
   >
     <p
       className={clsx(
-        "font-tektur text-xl font-semibold leading-[0.7]",
+        "type-data-value",
         tone === "positive" ? "text-positive" : "text-negative",
       )}
     >
       {title}
     </p>
-    <ul className="flex flex-col items-center font-sans text-lg font-normal leading-[1.7] tracking-[-0.04em] text-muted">
+    <ul className="type-body-lg flex flex-col items-center text-muted">
       {items.map((item) => (
         <li key={item} className="text-center">
           {item}
@@ -132,39 +159,44 @@ const KeyDecisionCard = ({ item, isAuthenticated = true }: KeyDecisionCardProps)
   const mediaItems = useMemo(() => [item.media, ...item.gallery], [item.gallery, item.media]);
   const [activeIndex, setActiveIndex] = useState(0);
   const activeMedia = mediaItems[activeIndex] ?? item.media;
+  const activeMediaLayout = getDecisionMediaLayout(activeMedia);
   const hasMultipleMedia = mediaItems.length > 1;
 
   return (
     <article className="relative mx-auto flex w-full max-w-[1200px] flex-col items-center gap-8 border-t border-dark-smooth pt-16">
-      <div className="flex w-full flex-col items-center justify-center rounded-t-[20px] leading-[1.7]">
-        <p className="font-tektur text-xl font-semibold text-primary">
+      <div className="flex w-full flex-col items-center justify-center rounded-t-[20px]">
+        <p className="type-decision-eyebrow text-primary">
           {item.eyebrow}
         </p>
-        <h3 className="text-center font-sans text-[32px] font-medium leading-[1.7] tracking-[-0.04em] text-muted">
+        <h3 className="type-decision-title text-center text-muted">
           {item.title}
         </h3>
         {item.summary ? (
-          <p className="max-w-[980px] text-center font-sans text-2xl font-light leading-[1.7] tracking-[-0.04em] text-smooth">
+          <p className="type-body-lg max-w-[600px] text-center text-smooth">
             {item.summary}
           </p>
         ) : null}
       </div>
 
-      <div className="relative flex w-full flex-col items-center">
-        <div className="relative flex w-full justify-center">
-          <div
-            className={clsx(
-              "relative aspect-[1200/750] max-w-[1200px] overflow-hidden rounded-[30px] border border-dark-smooth bg-[rgb(53_69_128/31%)] shadow-elevation-2 backdrop-blur-md",
-              "w-[95%]",
-            )}
-          >
-            <div className="relative h-full w-full overflow-hidden rounded-[29px] bg-[rgb(53_69_128/31%)]">
-              <DecisionMedia item={activeMedia} isAuthenticated={isAuthenticated} />
-            </div>
+      <div className={clsx("relative mx-auto", activeMediaLayout.wrapper)}>
+        <div className={clsx(
+          "relative overflow-hidden border border-dark-smooth bg-[rgb(53_69_128/31%)] shadow-elevation-2 backdrop-blur-md",
+          activeMediaLayout.frame,
+        )}>
+          <div className={clsx(
+            "relative h-full w-full overflow-hidden bg-[rgb(53_69_128/31%)]",
+            activeMediaLayout.inner,
+          )}>
+            <DecisionMedia
+              item={activeMedia}
+              isAuthenticated={isAuthenticated}
+              sizes={activeMediaLayout.sizes}
+            />
           </div>
+        </div>
 
-          {hasMultipleMedia && (
-          <div className="absolute left-[calc(97.5%+16px)] top-1/2 z-20 flex -translate-y-1/2 flex-col gap-3 rounded-[14px] p-1">
+        {hasMultipleMedia && (
+          <div className="absolute left-full top-1/2 z-20 ml-3 flex -translate-y-1/2 flex-col gap-3 rounded-[14px] p-1">
             {mediaItems.map((media, index) => {
               const isActive = index === activeIndex;
               const label = mediaLabel(media);
@@ -186,15 +218,14 @@ const KeyDecisionCard = ({ item, isAuthenticated = true }: KeyDecisionCardProps)
                   >
                     <DecisionMedia item={media} isThumbnail isAuthenticated={isAuthenticated} />
                   </button>
-                  <span className="pointer-events-none absolute right-[calc(100%+12px)] top-1/2 z-30 hidden w-max max-w-[300px] -translate-y-1/2 rounded-[10px] border border-dark-smooth bg-dark/80 px-4 py-3 text-left font-sans text-sm leading-snug text-muted opacity-0 shadow-elevation-2 backdrop-blur-md transition group-hover:opacity-100 group-focus-within:opacity-100 lg:block">
+                  <span className="type-tooltip pointer-events-none absolute right-[calc(100%+12px)] top-1/2 z-30 hidden w-max max-w-[300px] -translate-y-1/2 rounded-[10px] border border-dark-smooth bg-dark/80 px-4 py-3 text-left text-muted opacity-0 shadow-elevation-2 backdrop-blur-md transition group-hover:opacity-100 group-focus-within:opacity-100 lg:block">
                     {label}
                   </span>
                 </div>
               );
             })}
           </div>
-          )}
-        </div>
+        )}
       </div>
 
       <div className="flex w-full flex-col items-stretch gap-8 rounded-bl-[20px] p-5 md:flex-row md:gap-0">

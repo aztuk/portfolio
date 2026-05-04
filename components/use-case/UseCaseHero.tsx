@@ -19,31 +19,44 @@ export const UseCaseHero = ({ useCase }: UseCaseHeroProps) => {
         </div>
 
         {/* Image + title overlap block */}
-        <div className="flex w-full flex-col items-center">
-          {/* Preview image with bottom mask fade */}
+        <div className="relative flex w-full flex-col items-center">
+          {/* Masked wrapper — padded 80px on all sides so the mask covers image + shadow bleed */}
+          {/* -translate-y-[80px] compensates for the top padding so the image top stays at top-0 */}
           <div
-            className="relative w-full overflow-hidden rounded-[28px] shadow-[0_0_50px_20px_var(--color-dark-smooth)] lg:w-[68%] lg:rounded-[40px]"
+            className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-[80px]"
             style={{
-              aspectRatio: "816 / 510",
-              maskImage: "linear-gradient(to bottom, black 35%, transparent 85%)",
-              WebkitMaskImage: "linear-gradient(to bottom, black 35%, transparent 85%)",
+              padding: "80px",
+              maskImage: "linear-gradient(to bottom, black 43%, transparent 72%)",
+              WebkitMaskImage: "linear-gradient(to bottom, black 43%, transparent 72%)",
             }}
           >
-            <PreviewMedia
-              previewImage={useCase.previewImage}
-              previewVideo={useCase.previewVideo}
-              priority
-              mediaClassName="object-cover object-top"
-              sizes="(min-width: 1200px) 816px, (min-width: 1024px) 68vw, 100vw"
-            />
+            {/* Shadow layer — no overflow-hidden so shadow isn't clipped */}
+            <div
+              className="relative w-[260px] rounded-[20px] sm:w-[320px] sm:rounded-[24px] lg:w-[380px] lg:rounded-[30px]"
+              style={{
+                aspectRatio: "380 / 460",
+                boxShadow: "0 -10px 60px 10px rgba(28, 40, 90, 0.85), 0 0 40px 15px rgba(28, 40, 90, 0.6), 0 0 0 1px rgba(72, 90, 156, 0.3)",
+              }}
+            >
+              {/* Image layer — clips content to rounded corners */}
+              <div className="absolute inset-0 overflow-hidden rounded-[inherit] border border-dark-smooth">
+                <PreviewMedia
+                  previewImage={useCase.previewImage}
+                  previewVideo={useCase.previewVideo}
+                  priority
+                  mediaClassName="object-cover object-top"
+                  sizes="(min-width: 1024px) 380px, (min-width: 640px) 320px, 260px"
+                />
+              </div>
+            </div>
           </div>
 
-          {/* Title + overview — overlaps bottom 41% of image on desktop */}
-          <div className="relative z-10 w-full px-4 text-center lg:-mt-[17.5%] lg:px-[90px]">
-            <h1 className="font-display font-medium text-[clamp(2rem,7.33vw,5.5rem)] leading-[0.88] tracking-[-3px] text-ink">
+          {/* Title + overview — rendered over the image, padding-top pushes text into the lower portion */}
+          <div className="relative z-10 w-full pt-[200px] px-4 text-center sm:pt-[252px] lg:pt-[300px] lg:px-[90px]">
+            <h1 className="type-page-title mx-auto max-w-[828px] text-ink">
               {useCase.title}
             </h1>
-            <p className="mt-8 font-sans font-light text-lg leading-[1.7] tracking-[-0.04em] text-smooth lg:text-[24px]">
+            <p className="type-body-md mx-auto mt-8 max-w-[828px] whitespace-pre-line text-smooth lg:type-body-lg-light">
               {useCase.overview}
             </p>
           </div>

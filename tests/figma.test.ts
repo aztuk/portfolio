@@ -30,8 +30,26 @@ describe("buildFigmaEmbedUrl", () => {
       "https://www.figma.com/proto/abc123/File?node-id=1-2",
     );
     expect(result).toContain("hide-ui=1");
-    expect(result).toContain("show-proto-sidebar=0");
+    expect(result).toContain("footer=false");
+    expect(result).toContain("viewport-controls=false");
+    expect(result).toContain("disable-default-keyboard-nav=true");
+    expect(result).toContain("show-proto-sidebar=false");
+    expect(result).toContain("hotspot-hints=false");
+    expect(result).toContain("device-frame=false");
+    expect(result).toContain("scaling=min-zoom");
+    expect(result).toContain("content-scaling=responsive");
     expect(result).toContain("embed-host=share");
+  });
+
+  it("treats proto URLs as prototypes even when mode is marked as file", () => {
+    const result = buildFigmaEmbedUrl(
+      "https://www.figma.com/proto/abc123/File?node-id=1-2",
+      "file",
+    );
+
+    expect(result).toContain("hide-ui=1");
+    expect(result).toContain("footer=false");
+    expect(result).toContain("starting-point-node-id=1-2");
   });
 
   it("keeps file embeds navigable instead of hiding the Figma UI", () => {

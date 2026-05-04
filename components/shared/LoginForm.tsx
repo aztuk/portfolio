@@ -58,8 +58,8 @@ export const LoginForm = ({ locale, redirectTo = "/", onSuccess }: LoginFormProp
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <p className="font-display text-[52px] leading-[0.95] text-ink mb-3">{l.title}</p>
-        <p className="font-sans text-sm font-light leading-relaxed text-muted/70">{l.description}</p>
+        <p className="type-login-title text-ink mb-3">{l.title}</p>
+        <p className="type-body-sm text-muted/70">{l.description}</p>
       </div>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-2.5">
@@ -70,17 +70,17 @@ export const LoginForm = ({ locale, redirectTo = "/", onSuccess }: LoginFormProp
           placeholder={l.placeholder}
           autoFocus
           className={clsx(
-            "w-full rounded-2xl border bg-white/5 px-5 py-3.5 font-sans text-base text-ink placeholder:text-muted/30 outline-none transition-colors",
+            "type-body-md w-full rounded-2xl border bg-white/5 px-5 py-3.5 text-ink placeholder:text-muted/30 outline-none transition-colors",
             error ? "border-red-400/50" : "border-white/10 focus:border-primary/50",
           )}
         />
         {error && (
-          <p className="font-sans text-xs text-red-400">{l.error}</p>
+          <p className="type-body-xs text-red-400">{l.error}</p>
         )}
         <button
           type="submit"
           disabled={loading || !value}
-          className="mt-1 w-full rounded-2xl bg-primary px-5 py-3.5 font-sans text-base font-semibold text-canvas transition-opacity hover:opacity-90 disabled:opacity-30"
+          className="type-body-md-bold mt-1 w-full rounded-2xl bg-primary px-5 py-3.5 text-canvas transition-opacity hover:opacity-90 disabled:opacity-30"
         >
           {l.submit}
         </button>

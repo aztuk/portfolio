@@ -23,13 +23,13 @@ export const HomeHero = async () => {
 
           {/* Title block */}
           <div className="flex flex-col items-start pb-[30px]">
-            <p className="font-display font-light text-[40px] leading-none text-primary">
+            <p className="type-hero-kicker text-primary">
               {siteContent.name}
             </p>
-            <h1 className="font-display font-medium text-[120px] leading-none tracking-[-3px] text-ink uppercase">
+            <h1 className="type-hero-title text-ink">
               {t("role")}
             </h1>
-            <p className="mt-2 font-sans font-light text-[24px] leading-[1.7] tracking-[-0.04em] text-smooth w-[448px]">
+            <p className="type-body-xl mt-2 w-[448px] text-smooth">
               {t("intro")}
             </p>
           </div>
@@ -38,13 +38,13 @@ export const HomeHero = async () => {
           <div className="flex items-center gap-6">
             <a
               href="#work"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-8 py-2.5 font-sans text-[18px] font-medium text-dark shadow-elevation-2 transition-opacity hover:opacity-85"
+              className="type-control-lg inline-flex items-center justify-center gap-2 rounded-full bg-primary px-8 py-2.5 text-dark shadow-elevation-2 transition-opacity hover:opacity-85"
             >
               {tHome("viewWork")}
             </a>
             <a
               href="#contact"
-              className="inline-flex items-center justify-center rounded-full border-2 border-ink px-8 py-2.5 font-sans text-[18px] font-medium text-ink transition-colors hover:border-primary hover:text-primary"
+              className="type-control-lg inline-flex items-center justify-center rounded-full border-2 border-ink px-8 py-2.5 text-ink transition-colors hover:border-primary hover:text-primary"
             >
               {tHome("getInTouch")}
             </a>

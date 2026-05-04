@@ -14,7 +14,7 @@ export type ImageAsset = {
 export type VideoAsset = {
   type: "video";
   src: string;
-  poster: string;
+  poster?: string;
   alt: string;
   caption?: string;
   format?: MediaFormat;
@@ -35,6 +35,8 @@ export type FigmaAsset = {
   /** Static screenshot shown as thumbnail and as lightbox fallback when the iframe fails to load */
   poster?: string;
   protected?: boolean;
+  /** Overlays a transparent blocker so the embed displays as a static preview with no navigation */
+  disableInteraction?: boolean;
 };
 
 export type MediaAsset = ImageAsset | VideoAsset;
@@ -55,6 +57,7 @@ export type VerticalBarItem = {
 
 export type VerticalBarsChartData = {
   type: "vertical-bars";
+  title: string;
   bars: VerticalBarItem[];
 };
 
@@ -114,11 +117,21 @@ export type SingleKpiChartData = {
   value: string;
   title: string;
   description: string;
+  caption?: string;
 };
 
-export type InsightIconName = "piggy-bank" | "lightbulb" | "users-three";
+export type InsightIconName = "piggy-bank" | "lightbulb" | "users-three" | "calendar-dots" | "clipboard-list" | "check-badge" | "shield-check" | "chart-pie" | "chart-bar" | "flask" | "clipboard-text";
 
 export type InsightMethodologyIconName = "flask" | "clipboard-text" | "chart-bar";
+
+export type VerbatimChartData = {
+  type: "verbatim";
+  quote: string;
+  personaName: string;
+  color: string;
+  methodology: string;
+  methodologyIcon: InsightMethodologyIconName;
+};
 
 export type InsightChartData = {
   type: "insight";
@@ -131,6 +144,24 @@ export type InsightChartData = {
   color: string;
 };
 
+export type WorkflowMappingStep = {
+  label: string;
+  detail: string;
+};
+
+export type WorkflowMappingFriction = {
+  label: string;
+  startPercent: number;
+  widthPercent: number;
+};
+
+export type WorkflowMappingChartData = {
+  type: "workflow-mapping";
+  title: string;
+  steps: WorkflowMappingStep[];
+  frictions: WorkflowMappingFriction[];
+};
+
 export type TensionChartVariant =
   | VerticalBarsChartData
   | DualProgressChartData
@@ -138,7 +169,9 @@ export type TensionChartVariant =
   | RankedBarsChartData
   | CountBarsChartData
   | SingleKpiChartData
-  | InsightChartData;
+  | InsightChartData
+  | VerbatimChartData
+  | WorkflowMappingChartData;
 
 type CaptionedTensionChartVariant = Exclude<TensionChartVariant, InsightChartData>;
 
@@ -258,7 +291,8 @@ export type ImpactChart =
   | BarChartData
   | ProgressChartData
   | DurationBarsChartData
-  | KpiProgressChartData;
+  | KpiProgressChartData
+  | SingleKpiChartData;
 
 export type ImpactSectionData = {
   title: string;

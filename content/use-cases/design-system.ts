@@ -4,28 +4,27 @@ const designSystemFigmaPreview =
   "https://www.figma.com/design/avvTCRSu4yLCeWcyEnJPqL/Slash-Figma?node-id=8845-72979&t=y5MXYta86W8mmaqI-11";
 
 const en: UseCase = {
-  title: "Raised first-week activation by making setup feel like progress",
+  title: "Aligning product, design and development",
   slug: "product-ops-transformation",
   overview:
-    "Reshaped onboarding around one meaningful early win, reducing decision fatigue and improving first-week activation on mobile.",
+    "When Enphase acquired us in 2022, our teams had to move from startup-style delivery to a more global product organization.\n\nI structured a shared delivery system between product, design and development to reduce interpretation, rework and design/dev gaps.",
   challenge:
-    "Increase activation on mobile without turning onboarding into a longer checklist or a skippable tutorial.",
+    "Scale delivery without letting each team reinterpret what needed to be shipped.",
   roles: ["Design Operations Lead"],
-  year: "2024",
-  timeline: "10 weeks",
-  tools: ["Figma", "Amplitude", "Lookback", "FigJam", "After Effects"],
-  tags: ["B2C", "Mobile", "Growth"],
-  projectType: "mobile",
+  year: "2023",
+  timeline: "2 years",
+  tools: ["Figma", "Notion", "Storybook", "Jira", "Flutter"],
+  tags: ["B2E", "Web & Mobile", "Governance", "Product Ops"],
+  projectType: "mobile et web",
   previewImage: {
     type: "image",
-    src: "/assets/use-cases/mobile-onboarding-optimization/preview.svg",
-    alt: "Mobile preview cards for the onboarding optimization case study.",
+    src: "/assets/use-cases/design-system/EN_designsystem_preview.png",
+    alt: "Preview of the Product Ops transformation - handoff, development and review better aligned.",
   },
-  previewRatio: "586/1254",
   resultHero: {
     type: "figma",
     src: designSystemFigmaPreview,
-    title: "Design system Figma file",
+    title: "Shared delivery system and design system",
     mode: "file",
     format: "web",
     protected: true,
@@ -34,86 +33,92 @@ const en: UseCase = {
     title: "Understanding the problem",
     tensions: [
       {
-        label: "For users",
+        label: "For the product team",
         value:
-          "The challenge was tied to user motivations, uneven levels of understanding, and very different usage contexts from one household to another.",
+          "Decisions came back too late, often after development had already started.",
         bullets: [
-          "Very different levels of understanding",
-          "Savings came first in user expectations",
-          "Equipment varied significantly from one household to another",
+          "Decisions were hard to preserve",
+          "Acceptance criteria were unclear",
+          "Trade-offs were reopened",
         ],
       },
       {
-        label: "For the business",
+        label: "For design",
         value:
-          "The impact was immediate on the business side, creating sales friction and making the product's value harder to communicate.",
+          "Mockups showed the visual intent, but not always the usage rules.",
         bullets: [
-          "Low perceived value",
-          "Limited engagement",
-          "Product impact was hard to demonstrate",
+          "Incomplete states",
+          "Missing edge cases",
+          "Patterns reinvented",
+        ],
+      },
+      {
+        label: "For developers",
+        value:
+          "Developers had to translate product intentions into implementation logic.",
+        bullets: [
+          "Divergent implementations",
+          "Review loops",
+          "Implicit decisions",
         ],
       },
     ],
     coreQuestion:
-      "How might we create value for heterogeneous users primarily motivated by savings?",
+      "How can we reduce interpretation between product, design and development before development starts?",
+    discoverySignals: [
+      "Workflow audit",
+      "Ticket analysis",
+      "Review analysis",
+      "Artifact mapping",
+      "Stakeholder interviews",
+    ],
     chartCards: [
       {
-        caption: "Highly heterogeneous household types and installations",
-        chart: {
-          type: "vertical-bars",
-          bars: [
-            { label: "Home\nonly",          value: 34, color: "var(--color-primary)" },
-            { label: "Solar\nonly",         value: 27, color: "#00fe33" },
-            { label: "Solar +\nbat.",       value: 18, color: "#c3fe00" },
-            { label: "Solar +\nEV",         value: 11, color: "#fef100" },
-            { label: "Solar +\nbat. + EV",  value: 10, color: "#feba00" },
-          ],
-        },
-      },
-      {
-        caption: "The current dashboard is too dense or too confusing",
+        caption:
+          "Too many decisions remained open after development had started.",
         chart: {
           type: "dual-progress",
           rows: [
             {
-              title: "Bounce rate",
-              description: "Share of sessions leaving the dashboard without interacting with its key elements.",
-              display: "48%",
-              percent: 48,
+              title: "Clarifications after dev start",
+              description: "Share of tickets returning to discussion after development had started.",
+              display: "59%",
+              percent: 59,
               variant: "primary",
             },
             {
-              title: "Time on dashboard",
-              description: "Average time spent on the dashboard per user session.",
-              display: "41 sec",
-              percent: 72,
+              title: "Tickets with more than one review cycle",
+              description: "Share of tickets requiring more than one design/dev correction cycle.",
+              display: "40%",
+              percent: 40,
               variant: "secondary",
             },
           ],
         },
       },
       {
-        caption: "A significant retention drop after one month",
+        caption: "Rework mostly came from decisions that remained implicit.",
         chart: {
-          type: "line",
-          points: [
-            { label: "D0",  value: 100, color: "var(--color-primary)" },
-            { label: "D7",  value: 26,  color: "#00fe33" },
-            { label: "D30", value: 9,   color: "var(--color-secondary)" },
+          type: "vertical-bars",
+          title: "Implicit decisions in tickets",
+          bars: [
+            { label: "Missing\nstates", value: 38, color: "var(--color-primary)" },
+            { label: "Ambiguous\nflows", value: 31, color: "#00fe33" },
+            { label: "Unclear\ncriteria", value: 18, color: "#c3fe00" },
+            { label: "No\nreuse", value: 16, color: "#fef100" },
+            { label: "Technical\nconstraint", value: 7, color: "#feba00" },
           ],
         },
       },
       {
-        caption: "Savings interest users the most",
+        caption:
+          "Teams did not always share the same definition of the deliverable.",
         chart: {
-          type: "ranked-bars",
-          title: "Interaction rate by displayed module type",
-          bars: [
-            { label: "Estimated savings",  value: 31, percent: 100, isPrimary: true },
-            { label: "Home consumption",   value: 28, percent: 75,  isPrimary: false },
-            { label: "Production",         value: 17, percent: 45,  isPrimary: false },
-            { label: "CO2 saved",          value: 15, percent: 41,  isPrimary: false },
-          ],
+          type: "single-kpi",
+          value: "61%",
+          title: "Cross-discipline reviews",
+          description:
+            "Share of tickets receiving at least two types of feedback: product, design or engineering.",
         },
       },
     ],
@@ -125,73 +130,72 @@ const en: UseCase = {
         id: "strengthen-documentation",
         title: "Strengthen documentation",
         summary:
-          "Centralize rules and guidelines to make information more accessible.",
-        pros: ["Fast to implement"],
-        cons: ["No habit change"],
+          "Centralize rules and guidelines to help every team find the same decisions.",
+        pros: ["Fast to launch", "Easy to consult"],
+        cons: ["Little real adoption", "Decisions still came late"],
       },
       {
         id: "strengthen-reviews",
         title: "Strengthen reviews",
         summary:
-          "Add more end-of-cycle controls to detect gaps.",
-        pros: ["Detects issues better"],
-        cons: ["Comes too late"],
+          "Add more controls at the end of the cycle to detect gaps before release.",
+        pros: ["Detects gaps", "Improves quality"],
+        cons: ["Comes too late", "Adds rework"],
       },
       {
         id: "shared-delivery-system",
-        title: "Create a shared delivery system",
+        title: "Create shared delivery",
         summary:
-          "Align product, design and engineering around shared gates, artifacts, rules and quality criteria.",
-        pros: ["Aligns earlier"],
-        cons: ["Adoption is critical"],
+          "Align product, design and development around shared gates, artifacts and quality criteria.",
+        pros: ["Aligns earlier", "Reduces interpretation"],
+        cons: ["Requires adoption", "More demanding at first"],
       },
     ],
     selectedSolutionId: "shared-delivery-system",
     keyDecisions: [
       {
         id: "delivery",
-        eyebrow: "Key delivery decision",
+        eyebrow: "Delivery decision",
         title: "Move friction BEFORE development",
-        summary: "Intentional upstream friction to reduce downstream rework",
         media: {
           type: "image",
           src: "/assets/use-cases/design-system/EN_workflow.png",
-          alt: "Workflow showing how product, design and engineering decisions move before development.",
+          alt: "Workflow showing product, design and engineering decisions moved before development.",
         },
         gallery: [
           {
             type: "image",
             src: "/assets/use-cases/design-system/FullWorkflow.png",
-            alt: "Full product delivery workflow showing the complete alignment and validation process.",
+            alt: "Full workflow showing the product delivery alignment and validation process.",
           },
         ],
         avoidedCost: [
-          "Decisions reopened in review",
+          "Decisions reopened during review",
           "Late rework",
           "Quality dependent on informal exchanges",
         ],
         acceptedCost: [
-          "More initial effort",
+          "Greater initial effort",
           "Perceived risk of a heavier process",
         ],
       },
       {
         id: "governance",
-        eyebrow: "Key governance decision",
-        title: "Separate responsibilities to align disciplines",
+        eyebrow: "Governance decision",
+        title: "Clarify who decides what",
         summary:
-          "The goal was to move away from a single library where global decisions, components and product usages were mixed together.",
+          "We separated foundations, components and product usages to make responsibilities clearer.",
         media: {
           type: "image",
-          src: "/assets/use-cases/design-system/FR_designArchitecture.png",
-          alt: "Design system architecture separating foundation, components, product usages and governance responsibilities.",
+          src: "/assets/use-cases/design-system/EN_designArchitecture.png",
+          alt: "Design system architecture separating foundations, components, product usages and governance responsibilities.",
         },
         gallery: [
           {
             type: "figma",
             src: "https://www.figma.com/design/avvTCRSu4yLCeWcyEnJPqL/Slash-Figma?node-id=9-93&p=f&t=y5MXYta86W8mmaqI-0",
-            title: "Design system components",
-            caption: "Component library built on top of the token architecture",
+            title: "Design system",
+            caption: "Components built on top of the token architecture",
             mode: "file",
             format: "web",
             protected: true,
@@ -199,19 +203,11 @@ const en: UseCase = {
           {
             type: "figma",
             src: "https://www.figma.com/design/FCHt6WHcSXBjp72ZpAXTSN/ENL1-Mockups?m=auto&t=y3MnBAtvL1KApKDp-6",
-            title: "Mockups using the design system",
+            title: "Mockups using the DS",
             caption: "Product mockups created with the shared component system",
             mode: "file",
             format: "web",
             protected: true,
-          },
-          {
-            type: "video",
-            src: "/assets/use-cases/design-system/pocMolecule.mp4",
-            poster: "/assets/use-cases/design-system/previewDesignSystem.png",
-            alt: "PoC video showing how the molecule system works.",
-            caption: "PoC video showing how the molecule system works",
-            format: "web",
           },
         ],
         avoidedCost: [
@@ -227,13 +223,14 @@ const en: UseCase = {
       },
       {
         id: "quality",
-        eyebrow: "Key quality decision",
-        title: "Make handoff and review verifiable",
-        summary: "Less interpretation upfront, less opinion in review",
+        eyebrow: "Quality decision",
+        title: "Make quality verifiable",
+        summary:
+          "We turned handoff and review into observable criteria, less dependent on opinions.",
         media: {
           type: "image",
-          src: "/assets/use-cases/design-system/FR_HandoffPackage.png",
-          alt: "Handoff package and review checklist making design-to-development quality criteria explicit.",
+          src: "/assets/use-cases/design-system/EN_HandoffPackage.png",
+          alt: "Handoff package and review checklist reducing interpretation during development.",
         },
         gallery: [],
         avoidedCost: [
@@ -249,14 +246,14 @@ const en: UseCase = {
       },
       {
         id: "adoption",
-        eyebrow: "Key adoption decision",
-        title: "Build adoption with technical relays",
+        eyebrow: "Adoption decision",
+        title: "Rely on technical relays",
         summary:
-          "Adoption did not come from documentation alone, but from technical relays involved in decisions.",
+          "We involved senior developers to turn rules into practices that were actually used.",
         media: {
           type: "image",
-          src: "/assets/use-cases/design-system/FR_Adoption.png",
-          alt: "Adoption model showing technical relays involved in design system decisions.",
+          src: "/assets/use-cases/design-system/EN_Adoption.png",
+          alt: "Adoption model showing how technical relays helped teams use the system.",
         },
         gallery: [],
         avoidedCost: [
@@ -274,43 +271,62 @@ const en: UseCase = {
   },
   impactSection: {
     title: "The impacts",
-    summary: "All signals point in the same direction",
+    summary:
+      "Delivery became more predictable on the covered workflows: less interpretation, more reuse and more measurable quality criteria.",
     bullets: [
-      { bold: "The first visit becomes more relevant", regular: "(lower bounce, more time spent)" },
-      { bold: "Value is better perceived from the start", regular: "(more return after first session)" },
-      { bold: "This effect is not limited to curiosity", regular: "(still perceptible after 30 days)" },
-      { bold: "Personalised modules seem better targeted", regular: "(engagement up on modules)" },
+      {
+        bold: "Alignment became a delivery step",
+        regular: "fewer decisions reopened late during review",
+      },
+      {
+        bold: "Speed increased on covered patterns",
+        regular: "faster prototyping and implementation thanks to reusable components",
+      },
+      {
+        bold: "Quality depended less on individuals",
+        regular: "design/dev parity, clearer handoff and measurable adoption",
+      },
     ],
     charts: [
-      { type: "bar", title: "Day-7 retention",         before: { display: "26%", value: 26 }, after: { display: "34%", value: 34 } },
-      { type: "bar", title: "Day-30 retention",        before: { display: "09%", value: 9  }, after: { display: "17%", value: 17 } },
-      { type: "bar", title: "Module interaction rate", before: { display: "22%", value: 22 }, after: { display: "34%", value: 34 } },
       {
-        type: "progress",
-        rows: [
-          { label: "Bounce rate",       before: { display: "48%",    percent: 48 }, after: { display: "42%",    percent: 42 } },
-          { label: "Time on Dashboard", before: { display: "41 sec", percent: 41 }, after: { display: "54 sec", percent: 54 } },
+        type: "duration-bars",
+        items: [
+          { label: "Standard screen\nprototyping", before: { display: "3h30", value: 3.5 }, after: { display: "1h15", value: 1.25 } },
+          { label: "Standard screen\nimplementation", before: { display: "12h", value: 12 }, after: { display: "5h", value: 5 } },
+          { label: "Post-review\ncorrections", before: { display: "5h", value: 5 }, after: { display: "2h", value: 2 } },
         ],
+        caption:
+          "Gains appeared mostly on screens covered by the system.",
+      },
+      {
+        type: "kpi-progress",
+        title: "Governance KPIs created",
+        rows: [
+          { label: "Figma / Flutter parity", display: "78%", percent: 78 },
+          { label: "New tickets with DS adoption", display: "62%", percent: 62 },
+          { label: "Pulse survey: handoff clarity score", display: "4.0 / 5", rating: { value: 4, max: 5 } },
+        ],
+        caption:
+          "Alignment became measurable through parity, adoption and clarity.",
       },
     ],
   },
   retrospective: {
     title: "Retrospective",
-    summary: "A few short lessons the project changed in my practice.",
     dontLabel: "DON'T",
     doLabel: "INSTEAD",
     items: [
       {
-        dont: "Design one view for everyone",
-        do: "Use onboarding to segment and configure a more relevant experience",
+        dont: "Optimize each team separately",
+        do: "Optimize the handoffs between teams",
       },
       {
-        dont: "Organise the interface around product logic",
-        do: "Organise it around user intent",
+        dont: "Fix alignment during review",
+        do: "Create alignment before development",
       },
       {
-        dont: "Measure along a single dimension",
-        do: "Track a combined set of targeted signals",
+        dont: "Wait for the system to adopt itself",
+        do: "Build adoption with its future users",
       },
     ],
   },
@@ -318,25 +334,25 @@ const en: UseCase = {
 };
 
 const fr: UseCase = {
-  title: "Structurer la delivery entre design, product et développement",
+  title: "Aligner product, design et développement",
   slug: "product-ops-transformation",
-  overview: "Transformation d’une delivery fragmentée en système partagé, avec moins d’interprétation, moins de rework et plus de cohérence design/dev",
-  challenge: "Scaler la delivery produit sans multiplier les interprétations entre équipes.",
+  overview: "Lorsque Enphase nous a rachetés en 2022, nos équipes ont dû passer d’une delivery startup à une organisation produit plus globale. \n\nJ’ai structuré un système de delivery partagé entre product, design et dev pour réduire l’interprétation, le rework et les écarts design/dev.",
+ challenge: "Faire scaler la delivery sans laisser chaque équipe réinterpréter ce qui devait être livré.",
   roles: ["Design Operations Lead"],
-  year: "2022",
+  year: "2023",
   timeline: "2 ans",
   tools: ["Figma", "Notion", "Storybook", "Jira", "Flutter"],
   tags: ["B2E", "Web & Mobile", "Governance", "Product Ops"],
   projectType: "mobile et web",
   previewImage: {
     type: "image",
-    src: "/assets/use-cases/design-system/previewDesignSystem.png",
-    alt: "Design system preview cards for the design system case study.",
+    src: "/assets/use-cases/design-system/FR_designsystem_preview.png",
+    alt: "Aperçu de la transformation Product Ops — handoff, développement et review mieux alignés",
   },
   resultHero: {
     type: "figma",
     src: designSystemFigmaPreview,
-    title: "Fichier Figma du design system",
+    title: "Système de delivery et design system partagé",
     mode: "file",
     format: "web",
     protected: true,
@@ -344,50 +360,50 @@ const fr: UseCase = {
   tension: {
     title: "Comprendre le problème",
     tensions: [
-      {
-        label: "Pour l’équipe produit",
-        value:
-          "Les arbitrages revenaient tard dans le cycle, générant des discussions répétées et une perte de clarté.",
-        bullets: [
-          "Décisions difficiles à préserver",
-          "Critères d’acceptation ouverts",
-          "Arbitrages tardifs",
-        ],
-      },
-      {
-        label: "Pour le design",
-        value:
-          "Les maquettes ne servaient que de références visuelles, sans donner les règles de comportement, état, edge cases ou variations.",
-        bullets: [
-          "Désalignement design et dev",
-          "États incomplets",
-          "Patterns réinventés à chaque feature",
-        ],
-      },
-      {
-        label: "Pour les dev",
-        value:
-          "Les développeurs devaient transformer des intentions visuelles en logique produit, souvent sans règles partagées.",
-        bullets: [
-          "Implémentations divergentes",
-          "Boucles de review",
-          "Décisions implicites dans le code",
-        ],
-      },
+  {
+    label: "Pour l’équipe produit",
+    value:
+      "Les arbitrages revenaient trop tard, souvent après le démarrage du développement.",
+    bullets: [
+      "Décisions difficiles à préserver",
+      "Critères d’acceptation flous",
+      "Arbitrages réouverts",
     ],
+  },
+  {
+    label: "Pour le design",
+    value:
+      "Les maquettes montraient l’intention visuelle, mais pas toujours les règles d’usage.",
+    bullets: [
+      "États incomplets",
+      "Edge cases absents",
+      "Patterns réinventés",
+    ],
+  },
+  {
+    label: "Pour les dev",
+    value:
+      "Les développeurs devaient transformer des intentions produit en logique d’implémentation.",
+    bullets: [
+      "Implémentations divergentes",
+      "Boucles de review",
+      "Décisions implicites",
+    ],
+  },
+],
     coreQuestion:
-      "Comment passer d’une delivery basée sur l’interprétation à une delivery basée sur des règles partagées ?",
-    discoverySignals: [
-      "Audit de workflow",
-      "Analyse de tickets",
-      "Analyse de reviews",
-      "Carthographie des artefacts",
-      "Entretiens parties prenantes",
+  "Comment réduire l’interprétation entre product, design et développement avant le démarrage du dev ?",
+  discoverySignals: [
+  "Audit du workflow",
+  "Analyse de tickets",
+  "Analyse des reviews",
+  "Cartographie des artefacts",
+  "Entretiens avec les parties prenantes",
     ],
     chartCards: [
       {
         caption:
-          "Trop de décisions restaient à prendre après le démarrage du développement",
+          "Trop de décisions restaient ouvertes après le démarrage du développement",
         chart: {
           type: "dual-progress",
           rows: [
@@ -409,9 +425,10 @@ const fr: UseCase = {
         },
       },
       {
-        caption: "La cause du rework venait surtout de décisions restées implicites.",
+        caption: "Le rework venait surtout de décisions restées implicites.",
         chart: {
           type: "vertical-bars",
+          title: "Décisions implicites dans les tickets",
           bars: [
             { label: "États\nmanquants", value: 38, color: "var(--color-primary)" },
             { label: "Flows\nambigus", value: 31, color: "#00fe33" },
@@ -423,13 +440,13 @@ const fr: UseCase = {
       },
       {
         caption:
-          "Les métiers n’avaient pas la même représentation de ce qui devait être livré",
+          "Les équipes ne partageaient pas toujours la même définition du livrable",
         chart: {
           type: "single-kpi",
           value: "61%",
-          title: "Reworks avec feedback multi-métier",
+          title: "Reviews multi-métier",
           description:
-            "Part des tickets avec au moins deux types de feedback en review : produit, design ou engineering",
+            "Part des tickets recevant au moins deux types de feedback : produit, design ou engineering",
         },
       },
     ],
@@ -437,38 +454,55 @@ const fr: UseCase = {
   solution: {
     title: "Exploration et solution",
     exploredSolutions: [
-      {
-        id: "renforcer-documentation",
-        title: "Renforcer la documentation",
-        summary:
-          "Centraliser les règles et guidelines pour rendre l'information plus accessible.",
-        pros: ["Rapide à mettre en place"],
-        cons: ["Pas de changement d’habitudes"],
-      },
-      {
-        id: "renforcer-reviews",
-        title: "Renforcer les reviews",
-        summary:
-          "Ajouter plus de contrôles en fin de cycle pour détecter les écarts.",
-        pros: ["Détecte mieux les problèmes"],
-        cons: ["Arrive trop tard"],
-      },
-      {
-        id: "systeme-delivery-partage",
-        title: "Créer un système de delivery partagé",
-        summary:
-          "Aligner product, design et engineering autour de gates, artefacts, règles et critères qualité partagés.",
-        pros: ["Aligne plus tôt"],
-        cons: ["Adoption cruciale"],
-      },
+  {
+    id: "renforcer-documentation",
+    title: "Renforcer la documentation",
+    summary:
+      "Centraliser les règles et guidelines pour aider chaque équipe à retrouver les mêmes décisions.",
+    pros: [
+      "Rapide à lancer",
+      "Facile à consulter",
     ],
-    selectedSolutionId: "systeme-delivery-partage",
+    cons: [
+      "Peu d’adoption réelle",
+      "Décisions encore tardives",
+    ],
+  },
+  {
+    id: "renforcer-reviews",
+    title: "Renforcer les reviews",
+    summary:
+      "Ajouter plus de contrôles en fin de cycle pour détecter les écarts avant livraison.",
+    pros: [
+      "Détecte les écarts",
+      "Améliore la qualité",
+    ],
+    cons: [
+      "Arrive trop tard",
+      "Ajoute du rework",
+    ],
+  },
+  {
+    id: "systeme-delivery-partage",
+    title: "Créer une delivery partagée",
+    summary:
+      "Aligner product, design et dev autour de gates, artefacts et critères qualité communs.",
+    pros: [
+      "Aligne plus tôt",
+      "Réduit l’interprétation",
+    ],
+    cons: [
+      "Demande adoption",
+      "Plus exigeant au départ",
+    ],
+  },
+],
+selectedSolutionId: "systeme-delivery-partage",
     keyDecisions: [
       {
         id: "delivery",
-        eyebrow: "Décision clé sur la delivery",
+        eyebrow: "Décision sur la delivery",
         title: "Déplacer la friction AVANT le développement",
-        summary: "Une friction volontaire en amont pour réduire le rework en aval",
         media: {
           type: "image",
           src: "/assets/use-cases/design-system/FR_workflow.png",
@@ -493,11 +527,11 @@ const fr: UseCase = {
       },
       {
         id: "gouvernance",
-        eyebrow: "Décision clé sur la gouvernance",
-        title: "Séparer les responsabilités pour aligner les métiers",
-        summary:
-          "L’objectif était de sortir d’une bibliothèque unique où décisions globales, composants et usages produit se mélangeaient",
-        media: {
+        eyebrow: "Décision sur la gouvernance",
+        title: "Clarifier qui décide quoi",
+         summary:
+    "Nous avons séparé fondations, composants et usages produit pour rendre les responsabilités plus claires.",
+  media: {
           type: "image",
           src: "/assets/use-cases/design-system/FR_designArchitecture.png",
           alt: "Architecture du design system séparant foundations, composants, usages produit et responsabilités de gouvernance.",
@@ -521,14 +555,6 @@ const fr: UseCase = {
             format: "web",
             protected: true,
           },
-          {
-            type: "video",
-            src: "/assets/use-cases/design-system/pocMolecule.mp4",
-            poster: "/assets/use-cases/design-system/previewDesignSystem.png",
-            alt: "Vidéo de PoC montrant comment fonctionne le système de molécules.",
-            caption: "Vidéo de PoC pour montrer comment ça fonctionne",
-            format: "web",
-          },
         ],
         avoidedCost: [
           "Bibliothèque unique ingérable",
@@ -543,13 +569,14 @@ const fr: UseCase = {
       },
       {
         id: "qualite",
-        eyebrow: "Décision clé sur la qualité",
-        title: "Rendre le handoff et la review vérifiables",
-        summary: "Moins d’interprétation au départ, moins d’opinion en review",
-        media: {
+        eyebrow: "Décision sur la qualité",
+        title: "Rendre la qualité vérifiable",
+        summary:
+    "Nous avons transformé le handoff et la review en critères observables, moins dépendants des opinions.",
+  media: {
           type: "image",
           src: "/assets/use-cases/design-system/FR_HandoffPackage.png",
-          alt: "Handoff package et checklist de review rendant les critères qualité vérifiables.",
+          alt: "Handoff package et checklist de review permettant de réduire les interprétations pendant le développement.",
         },
         gallery: [],
         avoidedCost: [
@@ -565,14 +592,14 @@ const fr: UseCase = {
       },
       {
         id: "adoption",
-        eyebrow: "Décision clé sur l’adoption",
-        title: "Construire l’adoption avec des relais techniques",
+        eyebrow: "Décision sur l'adoption",
+        title: "S’appuyer sur des relais techniques",
         summary:
-          "L’adoption ne venait pas de la documentation seule, mais de relais techniques impliqués dans les décisions.",
-        media: {
+    "Nous avons impliqué des devs seniors pour transformer les règles en pratiques réellement utilisées.",
+  media: {
           type: "image",
           src: "/assets/use-cases/design-system/FR_Adoption.png",
-          alt: "Modèle d’adoption montrant les relais techniques impliqués dans les décisions du design system.",
+          alt: "Modèle d’adoption montrant comment les relais techniques aidaient les équipes à utiliser le système."
         },
         gallery: [],
         avoidedCost: [
@@ -588,24 +615,23 @@ const fr: UseCase = {
       }
     ],
   },
-  impactSection: {
-    title: "Les impacts",
-    summary:
-      "Signaux observés sur les workflows couverts par le design system, les patterns réutilisables et les tickets utilisant les composants du système.",
-    bullets: [
-      {
-        bold: "L’alignement est devenu une étape du delivery",
-        regular: "(moins de décisions réouvertes tardivement en review)",
-      },
-      {
-        bold: "La vitesse a augmenté là où le système était réutilisé",
-        regular: "(prototypage et implémentation accélérés sur les patterns couverts)",
-      },
-      {
-        bold: "La qualité dépendait moins des individus",
-        regular: "(parité design/dev, handoff plus clair, adoption mesurable)",
-      },
-    ],
+  impactSection: {  title: "Les impacts",
+  summary:
+    "La delivery est devenue plus prévisible sur les workflows couverts : moins d’interprétation, plus de réutilisation et des critères qualité plus mesurables.",
+  bullets: [
+    {
+      bold: "L’alignement est devenu une étape du delivery",
+      regular: "moins de décisions réouvertes tardivement en review",
+    },
+    {
+      bold: "La vitesse a augmenté sur les patterns couverts",
+      regular: "prototypage et implémentation accélérés grâce aux composants réutilisables",
+    },
+    {
+      bold: "La qualité dépendait moins des individus",
+      regular: "parité design/dev, handoff plus clair et adoption mesurable",
+    },
+  ],
     charts: [
       {
         type: "duration-bars",
@@ -615,40 +641,40 @@ const fr: UseCase = {
           { label: "Corrections après\nreview", before: { display: "5h", value: 5 }, after: { display: "2h", value: 2 } },
         ],
         caption:
-          "Les gains les plus visibles apparaissaient sur les tâches récurrentes et les écrans couverts par le système.",
+          "Les gains apparaissaient surtout sur les écrans couverts par le système",
       },
       {
         type: "kpi-progress",
-        title: "KPI de gouvernance créées",
+        title: "KPI de gouvernance créés",
         rows: [
           { label: "Parité Figma / Flutter", display: "78%", percent: 78 },
           { label: "Nouveaux tickets avec DS (adoption)", display: "62%", percent: 62 },
           { label: "Pulse survey: Score de clarté handoff", display: "4.0 / 5", rating: { value: 4, max: 5 } },
         ],
         caption:
-          "L’alignement devenait mesurable grâce à de nouveaux signaux de parité, d’adoption et de clarté.",
+          "L’alignement devenait mesurable par la parité, l’adoption et la clarté",
       },
     ],
   },
   retrospective: {
-    title: "Retrospective",
-    dontLabel: "NE PLUS",
-    doLabel: "MAIS PLUTOT",
-    items: [
-      {
-        dont: "Optimiser chaque équipe séparément",
-        do: "Optimiser les passages entre product, design et engineering",
-      },
-      {
-        dont: "Corriger l’alignement en review",
-        do: "Créer les conditions d’alignement avant le développement",
-      },
-      {
-        dont: "Penser qu’un bon système s’adopte seul",
-        do: "Construire l’adoption avec ceux qui vont le faire vivre",
-      },
-    ],
-  },
+  title: "Rétrospective",
+  dontLabel: "NE PLUS",
+  doLabel: "MAIS PLUTÔT",
+  items: [
+    {
+      dont: "Optimiser chaque équipe séparément",
+      do: "Optimiser les passages entre équipes",
+    },
+    {
+      dont: "Corriger l’alignement en review",
+      do: "Créer l’alignement avant le développement",
+    },
+    {
+      dont: "Attendre que le système s’adopte seul",
+      do: "Construire l’adoption avec ses futurs utilisateurs",
+    },
+  ],
+},
   relatedUseCaseSlugs: [],
 };
 

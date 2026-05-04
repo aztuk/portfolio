@@ -11,6 +11,7 @@ import type { ExploredSolution, SolutionSectionData } from "@/content/use-cases/
 type SolutionSectionProps = {
   solution: SolutionSectionData;
   isAuthenticated?: boolean;
+  id?: string;
 };
 
 type BulletPointProps = {
@@ -19,7 +20,7 @@ type BulletPointProps = {
 };
 
 const BulletPoint = ({ text, variant }: BulletPointProps) => (
-  <div className="relative flex w-full items-center pl-9">
+  <div className="relative ml-2 flex w-[calc(100%-0.5rem)] items-center pl-9">
     <div className="absolute left-0 top-[8px] flex size-4 items-center justify-center">
       <div
         className={clsx(
@@ -28,7 +29,7 @@ const BulletPoint = ({ text, variant }: BulletPointProps) => (
         )}
       />
     </div>
-    <p className="min-w-0 flex-1 font-sans text-lg font-bold leading-[1.7] tracking-[-0.04em] text-muted">
+    <p className="type-body-lg min-w-0 flex-1 text-muted">
       {text}
     </p>
   </div>
@@ -51,7 +52,7 @@ const NumberBadge = ({ index, isSelected }: NumberBadgeProps) => (
     </div>
     <span
       className={clsx(
-        "relative font-tektur text-xl font-semibold leading-[0.7]",
+        "type-data-index-tight relative",
         isSelected ? "text-dark" : "text-primary",
       )}
     >
@@ -86,14 +87,14 @@ const SolutionCard = ({
     <NumberBadge index={index} isSelected={isSelected} />
 
     <div className="flex flex-1 flex-col gap-2">
-      <div className="min-h-[5.1rem]">
-        <p className="line-clamp-2 font-sans text-2xl font-medium leading-[1.7] tracking-[-0.04em] text-muted">
+      <div className="flex min-h-[5.1rem] items-center">
+        <p className="type-body-xl-medium line-clamp-2 text-muted">
           {item.title}
         </p>
       </div>
 
       <div className="min-h-[5.75rem]">
-        <p className="line-clamp-3 font-sans text-lg font-normal leading-[1.7] tracking-[-0.04em] text-smooth">
+        <p className="type-body-lg line-clamp-3 text-smooth">
           {item.summary}
         </p>
       </div>
@@ -122,7 +123,7 @@ const SolutionCard = ({
           className={clsx(
             "w-full",
             isSelected
-              ? "!border-primary bg-primary/10 font-bold text-primary"
+              ? "type-chip-bold !border-primary bg-primary/10 text-primary"
               : "border-white/10 bg-white/[0.06] text-white",
           )}
         />
@@ -131,15 +132,19 @@ const SolutionCard = ({
   </article>
 );
 
-export const SolutionSection = async ({ solution, isAuthenticated = true }: SolutionSectionProps) => {
+export const SolutionSection = async ({
+  solution,
+  isAuthenticated = true,
+  id,
+}: SolutionSectionProps) => {
   const t = await getTranslations("sections");
   const hasKeyDecisions = Boolean(solution.keyDecisions?.length);
   const galleryItems = solution.gallery ?? [];
 
   return (
-    <Section>
+    <Section id={id}>
       <Container>
-        <h2 className="font-display text-[40px] font-light leading-[1.2] text-muted">
+        <h2 className="type-section-title text-muted">
           {t("explorationAndSolution")}
         </h2>
 

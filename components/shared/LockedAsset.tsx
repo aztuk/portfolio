@@ -25,7 +25,7 @@ export const LockedAsset = ({ isThumbnail = false }: LockedAssetProps) => {
           <button
             type="button"
             onClick={() => setIsOpen(true)}
-            className="rounded-2xl border border-white/10 bg-white/5 px-5 py-2.5 font-sans text-sm font-medium text-muted transition-colors hover:border-primary/40 hover:text-primary"
+            className="type-control rounded-2xl border border-white/10 bg-white/5 px-5 py-2.5 text-muted transition-colors hover:border-primary/40 hover:text-primary"
           >
             Unlock to view
           </button>

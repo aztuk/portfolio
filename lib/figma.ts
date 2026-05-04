@@ -3,11 +3,16 @@ import type { FigmaAsset } from "@/content/use-cases/types";
 type FigmaEmbedMode = NonNullable<FigmaAsset["mode"]>;
 
 const PROTOTYPE_EMBED_PARAMS: Record<string, string> = {
-  scaling: "min-zoom",
-  "content-scaling": "fixed",
-  "show-proto-sidebar": "0",
-  "hide-ui": "1",
   "embed-host": "share",
+  scaling: "min-zoom",
+  "content-scaling": "responsive",
+  "footer": "false",
+  "viewport-controls": "false",
+  "disable-default-keyboard-nav": "true",
+  "show-proto-sidebar": "false",
+  "hotspot-hints": "false",
+  "device-frame": "false",
+  "hide-ui": "1",
 };
 
 const FILE_EMBED_PARAMS: Record<string, string> = {
@@ -18,6 +23,7 @@ const PROTOTYPE_PASSTHROUGH_PARAMS = new Set([
   "node-id",
   "starting-point-node-id",
   "page-id",
+  "version-id",
 ]);
 
 const FILE_PASSTHROUGH_PARAMS = new Set([
@@ -29,11 +35,19 @@ const FILE_PASSTHROUGH_PARAMS = new Set([
  * Accepts any Figma URL (share link or embed src) and returns a clean embed
  * URL with display params adapted to prototype or file navigation mode.
  */
+export const isFigmaPrototypeUrl = (src: string): boolean => {
+  try {
+    return new URL(src).pathname.includes("/proto/");
+  } catch {
+    return src.includes("/proto/");
+  }
+};
+
 export const buildFigmaEmbedUrl = (src: string, mode?: FigmaEmbedMode): string => {
   try {
     const url = new URL(src);
     const inferredMode: FigmaEmbedMode =
-      mode ?? (url.pathname.includes("/proto/") ? "prototype" : "file");
+      mode === "prototype" || isFigmaPrototypeUrl(src) ? "prototype" : "file";
 
     url.hostname = "embed.figma.com";
 

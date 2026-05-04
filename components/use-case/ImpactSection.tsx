@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 
+import { ChartCardShell } from "@/components/use-case/ChartCardShell";
+import { DiamondBadge } from "@/components/use-case/DiamondBadge";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import type {
@@ -9,20 +11,27 @@ import type {
   ImpactSectionData,
   KpiProgressChartData,
   ProgressChartData,
+  SingleKpiChartData,
 } from "@/content/use-cases/types";
 
 type ImpactSectionProps = {
   impactSection: ImpactSectionData;
+  id?: string;
 };
 
 const MAX_BAR_HEIGHT = 160;
-const MAX_GROUP_BAR_HEIGHT = 132;
+const MAX_GROUP_BAR_HEIGHT = 112;
+const MIN_GROUP_BAR_HEIGHT = 18;
+const BAR_LABEL_ROW_HEIGHT = 28;
+const DURATION_PLOT_HEIGHT = 190;
+const AXIS_BAR_OFFSET = "calc(4px + 0.125rem)";
 const secondary = "var(--color-secondary)";
+const primary = "var(--color-primary)";
 const starClipPath =
   "polygon(50% 0%, 61% 34%, 98% 35%, 68% 56%, 79% 91%, 50% 70%, 21% 91%, 32% 56%, 2% 35%, 39% 34%)";
 
 const DiamondBullet = () => (
-  <div className="absolute left-0 top-[8px] flex size-4 items-center justify-center">
+  <div className="absolute left-0 top-[8px] flex size-[15.556px] items-center justify-center">
     <div className="size-[11px] rotate-45 border border-smooth" />
   </div>
 );
@@ -33,37 +42,16 @@ type ChartCardProps = {
 };
 
 const ChartCard = ({ children, caption }: ChartCardProps) => (
-  <div className="flex flex-col items-center justify-center gap-6">
+  <div className="flex flex-col items-center justify-start gap-6">
     {children}
     {caption ? (
-      <p className="w-full text-center font-sans text-lg font-normal leading-[1.7] text-muted">
+      <p className="type-body-lg w-full text-center text-smooth">
         {caption}
       </p>
     ) : null}
   </div>
 );
 
-type MetricBadgeProps = {
-  children: ReactNode;
-  tone: "before" | "after";
-  className?: string;
-};
-
-const MetricBadge = ({ children, tone, className = "" }: MetricBadgeProps) => (
-  <div
-    className={`absolute z-10 flex size-[54px] items-center justify-center ${className}`}
-  >
-    <div className="absolute inset-0 flex items-center justify-center">
-      <div className="size-[38px] -rotate-45 border-2 border-[#364781] bg-dark-smooth/50 backdrop-blur-[4px]" />
-    </div>
-    <span
-      className="relative whitespace-nowrap font-tektur text-[15px] font-semibold leading-[0.7]"
-      style={{ color: tone === "before" ? "var(--color-primary)" : secondary }}
-    >
-      {children}
-    </span>
-  </div>
-);
 
 type BarChartCardProps = {
   chart: BarChartData;
@@ -76,43 +64,56 @@ const BarChartCard = ({ chart }: BarChartCardProps) => {
 
   return (
     <ChartCard caption={chart.caption}>
-      <div className="flex h-[400px] w-full flex-col items-center justify-end gap-6 rounded-[30px] border border-dark-smooth bg-dark-smooth/20 px-8 pb-8 pt-12 shadow-elevation-2 backdrop-blur-[2px] sm:px-12">
-        <div className="relative flex w-full items-end justify-center gap-2 border-b-2 border-dark-smooth px-12 pb-2">
-          <div
-            className="relative flex w-[54px] flex-col items-start"
-            style={{ height: `${beforeHeight}px` }}
-          >
-            <div className="w-full flex-1 rounded-tl-2xl rounded-tr-2xl bg-primary" />
-            <MetricBadge tone="before" className="-left-[27px] -top-[27px]">
-              {chart.before.display}
-            </MetricBadge>
-          </div>
-          <div
-            className="relative flex w-[54px] flex-col items-start"
-            style={{ height: `${afterHeight}px` }}
-          >
-            <div
-              className="w-full flex-1 rounded-tl-2xl rounded-tr-2xl"
-              style={{ backgroundColor: secondary }}
-            />
-            <MetricBadge tone="after" className="left-[27px] -top-[27px]">
-              {chart.after.display}
-            </MetricBadge>
-          </div>
-          <span className="absolute bottom-[-36px] left-12 font-tektur text-[15px] font-semibold leading-[0.7] text-primary">
-            Avant
-          </span>
-          <span
-            className="absolute bottom-[-36px] right-12 font-tektur text-[15px] font-semibold leading-[0.7]"
-            style={{ color: secondary }}
-          >
-            Après
-          </span>
-        </div>
-        <p className="w-full text-center font-sans text-lg font-normal leading-[1.7] text-muted">
+      <ChartCardShell className="flex h-[400px] w-full flex-col items-center justify-end gap-6 px-8 pb-8 pt-12 sm:px-12">
+        <p className="type-data-title w-full text-center text-muted">
           {chart.title}
         </p>
-      </div>
+        <div
+          className="grid min-h-[220px] w-full flex-1 grid-cols-1"
+          style={{ gridTemplateRows: `minmax(0, 1fr) ${BAR_LABEL_ROW_HEIGHT}px` }}
+        >
+          <div className="relative min-h-0">
+            <div className="absolute inset-x-0 bottom-0 h-0.5 bg-dark-smooth" />
+            <div
+              className="absolute left-1/2 z-10 flex -translate-x-1/2 items-end justify-center gap-1"
+              style={{ bottom: AXIS_BAR_OFFSET }}
+            >
+              <div
+                className="relative flex w-[54px] flex-col items-start"
+                style={{ height: `${beforeHeight}px` }}
+              >
+                <div className="w-full flex-1 rounded-tl-2xl rounded-tr-2xl bg-primary" />
+                <div className="absolute -left-[27px] -top-[27px] z-10">
+                  <DiamondBadge value={chart.before.display} color={primary} />
+                </div>
+              </div>
+              <div
+                className="relative flex w-[54px] flex-col items-start"
+                style={{ height: `${afterHeight}px` }}
+              >
+                <div
+                  className="w-full flex-1 rounded-tl-2xl rounded-tr-2xl"
+                  style={{ backgroundColor: secondary }}
+                />
+                <div className="absolute -top-[27px] left-[27px] z-10">
+                  <DiamondBadge value={chart.after.display} color={secondary} />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="mx-auto grid w-[112px] grid-cols-2 items-end gap-1">
+            <span className="type-data-value text-center text-primary">
+              Avant
+            </span>
+            <span
+              className="type-data-value text-center"
+              style={{ color: secondary }}
+            >
+              {"Apr\u00e8s"}
+            </span>
+          </div>
+        </div>
+      </ChartCardShell>
     </ChartCard>
   );
 };
@@ -121,51 +122,80 @@ type DurationBarsChartCardProps = {
   chart: DurationBarsChartData;
 };
 
-const DurationBarsChartCard = ({ chart }: DurationBarsChartCardProps) => (
-  <ChartCard caption={chart.caption}>
-    <div className="flex h-[400px] w-full flex-col items-center justify-end gap-6 rounded-[30px] border border-dark-smooth bg-dark-smooth/20 px-6 pb-8 pt-12 shadow-elevation-2 backdrop-blur-[2px] sm:px-12">
-      <p className="font-tektur text-2xl font-semibold leading-[0.7] text-primary">
-        Avant <span className="text-smooth">/</span>{" "}
-        <span style={{ color: secondary }}>Après</span>
-      </p>
-      <div className="flex min-h-0 w-full flex-1 items-end justify-center gap-3 rounded-[30px] sm:gap-4">
-        {chart.items.map((item) => {
-          const max = Math.max(item.before.value, item.after.value);
-          const beforeHeight =
-            max > 0 ? (item.before.value / max) * MAX_GROUP_BAR_HEIGHT : 0;
-          const afterHeight =
-            max > 0 ? (item.after.value / max) * MAX_GROUP_BAR_HEIGHT : 0;
+type DurationBarProps = {
+  display: string;
+  value: number;
+  maxValue: number;
+  color: string;
+};
 
-          return (
-            <div
-              key={item.label}
-              className="relative flex min-w-0 flex-1 flex-col items-center gap-5"
-            >
-              <div className="relative z-10 flex items-end justify-center gap-1">
+const getDurationBarHeight = (value: number, maxValue: number) => {
+  if (value <= 0 || maxValue <= 0) {
+    return 0;
+  }
+
+  return Math.max(MIN_GROUP_BAR_HEIGHT, (value / maxValue) * MAX_GROUP_BAR_HEIGHT);
+};
+
+const DurationBar = ({ display, value, maxValue, color }: DurationBarProps) => {
+  const height = getDurationBarHeight(value, maxValue);
+
+  return (
+    <div
+      className="relative flex w-8 flex-col items-start sm:w-10"
+      style={{ height: `${height}px` }}
+    >
+      <div
+        className="w-full flex-1 rounded-tl-[11px] rounded-tr-[11px]"
+        style={{ backgroundColor: color }}
+      />
+      <div className="absolute left-1/2 top-0 z-10 -translate-x-1/2 -translate-y-[calc(100%+8px)]">
+        <DiamondBadge value={display} color={color} size="sm" />
+      </div>
+    </div>
+  );
+};
+
+const DurationBarsChartCard = ({ chart }: DurationBarsChartCardProps) => {
+  const maxValue = Math.max(
+    0,
+    ...chart.items.map((item) => Math.max(item.before.value, item.after.value)),
+  );
+
+  return (
+    <ChartCard caption={chart.caption}>
+      <ChartCardShell className="flex h-[400px] w-full flex-col items-center justify-end gap-6 px-6 pb-8 pt-12 sm:px-12">
+        <p className="type-data-comparison text-primary">
+          Avant <span className="text-smooth">/</span>{" "}
+          <span style={{ color: secondary }}>Après</span>
+        </p>
+        <div className="flex min-h-0 w-full flex-1 items-end justify-center gap-2 rounded-[30px] sm:gap-5">
+          {chart.items.map((item) => (
+            <div key={item.label} className="flex min-w-0 flex-1 flex-col items-center gap-3">
+              <div
+                className="relative flex w-full items-end justify-center"
+                style={{ height: `${DURATION_PLOT_HEIGHT}px` }}
+              >
+                <div className="absolute inset-x-2 bottom-0 h-0.5 bg-dark-smooth sm:inset-x-4" />
                 <div
-                  className="relative flex w-10 flex-col items-start sm:w-[50px]"
-                  style={{ height: `${beforeHeight}px` }}
+                  className="absolute left-1/2 z-10 flex -translate-x-1/2 items-end justify-center gap-1"
+                  style={{ bottom: AXIS_BAR_OFFSET }}
                 >
-                  <div className="w-full flex-1 rounded-tl-[11px] rounded-tr-[11px] bg-primary" />
-                  <MetricBadge tone="before" className="-left-[29px] -top-[27px]">
-                    {item.before.display}
-                  </MetricBadge>
-                </div>
-                <div
-                  className="relative flex w-10 flex-col items-start sm:w-[50px]"
-                  style={{ height: `${afterHeight}px` }}
-                >
-                  <div
-                    className="w-full flex-1 rounded-tl-[11px] rounded-tr-[11px]"
-                    style={{ backgroundColor: secondary }}
+                  <DurationBar
+                    display={item.before.display}
+                    value={item.before.value}
+                    maxValue={maxValue}
+                    color={primary}
                   />
-                  <MetricBadge tone="after" className="left-[18px] -top-[27px] sm:left-[23px]">
-                    {item.after.display}
-                  </MetricBadge>
+                  <DurationBar
+                    display={item.after.display}
+                    value={item.after.value}
+                    maxValue={maxValue}
+                    color={secondary}
+                  />
                 </div>
               </div>
-              <div className="absolute bottom-[38px] left-0 right-0 h-0.5 bg-dark-smooth" />
-              <p className="min-h-[36px] w-full text-center font-tektur text-[12px] font-semibold leading-[1.2] text-muted sm:text-[15px]">
+              <p className="type-data-label-sm min-h-[36px] w-full text-center text-muted">
                 {item.label.split("\n").map((line) => (
                   <span key={line} className="block">
                     {line}
@@ -173,12 +203,12 @@ const DurationBarsChartCard = ({ chart }: DurationBarsChartCardProps) => (
                 ))}
               </p>
             </div>
-          );
-        })}
-      </div>
-    </div>
-  </ChartCard>
-);
+          ))}
+        </div>
+      </ChartCardShell>
+    </ChartCard>
+  );
+};
 
 type ProgressChartCardProps = {
   chart: ProgressChartData;
@@ -186,19 +216,19 @@ type ProgressChartCardProps = {
 
 const ProgressChartCard = ({ chart }: ProgressChartCardProps) => (
   <ChartCard caption={chart.caption}>
-    <div className="flex h-[400px] w-full flex-col items-center justify-center gap-6 rounded-[30px] border border-dark-smooth bg-dark-smooth/20 px-8 pb-8 pt-12 shadow-elevation-2 backdrop-blur-[2px] sm:px-12">
+    <ChartCardShell className="flex h-[400px] w-full flex-col items-center justify-center gap-6 px-8 pb-8 pt-12 sm:px-12">
       <div className="flex w-full flex-col gap-3 border-b border-dark-smooth pb-6">
-        <p className="w-full text-center font-tektur text-[15px] font-semibold leading-[0.7] text-primary">
+        <p className="type-data-value w-full text-center text-primary">
           Avant
         </p>
         <div className="flex flex-col gap-1">
           {chart.rows.map((row) => (
             <div key={row.label} className="flex flex-col gap-[2px]">
               <div className="flex items-baseline justify-between gap-4">
-                <span className="font-sans text-lg font-normal leading-[1.7] text-smooth">
+                <span className="type-body-lg text-smooth">
                   {row.label}
                 </span>
-                <span className="font-tektur text-[15px] font-semibold leading-[0.7] text-primary">
+                <span className="type-data-value text-primary">
                   {row.before.display}
                 </span>
               </div>
@@ -217,11 +247,11 @@ const ProgressChartCard = ({ chart }: ProgressChartCardProps) => (
           {chart.rows.map((row) => (
             <div key={row.label} className="flex flex-col gap-[2px]">
               <div className="flex items-baseline justify-between gap-4">
-                <span className="font-sans text-lg font-normal leading-[1.7] text-smooth">
+                <span className="type-body-lg text-smooth">
                   {row.label}
                 </span>
                 <span
-                  className="font-tektur text-[15px] font-semibold leading-[0.7]"
+                  className="type-data-value"
                   style={{ color: secondary }}
                 >
                   {row.after.display}
@@ -240,13 +270,13 @@ const ProgressChartCard = ({ chart }: ProgressChartCardProps) => (
           ))}
         </div>
         <p
-          className="w-full text-center font-tektur text-[15px] font-semibold leading-[0.7]"
+          className="type-data-value w-full text-center"
           style={{ color: secondary }}
         >
           Après
         </p>
       </div>
-    </div>
+    </ChartCardShell>
   </ChartCard>
 );
 
@@ -284,8 +314,8 @@ type KpiProgressChartCardProps = {
 
 const KpiProgressChartCard = ({ chart }: KpiProgressChartCardProps) => (
   <ChartCard caption={chart.caption}>
-    <div className="flex h-[400px] w-full flex-col items-center gap-8 rounded-[30px] border border-dark-smooth bg-dark-smooth/20 px-8 pb-8 pt-12 shadow-elevation-2 backdrop-blur-[2px] sm:px-12">
-      <p className="w-full font-sans text-2xl font-medium leading-[1.7] text-muted">
+    <ChartCardShell className="flex h-[400px] w-full flex-col items-center gap-8 px-8 pb-8 pt-12 sm:px-12">
+      <p className="type-data-title w-full text-muted">
         {chart.title}
       </p>
       <div className="flex w-full flex-col gap-4">
@@ -295,10 +325,10 @@ const KpiProgressChartCard = ({ chart }: KpiProgressChartCardProps) => (
             className={index < chart.rows.length - 1 ? "border-b border-dark-smooth pb-4" : "pb-4"}
           >
             <div className="flex items-baseline justify-between gap-4">
-              <span className="font-sans text-lg font-normal leading-[1.7] text-muted">
+              <span className="type-body-lg text-muted">
                 {row.label}
               </span>
-              <span className="whitespace-nowrap font-tektur text-[15px] font-semibold leading-[0.7] text-primary">
+              <span className="type-data-value whitespace-nowrap text-primary">
                 {row.display}
               </span>
             </div>
@@ -318,7 +348,31 @@ const KpiProgressChartCard = ({ chart }: KpiProgressChartCardProps) => (
           </div>
         ))}
       </div>
-    </div>
+    </ChartCardShell>
+  </ChartCard>
+);
+
+type SingleKpiChartCardProps = {
+  chart: SingleKpiChartData;
+};
+
+const SingleKpiChartCard = ({ chart }: SingleKpiChartCardProps) => (
+  <ChartCard caption={chart.caption}>
+    <ChartCardShell className="flex h-[400px] w-full items-center justify-center px-8 py-12 text-center sm:px-12">
+      <div className="flex w-full flex-col items-center justify-center gap-6">
+        <p className="type-kpi text-primary">
+          {chart.value}
+        </p>
+        <div className="flex w-full flex-col items-center">
+          <p className="type-data-title text-muted">
+            {chart.title}
+          </p>
+          <p className="type-body-lg max-w-[430px] text-smooth">
+            {chart.description}
+          </p>
+        </div>
+      </div>
+    </ChartCardShell>
   </ChartCard>
 );
 
@@ -332,31 +386,35 @@ const renderChart = (chart: ImpactChart, index: number) => {
       return <DurationBarsChartCard key={`duration-bars-${index}`} chart={chart} />;
     case "kpi-progress":
       return <KpiProgressChartCard key={`${chart.title}-${index}`} chart={chart} />;
+    case "single-kpi":
+      return <SingleKpiChartCard key={`${chart.title}-${index}`} chart={chart} />;
   }
 };
 
-export const ImpactSection = ({ impactSection }: ImpactSectionProps) => {
+export const ImpactSection = ({ impactSection, id }: ImpactSectionProps) => {
   return (
-    <Section>
+    <Section id={id}>
       <Container>
-        <h2 className="font-display text-[40px] font-light leading-[1.2] text-muted">
+        <h2 className="type-section-title text-muted">
           {impactSection.title}
         </h2>
 
-        <div className="mt-12 flex flex-col gap-6">
-          <p className="font-sans text-lg font-normal leading-[1.7] text-ink">
+        <div className="mt-12 flex max-w-[800px] flex-col gap-6">
+          <p className="type-body-lg text-ink">
             {impactSection.summary}
           </p>
           <ul className="flex flex-col gap-3 py-6">
             {impactSection.bullets.map((bullet) => (
-              <li key={bullet.bold} className="relative pl-9">
+              <li key={bullet.bold} className="relative flex items-center gap-2.5 pl-9">
                 <DiamondBullet />
-                <span className="font-sans text-lg font-bold leading-[1.7] text-muted">
-                  {bullet.bold}{" "}
-                </span>
-                <span className="font-sans text-lg font-normal leading-[1.7] text-muted">
-                  {bullet.regular}
-                </span>
+                <div className="flex min-w-0 flex-1 flex-col justify-center">
+                  <p className="type-body-lg-bold w-full text-muted">
+                    {bullet.bold}
+                  </p>
+                  <p className="type-body-sm w-full text-smooth">
+                    {bullet.regular}
+                  </p>
+                </div>
               </li>
             ))}
           </ul>

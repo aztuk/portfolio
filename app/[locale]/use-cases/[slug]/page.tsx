@@ -11,6 +11,7 @@ import { RetrospectiveSection } from "@/components/use-case/RetrospectiveSection
 import { SolutionSection } from "@/components/use-case/SolutionSection";
 import { TensionSection } from "@/components/use-case/TensionSection";
 import { UseCaseHero } from "@/components/use-case/UseCaseHero";
+import { UseCaseTableOfContents } from "@/components/use-case/UseCaseTableOfContents";
 import { PageTransition } from "@/components/shared/PageTransition";
 import { getAllUseCases, getUseCaseBySlug } from "@/content/use-cases";
 import { siteContent } from "@/content/site";
@@ -48,6 +49,7 @@ export const generateMetadata = async ({
 const UseCasePage = async ({ params }: UseCasePageProps) => {
   const { locale, slug } = await params;
   const useCase = getUseCaseBySlug(slug, locale);
+  const t = await getTranslations({ locale, namespace: "sections" });
 
   if (!useCase) {
     notFound();
@@ -65,19 +67,61 @@ const UseCasePage = async ({ params }: UseCasePageProps) => {
   }
 
   const relatedUseCases = getResolvedRelatedUseCases(useCase, locale);
+  const resultLabel = locale === "fr" ? "Resultat" : "Result";
+  const tableOfContentsItems = [
+    { id: "use-case-context", label: "Challenge" },
+    ...(useCase.resultHero ? [{ id: "use-case-result", label: resultLabel }] : []),
+    { id: "use-case-tension", label: useCase.tension.title },
+    { id: "use-case-solution", label: t("explorationAndSolution") },
+    ...(useCase.impactSection
+      ? [{ id: "use-case-impact", label: useCase.impactSection.title }]
+      : []),
+    ...(useCase.retrospective
+      ? [{ id: "use-case-retrospective", label: useCase.retrospective.title }]
+      : []),
+  ];
 
   return (
     <PageTransition>
       <UseCaseHero useCase={useCase} />
-      <MetaInfo useCase={useCase} />
-      {useCase.resultHero && (
-        <UseCaseResultHero asset={useCase.resultHero} isAuthenticated={isAuthenticated} />
-      )}
-      <TensionSection tension={useCase.tension} />
-      <SolutionSection solution={useCase.solution} isAuthenticated={isAuthenticated} />
-      {useCase.impactSection && <ImpactSection impactSection={useCase.impactSection} />}
-      {useCase.retrospective && <RetrospectiveSection retrospective={useCase.retrospective} />}
-      <RelatedProjects useCases={relatedUseCases} />
+      <div
+        className="mx-auto grid w-full max-w-[1200px] grid-cols-1 px-6 xl:px-0"
+        data-use-case-shell
+      >
+        <UseCaseTableOfContents
+          items={tableOfContentsItems}
+          className="col-start-1 row-start-1 hidden xl:block"
+        />
+        <div className="col-start-1 row-start-1 min-w-0" data-use-case-content>
+          <MetaInfo id="use-case-context" useCase={useCase} />
+          {useCase.resultHero && (
+            <UseCaseResultHero
+              id="use-case-result"
+              asset={useCase.resultHero}
+              isAuthenticated={isAuthenticated}
+            />
+          )}
+          <TensionSection id="use-case-tension" tension={useCase.tension} />
+          <SolutionSection
+            id="use-case-solution"
+            solution={useCase.solution}
+            isAuthenticated={isAuthenticated}
+          />
+          {useCase.impactSection && (
+            <ImpactSection
+              id="use-case-impact"
+              impactSection={useCase.impactSection}
+            />
+          )}
+          {useCase.retrospective && (
+            <RetrospectiveSection
+              id="use-case-retrospective"
+              retrospective={useCase.retrospective}
+            />
+          )}
+          <RelatedProjects useCases={relatedUseCases} />
+        </div>
+      </div>
     </PageTransition>
   );
 };

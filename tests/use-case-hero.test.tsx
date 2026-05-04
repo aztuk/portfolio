@@ -12,12 +12,10 @@ describe("use case hero", () => {
 
     render(<UseCaseHero useCase={useCase!} />);
 
-    expect(
-      screen.getByText("Raised first-week activation by making setup feel like progress"),
-    ).toBeInTheDocument();
+    expect(screen.getByText("Personalized dashboard for solar households")).toBeInTheDocument();
 
     expect(
-      screen.getByText(/Reshaped onboarding around one meaningful early win/i),
+      screen.getByText(/I personalized the dashboard based on their equipment/i),
     ).toBeInTheDocument();
 
     for (const tag of useCase!.tags) {

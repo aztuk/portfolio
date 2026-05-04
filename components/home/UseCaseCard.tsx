@@ -1,6 +1,7 @@
 import { Link } from "@/i18n/navigation";
 import type { UseCase } from "@/content/use-cases/types";
 import { PreviewMedia } from "@/components/shared/PreviewMedia";
+import { Tag } from "@/components/shared/Tag";
 
 const previewAspectRatio = (useCase: UseCase) =>
   useCase.projectType === "mobile" ? "4/5" : "8/5";
@@ -34,26 +35,16 @@ export const UseCaseCard = ({ useCase }: UseCaseCardProps) => {
 
       {/* Text: title + description + chips */}
       <div className="flex flex-col items-center w-full">
-        <h3 className="font-display font-light text-[40px] leading-[1.2] text-muted text-center w-full">
+        <h3 className="type-project-title w-full whitespace-pre-line text-center text-muted">
           {useCase.title}
         </h3>
-        <p
-          className="font-sans font-normal text-[18px] leading-[1.7] text-muted text-center w-full mt-2"
-          style={{ letterSpacing: "-0.72px" }}
-        >
+        <p className="type-body-md mt-2 w-full whitespace-pre-line text-center text-smooth">
           {useCase.overview}
         </p>
         {useCase.tags.length > 0 && (
           <div className="flex flex-wrap gap-[4px] items-center justify-center pt-[26px] w-full">
             {useCase.tags.map((tag) => (
-              <div
-                key={tag}
-                className="bg-white/[0.06] border border-white/10 flex items-center px-3 py-3 rounded-[18px]"
-              >
-                <p className="font-sans font-normal text-[10px] text-white tracking-[2px] whitespace-nowrap uppercase">
-                  {tag}
-                </p>
-              </div>
+              <Tag key={tag} label={tag} className="text-white" />
             ))}
           </div>
         )}

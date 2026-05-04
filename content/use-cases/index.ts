@@ -1,10 +1,11 @@
 import { customizableDashboard } from "@/content/use-cases/customizable-dashboard";
+import { ruleBuilder } from "@/content/use-cases/energy-offer-rule-builder";
 import type { UseCase } from "@/content/use-cases/types";
 import { designSystem } from "./design-system";
 
 type UseCaseEntry = UseCase | Record<string, UseCase>;
 
-const useCasesData = [customizableDashboard, designSystem] as UseCaseEntry[];
+const useCasesData = [customizableDashboard, designSystem, ruleBuilder] as UseCaseEntry[];
 
 const resolveLocale = (data: UseCaseEntry, locale: string): UseCase => {
   if ("slug" in data) {

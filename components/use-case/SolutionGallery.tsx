@@ -10,11 +10,7 @@ import type { FigmaAsset, GalleryItem } from "@/content/use-cases/types";
 import { buildFigmaEmbedUrl } from "@/lib/figma";
 
 const THUMB_H = "h-[350px]";
-const THUMB_H_PX = 350;
-const FIGMA_NATIVE_W = 1200;
-const FIGMA_NATIVE_H = 750;
 const FIGMA_THUMB_W = 1000;
-const FIGMA_THUMB_H = Math.round(FIGMA_THUMB_W * (FIGMA_NATIVE_H / FIGMA_NATIVE_W)); // 500
 const FIGMA_LOAD_TIMEOUT_MS = 10_000;
 
 const THUMB_ASPECT: Record<string, string> = {
@@ -40,7 +36,7 @@ const aspectKey = (item: GalleryItem): string => {
 // Thumbnail
 // ---------------------------------------------------------------------------
 
-const FigmaThumbnail = ({ item, figmaThumbH }: { item: FigmaAsset; figmaThumbH: number }) => {
+const FigmaThumbnail = ({ item }: { item: FigmaAsset }) => {
   const [status, setStatus] = useState<"loading" | "loaded" | "timeout">("loading");
   const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
@@ -62,8 +58,6 @@ const FigmaThumbnail = ({ item, figmaThumbH }: { item: FigmaAsset; figmaThumbH: 
     );
   }
 
-  const scale = figmaThumbH / FIGMA_NATIVE_H;
-
   return (
     <>
       <iframe
@@ -71,12 +65,9 @@ const FigmaThumbnail = ({ item, figmaThumbH }: { item: FigmaAsset; figmaThumbH: 
         title={item.title ?? "Figma prototype"}
         style={{
           position: "absolute",
-          top: 0,
-          left: 0,
-          width: `${FIGMA_NATIVE_W}px`,
-          height: `${FIGMA_NATIVE_H}px`,
-          transform: `scale(${scale})`,
-          transformOrigin: "top left",
+          inset: 0,
+          width: "100%",
+          height: "100%",
           pointerEvents: "none",
         }}
         tabIndex={-1}
@@ -97,16 +88,16 @@ const FigmaThumbnail = ({ item, figmaThumbH }: { item: FigmaAsset; figmaThumbH: 
       {status === "timeout" && (
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-canvas">
           <FigmaBadgeIcon />
-          <p className="font-sans text-xs text-muted/60">Cliquer pour ouvrir</p>
+          <p className="type-body-xs text-muted/60">Cliquer pour ouvrir</p>
         </div>
       )}
     </>
   );
 };
 
-type ThumbnailProps = { item: GalleryItem; figmaThumbH?: number };
+type ThumbnailProps = { item: GalleryItem };
 
-const Thumbnail = ({ item, figmaThumbH = THUMB_H_PX }: ThumbnailProps) => {
+const Thumbnail = ({ item }: ThumbnailProps) => {
   if (item.type === "video") {
     return (
       <video
@@ -124,7 +115,7 @@ const Thumbnail = ({ item, figmaThumbH = THUMB_H_PX }: ThumbnailProps) => {
   }
 
   if (item.type === "figma") {
-    return <FigmaThumbnail item={item} figmaThumbH={figmaThumbH} />;
+    return <FigmaThumbnail item={item} />;
   }
 
   const isMobile = formatOf(item) === "mobile";
@@ -197,8 +188,8 @@ const GalleryItemTile = ({ item, index, onClick }: GalleryItemProps) => {
   const isFigma = item.type === "figma";
 
   return (
-    <div className={clsx("flex flex-col items-center gap-6", isFigma ? "col-span-2" : "px-5")}>
-      <div className="relative">
+    <div className={clsx("flex min-w-0 flex-col items-center gap-6", isFigma ? "col-span-2 w-full" : "px-5")}>
+      <div className={clsx("relative", isFigma && "w-full")}>
         <button
           type="button"
           onClick={() => onClick(index)}
@@ -207,17 +198,16 @@ const GalleryItemTile = ({ item, index, onClick }: GalleryItemProps) => {
             "cursor-zoom-in transition-transform duration-200 hover:scale-[1.02]",
             "focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary",
             isFigma
-              ? "rounded-[40px]"
+              ? "aspect-[8/5] w-full max-w-[1000px] rounded-[40px]"
               : clsx(THUMB_H, THUMB_ASPECT[aKey], isMobile ? "rounded-[28px]" : "rounded-[40px]"),
           )}
-          style={isFigma ? { width: FIGMA_THUMB_W, height: FIGMA_THUMB_H } : undefined}
         >
-          <Thumbnail item={item} figmaThumbH={FIGMA_THUMB_H} />
+          <Thumbnail item={item} />
         </button>
         {isFigma && <FigmaBadge className="pointer-events-none absolute bottom-3 right-3 z-20" />}
       </div>
       {item.caption && (
-        <p className="whitespace-nowrap font-sans text-lg font-normal leading-[1.7] tracking-[-0.04em] text-muted">
+        <p className="type-body-lg max-w-full text-center text-smooth">
           {item.caption}
         </p>
       )}
@@ -301,7 +291,7 @@ const Lightbox = ({ items, index, onClose, onPrev, onNext }: LightboxProps) => {
         </div>
 
         {item.caption && (
-          <p className="text-center font-sans text-base text-white/70">
+          <p className="type-body-md text-center text-smooth">
             {item.caption}
           </p>
         )}
@@ -322,7 +312,7 @@ const Lightbox = ({ items, index, onClose, onPrev, onNext }: LightboxProps) => {
         </svg>
       </button>
 
-      <p className="absolute bottom-5 left-1/2 -translate-x-1/2 font-sans text-sm text-white/50">
+      <p className="type-body-sm absolute bottom-5 left-1/2 -translate-x-1/2 text-white/50">
         {index + 1} / {items.length}
       </p>
     </div>

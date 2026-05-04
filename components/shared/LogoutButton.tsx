@@ -17,7 +17,7 @@ export const LogoutButton = ({ isAuthenticated }: LogoutButtonProps) => {
       type="button"
       onClick={handleLogout}
       aria-label="Lock"
-      className="fixed right-6 top-16 z-50 flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.07] px-4 py-2 font-sans text-[11px] uppercase tracking-[0.18em] text-ink/70 backdrop-blur-md transition-colors hover:border-white/30 hover:text-ink"
+      className="type-nav-chip fixed right-6 top-16 z-50 flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.07] px-4 py-2 text-ink/70 backdrop-blur-md transition-colors hover:border-white/30 hover:text-ink"
     >
       <LockIcon />
       <span>Lock</span>

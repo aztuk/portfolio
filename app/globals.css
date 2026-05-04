@@ -2,6 +2,389 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .type-hero-kicker {
+    font-family: var(--font-display), sans-serif;
+    font-size: 40px;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0;
+  }
+
+  .type-hero-title {
+    font-family: var(--font-display), sans-serif;
+    font-size: 120px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -3px;
+    text-transform: uppercase;
+  }
+
+  .type-page-title {
+    font-family: var(--font-display), sans-serif;
+    font-size: clamp(2rem, 7.33vw, 5.5rem);
+    font-weight: 500;
+    line-height: 0.88;
+    letter-spacing: -3px;
+  }
+
+  .type-section-heading {
+    font-family: var(--font-display), sans-serif;
+    font-size: 2.25rem;
+    font-weight: 400;
+    line-height: 0.94;
+    letter-spacing: -0.04em;
+  }
+
+  .type-section-title {
+    font-family: var(--font-display), sans-serif;
+    font-size: 40px;
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
+
+  .type-project-title {
+    font-family: var(--font-display), sans-serif;
+    font-size: 40px;
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
+
+  .type-project-title-medium {
+    font-family: var(--font-display), sans-serif;
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
+
+  .type-project-title-lg {
+    font-family: var(--font-display), sans-serif;
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+
+  .type-login-title {
+    font-family: var(--font-display), sans-serif;
+    font-size: 52px;
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: 0;
+  }
+
+  .type-body-xl {
+    font-family: var(--font-sans), sans-serif;
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 1.7;
+    letter-spacing: -0.04em;
+  }
+
+  .type-body-xl-medium {
+    font-family: var(--font-sans), sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.7;
+    letter-spacing: -0.04em;
+  }
+
+  .type-body-lg {
+    font-family: var(--font-sans), sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.7;
+    letter-spacing: -0.04em;
+  }
+
+  .type-body-lg-light {
+    font-family: var(--font-sans), sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.7;
+    letter-spacing: -0.04em;
+  }
+
+  .type-body-lg-medium {
+    font-family: var(--font-sans), sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.7;
+    letter-spacing: -0.04em;
+  }
+
+  .type-body-lg-bold {
+    font-family: var(--font-sans), sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.7;
+    letter-spacing: -0.04em;
+  }
+
+  .type-body-md {
+    font-family: var(--font-sans), sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0;
+  }
+
+  .type-body-md-bold {
+    font-family: var(--font-sans), sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: 0;
+  }
+
+  .type-body-sm {
+    font-family: var(--font-sans), sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0;
+  }
+
+  .type-body-xs {
+    font-family: var(--font-sans), sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
+
+  .type-meta-body {
+    font-family: var(--font-sans), sans-serif;
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 30px;
+    letter-spacing: -0.6px;
+  }
+
+  .type-context-label {
+    font-family: var(--font-display), sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .type-context-body {
+    font-family: var(--font-sans), sans-serif;
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1.6;
+    letter-spacing: -0.6px;
+  }
+
+  .type-context-meta {
+    font-family: var(--font-sans), sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.7;
+    letter-spacing: -0.04em;
+  }
+
+  .type-chip {
+    font-family: var(--font-sans), sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 2px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .type-chip-bold {
+    font-family: var(--font-sans), sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 2px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .type-nav-chip {
+    font-family: var(--font-sans), sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .type-nav-item {
+    font-family: var(--font-sans), sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.375;
+    letter-spacing: -0.04em;
+  }
+
+  .type-eyebrow {
+    font-family: var(--font-display), sans-serif;
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .type-data-value {
+    font-family: var(--font-tektur), sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 0.7;
+    letter-spacing: 0;
+  }
+
+  .type-data-comparison {
+    font-family: var(--font-tektur), sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 0.7;
+    letter-spacing: 0;
+  }
+
+  .type-data-value-sm {
+    font-family: var(--font-tektur), sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 0.7;
+    letter-spacing: 0;
+  }
+
+  .type-data-title {
+    font-family: var(--font-sans), sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.7;
+    letter-spacing: -0.04em;
+  }
+
+  .type-data-label {
+    font-family: var(--font-tektur), sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0;
+  }
+
+  .type-data-label-sm {
+    font-family: var(--font-tektur), sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
+
+  .type-data-label-compact {
+    font-family: var(--font-tektur), sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 0.85;
+    letter-spacing: 0;
+  }
+
+  .type-data-index {
+    font-family: var(--font-tektur), sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0;
+  }
+
+  .type-data-index-tight {
+    font-family: var(--font-tektur), sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 0.7;
+    letter-spacing: 0;
+  }
+
+  .type-decision-title {
+    font-family: var(--font-sans), sans-serif;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1.7;
+    letter-spacing: -0.04em;
+  }
+
+  .type-decision-eyebrow {
+    font-family: var(--font-tektur), sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0;
+  }
+
+  .type-kpi {
+    font-family: var(--font-tektur), sans-serif;
+    font-size: clamp(82px, 13vw, 130px);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0;
+  }
+
+  .type-tooltip {
+    font-family: var(--font-sans), sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.375;
+    letter-spacing: 0;
+  }
+
+  .type-control {
+    font-family: var(--font-sans), sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0;
+  }
+
+  .type-control-lg {
+    font-family: var(--font-sans), sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0;
+  }
+
+  .type-quote-mark {
+    font-family: var(--font-sans), sans-serif;
+    font-size: 104px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+
+  .type-note {
+    font-family: var(--font-elite), serif;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.7;
+    letter-spacing: -0.04em;
+    font-style: normal;
+  }
+
+  @media (min-width: 768px) {
+    .type-section-heading {
+      font-size: 3.75rem;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .type-data-label-sm {
+      font-size: 15px;
+    }
+  }
+}
+
 :root {
   --color-canvas: #32427A;
   --color-canvas-rgb: 27 37 75;
@@ -123,6 +506,22 @@ video {
 
 .text-wrap-balance {
   text-wrap: balance;
+}
+
+.use-case-toc-rail {
+  --toc-left-space: min(calc((100vw - 1200px) / 2), 400px);
+  transform: translateX(
+    max(
+      calc(12px - ((100vw - 1200px) / 2)),
+      calc((var(--toc-left-space) / -2) - 30px)
+    )
+  );
+}
+
+@media (min-width: 2000px) {
+  .use-case-toc-rail {
+    transform: translateX(calc((var(--toc-left-space) / -2) - 100px));
+  }
 }
 
 /* ─── Blob background ──────────────────────────────────────── */

@@ -8,20 +8,22 @@ import type { UseCase } from "@/content/use-cases/types";
 
 type MetaInfoProps = {
   useCase: UseCase;
+  id?: string;
 };
 
 const labelClassName =
-  "font-display font-light text-2xl leading-[1.2] uppercase text-smooth";
+  "type-context-label text-smooth/70";
 
 const bodyLargeClassName =
-  "font-sans font-light text-2xl leading-[1.7] tracking-[-0.96px] text-muted";
+  "type-context-meta text-muted";
 
 const bodySmallClassName =
-  "font-sans text-[22px] leading-[30px] tracking-[-0.6px] text-muted";
+  "type-context-meta text-muted";
 
-export const MetaInfo = ({ useCase }: MetaInfoProps) => {
+export const MetaInfo = ({ useCase, id }: MetaInfoProps) => {
   return (
     <motion.section
+      id={id}
       className="py-16 md:py-20"
       initial={fadeUp.initial}
       whileInView={fadeUp.whileInView}
@@ -29,32 +31,32 @@ export const MetaInfo = ({ useCase }: MetaInfoProps) => {
       transition={fadeUp.transition}
     >
       <Container>
-        <div className="flex flex-col md:flex-row md:items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
           {/* Challenge */}
-          <div className="flex flex-col border-b border-dark-smooth py-6 md:w-[500px] md:shrink-0 md:border-b-0 md:border-r md:py-6 md:pr-12">
+          <div className="flex min-w-0 flex-col justify-center border-b border-dark-smooth p-6 lg:border-b-0 lg:border-r">
             <p className={labelClassName}>Challenge</p>
             <p className={bodyLargeClassName}>{useCase.challenge}</p>
           </div>
 
           {/* Other info */}
-          <div className="flex flex-col md:flex-1">
+          <div className="flex min-w-0 flex-col">
             {/* Role */}
-            <div className="border-b border-dark-smooth py-6 md:pl-12">
+            <div className="border-b border-dark-smooth p-6">
               <p className={labelClassName}>My role</p>
               <p className={bodyLargeClassName}>{useCase.roles.join(", ")}</p>
             </div>
 
             {/* Year + Timeline + Tools */}
-            <div className="flex">
-              <div className="flex-1 py-6 md:pl-12">
+            <div className="grid grid-cols-1 sm:grid-cols-4">
+              <div className="min-w-0 border-b border-dark-smooth p-6 sm:border-b-0">
                 <p className={labelClassName}>Year</p>
                 <p className={bodySmallClassName}>{useCase.year}</p>
               </div>
-              <div className="flex-1 border-l border-dark-smooth py-6 pl-6 md:pl-12">
+              <div className="min-w-0 border-b border-dark-smooth p-6 sm:border-b-0 sm:border-l sm:border-dark-smooth">
                 <p className={labelClassName}>Timeline</p>
                 <p className={bodySmallClassName}>{useCase.timeline}</p>
               </div>
-              <div className="w-[350px] shrink-0 border-l border-dark-smooth py-6 pl-6 md:pl-12">
+              <div className="min-w-0 p-6 sm:col-span-2 sm:border-l sm:border-dark-smooth">
                 <p className={labelClassName}>Tools</p>
                 <p className={bodySmallClassName}>{useCase.tools.join(", ")}</p>
               </div>
