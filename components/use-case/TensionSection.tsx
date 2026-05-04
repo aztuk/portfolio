@@ -20,6 +20,7 @@ import { ChartCardShell } from "@/components/use-case/ChartCardShell";
 import { DiamondBadge } from "@/components/use-case/DiamondBadge";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
+import { MobileCarousel } from "@/components/shared/MobileCarousel";
 import { Tag } from "@/components/shared/Tag";
 import type {
   CountBarsChartData,
@@ -676,23 +677,31 @@ type ChartCardsGridProps = { cards: TensionChartCard[] };
 const ChartCardsGrid = ({ cards }: ChartCardsGridProps) => {
   const getCaption = (card: TensionChartCard) => ("caption" in card ? card.caption : undefined);
 
-  return (
-    <div className="mt-10 grid gap-8 lg:mt-12 lg:grid-cols-2 lg:gap-10">
-      {cards.map((card, index) => {
-        const caption = getCaption(card);
+  const renderItem = (card: TensionChartCard, index: number) => {
+    const caption = getCaption(card);
 
-        return (
-          <div key={index} className="flex min-w-0 flex-col gap-4">
-            <ChartCard card={card} />
-            {caption ? (
-              <p className="type-body-lg text-center text-smooth">
-                {caption}
-              </p>
-            ) : null}
-          </div>
-        );
-      })}
-        </div>
+    return (
+      <div key={index} className="flex min-w-0 flex-col gap-4">
+        <ChartCard card={card} />
+        {caption ? (
+          <p className="type-body-lg text-center text-smooth">
+            {caption}
+          </p>
+        ) : null}
+      </div>
+    );
+  };
+
+  return (
+    <>
+      <MobileCarousel className="mt-10 lg:hidden" itemClassName="flex flex-col gap-4">
+        {cards.map((card, index) => renderItem(card, index))}
+      </MobileCarousel>
+
+      <div className="mt-12 hidden gap-10 lg:grid lg:grid-cols-2">
+        {cards.map((card, index) => renderItem(card, index))}
+      </div>
+    </>
   );
 };
 

@@ -48,17 +48,7 @@ export const WorkItem = ({ useCase }: WorkItemProps) => {
       </div>
 
       <div className="hidden min-w-0 flex-1 items-center gap-[64px] lg:flex">
-
-        {/* Left — thumbnail */}
-        <div className="flex w-auto shrink-0 flex-col items-center justify-center gap-6">
-          {useCase.tags.length > 0 && (
-            <div className="flex w-full max-w-[513px] flex-wrap items-center justify-center gap-[4px]">
-              {useCase.tags.map((tag) => (
-                <Tag key={tag} label={tag} className="text-white" />
-              ))}
-            </div>
-          )}
-
+        <div className="flex shrink-0 items-center justify-center">
           <div
             className="relative h-[621px] w-[513px] overflow-hidden rounded-[30px] border border-dark-smooth shadow-elevation-2"
           >
@@ -71,18 +61,28 @@ export const WorkItem = ({ useCase }: WorkItemProps) => {
           </div>
         </div>
 
-        {/* Right — work meta data */}
-        <div className="flex min-w-0 flex-1 flex-col items-start justify-center">
+        <div className="flex min-w-0 flex-1 flex-col items-start justify-center gap-px">
+          {useCase.tags.length > 0 && (
+            <div className="flex w-full flex-wrap items-center gap-[4px] pb-[40px]">
+              {useCase.tags.map((tag) => (
+                <Tag key={tag} label={tag} className="text-white" />
+              ))}
+            </div>
+          )}
 
-          {/* Head: title */}
-          <div className="flex min-h-0 w-full shrink-0 items-center pb-2 lg:pb-3">
-            <div className="flex min-w-0 flex-1 items-center justify-center lg:pr-[64px]">
-              <p className="type-project-title-medium min-w-0 flex-1 whitespace-pre-line text-center text-muted lg:text-left">
+          <div className="flex min-h-[100px] w-full shrink-0 items-center border-b border-dark-smooth pb-[32px]">
+            <div className="flex min-w-0 flex-1 items-center justify-center pr-[64px]">
+              <p className="type-project-title-lg min-w-0 flex-1 whitespace-pre-line text-muted">
                 {useCase.title}
               </p>
             </div>
           </div>
 
+          <div className="flex w-full shrink-0 items-center justify-center py-[32px]">
+            <p className="type-body-lg flex-1 whitespace-pre-line text-smooth">
+              {useCase.overview}
+            </p>
+          </div>
         </div>
       </div>
     </Link>

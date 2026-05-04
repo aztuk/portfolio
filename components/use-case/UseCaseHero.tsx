@@ -18,7 +18,7 @@ export const UseCaseHero = ({ useCase }: UseCaseHeroProps) => {
 
   return (
     <section className="flex min-h-[100svh] flex-col items-center justify-center py-16 lg:min-h-screen lg:py-20">
-      <Container className="flex flex-col items-center gap-8 px-6 lg:gap-[60px]">
+      <Container className="flex flex-col items-center gap-8 px-3 sm:px-5 lg:gap-[60px] lg:px-6">
         {/* Tags */}
         <div className="flex flex-wrap justify-center gap-2">
           {useCase.tags.map((tag) => (

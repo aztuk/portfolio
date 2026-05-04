@@ -87,7 +87,7 @@ const UseCasePage = async ({ params }: UseCasePageProps) => {
     <PageTransition>
       <UseCaseHero useCase={useCase} />
       <div
-        className="mx-auto grid w-full max-w-[1200px] grid-cols-1 px-6 xl:px-0"
+        className="mx-auto grid w-full max-w-[1200px] grid-cols-1 px-3 sm:px-5 xl:px-0"
         data-use-case-shell
       >
         <UseCaseTableOfContents

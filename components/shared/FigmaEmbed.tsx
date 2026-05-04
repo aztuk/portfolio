@@ -81,15 +81,15 @@ export const FigmaEmbed = ({
   return (
     <div className={clsx("relative h-full w-full overflow-hidden bg-canvas", className)}>
       {!shouldLoadEmbed && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-5 bg-canvas px-5 text-center">
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-canvas px-3 text-center lg:gap-5 lg:px-5">
           {hasMounted ? (
             <>
               <FigmaBadgeIcon />
-              <div className="flex max-w-[26rem] flex-col items-center gap-2">
-                <p className="type-data-title text-muted">
+              <div className="flex max-w-[20rem] flex-col items-center gap-1.5 lg:max-w-[26rem] lg:gap-2">
+                <p className="type-body-lg-medium text-muted">
                   {t("mobileDocumentTitle")}
                 </p>
-                <p className="type-body-sm text-smooth">
+                <p className="type-body-xs text-smooth">
                   {t("mobileDocumentDescription")}
                 </p>
               </div>

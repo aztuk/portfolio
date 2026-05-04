@@ -63,7 +63,7 @@ export const RelatedProjects = async ({ useCases }: RelatedProjectsProps) => {
 
   return (
     <Section className="pb-16 pt-28 lg:pb-20 lg:pt-40">
-      <Container className="px-6">
+      <Container className="px-3 sm:px-5 lg:px-6">
         <div className="mb-12">
           <h2 className="type-section-title text-muted">
             {t("otherUseCases")}

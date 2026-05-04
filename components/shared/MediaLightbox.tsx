@@ -11,9 +11,9 @@ import { LockedAsset } from "@/components/shared/LockedAsset";
 import type { GalleryItem } from "@/content/use-cases/types";
 
 const LIGHTBOX_CLASS: Record<string, string> = {
-  web: "w-[calc(100vw-2rem)] aspect-[8/5] lg:w-[min(90vw,1200px)]",
-  "figma-web": "w-[calc(100vw-2rem)] aspect-[8/5] lg:w-[min(90vw,1200px)]",
-  mobile: "h-[min(78svh,620px)] max-w-[calc(100vw-2rem)] aspect-[9/19] lg:h-[min(85vh,700px)]",
+  web: "w-[calc(100vw-0.75rem)] aspect-[8/5] lg:w-[min(90vw,1200px)]",
+  "figma-web": "w-[calc(100vw-0.75rem)] aspect-[8/5] lg:w-[min(90vw,1200px)]",
+  mobile: "h-[min(82svh,620px)] max-w-[calc(100vw-0.75rem)] aspect-[9/19] lg:h-[min(85vh,700px)]",
 };
 
 const formatOf = (item: GalleryItem) => item.format ?? "web";
@@ -109,7 +109,7 @@ export const MediaLightbox = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm lg:p-0"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-1.5 backdrop-blur-sm lg:p-0"
       onClick={onClose}
     >
       <button
@@ -140,10 +140,10 @@ export const MediaLightbox = ({
         </button>
       )}
 
-      <div className="flex max-w-full flex-col items-center gap-4" onClick={(e) => e.stopPropagation()}>
+      <div className="flex max-w-full flex-col items-center gap-3 rounded-[30px] bg-dark/90 p-1.5 shadow-elevation-2 lg:gap-4 lg:bg-dark/80 lg:p-3" onClick={(e) => e.stopPropagation()}>
         <div
           className={clsx(
-            "relative overflow-hidden shadow-elevation-2",
+            "relative overflow-hidden bg-dark shadow-elevation-2",
             isMobile ? "rounded-[40px]" : "rounded-[32px]",
             LIGHTBOX_CLASS[aKey],
           )}
@@ -152,7 +152,7 @@ export const MediaLightbox = ({
         </div>
 
         {item.caption && (
-          <p className="type-body-md max-w-[calc(100vw-2rem)] text-center text-smooth">
+          <p className="type-body-md max-w-[calc(100vw-0.75rem)] px-2 text-center text-smooth">
             {item.caption}
           </p>
         )}

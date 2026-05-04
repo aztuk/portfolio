@@ -5,6 +5,7 @@ import { ChartCardShell } from "@/components/use-case/ChartCardShell";
 import { DiamondBadge } from "@/components/use-case/DiamondBadge";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
+import { MobileCarousel } from "@/components/shared/MobileCarousel";
 import type {
   BarChartData,
   DurationBarsChartData,
@@ -426,7 +427,11 @@ export const ImpactSection = async ({ impactSection, id }: ImpactSectionProps) =
           </ul>
         </div>
 
-        <div className="mt-4 grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-8">
+        <MobileCarousel className="mt-4 lg:hidden" itemClassName="flex flex-col">
+          {impactSection.charts.map((chart, index) => renderChart(chart, index, labels))}
+        </MobileCarousel>
+
+        <div className="mt-4 hidden gap-8 lg:grid lg:grid-cols-2">
           {impactSection.charts.map((chart, index) => renderChart(chart, index, labels))}
         </div>
       </Container>
