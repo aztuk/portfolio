@@ -16,7 +16,7 @@ import { PageTransition } from "@/components/shared/PageTransition";
 import { getAllUseCases, getUseCaseBySlug } from "@/content/use-cases";
 import { siteContent } from "@/content/site";
 import { routing } from "@/i18n/routing";
-import { getResolvedRelatedUseCases, hasProtectedGalleryItems } from "@/lib/content";
+import { getResolvedRelatedUseCases, hasProtectedGalleryItems, redactProtectedGalleryItem } from "@/lib/content";
 
 type UseCasePageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -59,18 +59,20 @@ const UseCasePage = async ({ params }: UseCasePageProps) => {
   let isAuthenticated = !needsAuth;
   if (needsAuth) {
     const cookieStore = await cookies();
-    isAuthenticated = Boolean(cookieStore.get("portfolio_auth"));
+    isAuthenticated = cookieStore.get("portfolio_auth")?.value === "1";
   }
 
-  if (useCase.protected && !isAuthenticated) {
+  if (needsAuth && !isAuthenticated) {
     redirect(`/${locale}/login?from=/${locale}/use-cases/${slug}`);
   }
 
   const relatedUseCases = getResolvedRelatedUseCases(useCase, locale);
-  const resultLabel = locale === "fr" ? "Resultat" : "Result";
+  const safeResultHero = useCase.resultHero
+    ? redactProtectedGalleryItem(useCase.resultHero, isAuthenticated)
+    : undefined;
   const tableOfContentsItems = [
-    { id: "use-case-context", label: "Challenge" },
-    ...(useCase.resultHero ? [{ id: "use-case-result", label: resultLabel }] : []),
+    { id: "use-case-context", label: t("challenge") },
+    ...(useCase.resultHero ? [{ id: "use-case-result", label: t("result") }] : []),
     { id: "use-case-tension", label: useCase.tension.title },
     { id: "use-case-solution", label: t("explorationAndSolution") },
     ...(useCase.impactSection
@@ -94,10 +96,10 @@ const UseCasePage = async ({ params }: UseCasePageProps) => {
         />
         <div className="col-start-1 row-start-1 min-w-0" data-use-case-content>
           <MetaInfo id="use-case-context" useCase={useCase} />
-          {useCase.resultHero && (
+          {safeResultHero && (
             <UseCaseResultHero
               id="use-case-result"
-              asset={useCase.resultHero}
+              asset={safeResultHero}
               isAuthenticated={isAuthenticated}
             />
           )}

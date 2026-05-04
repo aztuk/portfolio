@@ -1,3 +1,5 @@
+import { getTranslations } from "next-intl/server";
+
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { PreviewMedia } from "@/components/shared/PreviewMedia";
@@ -13,14 +15,12 @@ const RelatedProjectCard = ({ useCase }: { useCase: UseCase }) => {
   const href = `/use-cases/${useCase.slug}` as never;
 
   return (
-    <Link href={href} className="group flex flex-col items-center pb-[90px]">
+    <Link href={href} className="group flex flex-col items-center pb-[70px] lg:pb-[90px]">
       {/* Image — overlaps 90px into the text below */}
-      <div className="relative z-10 mb-[-90px] flex w-full items-center justify-center">
+      <div className="relative z-10 mb-[-70px] flex w-full items-center justify-center lg:mb-[-90px]">
         <div
-          className="relative overflow-hidden rounded-[30px] border border-dark-smooth"
+          className="relative aspect-[307/371] w-full max-w-[260px] overflow-hidden rounded-[24px] border border-dark-smooth sm:max-w-[307px] lg:h-[371px] lg:w-[307px] lg:max-w-none lg:rounded-[30px]"
           style={{
-            width: "307px",
-            height: "371px",
             boxShadow:
               "0px -8px 21px 0px rgba(38,53,103,0.15), 0px -5px 13px 0px rgba(38,53,103,0.15), 0px -3px 8px 0px rgba(38,53,103,0.15), 0px -2px 5px 0px rgba(38,53,103,0.15), 0px -1px 3px 0px rgba(38,53,103,0.15)",
             maskImage: "linear-gradient(to bottom, black 0%, black 40%, transparent 85%)",
@@ -31,7 +31,7 @@ const RelatedProjectCard = ({ useCase }: { useCase: UseCase }) => {
             previewImage={useCase.previewImage}
             previewVideo={useCase.previewVideo}
             mediaClassName="object-cover object-top transition duration-700 group-hover:scale-[1.03]"
-            sizes="307px"
+            sizes="(min-width: 1024px) 307px, 260px"
           />
         </div>
       </div>
@@ -54,21 +54,23 @@ const RelatedProjectCard = ({ useCase }: { useCase: UseCase }) => {
   );
 };
 
-export const RelatedProjects = ({ useCases }: RelatedProjectsProps) => {
+export const RelatedProjects = async ({ useCases }: RelatedProjectsProps) => {
+  const t = await getTranslations("sections");
+
   if (useCases.length === 0) {
     return null;
   }
 
   return (
-    <Section className="pb-20 pt-40">
+    <Section className="pb-16 pt-28 lg:pb-20 lg:pt-40">
       <Container className="px-6">
         <div className="mb-12">
           <h2 className="type-section-title text-muted">
-            Autres projets
+            {t("otherUseCases")}
           </h2>
         </div>
-        <div className="grid gap-20 md:grid-cols-2">
-          {useCases.slice(0, 2).map((useCase) => (
+        <div className="grid gap-16 md:grid-cols-2 lg:gap-20">
+          {useCases.map((useCase) => (
             <RelatedProjectCard key={useCase.slug} useCase={useCase} />
           ))}
         </div>

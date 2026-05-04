@@ -10,10 +10,13 @@ type UseCaseGridProps = {
 export const UseCaseGrid = ({ useCases }: UseCaseGridProps) => {
   return (
     <Section id="work">
-      <Container>
+      <Container className="px-5 lg:px-0">
         <div className="flex flex-col">
           {useCases.map((useCase) => (
-            <div key={useCase.slug} className="h-screen flex items-center">
+            <div
+              key={useCase.slug}
+              className="flex h-screen items-center py-10 lg:py-0"
+            >
               <WorkItem useCase={useCase} />
             </div>
           ))}

@@ -9,9 +9,9 @@ export const HomeHero = async () => {
   const tHome = await getTranslations("home");
 
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden">
-      <Container className="relative z-10 py-28">
-        <div className="flex flex-col gap-[60px] items-start max-w-[1200px]">
+    <section className="relative flex min-h-[100svh] items-center overflow-hidden lg:min-h-screen">
+      <Container className="relative z-10 px-5 py-20 lg:px-0 lg:py-28">
+        <div className="flex max-w-[1200px] flex-col items-start gap-10 lg:gap-[60px]">
 
           {/* Chip — status badge */}
           <Tag
@@ -22,29 +22,29 @@ export const HomeHero = async () => {
           />
 
           {/* Title block */}
-          <div className="flex flex-col items-start pb-[30px]">
+          <div className="flex max-w-full flex-col items-start pb-2 lg:pb-[30px]">
             <p className="type-hero-kicker text-primary">
               {siteContent.name}
             </p>
-            <h1 className="type-hero-title text-ink">
+            <h1 className="type-hero-title max-w-full text-ink">
               {t("role")}
             </h1>
-            <p className="type-body-xl mt-2 w-[448px] text-smooth">
+            <p className="type-body-xl mt-2 w-full max-w-[826px] text-smooth">
               {t("intro")}
             </p>
           </div>
 
           {/* CTAs */}
-          <div className="flex items-center gap-6">
+          <div className="flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center lg:gap-6">
             <a
               href="#work"
-              className="type-control-lg inline-flex items-center justify-center gap-2 rounded-full bg-primary px-8 py-2.5 text-dark shadow-elevation-2 transition-opacity hover:opacity-85"
+              className="type-control-lg inline-flex items-center justify-center gap-2 rounded-full bg-primary px-8 py-3 text-dark shadow-elevation-2 transition-opacity hover:opacity-85 sm:py-2.5"
             >
               {tHome("viewWork")}
             </a>
             <a
-              href="#contact"
-              className="type-control-lg inline-flex items-center justify-center rounded-full border-2 border-ink px-8 py-2.5 text-ink transition-colors hover:border-primary hover:text-primary"
+              href={`mailto:${siteContent.email}`}
+              className="type-control-lg inline-flex items-center justify-center rounded-full border-2 border-ink px-8 py-3 text-ink transition-colors hover:border-primary hover:text-primary sm:py-2.5"
             >
               {tHome("getInTouch")}
             </a>

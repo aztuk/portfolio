@@ -11,14 +11,56 @@ export const WorkItem = ({ useCase }: WorkItemProps) => {
   const href = `/use-cases/${useCase.slug}` as never;
 
   return (
-    <Link href={href} className="group flex items-center w-full">
-      <div className="flex flex-1 gap-[64px] items-center min-w-0">
+    <Link href={href} className="group flex w-full items-center">
+      <div className="flex w-full flex-col items-center lg:hidden">
+        <div className="relative z-10 mb-[-70px] flex w-full items-center justify-center">
+          <div
+            className="relative aspect-[307/371] w-full max-w-[260px] overflow-hidden rounded-[24px] border border-dark-smooth sm:max-w-[307px]"
+            style={{
+              boxShadow:
+                "0px -8px 21px 0px rgba(38,53,103,0.15), 0px -5px 13px 0px rgba(38,53,103,0.15), 0px -3px 8px 0px rgba(38,53,103,0.15), 0px -2px 5px 0px rgba(38,53,103,0.15), 0px -1px 3px 0px rgba(38,53,103,0.15)",
+              maskImage: "linear-gradient(to bottom, black 0%, black 40%, transparent 85%)",
+              WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 40%, transparent 85%)",
+            }}
+          >
+            <PreviewMedia
+              previewImage={useCase.previewImage}
+              previewVideo={useCase.previewVideo}
+              mediaClassName="object-cover object-top transition duration-700 group-hover:scale-[1.03]"
+              sizes="260px"
+            />
+          </div>
+        </div>
+
+        <div className="relative z-20 flex w-full flex-col items-center gap-[16px] pb-[70px]">
+          <h3 className="type-project-title-medium max-w-[320px] whitespace-pre-line text-center text-muted">
+            {useCase.title}
+          </h3>
+
+          {useCase.tags.length > 0 && (
+            <div className="flex w-full flex-wrap items-center justify-center gap-[4px] pt-4">
+              {useCase.tags.slice(0, 4).map((tag) => (
+                <Tag key={tag} label={tag} className="text-white" />
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="hidden min-w-0 flex-1 items-center gap-[64px] lg:flex">
 
         {/* Left — thumbnail */}
-        <div className="flex items-center justify-center shrink-0">
+        <div className="flex w-auto shrink-0 flex-col items-center justify-center gap-6">
+          {useCase.tags.length > 0 && (
+            <div className="flex w-full max-w-[513px] flex-wrap items-center justify-center gap-[4px]">
+              {useCase.tags.map((tag) => (
+                <Tag key={tag} label={tag} className="text-white" />
+              ))}
+            </div>
+          )}
+
           <div
-            className="relative rounded-[30px] shadow-elevation-2 border border-dark-smooth overflow-hidden"
-            style={{ width: "513px", height: "621px" }}
+            className="relative h-[621px] w-[513px] overflow-hidden rounded-[30px] border border-dark-smooth shadow-elevation-2"
           >
             <PreviewMedia
               previewImage={useCase.previewImage}
@@ -30,31 +72,15 @@ export const WorkItem = ({ useCase }: WorkItemProps) => {
         </div>
 
         {/* Right — work meta data */}
-        <div className="flex flex-1 flex-col gap-px items-start justify-center min-w-0">
-
-          {/* Chips */}
-          {useCase.tags.length > 0 && (
-            <div className="flex flex-wrap gap-[4px] items-center pb-[40px] w-full">
-              {useCase.tags.map((tag) => (
-                <Tag key={tag} label={tag} className="text-white" />
-              ))}
-            </div>
-          )}
+        <div className="flex min-w-0 flex-1 flex-col items-start justify-center">
 
           {/* Head: title */}
-          <div className="flex min-h-[100px] pb-[32px] w-full shrink-0 items-center border-b border-dark-smooth">
-            <div className="flex flex-1 items-center justify-center pr-[64px] min-w-0">
-              <p className="type-project-title-lg min-w-0 flex-1 whitespace-pre-line text-muted">
+          <div className="flex min-h-0 w-full shrink-0 items-center pb-2 lg:pb-3">
+            <div className="flex min-w-0 flex-1 items-center justify-center lg:pr-[64px]">
+              <p className="type-project-title-medium min-w-0 flex-1 whitespace-pre-line text-center text-muted lg:text-left">
                 {useCase.title}
               </p>
             </div>
-          </div>
-
-          {/* Overview */}
-          <div className="flex items-center justify-center py-[32px] w-full shrink-0">
-            <p className="type-body-lg flex-1 whitespace-pre-line text-smooth">
-              {useCase.overview}
-            </p>
           </div>
 
         </div>

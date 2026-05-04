@@ -37,19 +37,24 @@ export const LoginForm = ({ locale, redirectTo = "/", onSuccess }: LoginFormProp
     setLoading(true);
     setError(false);
 
-    const res = await fetch("/api/auth", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ password: value }),
-    });
+    try {
+      const res = await fetch("/api/auth", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password: value }),
+      });
 
-    if (res.ok) {
-      if (onSuccess) {
-        onSuccess();
+      if (res.ok) {
+        if (onSuccess) {
+          onSuccess();
+        } else {
+          window.location.href = redirectTo;
+        }
       } else {
-        window.location.href = redirectTo;
+        setError(true);
+        setLoading(false);
       }
-    } else {
+    } catch {
       setError(true);
       setLoading(false);
     }

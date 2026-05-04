@@ -1,10 +1,14 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 type LogoutButtonProps = {
   isAuthenticated: boolean;
 };
 
 export const LogoutButton = ({ isAuthenticated }: LogoutButtonProps) => {
+  const t = useTranslations("ui");
+
   if (!isAuthenticated) return null;
 
   const handleLogout = async () => {
@@ -16,11 +20,11 @@ export const LogoutButton = ({ isAuthenticated }: LogoutButtonProps) => {
     <button
       type="button"
       onClick={handleLogout}
-      aria-label="Lock"
-      className="type-nav-chip fixed right-6 top-16 z-50 flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.07] px-4 py-2 text-ink/70 backdrop-blur-md transition-colors hover:border-white/30 hover:text-ink"
+      aria-label={t("lock")}
+      className="type-nav-chip fixed right-3 top-14 z-50 flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.07] px-3 py-2 text-ink/70 backdrop-blur-md transition-colors hover:border-white/30 hover:text-ink lg:right-6 lg:top-16 lg:px-4"
     >
       <LockIcon />
-      <span>Lock</span>
+      <span>{t("lock")}</span>
     </button>
   );
 };

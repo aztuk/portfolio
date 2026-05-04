@@ -1,8 +1,12 @@
-import clsx from "clsx";
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
+import { useReducedMotion } from "framer-motion";
 
 import { FigmaEmbed } from "@/components/shared/FigmaEmbed";
 import { LockedAsset } from "@/components/shared/LockedAsset";
+import { MediaLightbox } from "@/components/shared/MediaLightbox";
 import type { GalleryItem } from "@/content/use-cases/types";
 
 type UseCaseResultHeroProps = {
@@ -16,46 +20,69 @@ export const UseCaseResultHero = ({
   isAuthenticated = true,
   id,
 }: UseCaseResultHeroProps) => {
+  const reducedMotion = useReducedMotion();
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const isProtected = asset.protected && !isAuthenticated;
-  const needsFixedRatio = isProtected || asset.type === "figma";
+  const canOpenLightbox = !isProtected && asset.type !== "figma";
 
   return (
-    <section id={id} className="flex items-center justify-center py-[80px]">
-      <div
-        className={clsx(
-          "w-full max-w-[1200px] overflow-hidden rounded-[40px] shadow-elevation-2",
-          needsFixedRatio && "relative aspect-[8/5]",
-        )}
-      >
+    <section id={id} className="flex items-center justify-center py-12 lg:py-[80px]">
+      <div className="w-full max-w-[1200px]">
         {isProtected ? (
-          <LockedAsset />
+          <div className="relative aspect-[8/5] overflow-hidden rounded-[24px] shadow-elevation-2 lg:rounded-[40px]">
+            <LockedAsset />
+          </div>
         ) : asset.type === "figma" ? (
-          <FigmaEmbed item={asset} showPageNavigation />
+          <div className="relative aspect-[8/5] overflow-hidden rounded-[24px] shadow-elevation-2 lg:rounded-[40px]">
+            <FigmaEmbed item={asset} showPageNavigation />
+          </div>
         ) : asset.type === "video" ? (
-          <video
-            className="block h-auto max-h-[75vh] w-full object-cover"
-            autoPlay
-            loop
-            muted
-            playsInline
-            poster={asset.poster}
+          <button
+            type="button"
+            onClick={() => setIsLightboxOpen(true)}
+            className="block w-full cursor-zoom-in overflow-hidden rounded-[24px] shadow-elevation-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary lg:rounded-[40px]"
             aria-label={asset.alt}
           >
-            <source src={asset.src} />
-          </video>
+            <video
+              className="block h-auto max-h-[75vh] w-full object-cover"
+              autoPlay={!reducedMotion}
+              loop
+              muted
+              playsInline
+              poster={asset.poster}
+              aria-label={asset.alt}
+            >
+              <source src={asset.src} />
+            </video>
+          </button>
         ) : (
-          <Image
-            src={asset.src}
-            alt={asset.alt}
-            width={0}
-            height={0}
-            sizes="(min-width: 1280px) 1200px, 100vw"
-            priority
-            className="block h-auto max-h-[75vh] w-full"
-            unoptimized
-          />
+          <button
+            type="button"
+            onClick={() => setIsLightboxOpen(true)}
+            className="block w-full cursor-zoom-in overflow-hidden rounded-[24px] shadow-elevation-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary lg:rounded-[40px]"
+            aria-label={asset.alt}
+          >
+            <Image
+              src={asset.src}
+              alt={asset.alt}
+              width={1200}
+              height={750}
+              sizes="(min-width: 1280px) 1200px, 100vw"
+              priority
+              className="block h-auto max-h-[75vh] w-full"
+              unoptimized
+            />
+          </button>
         )}
       </div>
+      {canOpenLightbox && isLightboxOpen && (
+        <MediaLightbox
+          items={[asset]}
+          index={0}
+          onClose={() => setIsLightboxOpen(false)}
+          isAuthenticated={isAuthenticated}
+        />
+      )}
     </section>
   );
 };

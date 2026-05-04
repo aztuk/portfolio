@@ -17,7 +17,7 @@ export const Tag = ({ label, className, prefix, tone = "default" }: TagProps) =>
   return (
     <span
       className={clsx(
-        "type-chip inline-flex items-center justify-center gap-3 rounded-[18px] border px-3 py-3",
+        "type-chip inline-flex max-w-full items-center justify-center gap-3 rounded-[18px] border px-3 py-3 text-center",
         toneClasses[tone],
         className,
       )}

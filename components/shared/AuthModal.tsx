@@ -21,10 +21,10 @@ export const AuthModal = ({ locale, onClose, onSuccess }: AuthModalProps) => {
 
   return createPortal(
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-canvas/80 backdrop-blur-md"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-canvas/80 px-4 py-8 backdrop-blur-md"
       onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
     >
-      <div className="relative w-full max-w-sm rounded-[30px] border border-dark-smooth bg-dark/95 p-8 shadow-elevation-2 backdrop-blur-md">
+      <div className="relative w-full max-w-sm rounded-[24px] border border-dark-smooth bg-dark/95 p-6 shadow-elevation-2 backdrop-blur-md sm:p-8 lg:rounded-[30px]">
         <button
           type="button"
           onClick={onClose}

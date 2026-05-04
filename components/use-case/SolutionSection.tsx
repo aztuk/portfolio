@@ -7,6 +7,7 @@ import { Tag } from "@/components/shared/Tag";
 import { KeyDecisions } from "@/components/use-case/KeyDecisions";
 import { SolutionGallery } from "@/components/use-case/SolutionGallery";
 import type { ExploredSolution, SolutionSectionData } from "@/content/use-cases/types";
+import { redactProtectedGalleryItem } from "@/lib/content";
 
 type SolutionSectionProps = {
   solution: SolutionSectionData;
@@ -78,7 +79,7 @@ const SolutionCard = ({
 }: SolutionCardProps) => (
   <article
     className={clsx(
-      "relative flex min-h-[520px] flex-1 min-w-0 self-stretch rounded-[30px] border p-6 shadow-elevation-2 backdrop-blur-[2px]",
+      "relative flex min-w-0 flex-1 self-stretch rounded-[24px] border p-5 pt-8 shadow-elevation-2 backdrop-blur-[2px] lg:min-h-[520px] lg:rounded-[30px] lg:p-6",
       isSelected
         ? "border-primary bg-primary/10"
         : "border-dark-smooth bg-dark-smooth/20",
@@ -148,7 +149,7 @@ export const SolutionSection = async ({
           {t("explorationAndSolution")}
         </h2>
 
-        <div className="mt-16 flex items-stretch gap-12 pt-6">
+        <div className="mt-10 flex flex-col items-stretch gap-8 pt-4 lg:mt-16 lg:flex-row lg:gap-12 lg:pt-6">
           {solution.exploredSolutions.map((item, index) => (
             <SolutionCard
               key={item.id}
@@ -162,9 +163,19 @@ export const SolutionSection = async ({
         </div>
 
         {hasKeyDecisions ? (
-          <KeyDecisions items={solution.keyDecisions ?? []} isAuthenticated={isAuthenticated} />
+          <KeyDecisions
+            items={(solution.keyDecisions ?? []).map((d) => ({
+              ...d,
+              media: redactProtectedGalleryItem(d.media, isAuthenticated),
+              gallery: d.gallery.map((g) => redactProtectedGalleryItem(g, isAuthenticated)),
+            }))}
+            isAuthenticated={isAuthenticated}
+          />
         ) : galleryItems.length > 0 ? (
-          <SolutionGallery items={galleryItems} />
+          <SolutionGallery
+            items={galleryItems.map((g) => redactProtectedGalleryItem(g, isAuthenticated))}
+            isAuthenticated={isAuthenticated}
+          />
         ) : null}
       </Container>
     </Section>

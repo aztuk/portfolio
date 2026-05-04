@@ -1,3 +1,5 @@
+import { getTranslations } from "next-intl/server";
+
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { RetroCard } from "@/components/use-case/RetroCard";
@@ -8,12 +10,13 @@ type RetrospectiveSectionProps = {
   id?: string;
 };
 
-export const RetrospectiveSection = ({
+export const RetrospectiveSection = async ({
   retrospective,
   id,
 }: RetrospectiveSectionProps) => {
-  const dontLabel = retrospective.dontLabel ?? "NE PLUS";
-  const doLabel = retrospective.doLabel ?? "MAIS PLUTÔT";
+  const t = await getTranslations("sections");
+  const dontLabel = retrospective.dontLabel ?? t("dontLabel");
+  const doLabel = retrospective.doLabel ?? t("doLabel");
 
   return (
     <Section id={id}>
@@ -29,7 +32,7 @@ export const RetrospectiveSection = ({
           {retrospective.items.map((item, index) => (
             <div
               key={index}
-              className="flex w-full max-w-[50rem] flex-col gap-6 sm:flex-row"
+              className="flex w-full max-w-[50rem] flex-col gap-6 lg:flex-row"
             >
               <RetroCard text={item.dont} variant="dont" label={dontLabel} />
               <RetroCard text={item.do} variant="do" label={doLabel} />

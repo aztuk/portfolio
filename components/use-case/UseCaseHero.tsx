@@ -1,6 +1,11 @@
+"use client";
+
+import { useState } from "react";
+
 import { Container } from "@/components/layout/Container";
 import { Tag } from "@/components/shared/Tag";
 import { PreviewMedia } from "@/components/shared/PreviewMedia";
+import { MediaLightbox } from "@/components/shared/MediaLightbox";
 import type { UseCase } from "@/content/use-cases/types";
 
 type UseCaseHeroProps = {
@@ -8,9 +13,12 @@ type UseCaseHeroProps = {
 };
 
 export const UseCaseHero = ({ useCase }: UseCaseHeroProps) => {
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const heroMedia = useCase.previewVideo ?? useCase.previewImage;
+
   return (
-    <section className="flex min-h-screen flex-col items-center justify-center py-20">
-      <Container className="flex flex-col items-center gap-[60px] px-6">
+    <section className="flex min-h-[100svh] flex-col items-center justify-center py-16 lg:min-h-screen lg:py-20">
+      <Container className="flex flex-col items-center gap-8 px-6 lg:gap-[60px]">
         {/* Tags */}
         <div className="flex flex-wrap justify-center gap-2">
           {useCase.tags.map((tag) => (
@@ -23,9 +31,8 @@ export const UseCaseHero = ({ useCase }: UseCaseHeroProps) => {
           {/* Masked wrapper — padded 80px on all sides so the mask covers image + shadow bleed */}
           {/* -translate-y-[80px] compensates for the top padding so the image top stays at top-0 */}
           <div
-            className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-[80px]"
+            className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-12 p-7 min-[375px]:p-12 sm:-translate-y-16 sm:p-16 lg:-translate-y-[80px] lg:p-[80px]"
             style={{
-              padding: "80px",
               maskImage: "linear-gradient(to bottom, black 43%, transparent 72%)",
               WebkitMaskImage: "linear-gradient(to bottom, black 43%, transparent 72%)",
             }}
@@ -47,12 +54,18 @@ export const UseCaseHero = ({ useCase }: UseCaseHeroProps) => {
                   mediaClassName="object-cover object-top"
                   sizes="(min-width: 1024px) 380px, (min-width: 640px) 320px, 260px"
                 />
+                <button
+                  type="button"
+                  onClick={() => setIsLightboxOpen(true)}
+                  className="absolute inset-0 cursor-zoom-in focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary"
+                  aria-label={heroMedia.alt}
+                />
               </div>
             </div>
           </div>
 
           {/* Title + overview — rendered over the image, padding-top pushes text into the lower portion */}
-          <div className="relative z-10 w-full pt-[200px] px-4 text-center sm:pt-[252px] lg:pt-[300px] lg:px-[90px]">
+          <div className="pointer-events-none relative z-10 w-full px-0 pt-[170px] text-center sm:pt-[224px] lg:px-[90px] lg:pt-[300px]">
             <h1 className="type-page-title mx-auto max-w-[828px] text-ink">
               {useCase.title}
             </h1>
@@ -62,6 +75,13 @@ export const UseCaseHero = ({ useCase }: UseCaseHeroProps) => {
           </div>
         </div>
       </Container>
+      {isLightboxOpen && (
+        <MediaLightbox
+          items={[heroMedia]}
+          index={0}
+          onClose={() => setIsLightboxOpen(false)}
+        />
+      )}
     </section>
   );
 };

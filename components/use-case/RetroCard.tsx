@@ -15,7 +15,7 @@ export const RetroCard = ({ text, variant, label }: RetroCardProps) => {
         "relative flex flex-1 flex-col items-center justify-center",
         "bg-gradient-to-b from-[rgba(72,90,156,0.20)] to-transparent",
         "border-b-8 shadow-elevation-2 backdrop-blur-[2px]",
-        "min-w-0 px-8 pb-16 pt-8 sm:px-12",
+        "min-w-0 px-6 pb-14 pt-8 sm:px-8 lg:px-12 lg:pb-16",
         isDont
           ? "border-[color:var(--color-negative)]"
           : "border-[color:var(--color-positive)]",

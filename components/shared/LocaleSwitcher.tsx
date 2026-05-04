@@ -16,7 +16,7 @@ export const LocaleSwitcher = () => {
   return (
     <button
       onClick={toggle}
-      className="type-nav-chip fixed right-6 top-6 z-50 flex items-center gap-1.5 rounded-full border border-white/15 bg-white/[0.07] px-4 py-2 text-ink/70 backdrop-blur-md transition-colors hover:border-white/30 hover:text-ink"
+      className="type-nav-chip fixed right-3 top-3 z-50 flex items-center gap-1.5 rounded-full border border-white/15 bg-white/[0.07] px-3 py-2 text-ink/70 backdrop-blur-md transition-colors hover:border-white/30 hover:text-ink lg:right-6 lg:top-6 lg:px-4"
       aria-label={locale === "en" ? "Passer en français" : "Switch to English"}
     >
       <span className={locale === "en" ? "text-ink" : "text-ink/40"}>EN</span>

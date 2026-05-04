@@ -1,8 +1,8 @@
 {
   "site": {
-    "role": "AI Product Designer",
+    "role": "Lead Product Designer",
     "heroLabel": "Currently open for work",
-    "intro": "Shaping workflow and teams with AI-first system thinking",
+    "intro": "I design clarity where products become complex",
     "heroDescription": "A minimal portfolio for end-to-end product work, from discovery and structure to delivery and adoption.",
     "seoTitle": "Quentin Gillon — AI Product Designer",
     "seoDescription": "Portfolio for an AI Product Designer focused on design systems, workflow, and AI-first product thinking."
@@ -12,7 +12,8 @@
     "getInTouch": "Get in touch"
   },
   "navigation": {
-    "backHome": "Back home"
+    "backHome": "Back home",
+    "useCaseNav": "Use case navigation"
   },
   "sections": {
     "theTension": "The tension",
@@ -36,6 +37,32 @@
     "after": "After",
     "productMoments": "Product moments",
     "otherUseCases": "Other use cases",
-    "moreWork": "More product work from the same portfolio system."
+    "moreWork": "More product work from the same portfolio system.",
+    "challenge": "Challenge",
+    "myRole": "My role",
+    "year": "Year",
+    "timeline": "Timeline",
+    "tools": "Tools",
+    "result": "Result",
+    "dontLabel": "DON'T",
+    "doLabel": "BUT RATHER",
+    "verbatim": "Verbatim",
+    "discoveryDone": "Discovery completed"
+  },
+  "ui": {
+    "lock": "Lock",
+    "unlockToView": "Unlock to view",
+    "close": "Close",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "figma": {
+    "loading": "Loading Figma...",
+    "blackScreen": "Black screen? Reload",
+    "loadFailed": "Figma loading failed",
+    "retry": "Retry",
+    "mobileDocumentTitle": "Figma document",
+    "mobileDocumentDescription": "This document is best viewed on a desktop computer. You can still load it here if needed.",
+    "loadAnyway": "Load anyway"
   }
 }

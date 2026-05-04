@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { AuthModal } from "@/components/shared/AuthModal";
 
 type LockedAssetProps = {
@@ -9,6 +10,7 @@ type LockedAssetProps = {
 };
 
 export const LockedAsset = ({ isThumbnail = false }: LockedAssetProps) => {
+  const t = useTranslations("ui");
   const pathname = usePathname();
   const locale = pathname.split("/")[1] ?? "en";
   const [isOpen, setIsOpen] = useState(false);
@@ -27,7 +29,7 @@ export const LockedAsset = ({ isThumbnail = false }: LockedAssetProps) => {
             onClick={() => setIsOpen(true)}
             className="type-control rounded-2xl border border-white/10 bg-white/5 px-5 py-2.5 text-muted transition-colors hover:border-primary/40 hover:text-primary"
           >
-            Unlock to view
+            {t("unlockToView")}
           </button>
         </div>
       )}

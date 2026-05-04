@@ -76,7 +76,7 @@ export const UseCaseTableOfContents = ({
         className,
       )}
       data-toc-rail
-      aria-label="Navigation du cas d'usage"
+      aria-label={t("useCaseNav")}
     >
       <nav className="w-[60px] min-[2000px]:w-[200px]">
         <div className="mb-8 flex justify-center min-[2000px]:justify-end min-[2000px]:pr-6">

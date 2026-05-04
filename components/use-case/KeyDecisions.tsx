@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import clsx from "clsx";
 import { useTranslations } from "next-intl";
@@ -8,6 +9,7 @@ import { useTranslations } from "next-intl";
 import { FigmaBadge } from "@/components/shared/FigmaBadge";
 import { FigmaEmbed } from "@/components/shared/FigmaEmbed";
 import { LockedAsset } from "@/components/shared/LockedAsset";
+import { MediaLightbox } from "@/components/shared/MediaLightbox";
 import type { GalleryItem, KeyDecision } from "@/content/use-cases/types";
 
 type KeyDecisionsProps = {
@@ -51,6 +53,8 @@ const DecisionMedia = ({
   isAuthenticated = true,
   sizes,
 }: DecisionMediaProps) => {
+  const reducedMotion = useReducedMotion();
+
   if (item.protected && !isAuthenticated) {
     return <LockedAsset isThumbnail={isThumbnail} />;
   }
@@ -62,7 +66,7 @@ const DecisionMedia = ({
           "h-full w-full",
           isThumbnail || item.format === "mobile" ? "object-cover object-center" : "object-contain",
         )}
-        autoPlay={!isThumbnail}
+        autoPlay={!isThumbnail && !reducedMotion}
         loop
         muted
         playsInline
@@ -128,7 +132,7 @@ const CostColumn = ({ title, items, tone, withDivider = false }: CostColumnProps
   <div
     className={clsx(
       "flex min-w-0 flex-1 flex-col items-center gap-4 pb-8",
-      withDivider && "border-b border-dark-smooth md:border-b-0 md:border-r",
+      withDivider && "border-b border-dark-smooth lg:border-b-0 lg:border-r",
     )}
   >
     <p
@@ -158,12 +162,15 @@ const KeyDecisionCard = ({ item, isAuthenticated = true }: KeyDecisionCardProps)
   const t = useTranslations("sections");
   const mediaItems = useMemo(() => [item.media, ...item.gallery], [item.gallery, item.media]);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const activeMedia = mediaItems[activeIndex] ?? item.media;
   const activeMediaLayout = getDecisionMediaLayout(activeMedia);
   const hasMultipleMedia = mediaItems.length > 1;
+  const canOpenActiveMedia =
+    activeMedia.type !== "figma" && !(activeMedia.protected && !isAuthenticated);
 
   return (
-    <article className="relative mx-auto flex w-full max-w-[1200px] flex-col items-center gap-8 border-t border-dark-smooth pt-16">
+    <article className="relative mx-auto flex w-full max-w-[1200px] flex-col items-center gap-6 border-t border-dark-smooth pt-12 lg:gap-8 lg:pt-16">
       <div className="flex w-full flex-col items-center justify-center rounded-t-[20px]">
         <p className="type-decision-eyebrow text-primary">
           {item.eyebrow}
@@ -192,11 +199,19 @@ const KeyDecisionCard = ({ item, isAuthenticated = true }: KeyDecisionCardProps)
               isAuthenticated={isAuthenticated}
               sizes={activeMediaLayout.sizes}
             />
+            {canOpenActiveMedia && (
+              <button
+                type="button"
+                onClick={() => setLightboxIndex(activeIndex)}
+                className="absolute inset-0 z-20 cursor-zoom-in focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary"
+                aria-label={mediaLabel(activeMedia)}
+              />
+            )}
           </div>
         </div>
 
         {hasMultipleMedia && (
-          <div className="absolute left-full top-1/2 z-20 ml-3 flex -translate-y-1/2 flex-col gap-3 rounded-[14px] p-1">
+          <div className="mt-3 flex w-full justify-center gap-3 overflow-x-auto rounded-[14px] p-1 lg:absolute lg:right-0 lg:top-1/2 lg:z-20 lg:mt-0 lg:w-auto lg:-translate-y-1/2 lg:flex-col lg:overflow-visible xl:left-full xl:right-auto xl:ml-3">
             {mediaItems.map((media, index) => {
               const isActive = index === activeIndex;
               const label = mediaLabel(media);
@@ -228,7 +243,7 @@ const KeyDecisionCard = ({ item, isAuthenticated = true }: KeyDecisionCardProps)
         )}
       </div>
 
-      <div className="flex w-full flex-col items-stretch gap-8 rounded-bl-[20px] p-5 md:flex-row md:gap-0">
+      <div className="flex w-full flex-col items-stretch gap-8 rounded-bl-[20px] p-5 lg:flex-row lg:gap-0">
         <CostColumn
           title={t("avoidedCost")}
           items={item.avoidedCost}
@@ -241,6 +256,16 @@ const KeyDecisionCard = ({ item, isAuthenticated = true }: KeyDecisionCardProps)
           tone="negative"
         />
       </div>
+      {lightboxIndex !== null && (
+        <MediaLightbox
+          items={mediaItems}
+          index={lightboxIndex}
+          onClose={() => setLightboxIndex(null)}
+          onPrev={() => setLightboxIndex((index) => (index !== null && index > 0 ? index - 1 : index))}
+          onNext={() => setLightboxIndex((index) => (index !== null && index < mediaItems.length - 1 ? index + 1 : index))}
+          isAuthenticated={isAuthenticated}
+        />
+      )}
     </article>
   );
 };

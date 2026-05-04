@@ -1,5 +1,6 @@
 export const siteContent = {
   name: "Quentin Gillon",
+  email: "quentingillon1@gmail.com",
   role: "Product Designer",
   heroLabel: "Available for senior product design roles",
   intro:

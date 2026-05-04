@@ -74,6 +74,11 @@ export const tryColorToRgbTuple = (color: string): string | null => {
     return trimmed.replace(/\s+/g, ",");
   }
 
+  const commaSeparated = trimmed.match(/^\d+(?:\.\d+)?,\d+(?:\.\d+)?,\d+(?:\.\d+)?$/);
+  if (commaSeparated) {
+    return trimmed;
+  }
+
   return null;
 };
 

@@ -1,8 +1,8 @@
 {
   "site": {
-    "role": "AI Product Designer",
+    "role": "Lead Product Designer",
     "heroLabel": "Disponible pour de nouveaux projets",
-    "intro": "Transformer les workflows et les équipes par la pensée systémique AI-first",
+    "intro": "Je conçois de la clarté là où les produits deviennent complexes",
     "heroDescription": "Un portfolio épuré pour un travail produit end-to-end, de la discovery à l'adoption en passant par la structure et la livraison.",
     "seoTitle": "Quentin Gillon — AI Product Designer",
     "seoDescription": "Portfolio d'un AI Product Designer spécialisé en design systems, workflow et pensée produit AI-first."
@@ -12,7 +12,8 @@
     "getInTouch": "Me contacter"
   },
   "navigation": {
-    "backHome": "Back"
+    "backHome": "Back",
+    "useCaseNav": "Navigation du cas d'usage"
   },
   "sections": {
     "theTension": "La tension",
@@ -36,6 +37,32 @@
     "after": "Après",
     "productMoments": "Moments produit",
     "otherUseCases": "Autres cas d'usage",
-    "moreWork": "D'autres projets produit du même portfolio."
+    "moreWork": "D'autres projets produit du même portfolio.",
+    "challenge": "Challenge",
+    "myRole": "Mon rôle",
+    "year": "Année",
+    "timeline": "Planning",
+    "tools": "Outils",
+    "result": "Résultat",
+    "dontLabel": "NE PLUS",
+    "doLabel": "MAIS PLUTÔT",
+    "verbatim": "Verbatim",
+    "discoveryDone": "Discovery effectuée"
+  },
+  "ui": {
+    "lock": "Verrouiller",
+    "unlockToView": "Déverrouiller pour voir",
+    "close": "Fermer",
+    "previous": "Précédent",
+    "next": "Suivant"
+  },
+  "figma": {
+    "loading": "Chargement Figma...",
+    "blackScreen": "Écran noir ? Recharger",
+    "loadFailed": "Chargement Figma échoué",
+    "retry": "Réessayer",
+    "mobileDocumentTitle": "Document Figma",
+    "mobileDocumentDescription": "Ce document est plus confortable à consulter sur ordinateur. Tu peux quand même le charger ici si besoin.",
+    "loadAnyway": "Charger quand même"
   }
 }

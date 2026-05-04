@@ -68,7 +68,7 @@ const LocaleLayout = async ({ children, params }: LocaleLayoutProps) => {
   }
 
   const messages = await getMessages();
-  const isAuthenticated = Boolean((await cookies()).get("portfolio_auth"));
+  const isAuthenticated = (await cookies()).get("portfolio_auth")?.value === "1";
 
   return (
     <html lang={locale} suppressHydrationWarning>

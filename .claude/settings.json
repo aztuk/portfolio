@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cd 'c:/Users/quent/Documents/Claude/Portfolio' && npx eslint --fix \"${CLAUDE_TOOL_INPUT_FILE_PATH}\" 2>/dev/null || true"
+            "command": "npx eslint --fix \"${CLAUDE_TOOL_INPUT_FILE_PATH}\" 2>/dev/null || true"
           }
         ]
       }

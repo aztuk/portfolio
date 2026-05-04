@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import {
   CalendarDotsIcon,
@@ -46,38 +47,43 @@ type TensionSectionProps = {
 
 const MAX_BAR_H = 144;
 
+const mobileChartTitleClassName = "type-chart-title-mobile";
+const mobileChartBodyClassName = "type-chart-body-mobile";
+const mobileDataValueClassName = "type-chart-value-mobile";
+const mobileDataLabelClassName = "type-chart-label-mobile";
+
 type VerticalBarsCardProps = { chart: VerticalBarsChartData };
 
 const VerticalBarsCard = ({ chart }: VerticalBarsCardProps) => {
   const maxVal = Math.max(...chart.bars.map((b) => b.value));
   return (
     <ChartCardShell className="flex flex-1 flex-col">
-      <div className="flex flex-1 flex-col gap-6 p-8">
-        <p className="type-data-title w-full text-muted">
+      <div className="flex flex-1 flex-col gap-6 p-5 lg:p-8">
+        <p className={`type-data-title w-full text-muted ${mobileChartTitleClassName}`}>
           {chart.title}
         </p>
-        <div className="relative flex min-h-0 w-full flex-1 items-end justify-center gap-2">
+        <div className="relative flex min-h-0 w-full flex-1 items-end justify-center gap-1 lg:gap-2">
           {/* baseline */}
           <div className="absolute bottom-[37px] left-0 right-0 h-[2px] bg-dark-smooth" />
           {chart.bars.map((bar) => {
             const h = maxVal > 0 ? (bar.value / maxVal) * MAX_BAR_H : 0;
             const lines = bar.label.split("\n");
             return (
-              <div key={bar.label} className="relative flex flex-1 flex-col items-center gap-5">
-                <div className="relative w-[50px]" style={{ height: `${h}px` }}>
+              <div key={bar.label} className="relative flex min-w-0 flex-1 flex-col items-center gap-4 lg:gap-5">
+                <div className="relative w-7 lg:w-[50px]" style={{ height: `${h}px` }}>
                   <div
                     className="h-full w-full rounded-tl-[11px] rounded-tr-[11px]"
                     style={{ backgroundColor: bar.color }}
                   />
-                  <div className="absolute -top-[27px] left-1/2 -translate-x-1/2">
-                    <DiamondBadge value={`${bar.value}%`} color={bar.color} />
+                  <div className="absolute -top-[18px] left-1/2 -translate-x-1/2 lg:-top-[27px]">
+                    <DiamondBadge value={`${bar.value}%`} color={bar.color} size="sm" />
                   </div>
                 </div>
-                <div className="flex h-[30px] flex-col items-center justify-start">
+                <div className="flex min-h-[48px] w-full flex-col items-center justify-start px-px lg:h-[30px] lg:min-h-0 lg:px-0">
                   {lines.map((line) => (
                     <p
                       key={line}
-                      className="type-data-label text-center"
+                      className={`type-data-label w-full break-words text-center ${mobileDataLabelClassName}`}
                       style={{ color: bar.color }}
                     >
                       {line}
@@ -104,19 +110,19 @@ const DualProgressCard = ({ chart }: DualProgressCardProps) => {
 
   return (
     <ChartCardShell className="flex flex-1 flex-col">
-      <div className="flex flex-1 flex-col justify-center px-12 pb-8 pt-12">
+      <div className="flex flex-1 flex-col justify-center px-5 pb-6 pt-8 lg:px-12 lg:pb-8 lg:pt-12">
         {/* Top row: label → bar */}
         <div className="flex flex-col gap-3 border-b border-dark-smooth pb-4">
-          <div className="flex items-end justify-between gap-4">
-            <div className="flex flex-col">
-              <p className="type-data-title" style={{ color: topColor }}>
+          <div className="flex min-w-0 flex-col gap-1 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
+            <div className="flex min-w-0 flex-col">
+              <p className={`type-data-title ${mobileChartTitleClassName}`} style={{ color: topColor }}>
                 {top.title}
               </p>
-              <p className="type-body-lg text-smooth">
+              <p className={`type-body-lg text-smooth ${mobileChartBodyClassName}`}>
                 {top.description}
               </p>
             </div>
-            <span className="type-data-value shrink-0 whitespace-nowrap" style={{ color: topColor }}>
+            <span className={`type-data-value shrink-0 whitespace-nowrap ${mobileDataValueClassName}`} style={{ color: topColor }}>
               {top.display}
             </span>
           </div>
@@ -136,16 +142,16 @@ const DualProgressCard = ({ chart }: DualProgressCardProps) => {
               style={{ width: `${bottom.percent}%`, backgroundColor: bottomColor }}
             />
           </div>
-          <div className="flex items-baseline justify-between gap-4">
-            <div className="flex flex-col">
-              <p className="type-data-title" style={{ color: bottomColor }}>
+          <div className="flex min-w-0 flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
+            <div className="flex min-w-0 flex-col">
+              <p className={`type-data-title ${mobileChartTitleClassName}`} style={{ color: bottomColor }}>
                 {bottom.title}
               </p>
-              <p className="type-body-lg text-smooth">
+              <p className={`type-body-lg text-smooth ${mobileChartBodyClassName}`}>
                 {bottom.description}
               </p>
             </div>
-            <span className="type-data-value shrink-0 whitespace-nowrap" style={{ color: bottomColor }}>
+            <span className={`type-data-value shrink-0 whitespace-nowrap ${mobileDataValueClassName}`} style={{ color: bottomColor }}>
               {bottom.display}
             </span>
           </div>
@@ -218,7 +224,7 @@ const LineChartCard = ({ chart }: LineChartCardProps) => {
 
   return (
     <ChartCardShell className="flex flex-1 flex-col">
-      <div className="flex flex-1 flex-col px-12 pb-8 pt-12">
+      <div className="flex flex-1 flex-col px-5 pb-6 pt-8 lg:px-12 lg:pb-8 lg:pt-12">
         {/* chart area */}
         <div className="relative flex-1">
           <svg
@@ -295,19 +301,19 @@ type RankedBarsCardProps = { chart: RankedBarsChartData };
 
 const RankedBarsCard = ({ chart }: RankedBarsCardProps) => (
   <ChartCardShell className="flex flex-1 flex-col">
-    <div className="flex flex-1 flex-col justify-end gap-6 p-8">
-      <p className="type-data-title text-muted">
+    <div className="flex flex-1 flex-col justify-end gap-5 p-5 lg:gap-6 lg:p-8">
+      <p className={`type-data-title text-muted ${mobileChartTitleClassName}`}>
         {chart.title}
       </p>
       <div className="flex flex-1 flex-col gap-5">
         {chart.bars.map((bar) => {
           const color = bar.isPrimary ? "var(--color-primary)" : "var(--color-smooth)";
           return (
-            <div key={bar.label} className="flex items-center gap-6">
+            <div key={bar.label} className="flex items-center gap-4 lg:gap-6">
               <DiamondBadge value={`${bar.value}%`} color={color} size="sm" />
               <div className="flex flex-1 flex-col gap-[3px]">
                 <p
-                  className="type-data-label-compact"
+                  className={`type-data-label-compact ${mobileDataLabelClassName}`}
                   style={{ color }}
                 >
                   {bar.label}
@@ -333,12 +339,12 @@ type CountBarsCardProps = { chart: CountBarsChartData };
 
 const CountBarsCard = ({ chart }: CountBarsCardProps) => (
   <ChartCardShell className="flex flex-1 flex-col">
-    <div className="flex flex-1 flex-col justify-end gap-6 p-8">
-      <div className="flex items-baseline gap-4 pr-1">
-        <p className="type-data-title flex-1 text-muted">
+    <div className="flex flex-1 flex-col justify-end gap-5 p-5 lg:gap-6 lg:p-8">
+      <div className="flex flex-col gap-2 pr-1 lg:flex-row lg:items-baseline lg:gap-4">
+        <p className={`type-data-title flex-1 text-muted ${mobileChartTitleClassName}`}>
           {chart.title}
         </p>
-        <p className="type-body-lg shrink-0 text-smooth">
+        <p className={`type-body-lg shrink-0 text-smooth ${mobileChartBodyClassName}`}>
           {chart.subtitle}
         </p>
       </div>
@@ -347,11 +353,11 @@ const CountBarsCard = ({ chart }: CountBarsCardProps) => (
         {chart.bars.map((bar) => {
           const color = bar.isPrimary ? "var(--color-primary)" : "var(--color-smooth)";
           return (
-            <div key={bar.label} className="flex items-center gap-6">
-              <DiamondBadge value={`${bar.value}`} color={color} />
+            <div key={bar.label} className="flex items-center gap-4 lg:gap-6">
+              <DiamondBadge value={`${bar.value}`} color={color} size="sm" />
               <div className="flex flex-1 flex-col pb-2">
                 <p
-                  className="type-data-label h-[21px]"
+                  className={`type-data-label h-[21px] ${mobileDataLabelClassName}`}
                   style={{ color }}
                 >
                   {bar.label}
@@ -377,16 +383,16 @@ type SingleKpiCardProps = { chart: SingleKpiChartData };
 
 const SingleKpiCard = ({ chart }: SingleKpiCardProps) => (
   <ChartCardShell className="flex flex-1 flex-col">
-    <div className="flex flex-1 items-center justify-center p-8 text-center">
+    <div className="flex flex-1 items-center justify-center p-5 text-center lg:p-8">
       <div className="flex w-full flex-col items-center justify-center gap-6">
         <p className="type-kpi text-primary">
           {chart.value}
         </p>
         <div className="flex w-full flex-col items-center">
-          <p className="type-data-title text-muted">
+          <p className={`type-data-title text-muted ${mobileChartTitleClassName}`}>
             {chart.title}
           </p>
-          <p className="type-body-lg max-w-[430px] text-smooth">
+          <p className={`type-body-lg max-w-[430px] text-smooth ${mobileChartBodyClassName}`}>
             {chart.description}
           </p>
         </div>
@@ -426,9 +432,9 @@ const InsightChartCard = ({ chart }: InsightChartCardProps) => {
 
   return (
     <ChartCardShell className="flex flex-1 flex-col">
-      <div className="flex flex-1 flex-col gap-6 p-8">
+      <div className="flex flex-1 flex-col gap-5 p-5 lg:gap-6 lg:p-8">
         {/* Head: badge left, icon chip right */}
-        <div className="flex items-start justify-between gap-6">
+        <div className="flex items-start justify-between gap-4 lg:gap-6">
           <div
             className="rounded-full px-4 py-3"
             style={{
@@ -500,9 +506,9 @@ const VerbatimCard = ({ chart }: VerbatimCardProps) => {
 
   return (
     <ChartCardShell className="flex flex-1 flex-col">
-      <div className="flex flex-1 flex-col gap-6 p-8">
+      <div className="flex flex-1 flex-col gap-5 p-5 lg:gap-6 lg:p-8">
         {/* Head: persona chip + name left, fixed "Verbatim" badge right */}
-        <div className="flex items-center justify-between gap-6">
+        <div className="flex min-w-0 flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between lg:gap-6">
           <div className="flex min-w-0 items-center gap-3">
             <div
               className="flex size-[40px] shrink-0 items-center justify-center rounded-full"
@@ -520,7 +526,7 @@ const VerbatimCard = ({ chart }: VerbatimCardProps) => {
             </span>
           </div>
           <div
-            className="shrink-0 rounded-full px-4 py-3"
+            className="shrink-0 rounded-full px-3 py-2 lg:px-4 lg:py-3"
             style={{ backgroundColor: tintedSurface, border: `1px solid ${tintedSurface}` }}
           >
             <span
@@ -582,7 +588,7 @@ const WorkflowArrow = () => (
     height="14"
     viewBox="0 0 14 14"
     fill="none"
-    className="hidden shrink-0 text-smooth sm:block"
+    className="hidden shrink-0 text-smooth lg:block"
     aria-hidden="true"
   >
     <path
@@ -597,13 +603,13 @@ const WorkflowArrow = () => (
 
 const WorkflowMappingCard = ({ chart }: WorkflowMappingCardProps) => (
   <ChartCardShell className="flex flex-1 flex-col">
-    <div className="flex flex-1 flex-col gap-6 p-8">
+      <div className="flex flex-1 flex-col gap-5 p-5 lg:gap-6 lg:p-8">
       <p className="type-data-title w-full text-muted">
         {chart.title}
       </p>
 
       <div className="flex flex-1 flex-col justify-center gap-6">
-        <div className="flex flex-col gap-3 sm:flex-row sm:gap-1">
+        <div className="flex flex-col gap-3 lg:flex-row lg:gap-1">
           {chart.steps.map((step, index) => (
             <div key={step.label} className="relative flex min-w-0 flex-1 flex-col gap-2.5">
               <div className="flex min-w-0 items-center justify-center rounded-[10px] border-2 border-dark bg-dark/50 px-3 py-2.5 backdrop-blur-[4px]">
@@ -635,7 +641,7 @@ const WorkflowMappingCard = ({ chart }: WorkflowMappingCardProps) => (
               }}
             >
               <div className="h-4 w-full rounded-[30px] border-2 border-dark-smooth bg-negative" />
-              <div className="flex items-center justify-center gap-1 whitespace-nowrap">
+            <div className="flex items-center justify-center gap-1 text-center sm:whitespace-nowrap">
                 <DiamondIcon size={18} weight="regular" className="shrink-0 text-negative" aria-hidden="true" />
                 <p className="type-control text-negative">
                   {friction.label}
@@ -652,7 +658,7 @@ const WorkflowMappingCard = ({ chart }: WorkflowMappingCardProps) => (
 type ChartCardProps = { card: TensionChartCard };
 
 const ChartCard = ({ card }: ChartCardProps) => (
-  <div className="flex min-h-[350px] flex-col">
+  <div className="flex min-h-[320px] flex-col lg:min-h-[350px]">
     {card.chart.type === "vertical-bars" && <VerticalBarsCard chart={card.chart} />}
     {card.chart.type === "dual-progress" && <DualProgressCard chart={card.chart} />}
     {card.chart.type === "line" && <LineChartCard chart={card.chart} />}
@@ -668,54 +674,40 @@ const ChartCard = ({ card }: ChartCardProps) => (
 type ChartCardsGridProps = { cards: TensionChartCard[] };
 
 const ChartCardsGrid = ({ cards }: ChartCardsGridProps) => {
-  const pairs: TensionChartCard[][] = [];
-  for (let i = 0; i < cards.length; i += 2) {
-    pairs.push(cards.slice(i, i + 2));
-  }
-
   const getCaption = (card: TensionChartCard) => ("caption" in card ? card.caption : undefined);
 
   return (
-    <div className="mt-12 flex flex-col gap-10">
-      {pairs.map((pair, pi) => (
-        <div key={pi} className="flex flex-col gap-4">
-          <div className="grid gap-10 lg:grid-cols-2">
-            {pair.map((card, ci) => (
-              <ChartCard key={ci} card={card} />
-            ))}
-          </div>
-          {pair.some((card) => getCaption(card)) && (
-            <div className="grid gap-10 lg:grid-cols-2">
-              {pair.map((card, ci) => {
-                const caption = getCaption(card);
+    <div className="mt-10 grid gap-8 lg:mt-12 lg:grid-cols-2 lg:gap-10">
+      {cards.map((card, index) => {
+        const caption = getCaption(card);
 
-                return caption ? (
-                  <p key={ci} className="type-body-lg text-center text-smooth">
-                    {caption}
-                  </p>
-                ) : (
-                  <div key={ci} aria-hidden="true" />
-                );
-              })}
-            </div>
-          )}
+        return (
+          <div key={index} className="flex min-w-0 flex-col gap-4">
+            <ChartCard card={card} />
+            {caption ? (
+              <p className="type-body-lg text-center text-smooth">
+                {caption}
+              </p>
+            ) : null}
+          </div>
+        );
+      })}
         </div>
-      ))}
-    </div>
   );
 };
 
 type DiscoverySignalsProps = {
   signals: string[];
+  label: string;
 };
 
-const DiscoverySignals = ({ signals }: DiscoverySignalsProps) => {
+const DiscoverySignals = ({ signals, label }: DiscoverySignalsProps) => {
   if (signals.length === 0) return null;
 
   return (
     <div className="mt-12 flex flex-col items-center gap-4">
       <p className="type-chip text-muted/60">
-        Discovery effectuée
+        {label}
       </p>
       <div className="flex flex-wrap justify-center gap-2">
         {signals.map((signal) => (
@@ -734,7 +726,7 @@ type ProblemCardProps = {
 };
 
 const ProblemCard = ({ item, index }: ProblemCardProps) => (
-  <article className="relative flex flex-1 flex-col gap-2 rounded-[30px] py-6 pl-16 pr-6">
+  <article className="relative flex flex-1 flex-col gap-2 rounded-[24px] py-5 pl-14 pr-4 lg:rounded-[30px] lg:py-6 lg:pl-16 lg:pr-6">
     <div className="absolute left-[-2px] top-2 flex size-[54px] items-center justify-center">
       <div className="absolute size-[38px] -rotate-45 bg-dark-smooth/50 backdrop-blur-[4px]" />
       <p className="type-data-index relative text-primary">
@@ -765,7 +757,7 @@ type GalleryItemProps = {
 };
 
 const GalleryItem = ({ artifact }: GalleryItemProps) => (
-  <div className="flex w-full max-w-[600px] flex-col items-center gap-6 px-5">
+  <div className="flex w-full max-w-[600px] flex-col items-center gap-4 lg:gap-6 lg:px-5">
     <div className="relative aspect-[8/5] w-full overflow-hidden rounded-[30px] shadow-elevation-2 border border-dark-smooth bg-dark/60 backdrop-blur-[5px]">
       <Image
         src={artifact.src}
@@ -783,7 +775,8 @@ const GalleryItem = ({ artifact }: GalleryItemProps) => (
 
 // ─── Section ──────────────────────────────────────────────────────────────────
 
-export const TensionSection = ({ tension, id }: TensionSectionProps) => {
+export const TensionSection = async ({ tension, id }: TensionSectionProps) => {
+  const t = await getTranslations("sections");
   const artifacts =
     tension.artifacts ??
     (tension.artifact
@@ -809,7 +802,7 @@ export const TensionSection = ({ tension, id }: TensionSectionProps) => {
 
         {tension.chartCards && tension.chartCards.length > 0 ? (
           <>
-            <DiscoverySignals signals={tension.discoverySignals ?? []} />
+            <DiscoverySignals signals={tension.discoverySignals ?? []} label={t("discoveryDone")} />
             <ChartCardsGrid cards={tension.chartCards} />
           </>
         ) : artifacts.length > 0 ? (
@@ -820,9 +813,9 @@ export const TensionSection = ({ tension, id }: TensionSectionProps) => {
           </div>
         ) : null}
 
-        <div className="my-40 flex items-center justify-center">
+        <div className="my-24 flex items-center justify-center lg:my-40">
           <div className="rotate-3">
-            <div className="flex w-full max-w-[700px] items-center justify-center rounded-[40px] border-2 border-primary bg-dark-smooth/60 px-10 py-10 shadow-elevation-2 backdrop-blur-[2px]">
+            <div className="flex w-full max-w-[700px] items-center justify-center rounded-[28px] border-2 border-primary bg-dark-smooth/60 px-6 py-8 shadow-elevation-2 backdrop-blur-[2px] lg:rounded-[40px] lg:px-10 lg:py-10">
               <p className="type-note text-center text-primary">
                 {tension.coreQuestion}
               </p>
