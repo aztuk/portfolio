@@ -584,22 +584,40 @@ const VerbatimCard = ({ chart }: VerbatimCardProps) => {
 type WorkflowMappingCardProps = { chart: WorkflowMappingChartData };
 
 const WorkflowArrow = () => (
-  <svg
-    width="14"
-    height="14"
-    viewBox="0 0 14 14"
-    fill="none"
-    className="hidden shrink-0 text-smooth lg:block"
-    aria-hidden="true"
-  >
-    <path
-      d="M2 7h9M7.5 3.5 11 7l-3.5 3.5"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
+  <>
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 14 14"
+      fill="none"
+      className="shrink-0 text-smooth lg:hidden"
+      aria-hidden="true"
+    >
+      <path
+        d="M7 2v9M3.5 7.5 7 11l3.5-3.5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 14 14"
+      fill="none"
+      className="hidden shrink-0 text-smooth lg:block"
+      aria-hidden="true"
+    >
+      <path
+        d="M2 7h9M7.5 3.5 11 7l-3.5 3.5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  </>
 );
 
 const WorkflowMappingCard = ({ chart }: WorkflowMappingCardProps) => (
@@ -610,44 +628,55 @@ const WorkflowMappingCard = ({ chart }: WorkflowMappingCardProps) => (
       </p>
 
       <div className="flex flex-1 flex-col justify-center gap-6">
-        <div className="flex flex-col gap-3 lg:flex-row lg:gap-1">
+        <div className="flex flex-col gap-2 lg:flex-row lg:gap-1">
           {chart.steps.map((step, index) => (
-            <div key={step.label} className="relative flex min-w-0 flex-1 flex-col gap-2.5">
+            <div key={step.label} className="relative flex min-w-0 flex-1 flex-col items-center gap-2 lg:items-stretch lg:gap-2.5">
               <div className="flex min-w-0 items-center justify-center rounded-[10px] border-2 border-dark bg-dark/50 px-3 py-2.5 backdrop-blur-[4px]">
                 <p className="type-body-lg-medium truncate text-center text-muted">
                   {step.label}
                 </p>
               </div>
               {index < chart.steps.length - 1 && (
-                <div className="absolute right-[-9px] top-[18px] z-10 translate-x-1/2">
+                <div className="flex justify-center lg:absolute lg:right-[-9px] lg:top-[18px] lg:z-10 lg:translate-x-1/2">
                   <WorkflowArrow />
                 </div>
               )}
-              <p className="type-control text-center text-smooth">
+              <p className="type-control hidden text-center text-smooth lg:block">
                 {step.detail}
               </p>
             </div>
           ))}
         </div>
 
-        <div className="relative pb-10">
+        <div className="relative lg:pb-10">
           <div className="h-4 w-full rounded-[30px] border border-dark bg-dark-smooth" />
           {chart.frictions.map((friction) => (
             <div
               key={friction.label}
-              className="absolute top-0 flex flex-col items-center gap-[15px]"
+              className="absolute top-0 flex flex-col items-center lg:gap-[15px]"
               style={{
                 left: `${friction.startPercent}%`,
                 width: `${friction.widthPercent}%`,
               }}
             >
               <div className="h-4 w-full rounded-[30px] border-2 border-dark-smooth bg-negative" />
-            <div className="flex items-center justify-center gap-1 text-center sm:whitespace-nowrap">
+              <div className="hidden items-center justify-center gap-1 text-center sm:whitespace-nowrap lg:flex">
                 <DiamondIcon size={18} weight="regular" className="shrink-0 text-negative" aria-hidden="true" />
                 <p className="type-control text-negative">
                   {friction.label}
                 </p>
               </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-2 gap-3 lg:hidden">
+          {chart.frictions.map((friction) => (
+            <div key={friction.label} className="flex min-w-0 items-start justify-center gap-1 text-center">
+              <DiamondIcon size={16} weight="regular" className="mt-0.5 shrink-0 text-negative" aria-hidden="true" />
+              <p className="type-control min-w-0 break-words text-negative">
+                {friction.label}
+              </p>
             </div>
           ))}
         </div>

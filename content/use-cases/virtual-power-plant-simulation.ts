@@ -3,7 +3,7 @@ import type { UseCase } from "@/content/use-cases/types";
 
 const en: UseCase = {
   title: "Creating complex energy offers without writing code",
-  slug: "energy-offer-rule-builder",
+  slug: "virtual-power-plant-simulation",
   overview:
     "In 2019, our platform helped energy suppliers manage their tariff offers.\n\nOffer teams wanted to create new tariffs without going through IT. I designed a visual editor to define rules and see their effect on the bill.",
   challenge:
