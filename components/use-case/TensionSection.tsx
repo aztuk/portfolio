@@ -735,8 +735,8 @@ type ProblemCardProps = {
 };
 
 const ProblemCard = ({ item, index }: ProblemCardProps) => (
-  <article className="relative flex flex-1 flex-col gap-2 rounded-[24px] py-5 pl-14 pr-4 lg:rounded-[30px] lg:py-6 lg:pl-16 lg:pr-6">
-    <div className="absolute left-[-2px] top-2 flex size-[54px] items-center justify-center">
+  <article className="relative flex flex-1 flex-col gap-2 rounded-[24px] px-0 py-5 lg:rounded-[30px] lg:py-6 lg:pl-16 lg:pr-6">
+    <div className="absolute left-[-2px] top-2 hidden size-[54px] items-center justify-center lg:flex">
       <div className="absolute size-[38px] -rotate-45 bg-dark-smooth/50 backdrop-blur-[4px]" />
       <p className="type-data-index relative text-primary">
         {String(index + 1).padStart(2, "0")}
@@ -794,7 +794,7 @@ export const TensionSection = async ({ tension, id }: TensionSectionProps) => {
 
   return (
     <Section id={id}>
-      <Container>
+      <Container className="px-6 sm:px-8 lg:px-0">
         <h2 className="type-section-title text-muted">
           {tension.title}
         </h2>

@@ -401,7 +401,7 @@ export const ImpactSection = async ({ impactSection, id }: ImpactSectionProps) =
 
   return (
     <Section id={id}>
-      <Container>
+      <Container className="px-6 sm:px-8 lg:px-0">
         <h2 className="type-section-title text-muted">
           {impactSection.title}
         </h2>

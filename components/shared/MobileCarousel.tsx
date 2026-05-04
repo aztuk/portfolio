@@ -19,15 +19,15 @@ export const MobileCarousel = ({
     <div
       data-mobile-carousel
       className={clsx(
-        "-mx-3 overflow-x-auto overscroll-x-contain px-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+        "-mx-6 snap-x snap-mandatory overflow-x-auto scroll-smooth overscroll-x-contain px-6 pb-1 [-webkit-overflow-scrolling:touch] [scroll-padding-inline:24px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
         className,
       )}
     >
-      <div className="flex touch-pan-x snap-x snap-mandatory gap-4 pr-[14vw]">
+      <div className="flex gap-4 pr-[18vw]">
         {items.map((child, index) => (
           <div
             key={index}
-            className={clsx("min-w-[84vw] snap-start", itemClassName)}
+            className={clsx("min-w-[78vw] snap-start snap-always", itemClassName)}
           >
             {child}
           </div>

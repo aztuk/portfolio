@@ -20,7 +20,7 @@ export const RetrospectiveSection = async ({
 
   return (
     <Section id={id}>
-      <Container>
+      <Container className="px-6 sm:px-8 lg:px-0">
         <div className="mb-12">
           <h2 className="type-section-title text-muted">
             {retrospective.title}
