@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
+import { MobileCarousel } from "@/components/shared/MobileCarousel";
 import { Tag } from "@/components/shared/Tag";
 import { KeyDecisions } from "@/components/use-case/KeyDecisions";
 import { SolutionGallery } from "@/components/use-case/SolutionGallery";
@@ -149,7 +150,20 @@ export const SolutionSection = async ({
           {t("explorationAndSolution")}
         </h2>
 
-        <div className="mt-10 flex flex-col items-stretch gap-8 pt-4 lg:mt-16 lg:flex-row lg:gap-12 lg:pt-6">
+        <MobileCarousel className="mt-10 pt-4 lg:hidden" itemClassName="flex flex-col">
+          {solution.exploredSolutions.map((item, index) => (
+            <SolutionCard
+              key={item.id}
+              item={item}
+              isSelected={item.id === solution.selectedSolutionId}
+              index={index}
+              selectedLabel={t("selected")}
+              exploredLabel={t("explored")}
+            />
+          ))}
+        </MobileCarousel>
+
+        <div className="mt-16 hidden items-stretch gap-12 pt-6 lg:flex lg:flex-row">
           {solution.exploredSolutions.map((item, index) => (
             <SolutionCard
               key={item.id}

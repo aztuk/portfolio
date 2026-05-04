@@ -4,9 +4,10 @@ type RetroCardProps = {
   text: string;
   variant: "dont" | "do";
   label: string;
+  className?: string;
 };
 
-export const RetroCard = ({ text, variant, label }: RetroCardProps) => {
+export const RetroCard = ({ text, variant, label, className }: RetroCardProps) => {
   const isDont = variant === "dont";
 
   return (
@@ -19,6 +20,7 @@ export const RetroCard = ({ text, variant, label }: RetroCardProps) => {
         isDont
           ? "border-[color:var(--color-negative)]"
           : "border-[color:var(--color-positive)]",
+        className,
       )}
     >
       <p className="type-body-lg text-center text-ink">

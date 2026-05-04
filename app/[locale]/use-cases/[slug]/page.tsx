@@ -55,14 +55,17 @@ const UseCasePage = async ({ params }: UseCasePageProps) => {
     notFound();
   }
 
-  const needsAuth = useCase.protected || hasProtectedGalleryItems(useCase);
+  const isFullyProtected = useCase.protected === true;
+  const hasProtectedItems = hasProtectedGalleryItems(useCase);
+  const needsAuth = isFullyProtected || hasProtectedItems;
+
   let isAuthenticated = !needsAuth;
   if (needsAuth) {
     const cookieStore = await cookies();
     isAuthenticated = cookieStore.get("portfolio_auth")?.value === "1";
   }
 
-  if (needsAuth && !isAuthenticated) {
+  if (isFullyProtected && !isAuthenticated) {
     redirect(`/${locale}/login?from=/${locale}/use-cases/${slug}`);
   }
 

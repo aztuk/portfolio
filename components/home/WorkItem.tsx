@@ -15,7 +15,7 @@ export const WorkItem = ({ useCase }: WorkItemProps) => {
       <div className="flex w-full flex-col items-center lg:hidden">
         <div className="relative z-10 mb-[-70px] flex w-full items-center justify-center">
           <div
-            className="relative aspect-[307/371] w-full max-w-[260px] overflow-hidden rounded-[24px] border border-dark-smooth sm:max-w-[307px]"
+            className="relative aspect-[307/371] w-full overflow-hidden rounded-[24px] border border-dark-smooth sm:max-w-[307px]"
             style={{
               boxShadow:
                 "0px -8px 21px 0px rgba(38,53,103,0.15), 0px -5px 13px 0px rgba(38,53,103,0.15), 0px -3px 8px 0px rgba(38,53,103,0.15), 0px -2px 5px 0px rgba(38,53,103,0.15), 0px -1px 3px 0px rgba(38,53,103,0.15)",
@@ -27,7 +27,7 @@ export const WorkItem = ({ useCase }: WorkItemProps) => {
               previewImage={useCase.previewImage}
               previewVideo={useCase.previewVideo}
               mediaClassName="object-cover object-top transition duration-700 group-hover:scale-[1.03]"
-              sizes="260px"
+              sizes="(min-width: 640px) 307px, calc(100vw - 24px)"
             />
           </div>
         </div>

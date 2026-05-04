@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
+import { MobileCarousel } from "@/components/shared/MobileCarousel";
 import { PreviewMedia } from "@/components/shared/PreviewMedia";
 import { Tag } from "@/components/shared/Tag";
 import type { UseCase } from "@/content/use-cases/types";
@@ -19,7 +20,7 @@ const RelatedProjectCard = ({ useCase }: { useCase: UseCase }) => {
       {/* Image — overlaps 90px into the text below */}
       <div className="relative z-10 mb-[-70px] flex w-full items-center justify-center lg:mb-[-90px]">
         <div
-          className="relative aspect-[307/371] w-full max-w-[260px] overflow-hidden rounded-[24px] border border-dark-smooth sm:max-w-[307px] lg:h-[371px] lg:w-[307px] lg:max-w-none lg:rounded-[30px]"
+          className="relative aspect-[307/371] w-full overflow-hidden rounded-[24px] border border-dark-smooth sm:max-w-[307px] lg:h-[371px] lg:w-[307px] lg:max-w-none lg:rounded-[30px]"
           style={{
             boxShadow:
               "0px -8px 21px 0px rgba(38,53,103,0.15), 0px -5px 13px 0px rgba(38,53,103,0.15), 0px -3px 8px 0px rgba(38,53,103,0.15), 0px -2px 5px 0px rgba(38,53,103,0.15), 0px -1px 3px 0px rgba(38,53,103,0.15)",
@@ -31,7 +32,7 @@ const RelatedProjectCard = ({ useCase }: { useCase: UseCase }) => {
             previewImage={useCase.previewImage}
             previewVideo={useCase.previewVideo}
             mediaClassName="object-cover object-top transition duration-700 group-hover:scale-[1.03]"
-            sizes="(min-width: 1024px) 307px, 260px"
+            sizes="(min-width: 1024px) 307px, (min-width: 640px) 307px, calc(100vw - 48px)"
           />
         </div>
       </div>
@@ -69,7 +70,18 @@ export const RelatedProjects = async ({ useCases }: RelatedProjectsProps) => {
             {t("otherUseCases")}
           </h2>
         </div>
-        <div className="grid gap-16 md:grid-cols-2 lg:gap-20">
+
+        <MobileCarousel
+          ariaLabel={t("otherUseCases")}
+          className="md:hidden"
+          itemClassName="flex flex-col"
+        >
+          {useCases.map((useCase) => (
+            <RelatedProjectCard key={useCase.slug} useCase={useCase} />
+          ))}
+        </MobileCarousel>
+
+        <div className="hidden gap-16 md:grid md:grid-cols-2 lg:gap-20">
           {useCases.map((useCase) => (
             <RelatedProjectCard key={useCase.slug} useCase={useCase} />
           ))}

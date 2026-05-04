@@ -10,6 +10,7 @@ import { FigmaBadge } from "@/components/shared/FigmaBadge";
 import { FigmaEmbed } from "@/components/shared/FigmaEmbed";
 import { LockedAsset } from "@/components/shared/LockedAsset";
 import { MediaLightbox } from "@/components/shared/MediaLightbox";
+import { MobileCarousel } from "@/components/shared/MobileCarousel";
 import type { GalleryItem, KeyDecision } from "@/content/use-cases/types";
 
 type KeyDecisionsProps = {
@@ -185,7 +186,55 @@ const KeyDecisionCard = ({ item, isAuthenticated = true }: KeyDecisionCardProps)
         ) : null}
       </div>
 
-      <div className={clsx("relative mx-auto", activeMediaLayout.wrapper)}>
+      {/* Mobile: carousel of all media (no thumbnails) */}
+      <MobileCarousel className="w-full lg:hidden" itemClassName="flex flex-col items-center gap-3">
+        {mediaItems.map((media, index) => {
+          const layout = getDecisionMediaLayout(media);
+          const canOpen = media.type !== "figma" && !(media.protected && !isAuthenticated);
+          return (
+            <div key={`${media.src}-${index}`} className="flex w-full flex-col items-center gap-3">
+              {media.type === "figma" ? (
+                <div className="w-full rounded-[20px] border border-dark-smooth bg-canvas/60 shadow-elevation-2 backdrop-blur-md">
+                  <div className="flex flex-col items-center justify-center gap-4 px-6 py-10">
+                    <FigmaBadge size="lg" />
+                    {(media.title ?? media.caption) && (
+                      <p className="type-body-lg-medium text-center text-muted">
+                        {media.title ?? media.caption}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              ) : (
+                <div className={clsx("relative mx-auto w-full", layout.wrapper)}>
+                  <div className={clsx(
+                    "relative overflow-hidden border border-dark-smooth bg-[rgb(53_69_128/31%)] shadow-elevation-2 backdrop-blur-md",
+                    layout.frame,
+                  )}>
+                    <div className={clsx(
+                      "relative h-full w-full overflow-hidden bg-[rgb(53_69_128/31%)]",
+                      layout.inner,
+                    )}>
+                      <DecisionMedia item={media} isAuthenticated={isAuthenticated} sizes={layout.sizes} />
+                      {canOpen && (
+                        <button
+                          type="button"
+                          onClick={() => setLightboxIndex(index)}
+                          className="absolute inset-0 z-20 cursor-zoom-in focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary"
+                          aria-label={mediaLabel(media)}
+                        />
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
+              <p className="type-body-lg text-center text-smooth">{mediaLabel(media)}</p>
+            </div>
+          );
+        })}
+      </MobileCarousel>
+
+      {/* Desktop: active image + thumbnail strip */}
+      <div className={clsx("relative mx-auto hidden lg:block", activeMediaLayout.wrapper)}>
         <div className={clsx(
           "relative overflow-hidden border border-dark-smooth bg-[rgb(53_69_128/31%)] shadow-elevation-2 backdrop-blur-md",
           activeMediaLayout.frame,
@@ -211,13 +260,13 @@ const KeyDecisionCard = ({ item, isAuthenticated = true }: KeyDecisionCardProps)
         </div>
 
         {hasMultipleMedia && (
-          <div className="mt-3 flex w-full justify-center gap-3 overflow-x-auto rounded-[14px] p-1 lg:absolute lg:right-0 lg:top-1/2 lg:z-20 lg:mt-0 lg:w-auto lg:-translate-y-1/2 lg:flex-col lg:overflow-visible xl:left-full xl:right-auto xl:ml-3">
+          <div className="flex flex-col gap-3 lg:absolute lg:right-0 lg:top-1/2 lg:z-20 lg:mt-0 lg:w-auto lg:-translate-y-1/2 lg:flex-col lg:overflow-visible xl:left-full xl:right-auto xl:ml-3">
             {mediaItems.map((media, index) => {
               const isActive = index === activeIndex;
               const label = mediaLabel(media);
 
               return (
-                <div key={`${media.src}-${index}`} className="group relative size-16 shrink-0 lg:size-[82px]">
+                <div key={`${media.src}-${index}`} className="group relative size-[82px] shrink-0">
                   <button
                     type="button"
                     onClick={() => setActiveIndex(index)}

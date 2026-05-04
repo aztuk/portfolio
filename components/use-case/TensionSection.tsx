@@ -63,37 +63,44 @@ const VerticalBarsCard = ({ chart }: VerticalBarsCardProps) => {
         <p className={`type-data-title w-full text-muted ${mobileChartTitleClassName}`}>
           {chart.title}
         </p>
-        <div className="relative flex min-h-0 w-full flex-1 items-end justify-center gap-1 lg:gap-2">
-          {/* baseline */}
-          <div className="absolute bottom-[37px] left-0 right-0 h-[2px] bg-dark-smooth" />
-          {chart.bars.map((bar) => {
-            const h = maxVal > 0 ? (bar.value / maxVal) * MAX_BAR_H : 0;
-            const lines = bar.label.split("\n");
-            return (
-              <div key={bar.label} className="relative flex min-w-0 flex-1 flex-col items-center gap-4 lg:gap-5">
-                <div className="relative w-7 lg:w-[50px]" style={{ height: `${h}px` }}>
-                  <div
-                    className="h-full w-full rounded-tl-[11px] rounded-tr-[11px]"
-                    style={{ backgroundColor: bar.color }}
-                  />
-                  <div className="absolute -top-[18px] left-1/2 -translate-x-1/2 lg:-top-[27px]">
-                    <DiamondBadge value={`${bar.value}%`} color={bar.color} size="sm" />
+        <div className="flex min-h-0 w-full flex-1 flex-col gap-3 lg:gap-4">
+          <div className="relative grid min-h-[170px] flex-1 grid-cols-5 items-end gap-1 lg:min-h-[184px] lg:gap-4">
+            <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-dark-smooth" />
+            {chart.bars.map((bar) => {
+              const h = maxVal > 0 ? (bar.value / maxVal) * MAX_BAR_H : 0;
+              return (
+                <div key={bar.label} className="relative flex min-w-0 justify-center pb-[6px]">
+                  <div className="relative w-7 lg:w-[50px]" style={{ height: `${h}px` }}>
+                    <div
+                      className="h-full w-full rounded-tl-[11px] rounded-tr-[11px]"
+                      style={{ backgroundColor: bar.color }}
+                    />
+                    <div className="absolute -top-[18px] left-1/2 -translate-x-1/2 lg:-top-[27px]">
+                      <DiamondBadge value={`${bar.value}%`} color={bar.color} size="sm" />
+                    </div>
                   </div>
                 </div>
-                <div className="flex min-h-[48px] w-full flex-col items-center justify-start px-px lg:h-[30px] lg:min-h-0 lg:px-0">
+              );
+            })}
+          </div>
+          <div className="grid min-h-[48px] grid-cols-5 gap-1 lg:min-h-[34px] lg:gap-4">
+            {chart.bars.map((bar) => {
+              const lines = bar.label.split("\n");
+              return (
+                <div key={bar.label} className="flex min-w-0 flex-col items-center justify-start px-px lg:px-0">
                   {lines.map((line) => (
                     <p
                       key={line}
-                      className={`type-data-label w-full break-words text-center ${mobileDataLabelClassName}`}
+                      className={`type-data-label w-full whitespace-nowrap text-center ${mobileDataLabelClassName}`}
                       style={{ color: bar.color }}
                     >
                       {line}
                     </p>
                   ))}
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </ChartCardShell>
@@ -747,7 +754,19 @@ const DiscoverySignals = ({ signals, label }: DiscoverySignalsProps) => {
       <p className="type-chip text-muted/60">
         {label}
       </p>
-      <div className="flex flex-wrap justify-center gap-2">
+      <MobileCarousel
+        ariaLabel={label}
+        className="lg:hidden"
+        edgeSpacerClassName="w-6 sm:w-8"
+        itemClassName="flex"
+        itemWidthClassName="w-auto shrink-0"
+        snapAlign="none"
+      >
+        {signals.map((signal) => (
+          <Tag key={signal} className="shrink-0 px-5 py-2" label={signal} />
+        ))}
+      </MobileCarousel>
+      <div className="hidden flex-wrap justify-center gap-2 lg:flex">
         {signals.map((signal) => (
           <Tag key={signal} label={signal} />
         ))}
