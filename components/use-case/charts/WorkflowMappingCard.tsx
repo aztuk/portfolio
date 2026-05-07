@@ -1,7 +1,6 @@
-import { ArrowDownIcon, ArrowRightIcon } from "@phosphor-icons/react/ssr";
+import { ArrowDownIcon, ArrowRightIcon, DiamondIcon } from "@phosphor-icons/react/ssr";
 
 import { ChartCardShell } from "@/components/use-case/ChartCardShell";
-import { DiamondBadge } from "@/components/use-case/DiamondBadge";
 import {
   ChartCardContent,
   ChartTitle,
@@ -40,13 +39,7 @@ const WorkflowStepItem = ({ step }: { step: WorkflowMappingStep }) => {
 
 const WarningLabel = ({ label }: { label: string }) => (
   <div className="flex items-center justify-center gap-1 text-center text-negative">
-    <DiamondBadge
-      variant="custom"
-      className="size-[18px] text-negative"
-      outerClassName="size-[18px]"
-      diamondClassName="size-[12.5px] border border-negative"
-      aria-hidden={true}
-    />
+    <DiamondIcon size={18} weight="regular" className="shrink-0" aria-hidden="true" />
     <p className="type-control whitespace-nowrap">{label}</p>
   </div>
 );

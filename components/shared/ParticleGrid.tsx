@@ -38,6 +38,7 @@ export const ParticleGrid = ({ className }: { className?: string }) => {
     let raf: number;
     let canvasW = 0;
     let canvasH = 0;
+    let gridShiftY = 0;
 
     // Click / pinch state
     let isPressed = false;
@@ -58,8 +59,13 @@ export const ParticleGrid = ({ className }: { className?: string }) => {
 
     const build = (w: number, h: number) => {
       dots = [];
+      const verticalMargin = cfg.gap;
       for (let x = cfg.gap / 2; x < w + cfg.gap; x += cfg.gap) {
-        for (let y = cfg.gap / 2; y < h + cfg.gap; y += cfg.gap) {
+        for (
+          let y = cfg.gap / 2 - verticalMargin;
+          y < h + cfg.gap + verticalMargin;
+          y += cfg.gap
+        ) {
           dots.push({ ox: x, oy: y, x, y, vx: 0, vy: 0, jx: 0, jy: 0 });
         }
       }
@@ -77,6 +83,9 @@ export const ParticleGrid = ({ className }: { className?: string }) => {
       canvas.height = h * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       build(w, h);
+      gridShiftY = reducedMotion
+        ? 0
+        : Math.trunc((-window.scrollY * cfg.scrollParallax) / cfg.gap) * cfg.gap;
     };
 
     const getLightFactor = (x: number, y: number) => {
@@ -91,19 +100,38 @@ export const ParticleGrid = ({ className }: { className?: string }) => {
       return cfg.ambientAlphaMultiplier + eased * (1 - cfg.ambientAlphaMultiplier);
     };
 
+    const getScrollOffset = () => {
+      if (reducedMotion) return 0;
+      const rawOffset = -window.scrollY * cfg.scrollParallax - gridShiftY;
+      const shiftSteps = Math.trunc(rawOffset / cfg.gap);
+      if (shiftSteps === 0) return rawOffset;
+
+      const shift = shiftSteps * cfg.gap;
+      gridShiftY += shift;
+      for (const dot of dots) {
+        dot.y += shift;
+        dot.oy += shift;
+      }
+
+      return rawOffset - shift;
+    };
+
     const tick = () => {
       ctx.clearRect(0, 0, canvasW, canvasH);
 
       const holdDuration = isPressed ? (performance.now() - holdStart) / 1000 : 0;
       const holdFactor = isPressed ? Math.min(holdDuration / cfg.maxHoldSec, 1) : 0;
+      const scrollOffset = getScrollOffset();
       // Clamp to [0,1] — values > 1 would make the lerp diverge
       const jLerp = Math.min(1, Math.max(0, cfg.jitterSpeed));
 
       for (let index = 0; index < dots.length; index += 1) {
         const d = dots[index];
+        const px = d.x;
+        const py = d.y + scrollOffset;
         if (!reducedMotion) {
-          const dx = mx - d.x;
-          const dy = my - d.y;
+          const dx = mx - px;
+          const dy = my - py;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           // Mouse hover gravity — quadratic falloff within pullRadius
@@ -122,8 +150,8 @@ export const ParticleGrid = ({ className }: { className?: string }) => {
 
           // Click pinch — extra attraction toward fixed click center
           if (isPressed) {
-            const cdx = cx - d.x;
-            const cdy = cy - d.y;
+            const cdx = cx - px;
+            const cdy = cy - py;
             const cdist = Math.sqrt(cdx * cdx + cdy * cdy);
             if (cdist < cfg.holdPullRadius && cdist > 1) {
               const t = 1 - cdist / cfg.holdPullRadius;
@@ -134,7 +162,7 @@ export const ParticleGrid = ({ className }: { className?: string }) => {
 
             // Jitter — render-time offset, independent of physics
             // Uses d.x/d.y so proximity matches visual dot position
-            const jdist = Math.hypot(d.x - cx, d.y - cy);
+            const jdist = Math.hypot(px - cx, py - cy);
             if (jdist < cfg.jitterRadius) {
               const proximity = 1 - jdist / cfg.jitterRadius;
               const amp = holdFactor * cfg.jitterAmplitude * proximity * proximity;
@@ -151,8 +179,8 @@ export const ParticleGrid = ({ className }: { className?: string }) => {
 
           // Wave impulse — expanding ring after release
           if (wave) {
-            const wdx = d.x - wave.cx;
-            const wdy = d.y - wave.cy;
+            const wdx = px - wave.cx;
+            const wdy = py - wave.cy;
             const wdist = Math.sqrt(wdx * wdx + wdy * wdy);
             const distFromFront = Math.abs(wdist - wave.radius);
             if (distFromFront < cfg.waveWidth && wdist > 1) {
@@ -179,7 +207,7 @@ export const ParticleGrid = ({ className }: { className?: string }) => {
         }
 
         const rx = d.x + d.jx;
-        const ry = d.y + d.jy;
+        const ry = d.y + d.jy + scrollOffset;
         const lightFactor = getLightFactor(rx, ry);
 
         ctx.beginPath();

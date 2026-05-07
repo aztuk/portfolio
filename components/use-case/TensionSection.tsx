@@ -3,7 +3,6 @@ import { getTranslations } from "next-intl/server";
 import { BulletPoint } from "@/components/use-case/BulletPoint";
 import { ChartCardsGrid } from "@/components/use-case/ChartCardsGrid";
 import { Container } from "@/components/layout/Container";
-import { DiamondBadge } from "@/components/use-case/DiamondBadge";
 import { Section } from "@/components/layout/Section";
 import { MobileCarousel } from "@/components/shared/MobileCarousel";
 import { Tag } from "@/components/shared/Tag";
@@ -27,14 +26,12 @@ type ProblemCardProps = {
 
 const ProblemCard = ({ item, index }: ProblemCardProps) => (
   <article className="relative flex w-full max-w-[400px] flex-1 flex-col gap-2 rounded-[24px] py-6 pl-16 pr-6 lg:rounded-[30px]">
-    <DiamondBadge
-      value={String(index + 1).padStart(2, "0")}
-      color="var(--color-primary)"
-      variant="custom"
-      className="absolute left-[-2px] top-[22px]"
-      diamondClassName="size-[38px] bg-dark-smooth/50"
-      textClassName="type-data-index"
-    />
+    <div className="absolute left-[-2px] top-[22px] flex size-[54px] items-center justify-center">
+      <div className="absolute size-[38px] -rotate-45 bg-dark-smooth/50 backdrop-blur-[4px]" />
+      <p className="type-data-index relative text-primary">
+        {String(index + 1).padStart(2, "0")}
+      </p>
+    </div>
 
     <div className="flex w-full flex-col uppercase leading-[1.2]">
       <p className="type-tension-kicker mb-[-8px] w-full text-primary">

@@ -318,7 +318,10 @@ const fr: UseCase = {
   "En 2018, notre produit aidait les foyers équipés d’énergie renouvelable à suivre leur énergie. \n\n J’ai personnalisé le dashboard selon leur équipement, leurs objectifs et leur niveau de compréhension pour rendre la valeur plus visible.",
 challenge:
   "Rendre les données énergétiques utiles à chaque foyer, quel que soit son équipement ou son niveau de compréhension.",
-  roles: ["Principal Product Designer"],
+  roles: {
+    owned: ["Discovery", "UX design", "Design visuel", "Prototypage", "Tests utilisateurs", "Delivery"],
+    contributed: [],
+  },
   year: "2018",
   timeline: "4 mois",
   tools: ["Figma", "Notion", "Storybook", "Zeplin", "Illustrator"],

@@ -228,7 +228,7 @@ const KeyDecisionCard = ({ item, isAuthenticated = true }: KeyDecisionCardProps)
           )}
         </div>
 
-        <p className="type-body-lg text-center text-smooth">{mediaLabel(activeMedia)}</p>
+        <p className="type-body-lg max-w-[80%] text-center text-smooth">{mediaLabel(activeMedia)}</p>
       </div>
 
       <div className="flex w-full flex-col items-stretch gap-8 rounded-bl-[20px] p-5 lg:flex-row lg:gap-0">

@@ -180,6 +180,7 @@ export type DurationBarItem = {
 
 export type DurationBarsChartData = {
   type: "duration-bars";
+  title: string;
   items: DurationBarItem[];
 };
 

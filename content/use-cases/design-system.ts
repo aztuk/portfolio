@@ -10,7 +10,10 @@ const en: UseCase = {
     "When Enphase acquired us in 2022, our teams had to move from startup-style delivery to a more global product organization.\n\nI structured a shared delivery system between product, design and development to reduce interpretation, rework and design/dev gaps.",
   challenge:
     "Scale delivery without letting each team reinterpret what needed to be shipped.",
-  roles: ["Design Operations Lead"],
+  roles: {
+    owned: ["Design system", "Component library", "Documentation", "Governance", "Handoff process"],
+    contributed: ["Development", "User testing"],
+  },
   year: "2023",
   timeline: "2 years",
   tools: ["Figma", "Notion", "Storybook", "Jira", "Flutter"],
@@ -291,6 +294,7 @@ const en: UseCase = {
       {
         chart: {
           type: "duration-bars",
+          title: "Time savings on delivery tasks",
           items: [
             { label: "Standard screen\nprototyping", before: { display: "3h30", value: 3.5 }, after: { display: "1h15", value: 1.25 } },
             { label: "Standard screen\nimplementation", before: { display: "12h", value: 12 }, after: { display: "5h", value: 5 } },
@@ -336,11 +340,25 @@ const en: UseCase = {
 };
 
 const fr: UseCase = {
-  title: "Aligner product, design et développement",
+  title: "Transformer la delivery en un système vérifiable",
   slug: "product-ops-transformation",
-  overview: "Lorsque Enphase nous a rachetés en 2022, nos équipes ont dû passer d’une delivery startup à une organisation produit plus globale. \n\nJ’ai structuré un système de delivery partagé entre product, design et dev pour réduire l’interprétation, le rework et les écarts design/dev.",
+  overview: "Lorsque Enphase nous a rachetés en 2022, nos équipes ont dû passer <b>d’une delivery startup</b> à une organisation produit <b>plus globale</b>. \n\nJ’ai structuré un système de delivery partagé entre <b>product, design et dev</b> pour réduire l’interprétation, le rework et les écarts design/dev.",
  challenge: "Faire scaler la delivery sans laisser chaque équipe réinterpréter ce qui devait être livré.",
-  roles: ["Design Operations Lead"],
+  roles: {
+  owned: [
+    "Product Ops strategy",
+    "Design system",
+    "Governance",
+    "UX architecture",
+    "Quality framework",
+    "Team enablement",
+    "Design mentoring",
+  ],
+  contributed: [
+    "Delivery",
+    "User testing",
+  ],
+},
   year: "2023",
   timeline: "2 ans",
   tools: ["Figma", "Notion", "Storybook", "Jira", "Flutter"],
@@ -365,17 +383,17 @@ const fr: UseCase = {
   {
     label: "Pour l’équipe produit",
     value:
-      "Les arbitrages revenaient trop tard, souvent après le démarrage du développement.",
+      "L’intention produit se perdait entre les arbitrages initiaux, les tickets et les reviews.",
     bullets: [
-      "Décisions difficiles à préserver",
       "Critères d’acceptation flous",
       "Arbitrages réouverts",
+      "Décisions difficiles à préserver",
     ],
   },
   {
     label: "Pour le design",
     value:
-      "Les maquettes montraient l’intention visuelle, mais pas toujours les règles d’usage.",
+      "Les maquettes montraient l’interface cible, mais pas toujours les règles nécessaires pour l’implémenter.",
     bullets: [
       "États incomplets",
       "Edge cases absents",
@@ -385,16 +403,15 @@ const fr: UseCase = {
   {
     label: "Pour les dev",
     value:
-      "Les développeurs devaient transformer des intentions produit en logique d’implémentation.",
+      "Les développeurs devaient deviner les comportements, les états et les critères qualité attendus.",
     bullets: [
       "Implémentations divergentes",
       "Boucles de review",
       "Décisions implicites",
     ],
   },
-],
-    coreQuestion:
-  "Comment réduire l’interprétation entre product, design et développement avant le démarrage du dev ?",
+],coreQuestion:
+  "Comment rendre les décisions, critères et responsabilités vérifiables avant le développement ?",
   discoverySignals: [
   "Audit du workflow",
   "Analyse de tickets",
@@ -460,7 +477,7 @@ const fr: UseCase = {
     id: "renforcer-documentation",
     title: "Renforcer la documentation",
     summary:
-      "Centraliser les règles et guidelines pour aider chaque équipe à retrouver les mêmes décisions.",
+      "Centraliser règles, composants et guidelines dans un hub consultable par les équipes.",
     pros: [
       "Rapide à lancer",
       "Facile à consulter",
@@ -469,6 +486,13 @@ const fr: UseCase = {
       "Peu d’adoption réelle",
       "Décisions encore tardives",
     ],
+    media: {
+      type: "image",
+      src: "/assets/use-cases/design-system/FR_option_a_documentation_hub.png",
+      alt: "Mini-wireframe d’un hub documentaire centralisant règles, composants et guidelines.",
+      caption:
+        "Option A : rendre l’information plus accessible, sans changer le workflow.",
+    },
   },
   {
     id: "renforcer-reviews",
@@ -483,6 +507,13 @@ const fr: UseCase = {
       "Arrive trop tard",
       "Ajoute du rework",
     ],
+    media: {
+      type: "image",
+      src: "/assets/use-cases/design-system/FR_option_b_review_gate.png",
+      alt: "Mini-wireframe d’un workflow ajoutant une review renforcée après développement.",
+      caption:
+        "Option B : mieux contrôler en review, mais après que les écarts existent déjà.",
+    },
   },
   {
     id: "systeme-delivery-partage",
@@ -497,6 +528,13 @@ const fr: UseCase = {
       "Demande adoption",
       "Plus exigeant au départ",
     ],
+    media: {
+      type: "image",
+      src: "/assets/use-cases/design-system/FR_option_c_shared_delivery.png",
+      alt: "Mini-wireframe d’un système de delivery partagé avec handoff, gates et critères qualité avant développement.",
+      caption:
+        "Option C : rendre l’alignement vérifiable avant le développement.",
+    },
   },
 ],
 selectedSolutionId: "systeme-delivery-partage",
@@ -638,6 +676,7 @@ selectedSolutionId: "systeme-delivery-partage",
       {
         chart: {
           type: "duration-bars",
+          title: "Gains de temps sur les tâches de livraison",
           items: [
             { label: "Prototypage écran\nstandard", before: { display: "3h30", value: 3.5 }, after: { display: "1h15", value: 1.25 } },
             { label: "Implémentation\nécran standard", before: { display: "12h", value: 12 }, after: { display: "5h", value: 5 } },

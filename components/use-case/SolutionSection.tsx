@@ -6,7 +6,6 @@ import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { MobileCarousel } from "@/components/shared/MobileCarousel";
 import { Tag } from "@/components/shared/Tag";
-import { DiamondBadge } from "@/components/use-case/DiamondBadge";
 import { KeyDecisions } from "@/components/use-case/KeyDecisions";
 import { SolutionGallery } from "@/components/use-case/SolutionGallery";
 import type { ExploredSolution, SolutionSectionData } from "@/content/use-cases/types";
@@ -53,10 +52,7 @@ type NumberBadgeProps = {
 };
 
 const NumberBadge = ({ index, isSelected, desktopPosition }: NumberBadgeProps) => (
-  <DiamondBadge
-    value={String(index + 1).padStart(2, "0")}
-    color={isSelected ? "var(--color-dark)" : "var(--color-primary)"}
-    variant="custom"
+  <div
     className={clsx(
       "absolute z-10 flex items-center justify-center",
       // Mobile: always top-left corner
@@ -69,13 +65,26 @@ const NumberBadge = ({ index, isSelected, desktopPosition }: NumberBadgeProps) =
       // Size: larger for selected on desktop
       isSelected ? "size-[54px] lg:size-[80px]" : "size-[54px]",
     )}
-    outerClassName={isSelected ? "size-[54px] lg:size-[80px]" : "size-[54px]"}
-    diamondClassName={clsx(
-      "size-[38px]",
-      isSelected ? "bg-primary lg:size-[57px]" : "bg-dark-smooth/50",
-    )}
-    textClassName={isSelected ? "type-data-index-tight-selected" : "type-data-index-tight"}
-  />
+  >
+    <div className="absolute inset-0 flex items-center justify-center">
+      <div
+        className={clsx(
+          "-rotate-45 backdrop-blur-[4px]",
+          isSelected
+            ? "size-[38px] bg-primary lg:size-[57px]"
+            : "size-[38px] bg-dark-smooth/50",
+        )}
+      />
+    </div>
+    <span
+      className={clsx(
+        "relative",
+        isSelected ? "type-data-index-tight-selected text-dark" : "type-data-index-tight text-primary",
+      )}
+    >
+      {String(index + 1).padStart(2, "0")}
+    </span>
+  </div>
 );
 
 type SolutionCardProps = {
@@ -110,6 +119,8 @@ const SolutionCard = ({
         isCenter && "lg:p-8",
         isLeft && "lg:py-8 lg:pl-8 lg:pr-14",
         isRight && "lg:py-8 lg:pl-14 lg:pr-8",
+        isLeft && "lg:-rotate-2",
+        isRight && "lg:rotate-2",
         // Colors
         isSelected ? "border-primary bg-[#2d5580]" : "border-dark-smooth bg-dark-smooth/20",
       )}

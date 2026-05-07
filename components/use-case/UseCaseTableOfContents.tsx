@@ -5,7 +5,6 @@ import clsx from "clsx";
 import { useTranslations } from "next-intl";
 import { ArrowLeftIcon } from "@phosphor-icons/react";
 
-import { DiamondBadge } from "@/components/use-case/DiamondBadge";
 import { Link } from "@/i18n/navigation";
 
 export type UseCaseTableOfContentsItem = {
@@ -114,19 +113,14 @@ export const UseCaseTableOfContents = ({
                     !isPast && !isActive && "text-smooth",
                   )}
                 >
-                  <DiamondBadge
-                    variant="custom"
+                  <span
                     className={clsx(
-                      "absolute left-1/2 top-1/2 z-10 size-2 -translate-x-1/2 -translate-y-1/2 transition-colors duration-200 min-[2000px]:-right-[24px] min-[2000px]:left-auto min-[2000px]:translate-x-0",
-                    )}
-                    outerClassName="size-2"
-                    diamondClassName={clsx(
-                      "size-2 border transition-colors duration-200",
+                      "absolute left-1/2 top-1/2 z-10 size-2 -translate-x-1/2 -translate-y-1/2 rotate-45 border transition-colors duration-200 min-[2000px]:-right-[24px] min-[2000px]:left-auto min-[2000px]:translate-x-0",
                       isActive && "border-primary bg-primary",
                       isPast && !isActive && "border-ink bg-ink",
                       !isPast && !isActive && "border-smooth bg-dark",
                     )}
-                    aria-hidden={true}
+                    aria-hidden="true"
                   />
                   <span className="sr-only max-w-[170px] text-right min-[2000px]:not-sr-only min-[2000px]:block">
                     {item.label}

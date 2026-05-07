@@ -59,6 +59,9 @@ export const heroConfig = {
     /** Dot base opacity */
     dotAlpha: 0.2,
 
+    /** Fraction of scrollY applied as a vertical parallax offset. */
+    scrollParallax: 0.16,
+
     /** Radius around the mouse where attraction activates (px) */
     pullRadius: 700,
 

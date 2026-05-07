@@ -267,6 +267,7 @@ const en: UseCase = {
       {
         chart: {
           type: "duration-bars",
+          title: "Time to complete key tasks",
           items: [
             { label: "Create a\nstandard offer", before: { display: "2 wks", value: 20 }, after: { display: "< 1d", value: 5 } },
             { label: "Adjust an\nexisting rule", before: { display: "3d", value: 20 }, after: { display: "< 1h", value: 6 } },
@@ -320,7 +321,10 @@ const fr: UseCase = {
   slug: "energy-offer-rule-builder",
   overview: "En 2019, notre plateforme aidait les fournisseurs d’énergie à gérer leurs offres tarifaires.\n \n Les équipes offres voulaient créer de nouveaux tarifs sans passer par l’IT. J’ai conçu un éditeur visuel pour définir les règles et voir leur effet sur la facture.",
   challenge: "Rendre la création d’offres assez simple pour le métier, sans perdre la précision nécessaire à la facturation.",
-  roles: ["Lead Product Designer"],
+  roles: {
+    owned: ["Architecture UX", "Design visuel", "Prototypage"],
+    contributed: ["Discovery", "Tests utilisateurs", "Delivery"],
+  },
   year: "2019",
   timeline: "12 mois",
   tools: ["Figma", "Notion", "Zeplin"],
@@ -592,6 +596,7 @@ impactSection: {
     {
       chart: {
         type: "duration-bars",
+        title: "Temps pour réaliser les tâches clés",
         items: [
           {
             label: "Créer une offre\nstandard",

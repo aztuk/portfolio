@@ -38,10 +38,11 @@
 
   .type-section-title {
     font-family: var(--font-display), sans-serif;
-    font-size: 40px;
+    font-size: 48px;
     font-weight: 300;
     line-height: 1.2;
     letter-spacing: 0;
+    text-align: center;
   }
 
   .type-project-title {
@@ -419,6 +420,14 @@
     font-style: normal;
   }
 
+  .type-role-tag {
+    font-family: var(--font-sans), sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.7;
+    letter-spacing: -0.04em;
+  }
+
   .type-before-stamp {
     font-family: var(--font-elite), serif;
     font-size: 22px;
@@ -459,10 +468,13 @@
       font-size: 40px;
     }
 
-    .type-section-title,
     .type-project-title,
     .type-project-title-medium {
       font-size: 34px;
+    }
+
+    .type-section-title {
+      font-size: 40px;
     }
 
     .type-project-title-lg {

@@ -40,7 +40,7 @@ export const UseCaseHero = ({ useCase }: UseCaseHeroProps) => {
           >
             {/* Shadow layer — no overflow-hidden so shadow isn't clipped */}
             <div
-              className="relative mx-auto w-[calc(100vw-60px)] rounded-[20px] sm:mx-0 sm:w-[320px] sm:rounded-[24px] lg:w-[380px] lg:rounded-[30px]"
+              className="relative mx-auto w-[calc(100vw-60px)] rounded-[20px] sm:mx-0 sm:w-[320px] sm:rounded-[24px] lg:w-[500px] lg:rounded-[30px]"
               style={{
                 aspectRatio: "380 / 460",
                 boxShadow: "0 -10px 60px 10px rgba(28, 40, 90, 0.85), 0 0 40px 15px rgba(28, 40, 90, 0.6), 0 0 0 1px rgba(72, 90, 156, 0.3)",
@@ -53,7 +53,7 @@ export const UseCaseHero = ({ useCase }: UseCaseHeroProps) => {
                   previewVideo={useCase.previewVideo}
                   priority
                   mediaClassName="object-cover object-top"
-                  sizes="(min-width: 1024px) 380px, (min-width: 640px) 320px, calc(100vw - 60px)"
+                  sizes="(min-width: 1024px) 500px, (min-width: 640px) 320px, calc(100vw - 60px)"
                 />
                 <button
                   type="button"
@@ -66,7 +66,7 @@ export const UseCaseHero = ({ useCase }: UseCaseHeroProps) => {
           </div>
 
           {/* Title + overview — rendered over the image, padding-top pushes text into the lower portion */}
-          <div className="pointer-events-none relative z-10 w-full px-0 pt-[280px] text-center min-[375px]:pt-[310px] sm:pt-[224px] lg:px-[90px] lg:pt-[300px]">
+          <div className="pointer-events-none relative z-10 w-full px-0 pt-[280px] text-center min-[375px]:pt-[310px] sm:pt-[224px] lg:px-[90px] lg:pt-[350px]">
             <h1 className="type-page-title mx-auto max-w-[828px] text-ink">
               {useCase.title}
             </h1>

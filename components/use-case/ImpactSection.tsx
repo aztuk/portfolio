@@ -2,7 +2,6 @@ import { getTranslations } from "next-intl/server";
 
 import { ChartCardsGrid } from "@/components/use-case/ChartCardsGrid";
 import { Container } from "@/components/layout/Container";
-import { DiamondBadge } from "@/components/use-case/DiamondBadge";
 import { Section } from "@/components/layout/Section";
 import type { ImpactSectionData } from "@/content/use-cases/types";
 
@@ -12,12 +11,9 @@ type ImpactSectionProps = {
 };
 
 const DiamondBullet = () => (
-  <DiamondBadge
-    variant="outline"
-    size="xs"
-    className="absolute left-0 top-[8px]"
-    aria-hidden={true}
-  />
+  <div className="absolute left-0 top-[8px] flex size-[15.556px] items-center justify-center">
+    <div className="size-[11px] rotate-45 border border-smooth" />
+  </div>
 );
 
 export const ImpactSection = async ({ impactSection, id }: ImpactSectionProps) => {

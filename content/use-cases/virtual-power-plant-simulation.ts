@@ -344,6 +344,7 @@ const en: UseCase = {
       {
         chart: {
           type: "duration-bars",
+          title: "Time to get an answer",
           items: [
             {
               label: "Available\npower",
@@ -425,7 +426,7 @@ const fr: UseCase = {
       "Prototypage",
       "Tests utilisateurs",
     ],
-    contributed: ["Delivery"],
+    contributed: ["Delivery", "Handoff"],
   },
   year: "2019",
   timeline: "9 mois",
@@ -553,8 +554,8 @@ const fr: UseCase = {
               title: "Réponses nécessitant analyse manuelle",
               description:
                 "Comparaison, prévision ou estimation hors outil.",
-              display: "7/10",
-              percent: 70,
+              display: "9/10",
+              percent: 90,
               variant: "secondary",
             },
           ],
@@ -635,13 +636,13 @@ selectedSolutionId: "combined-decision-view",
   {
     id: "answer-not-table",
     eyebrow: "Lecture",
-    title: "Répondre plutôt que lister",
+    title: "Mettre la décision au coeur du parcours ",
     summary:
-      "La liste affichait les assets, mais l’interface devait répondre directement aux questions de décision.",
+      "Parce qu’une liste d’assets obligeait le trader à chercher, comparer et recalculer avant de pouvoir décider",
     media: {
       type: "image",
       src: "/assets/use-cases/cluster/Vue apr%C3%A8s.png",
-      alt: "Comparaison entre une liste brute d’assets et une vue après donnant directement puissance, disponibilité, risque et résultat de simulation.",
+      alt: "Les 3 plus grandes questions de décision (où, quand, combien) affichées directement dans l’interface, sans besoin de chercher ou recouper les données",
     },
     gallery: [],
     avoidedCost: [
@@ -658,7 +659,7 @@ selectedSolutionId: "combined-decision-view",
     eyebrow: "Localisation",
     title: "Localiser avant d’analyser",
     summary:
-      "La carte rendait visible la répartition des capacités avant d’entrer dans les détails.",
+      "Parce que la capacité disponible n’avait pas la même valeur selon sa zone, sa densité et son impact local",
     media: {
       type: "image",
       src: "/assets/use-cases/cluster/Selected zone map.png",
@@ -687,7 +688,7 @@ selectedSolutionId: "combined-decision-view",
     eyebrow: "Temps",
     title: "Prévoir avant d’agir",
     summary:
-      "La décision devait distinguer la capacité disponible maintenant de celle attendue pendant la période cible.",
+      "Parce qu’une capacité disponible maintenant pouvait disparaître avant la période réellement demandée",
     media: {
       type: "image",
       src: "/assets/use-cases/cluster/Chart now + forecast.png",
@@ -708,7 +709,7 @@ selectedSolutionId: "combined-decision-view",
     eyebrow: "Action",
     title: "Simuler avant d’engager",
     summary:
-      "Avant d’utiliser les assets, le trader devait tester la demande et vérifier sa faisabilité.",
+      "Parce qu’engager une demande sans test pouvait dépasser la capacité réelle ou dégrader le confort local",
     media: {
       type: "image",
       src: "/assets/use-cases/cluster/Simulation.png",
@@ -752,6 +753,7 @@ selectedSolutionId: "combined-decision-view",
     {
       chart: {
         type: "duration-bars",
+        title: "Temps pour obtenir une réponse",
         items: [
           {
             label: "Puissance\nutilisable",

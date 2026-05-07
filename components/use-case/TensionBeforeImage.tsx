@@ -37,7 +37,7 @@ export const TensionBeforeImage = ({
               />
             </span>
 
-            <span className="type-before-stamp absolute -bottom-3 right-2 flex rotate-[-12deg] items-center justify-center border-[3px] border-negative bg-negative/40 px-3 pb-2 pt-3 text-negative shadow-elevation-2 sm:right-[-18px] lg:right-[-24px]">
+            <span className="type-before-stamp absolute -bottom-3 right-2 flex rotate-[-12deg] items-center justify-center border-[3px] border-[#7f1d1d] bg-[#7f1d1d]/45 px-3 pb-2 pt-3 text-[#7f1d1d] shadow-elevation-2 backdrop-blur-[10px] sm:right-[-18px] lg:right-[-24px]">
               {label}
             </span>
           </button>
