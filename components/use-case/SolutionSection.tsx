@@ -1,3 +1,4 @@
+import { ArrowFatDown, ThumbsDown, ThumbsUp } from "@phosphor-icons/react/dist/ssr";
 import clsx from "clsx";
 import { getTranslations } from "next-intl/server";
 
@@ -5,6 +6,7 @@ import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { MobileCarousel } from "@/components/shared/MobileCarousel";
 import { Tag } from "@/components/shared/Tag";
+import { DiamondBadge } from "@/components/use-case/DiamondBadge";
 import { KeyDecisions } from "@/components/use-case/KeyDecisions";
 import { SolutionGallery } from "@/components/use-case/SolutionGallery";
 import type { ExploredSolution, SolutionSectionData } from "@/content/use-cases/types";
@@ -16,51 +18,64 @@ type SolutionSectionProps = {
   id?: string;
 };
 
-type BulletPointProps = {
-  text: string;
-  variant: "pro" | "con";
+type ProsConsProps = {
+  pros: string[];
+  cons: string[];
 };
 
-const BulletPoint = ({ text, variant }: BulletPointProps) => (
-  <div className="relative ml-2 flex w-[calc(100%-0.5rem)] items-center pl-9">
-    <div className="absolute left-0 top-[8px] flex size-4 items-center justify-center">
-      <div
-        className={clsx(
-          "size-[11px] rotate-45 border",
-          variant === "pro" ? "border-[#aeed6b]" : "border-[#d9746b]",
-        )}
-      />
+const ProsCons = ({ pros, cons }: ProsConsProps) => (
+  <div className="flex w-full shrink-0 gap-2">
+    <div className="flex min-w-0 flex-1 flex-col items-center gap-3">
+      <ThumbsUp size={24} weight="light" className="shrink-0 text-green" />
+      {pros.map((pro) => (
+        <p key={pro} className="type-body-lg w-full text-center text-green">
+          {pro}
+        </p>
+      ))}
     </div>
-    <p className="type-body-lg min-w-0 flex-1 text-muted">
-      {text}
-    </p>
+    <div className="flex min-w-0 flex-1 flex-col items-center gap-3">
+      <ThumbsDown size={24} weight="light" className="shrink-0 text-[#d9746b]" />
+      {cons.map((con) => (
+        <p key={con} className="type-body-lg w-full text-center text-[#d9746b]">
+          {con}
+        </p>
+      ))}
+    </div>
   </div>
 );
+
+type DesktopPosition = "left" | "center" | "right";
 
 type NumberBadgeProps = {
   index: number;
   isSelected: boolean;
+  desktopPosition?: DesktopPosition;
 };
 
-const NumberBadge = ({ index, isSelected }: NumberBadgeProps) => (
-  <div className="absolute -left-[18px] -top-[17px] z-10 flex size-[54px] items-center justify-center">
-    <div className="absolute inset-0 flex items-center justify-center">
-      <div
-        className={clsx(
-          "size-[38px] -rotate-45 backdrop-blur-[4px]",
-          isSelected ? "bg-primary" : "bg-dark-smooth/50",
-        )}
-      />
-    </div>
-    <span
-      className={clsx(
-        "type-data-index-tight relative",
-        isSelected ? "text-dark" : "text-primary",
-      )}
-    >
-      {String(index + 1).padStart(2, "0")}
-    </span>
-  </div>
+const NumberBadge = ({ index, isSelected, desktopPosition }: NumberBadgeProps) => (
+  <DiamondBadge
+    value={String(index + 1).padStart(2, "0")}
+    color={isSelected ? "var(--color-dark)" : "var(--color-primary)"}
+    variant="custom"
+    className={clsx(
+      "absolute z-10 flex items-center justify-center",
+      // Mobile: always top-left corner
+      "-left-[18px] -top-[17px]",
+      // Desktop position overrides
+      desktopPosition === "left" && "lg:left-[28px] lg:-top-[27px]",
+      desktopPosition === "right" &&
+        "lg:left-auto lg:right-[28px] lg:-top-[27px] lg:translate-x-0",
+      desktopPosition === "center" && "lg:left-1/2 lg:-translate-x-1/2 lg:-top-[34px]",
+      // Size: larger for selected on desktop
+      isSelected ? "size-[54px] lg:size-[80px]" : "size-[54px]",
+    )}
+    outerClassName={isSelected ? "size-[54px] lg:size-[80px]" : "size-[54px]"}
+    diamondClassName={clsx(
+      "size-[38px]",
+      isSelected ? "bg-primary lg:size-[57px]" : "bg-dark-smooth/50",
+    )}
+    textClassName={isSelected ? "type-data-index-tight-selected" : "type-data-index-tight"}
+  />
 );
 
 type SolutionCardProps = {
@@ -69,6 +84,7 @@ type SolutionCardProps = {
   index: number;
   selectedLabel: string;
   exploredLabel: string;
+  desktopPosition?: DesktopPosition;
 };
 
 const SolutionCard = ({
@@ -77,49 +93,62 @@ const SolutionCard = ({
   index,
   selectedLabel,
   exploredLabel,
-}: SolutionCardProps) => (
-  <article
-    className={clsx(
-      "relative flex min-w-0 flex-1 self-stretch rounded-[24px] border p-5 pt-8 shadow-elevation-2 backdrop-blur-[2px] lg:min-h-[520px] lg:rounded-[30px] lg:p-6",
-      isSelected
-        ? "border-primary bg-primary/10"
-        : "border-dark-smooth bg-dark-smooth/20",
-    )}
-  >
-    <NumberBadge index={index} isSelected={isSelected} />
+  desktopPosition,
+}: SolutionCardProps) => {
+  const isCenter = desktopPosition === "center";
+  const isRight = desktopPosition === "right";
+  const isLeft = desktopPosition === "left";
+  const hasDesktopPosition = desktopPosition !== undefined;
 
-    <div className="flex flex-1 flex-col gap-2">
-      <div className="flex min-h-[5.1rem] items-center">
-        <p className="type-body-xl-medium line-clamp-2 text-muted">
-          {item.title}
-        </p>
-      </div>
+  return (
+    <article
+      className={clsx(
+        "relative flex h-full min-w-0 flex-col rounded-[24px] border shadow-elevation-2 backdrop-blur-[2px] lg:rounded-[30px]",
+        // Mobile padding
+        "p-5 pt-8",
+        // Desktop padding per position
+        isCenter && "lg:p-8",
+        isLeft && "lg:py-8 lg:pl-8 lg:pr-14",
+        isRight && "lg:py-8 lg:pl-14 lg:pr-8",
+        // Colors
+        isSelected ? "border-primary bg-[#2d5580]" : "border-dark-smooth bg-dark-smooth/20",
+      )}
+    >
+      <NumberBadge index={index} isSelected={isSelected} desktopPosition={desktopPosition} />
 
-      <div className="min-h-[5.75rem]">
-        <p className="type-body-lg line-clamp-3 text-smooth">
-          {item.summary}
-        </p>
-      </div>
-
-      <div className="flex flex-1 flex-col">
-        {item.pros.length > 0 && (
-          <div className="flex w-full flex-col gap-3 pt-6">
-            {item.pros.map((pro) => (
-              <BulletPoint key={pro} text={pro} variant="pro" />
-            ))}
-          </div>
+      {/* Head */}
+      <div
+        className={clsx(
+          "flex shrink-0 flex-col gap-2",
+          hasDesktopPosition && "lg:py-8",
+          isCenter && "lg:items-center lg:text-center",
+          isRight && "lg:items-end lg:text-right",
         )}
+      >
+        <p className="type-body-xl-medium text-muted">{item.title}</p>
+        <p className="type-body-lg text-smooth">{item.summary}</p>
+      </div>
 
-        {item.cons.length > 0 && (
-          <div className="flex w-full flex-col gap-3 pt-6">
-            {item.cons.map((con) => (
-              <BulletPoint key={con} text={con} variant="con" />
-            ))}
-          </div>
+      {/* Wireframe wrapper — flex-1, image stays fixed size */}
+      <div className="flex flex-1 flex-col items-center justify-center py-4">
+        {item.media?.type === "image" && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={item.media.src}
+            alt={item.media.alt}
+            className={clsx(
+              "shrink-0 object-contain",
+              isCenter ? "h-[131px] w-[210px] lg:h-[172px] lg:w-[276px]" : "h-[131px] w-[210px]",
+            )}
+          />
         )}
       </div>
 
-      <div className="mt-auto flex w-full flex-col pt-8">
+      {/* Pros / Cons */}
+      <ProsCons pros={item.pros} cons={item.cons} />
+
+      {/* Status chip */}
+      <div className="shrink-0 pt-6 lg:pt-8">
         <Tag
           label={isSelected ? selectedLabel : exploredLabel}
           className={clsx(
@@ -130,9 +159,9 @@ const SolutionCard = ({
           )}
         />
       </div>
-    </div>
-  </article>
-);
+    </article>
+  );
+};
 
 export const SolutionSection = async ({
   solution,
@@ -142,20 +171,34 @@ export const SolutionSection = async ({
   const t = await getTranslations("sections");
   const hasKeyDecisions = Boolean(solution.keyDecisions?.length);
   const galleryItems = solution.gallery ?? [];
+  const selectedSolutionIds = Array.isArray(solution.selectedSolutionId)
+    ? solution.selectedSolutionId
+    : [solution.selectedSolutionId];
+
+  // Desktop layout: split into left / center / right
+  const selectedIndex = solution.exploredSolutions.findIndex((s) =>
+    selectedSolutionIds.includes(s.id),
+  );
+  const centerSolution =
+    selectedIndex >= 0 ? solution.exploredSolutions[selectedIndex] : null;
+  const nonSelectedSolutions = solution.exploredSolutions.filter(
+    (s) => !selectedSolutionIds.includes(s.id),
+  );
+  const leftSolution = nonSelectedSolutions[0] ?? null;
+  const rightSolution = nonSelectedSolutions[1] ?? null;
 
   return (
     <Section id={id}>
       <Container className="px-6 sm:px-8 lg:px-0">
-        <h2 className="type-section-title text-muted">
-          {t("explorationAndSolution")}
-        </h2>
+        <h2 className="type-section-title text-muted">{t("explorationAndSolution")}</h2>
 
+        {/* Mobile: standard carousel */}
         <MobileCarousel className="mt-10 pt-4 lg:hidden" itemClassName="flex flex-col">
           {solution.exploredSolutions.map((item, index) => (
             <SolutionCard
               key={item.id}
               item={item}
-              isSelected={item.id === solution.selectedSolutionId}
+              isSelected={selectedSolutionIds.includes(item.id)}
               index={index}
               selectedLabel={t("selected")}
               exploredLabel={t("explored")}
@@ -163,18 +206,69 @@ export const SolutionSection = async ({
           ))}
         </MobileCarousel>
 
-        <div className="mt-16 hidden items-stretch gap-12 pt-6 lg:flex lg:flex-row">
-          {solution.exploredSolutions.map((item, index) => (
-            <SolutionCard
-              key={item.id}
-              item={item}
-              isSelected={item.id === solution.selectedSolutionId}
-              index={index}
-              selectedLabel={t("selected")}
-              exploredLabel={t("explored")}
-            />
-          ))}
+        {/*
+         * Desktop: CSS grid [1fr 390px 1fr]
+         * Center card (450px absolute) overflows the 390px col by 30px on each side,
+         * creating the "laid on top" overlap effect.
+         * The outer py-6 lets the center card overflow ±24px vertically.
+         */}
+        <div className="relative mt-16 hidden py-6 lg:grid lg:grid-cols-[1fr_390px_1fr]">
+          {/* Left card */}
+          <div className="flex min-w-0 flex-col">
+            {leftSolution && (
+              <SolutionCard
+                item={leftSolution}
+                isSelected={false}
+                index={solution.exploredSolutions.indexOf(leftSolution)}
+                selectedLabel={t("selected")}
+                exploredLabel={t("explored")}
+                desktopPosition="left"
+              />
+            )}
+          </div>
+
+          {/* Center column — spacer only, occupied by the absolute card */}
+          <div />
+
+          {/* Right card */}
+          <div className="flex min-w-0 flex-col">
+            {rightSolution && (
+              <SolutionCard
+                item={rightSolution}
+                isSelected={false}
+                index={solution.exploredSolutions.indexOf(rightSolution)}
+                selectedLabel={t("selected")}
+                exploredLabel={t("explored")}
+                desktopPosition="right"
+              />
+            )}
+          </div>
+
+          {/* Center card: absolute, centered, overflows ±24px via top-0/bottom-0 inside py-6 wrapper */}
+          {centerSolution && (
+            <div className="absolute bottom-0 left-1/2 top-0 z-10 w-[450px] -translate-x-1/2">
+              <SolutionCard
+                item={centerSolution}
+                isSelected
+                index={selectedIndex}
+                selectedLabel={t("selected")}
+                exploredLabel={t("explored")}
+                desktopPosition="center"
+              />
+            </div>
+          )}
         </div>
+
+        {/* Callout: only shown when there are key decisions below */}
+        {hasKeyDecisions && (
+          <div className="mt-10 flex items-center justify-center gap-3 pb-16">
+            <ArrowFatDown size={32} weight="fill" className="shrink-0 text-primary" />
+            <p className="type-body-xl-medium text-primary">
+              {t("keyDecisionsCallout", { count: solution.keyDecisions?.length ?? 0 })}
+            </p>
+            <ArrowFatDown size={32} weight="fill" className="shrink-0 text-primary" />
+          </div>
+        )}
 
         {hasKeyDecisions ? (
           <KeyDecisions

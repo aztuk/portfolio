@@ -41,7 +41,7 @@ If the user only sends a Figma link, infer the likely section from the surroundi
 1. Parse the Figma URL and identify the exact node or frame.
 2. If Figma MCP is available, use it first:
    - get design context for the node
-   - get a screenshot for visual verification
+   - get a screenshot only when the user explicitly asks for visual verification
    - prefer Code Connect mappings when available
 3. Inspect the repository before editing:
    - identify the current section component
@@ -52,8 +52,8 @@ If the user only sends a Figma link, infer the likely section from the surroundi
    - prefer updating the existing component over creating parallel versions
    - preserve accessibility and responsive behavior
 5. Verify fidelity:
-   - compare code output to the Figma screenshot
-   - call out any intentional deviations
+   - do not run browser screenshots or visual diff checks unless the user explicitly asks for visual verification in the current request
+   - call out any intentional deviations from the Figma source
 6. Run project verification when code changed:
    - `npm run typecheck`
    - `npm run lint`

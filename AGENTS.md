@@ -43,6 +43,16 @@ Useful inputs:
 - `target_files`
 - `constraints`
 
+## Shared Chart Components
+
+Chart cards in Discovery (`TensionSection`) and Impact (`ImpactSection`) share three components:
+
+- `components/use-case/ChartCardsLayout.tsx` — MobileCarousel on mobile + 2-col grid on desktop. Use this instead of writing the carousel+grid pattern manually.
+- `components/use-case/CaptionedCard.tsx` — wraps any chart with an optional caption below. Use in place of a local wrapper with caption logic.
+- `components/use-case/SingleKpiCard.tsx` — the single-KPI chart card shared between both sections.
+
+Never redefine these locally in a section file.
+
 ## Verification
 
 When code changes were made for a Figma implementation task, run:
@@ -50,3 +60,5 @@ When code changes were made for a Figma implementation task, run:
 - `npm run typecheck`
 - `npm run lint`
 - `npm run test`
+
+Do not run automatic visual/browser verification, Playwright screenshots, or visual diff checks unless the user explicitly asks for them in the current request.

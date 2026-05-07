@@ -49,19 +49,22 @@ export type TensionPoint = {
   bullets?: string[];
 };
 
+// ─── Chart data types ─────────────────────────────────────────────────────────
+
 export type VerticalBarItem = {
   label: string;
   value: number;
   color: string;
+  displayValue?: string;
 };
 
-export type VerticalBarsChartData = {
-  type: "vertical-bars";
-  title: string;
+export type BarsChartData = {
+  type: "bars";
+  title?: string;
   bars: VerticalBarItem[];
 };
 
-export type DualProgressRow = {
+export type CombinedKpiRow = {
   title: string;
   description: string;
   display: string;
@@ -69,9 +72,9 @@ export type DualProgressRow = {
   variant: "primary" | "secondary";
 };
 
-export type DualProgressChartData = {
-  type: "dual-progress";
-  rows: DualProgressRow[];
+export type CombinedKpiChartData = {
+  type: "combined-kpi";
+  rows: CombinedKpiRow[];
 };
 
 export type LineChartPoint = {
@@ -82,12 +85,13 @@ export type LineChartPoint = {
 
 export type LineChartData = {
   type: "line";
+  title: string;
   points: LineChartPoint[];
 };
 
 export type RankedBarItem = {
   label: string;
-  value: number;
+  display: string;
   percent: number;
   isPrimary: boolean;
 };
@@ -95,21 +99,8 @@ export type RankedBarItem = {
 export type RankedBarsChartData = {
   type: "ranked-bars";
   title: string;
+  subtitle?: string;
   bars: RankedBarItem[];
-};
-
-export type CountBarItem = {
-  label: string;
-  value: number;
-  percent: number;
-  isPrimary: boolean;
-};
-
-export type CountBarsChartData = {
-  type: "count-bars";
-  title: string;
-  subtitle: string;
-  bars: CountBarItem[];
 };
 
 export type SingleKpiChartData = {
@@ -117,15 +108,14 @@ export type SingleKpiChartData = {
   value: string;
   title: string;
   description: string;
-  caption?: string;
 };
 
 export type InsightIconName = "piggy-bank" | "lightbulb" | "users-three" | "calendar-dots" | "clipboard-list" | "check-badge" | "shield-check" | "chart-pie" | "chart-bar" | "flask" | "clipboard-text";
 
 export type InsightMethodologyIconName = "flask" | "clipboard-text" | "chart-bar";
 
-export type VerbatimChartData = {
-  type: "verbatim";
+export type QuoteChartData = {
+  type: "quote";
   quote: string;
   personaName: string;
   color: string;
@@ -147,6 +137,8 @@ export type InsightChartData = {
 export type WorkflowMappingStep = {
   label: string;
   detail: string;
+  tone?: "default" | "warning";
+  arrowAfterTone?: "default" | "warning";
 };
 
 export type WorkflowMappingFriction = {
@@ -162,27 +154,70 @@ export type WorkflowMappingChartData = {
   frictions: WorkflowMappingFriction[];
 };
 
-export type TensionChartVariant =
-  | VerticalBarsChartData
-  | DualProgressChartData
+export type BeforeAfterBarChartData = {
+  type: "before-after-bar";
+  title: string;
+  before: { display: string; value: number };
+  after: { display: string; value: number };
+};
+
+export type BeforeAfterCombinedKpiRow = {
+  label: string;
+  before: { display: string; percent: number };
+  after: { display: string; percent: number };
+};
+
+export type BeforeAfterCombinedKpiChartData = {
+  type: "before-after-combined-kpi";
+  rows: BeforeAfterCombinedKpiRow[];
+};
+
+export type DurationBarItem = {
+  label: string;
+  before: { display: string; value: number };
+  after: { display: string; value: number };
+};
+
+export type DurationBarsChartData = {
+  type: "duration-bars";
+  items: DurationBarItem[];
+};
+
+export type KpiProgressRow = {
+  label: string;
+  display: string;
+  percent?: number;
+  rating?: { value: number; max: number };
+};
+
+export type KpiProgressChartData = {
+  type: "kpi-progress";
+  title: string;
+  rows: KpiProgressRow[];
+};
+
+// ─── Unified chart variant ────────────────────────────────────────────────────
+
+export type ChartVariant =
+  | BarsChartData
+  | CombinedKpiChartData
   | LineChartData
   | RankedBarsChartData
-  | CountBarsChartData
-  | SingleKpiChartData
   | InsightChartData
-  | VerbatimChartData
-  | WorkflowMappingChartData;
+  | QuoteChartData
+  | WorkflowMappingChartData
+  | BeforeAfterBarChartData
+  | BeforeAfterCombinedKpiChartData
+  | DurationBarsChartData
+  | KpiProgressChartData
+  | SingleKpiChartData;
 
-type CaptionedTensionChartVariant = Exclude<TensionChartVariant, InsightChartData>;
+export type ChartCardData = {
+  chart: ChartVariant;
+  caption?: string;
+};
 
-export type TensionChartCard =
-  | {
-      chart: CaptionedTensionChartVariant;
-      caption: string;
-    }
-  | {
-      chart: InsightChartData;
-    };
+// ─── Section data types ───────────────────────────────────────────────────────
 
 export type TensionSectionData = {
   title: string;
@@ -193,7 +228,7 @@ export type TensionSectionData = {
   artifacts?: ImageAsset[];
   artifact?: ImageAsset;
   artifactCaption?: string;
-  chartCards?: TensionChartCard[];
+  chartCards?: ChartCardData[];
 };
 
 export type RetrospectiveItem = {
@@ -215,7 +250,10 @@ export type ExploredSolution = {
   summary: string;
   pros: string[];
   cons: string[];
+  media?: GalleryItem
 };
+
+export type SelectedSolutionId = string | string[];
 
 export type KeyDecision = {
   id: string;
@@ -231,7 +269,7 @@ export type KeyDecision = {
 export type SolutionSectionData = {
   title: string;
   exploredSolutions: ExploredSolution[];
-  selectedSolutionId: string;
+  selectedSolutionId: SelectedSolutionId;
   gallery?: GalleryItem[];
   keyDecisions?: KeyDecision[];
 };
@@ -241,64 +279,11 @@ export type ImpactBullet = {
   regular: string;
 };
 
-export type BarChartData = {
-  type: "bar";
-  title: string;
-  before: { display: string; value: number };
-  after: { display: string; value: number };
-  caption?: string;
-};
-
-export type ProgressRow = {
-  label: string;
-  before: { display: string; percent: number };
-  after: { display: string; percent: number };
-};
-
-export type ProgressChartData = {
-  type: "progress";
-  rows: ProgressRow[];
-  caption?: string;
-};
-
-export type DurationBarItem = {
-  label: string;
-  before: { display: string; value: number };
-  after: { display: string; value: number };
-};
-
-export type DurationBarsChartData = {
-  type: "duration-bars";
-  items: DurationBarItem[];
-  caption?: string;
-};
-
-export type KpiProgressRow = {
-  label: string;
-  display: string;
-  percent?: number;
-  rating?: { value: number; max: number };
-};
-
-export type KpiProgressChartData = {
-  type: "kpi-progress";
-  title: string;
-  rows: KpiProgressRow[];
-  caption?: string;
-};
-
-export type ImpactChart =
-  | BarChartData
-  | ProgressChartData
-  | DurationBarsChartData
-  | KpiProgressChartData
-  | SingleKpiChartData;
-
 export type ImpactSectionData = {
   title: string;
   summary: string;
   bullets: ImpactBullet[];
-  charts: ImpactChart[];
+  charts: ChartCardData[];
 };
 
 export type UseCase = {
@@ -307,7 +292,7 @@ export type UseCase = {
   protected?: boolean;
   overview: string;
   challenge: string;
-  roles: string[];
+  roles: { owned: string[]; contributed: string[] };
   year: string;
   timeline: string;
   tools: string[];

@@ -140,6 +140,11 @@
     letter-spacing: 0;
   }
 
+  .rich-text-highlight {
+    color: var(--color-primary);
+    font-weight: 400;
+  }
+
   .type-body-sm {
     font-family: var(--font-sans), sans-serif;
     font-size: 14px;
@@ -235,6 +240,24 @@
     text-transform: uppercase;
   }
 
+  .type-tension-kicker {
+    font-family: var(--font-display), sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .type-tension-persona-title {
+    font-family: var(--font-display), sans-serif;
+    font-size: 29px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+  }
+
   .type-data-value {
     font-family: var(--font-tektur), sans-serif;
     font-size: 15px;
@@ -259,10 +282,18 @@
     letter-spacing: 0;
   }
 
+  .type-chart-badge-value {
+    font-family: var(--font-tektur), sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 0.7;
+    letter-spacing: 0;
+  }
+
   .type-data-title {
     font-family: var(--font-sans), sans-serif;
     font-size: 24px;
-    font-weight: 500;
+    font-weight: 100;
     line-height: 1.7;
     letter-spacing: -0.04em;
   }
@@ -272,6 +303,14 @@
     font-size: 15px;
     font-weight: 600;
     line-height: 1;
+    letter-spacing: 0;
+  }
+
+  .type-chart-axis-label {
+    font-family: var(--font-tektur), sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.3;
     letter-spacing: 0;
   }
 
@@ -300,6 +339,14 @@
   }
 
   .type-data-index-tight {
+    font-family: var(--font-tektur), sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 0.7;
+    letter-spacing: 0;
+  }
+
+  .type-data-index-tight-selected {
     font-family: var(--font-tektur), sans-serif;
     font-size: 20px;
     font-weight: 600;
@@ -370,6 +417,14 @@
     line-height: 1.7;
     letter-spacing: -0.04em;
     font-style: normal;
+  }
+
+  .type-before-stamp {
+    font-family: var(--font-elite), serif;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.04em;
   }
 
   @media (min-width: 768px) {
@@ -462,6 +517,10 @@
       letter-spacing: 0;
     }
 
+    .type-before-stamp {
+      font-size: 22px;
+    }
+
     .type-chart-title-mobile {
       font-size: 20px;
       line-height: 1.15;
@@ -482,6 +541,11 @@
       font-size: 9px;
       line-height: 0.95;
     }
+
+    .type-chart-axis-label {
+      font-size: 10px;
+      line-height: 1.3;
+    }
   }
 
   @media (min-width: 640px) and (max-width: 1023.98px) {
@@ -495,6 +559,26 @@
 
     .type-kpi {
       font-size: 96px;
+    }
+
+    .type-chart-axis-label {
+      font-size: 11px;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .type-before-stamp {
+      font-size: 26px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .type-before-stamp {
+      font-size: 30px;
+    }
+
+    .type-data-index-tight-selected {
+      font-size: 28px;
     }
   }
 }
@@ -538,6 +622,18 @@
   --color-negative-rgb: 217 116 107;
   --color-positive: #aeed6b;
   --color-positive-rgb: 174 237 107;
+  --color-chart-lime: #00fe33;
+  --color-chart-lime-rgb: 0 254 51;
+  --color-chart-citron: #c3fe00;
+  --color-chart-citron-rgb: 195 254 0;
+  --color-chart-yellow: #fef100;
+  --color-chart-yellow-rgb: 254 241 0;
+  --color-chart-amber: #feba00;
+  --color-chart-amber-rgb: 254 186 0;
+  --color-chart-badge-border: #364781;
+  --color-chart-badge-border-rgb: 54 71 129;
+  --color-chart-badge-text: #1b264c;
+  --color-chart-badge-text-rgb: 27 38 76;
 
   --blob-1-from: #1f0d61;
   --blob-1-from-rgb: 31 13 97;

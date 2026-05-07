@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import { Container } from "@/components/layout/Container";
+import { HighlightedText } from "@/components/shared/HighlightedText";
 import { Tag } from "@/components/shared/Tag";
 import { PreviewMedia } from "@/components/shared/PreviewMedia";
 import { MediaLightbox } from "@/components/shared/MediaLightbox";
@@ -70,7 +71,7 @@ export const UseCaseHero = ({ useCase }: UseCaseHeroProps) => {
               {useCase.title}
             </h1>
             <p className="type-body-md mx-auto mt-8 max-w-[828px] whitespace-pre-line text-smooth lg:type-body-lg-light">
-              {useCase.overview}
+              <HighlightedText text={useCase.overview} />
             </p>
           </div>
         </div>

@@ -27,6 +27,12 @@ const config: Config = {
         secondary: withAlpha("--color-secondary-rgb"),
         negative: withAlpha("--color-negative-rgb"),
         positive: withAlpha("--color-positive-rgb"),
+        "chart-lime": withAlpha("--color-chart-lime-rgb"),
+        "chart-citron": withAlpha("--color-chart-citron-rgb"),
+        "chart-yellow": withAlpha("--color-chart-yellow-rgb"),
+        "chart-amber": withAlpha("--color-chart-amber-rgb"),
+        "chart-badge-border": withAlpha("--color-chart-badge-border-rgb"),
+        "chart-badge-text": withAlpha("--color-chart-badge-text-rgb"),
       },
       fontFamily: {
         sans: ["var(--font-sans)", "sans-serif"],

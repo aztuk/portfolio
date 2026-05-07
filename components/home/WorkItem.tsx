@@ -1,5 +1,6 @@
 import { Link } from "@/i18n/navigation";
 import type { UseCase } from "@/content/use-cases/types";
+import { HighlightedText } from "@/components/shared/HighlightedText";
 import { PreviewMedia } from "@/components/shared/PreviewMedia";
 import { Tag } from "@/components/shared/Tag";
 
@@ -80,7 +81,7 @@ export const WorkItem = ({ useCase }: WorkItemProps) => {
 
           <div className="flex w-full shrink-0 items-center justify-center py-[32px]">
             <p className="type-body-lg flex-1 whitespace-pre-line text-smooth">
-              {useCase.overview}
+              <HighlightedText text={useCase.overview} />
             </p>
           </div>
         </div>

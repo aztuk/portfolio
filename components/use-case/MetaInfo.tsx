@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { Container } from "@/components/layout/Container";
 import { fadeUp } from "@/lib/motion";
 import type { UseCase } from "@/content/use-cases/types";
+import clsx from "clsx";
 
 type MetaInfoProps = {
   useCase: UseCase;
@@ -43,10 +44,35 @@ export const MetaInfo = ({ useCase, id }: MetaInfoProps) => {
 
           {/* Other info */}
           <div className="flex min-w-0 flex-col">
-            {/* Role */}
+            {/* My role */}
             <div className="border-b border-dark-smooth p-5 lg:p-6">
-              <p className={labelClassName}>{t("myRole")}</p>
-              <p className={bodyLargeClassName}>{useCase.roles.join(", ")}</p>
+              <div className="mb-3 flex items-center gap-2.5">
+                <p className={clsx(labelClassName, "flex-1")}>{t("myRole")}</p>
+                <span className="rounded-lg bg-dark-smooth px-1.5 py-1 text-[15px] font-medium leading-[1.7] tracking-[-0.6px] text-muted whitespace-nowrap">
+                  {t("owned")}
+                </span>
+                <span className="rounded-lg bg-dark-smooth/50 px-1.5 py-1 text-[15px] font-medium leading-[1.7] tracking-[-0.6px] text-smooth whitespace-nowrap">
+                  {t("contributed")}
+                </span>
+              </div>
+              <div className="flex flex-wrap gap-1">
+                {useCase.roles.owned.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-lg bg-dark-smooth px-1.5 py-1 text-[15px] font-medium leading-[1.7] tracking-[-0.6px] text-muted whitespace-nowrap"
+                  >
+                    {tag}
+                  </span>
+                ))}
+                {useCase.roles.contributed.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-lg bg-dark-smooth/50 px-1.5 py-1 text-[15px] font-medium leading-[1.7] tracking-[-0.6px] text-smooth whitespace-nowrap"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
 
             {/* Year + Timeline + Tools */}

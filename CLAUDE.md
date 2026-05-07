@@ -29,9 +29,14 @@ components/
   layout/             # Site-wide structural components (Container, Section)
   shared/             # Cross-feature reusable components
   use-case/           # Components for use-case detail pages
+    ChartCardsLayout.tsx  # Shared layout: MobileCarousel (mobile) + 2-col grid (desktop)
+    CaptionedCard.tsx     # Shared wrapper: chart content + optional caption below
+    ChartCardsGrid.tsx    # Data-driven dispatcher: ChartCardData[] → ChartCardsLayout + CaptionedCard + chart components
+    charts/               # 12 standalone chart components (one per ChartVariant type)
 content/
   site.ts             # Global site data
   use-cases/          # Use-case data + types
+    types.ts          # ChartVariant (12-type union), ChartCardData ({ chart, caption? }), section data types
 lib/                  # Pure utility functions and animation configs
 tests/                # Vitest unit tests
 public/assets/        # Static assets (images, videos)
@@ -138,6 +143,7 @@ npm run test         # Vitest unit tests
 4. **Keep components small** — if a component grows beyond ~100 lines, consider extracting sub-components.
 5. **No default exports** — the whole codebase uses named exports. Don't introduce default exports.
 6. **Don't add features beyond scope** — implement exactly what was asked.
+7. **Shared chart infrastructure** — chart cards in Discovery and Impact sections use three shared components: `ChartCardsLayout` (carousel/grid layout), `CaptionedCard` (caption wrapper), `SingleKpiCard` (shared KPI chart). Never redefine these locally in a section file.
 
 ---
 

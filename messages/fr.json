@@ -40,6 +40,8 @@
     "moreWork": "D'autres projets produit du même portfolio.",
     "challenge": "Challenge",
     "myRole": "Mon rôle",
+    "owned": "Piloté",
+    "contributed": "Contribué",
     "year": "Année",
     "timeline": "Planning",
     "tools": "Outils",
@@ -47,7 +49,8 @@
     "dontLabel": "NE PLUS",
     "doLabel": "MAIS PLUTÔT",
     "verbatim": "Verbatim",
-    "discoveryDone": "Discovery effectuée"
+    "discoveryDone": "Méthodologie",
+    "keyDecisionsCallout": "Découvrez les {count} décisions clés que j'ai prises"
   },
   "ui": {
     "lock": "Verrouiller",

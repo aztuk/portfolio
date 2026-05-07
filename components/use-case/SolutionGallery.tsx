@@ -1,17 +1,18 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { type ReactNode, useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import clsx from "clsx";
 
 import { useReducedMotion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { FigmaBadge, FigmaBadgeIcon } from "@/components/shared/FigmaBadge";
+import { GalleryPaginationControls } from "@/components/shared/GalleryPaginationControls";
 import { LockedAsset } from "@/components/shared/LockedAsset";
 import { MediaLightbox } from "@/components/shared/MediaLightbox";
 import type { FigmaAsset, GalleryItem } from "@/content/use-cases/types";
 import { buildFigmaEmbedUrl } from "@/lib/figma";
 
-const THUMB_H = "h-[260px] sm:h-[320px] lg:h-[350px]";
 const FIGMA_THUMB_W = 1000;
 const FIGMA_LOAD_TIMEOUT_MS = 10_000;
 
@@ -32,7 +33,7 @@ const aspectKey = (item: GalleryItem): string => {
 // Thumbnail
 // ---------------------------------------------------------------------------
 
-const FigmaThumbnail = ({ item }: { item: FigmaAsset }) => {
+const FigmaThumbnail = ({ item, fit = "cover" }: { item: FigmaAsset; fit?: "cover" | "contain" }) => {
   const [status, setStatus] = useState<"loading" | "loaded" | "timeout">("loading");
   const [isMobile, setIsMobile] = useState(true);
   const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
@@ -62,7 +63,7 @@ const FigmaThumbnail = ({ item }: { item: FigmaAsset }) => {
         src={item.poster}
         alt={item.title ?? "Aperçu Figma"}
         fill
-        className="object-cover"
+        className={fit === "contain" ? "object-contain" : "object-cover"}
         sizes={`${FIGMA_THUMB_W}px`}
       />
     );
@@ -114,9 +115,19 @@ const FigmaThumbnail = ({ item }: { item: FigmaAsset }) => {
   );
 };
 
-type ThumbnailProps = { item: GalleryItem; isAuthenticated?: boolean };
+type ThumbnailProps = {
+  item: GalleryItem;
+  fit?: "cover" | "contain";
+  isAuthenticated?: boolean;
+  sizes?: string;
+};
 
-const Thumbnail = ({ item, isAuthenticated = true }: ThumbnailProps) => {
+const Thumbnail = ({
+  item,
+  fit = "cover",
+  isAuthenticated = true,
+  sizes,
+}: ThumbnailProps) => {
   const reducedMotion = useReducedMotion();
 
   if (item.protected && !isAuthenticated) {
@@ -126,7 +137,7 @@ const Thumbnail = ({ item, isAuthenticated = true }: ThumbnailProps) => {
   if (item.type === "video") {
     return (
       <video
-        className="h-full w-full object-cover"
+        className={clsx("h-full w-full", fit === "contain" ? "object-contain" : "object-cover")}
         autoPlay={!reducedMotion}
         loop
         muted
@@ -140,7 +151,7 @@ const Thumbnail = ({ item, isAuthenticated = true }: ThumbnailProps) => {
   }
 
   if (item.type === "figma") {
-    return <FigmaThumbnail item={item} />;
+    return <FigmaThumbnail item={item} fit={fit} />;
   }
 
   const isMobile = formatOf(item) === "mobile";
@@ -149,55 +160,78 @@ const Thumbnail = ({ item, isAuthenticated = true }: ThumbnailProps) => {
       src={item.src}
       alt={item.alt}
       fill
-      className="object-cover"
-      sizes={isMobile ? "166px" : "532px"}
+      className={fit === "contain" ? "object-contain" : "object-cover"}
+      sizes={sizes ?? (isMobile ? "166px" : "532px")}
     />
   );
 };
 
 
 // ---------------------------------------------------------------------------
-// Gallery tile
+// Gallery viewer
 // ---------------------------------------------------------------------------
 
-type GalleryItemProps = {
+type GalleryViewerItemProps = {
   item: GalleryItem;
   index: number;
   onClick: (index: number) => void;
+  children?: ReactNode;
   isAuthenticated?: boolean;
 };
 
-const GalleryItemTile = ({ item, index, onClick, isAuthenticated = true }: GalleryItemProps) => {
+const GalleryViewerItem = ({
+  item,
+  index,
+  onClick,
+  children,
+  isAuthenticated = true,
+}: GalleryViewerItemProps) => {
   const fmt = formatOf(item);
   const aKey = aspectKey(item);
   const isMobile = fmt === "mobile";
   const isFigma = item.type === "figma";
+  const wrapperClassName = isFigma
+    ? "aspect-[8/5] w-full max-w-[1000px]"
+    : clsx(
+      THUMB_ASPECT[aKey],
+      isMobile
+        ? "h-[min(72svh,620px)] max-h-[620px]"
+        : "w-full max-w-[1100px]",
+    );
 
   return (
-    <div className={clsx("flex min-w-0 flex-col items-center gap-4 lg:gap-6", isFigma ? "w-full lg:col-span-2" : "lg:px-5")}>
-      <div className={clsx("relative", isFigma && "w-full")}>
+    <figure className="mt-10 flex min-w-0 flex-col items-center gap-4 lg:mt-16 lg:gap-6">
+      <div className={clsx("relative mx-auto", wrapperClassName)}>
         <button
           type="button"
           onClick={() => onClick(index)}
           className={clsx(
-            "relative overflow-hidden border-2 border-muted bg-muted shadow-elevation-2",
-            "cursor-zoom-in transition-transform duration-200 hover:scale-[1.02]",
+            "relative h-full w-full overflow-hidden border border-dark-smooth bg-canvas/60 shadow-elevation-2",
+            "cursor-zoom-in transition duration-200 hover:scale-[1.01]",
             "focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary",
             isFigma
-              ? "aspect-[8/5] w-full max-w-[1000px] rounded-[24px] lg:rounded-[40px]"
-              : clsx(THUMB_H, THUMB_ASPECT[aKey], isMobile ? "rounded-[28px]" : "rounded-[40px]"),
+              ? "rounded-[20px] lg:rounded-[28px]"
+              : isMobile
+                ? "rounded-[30px] lg:rounded-[36px]"
+                : "rounded-[20px] lg:rounded-[28px]",
           )}
         >
-          <Thumbnail item={item} isAuthenticated={isAuthenticated} />
+          <Thumbnail
+            item={item}
+            fit="contain"
+            isAuthenticated={isAuthenticated}
+            sizes={isMobile ? "min(72svh * 9/19, 620px * 9/19)" : "(min-width: 1280px) 1100px, 92vw"}
+          />
         </button>
-        {isFigma && <FigmaBadge className="pointer-events-none absolute bottom-3 right-3 z-20" />}
+        {isFigma && <FigmaBadge className="pointer-events-none absolute bottom-6 right-6 z-20" />}
+        {children}
       </div>
       {item.caption && (
         <p className="type-body-lg max-w-full text-center text-smooth">
           {item.caption}
         </p>
       )}
-    </div>
+    </figure>
   );
 };
 
@@ -211,19 +245,39 @@ type SolutionGalleryProps = {
 };
 
 export const SolutionGallery = ({ items, isAuthenticated = true }: SolutionGalleryProps) => {
+  const t = useTranslations("ui");
+  const [activeIndex, setActiveIndex] = useState(0);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const activeItem = items[activeIndex] ?? items[0];
 
   const open = (index: number) => setLightboxIndex(index);
   const close = useCallback(() => setLightboxIndex(null), []);
+  const previousSlide = useCallback(() => setActiveIndex((i) => (i > 0 ? i - 1 : i)), []);
+  const nextSlide = useCallback(() => setActiveIndex((i) => (i < items.length - 1 ? i + 1 : i)), [items.length]);
   const prev = useCallback(() => setLightboxIndex((i) => (i !== null && i > 0 ? i - 1 : i)), []);
   const next = useCallback(() => setLightboxIndex((i) => (i !== null && i < items.length - 1 ? i + 1 : i)), [items.length]);
 
+  if (!activeItem) return null;
+
   return (
     <>
-      <div className="mt-10 grid grid-cols-1 gap-y-10 lg:mt-16 lg:grid-cols-2 lg:gap-x-5 lg:gap-y-16">
-        {items.map((item, index) => (
-          <GalleryItemTile key={`${item.src}-${index}`} item={item} index={index} onClick={open} isAuthenticated={isAuthenticated} />
-        ))}
+      <div className="relative">
+        <GalleryViewerItem
+          item={activeItem}
+          index={activeIndex}
+          onClick={open}
+          isAuthenticated={isAuthenticated}
+        >
+          <GalleryPaginationControls
+            count={items.length}
+            activeIndex={activeIndex}
+            onPrevious={previousSlide}
+            onNext={nextSlide}
+            onSelect={setActiveIndex}
+            previousLabel={t("previous")}
+            nextLabel={t("next")}
+          />
+        </GalleryViewerItem>
       </div>
 
       {lightboxIndex !== null && (

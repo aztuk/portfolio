@@ -30,7 +30,7 @@ const display = Teko({
 
 const tektur = Tektur({
   subsets: ["latin"],
-  weight: ["600"],
+  weight: ["600", "800"],
   variable: "--font-tektur",
 });
 

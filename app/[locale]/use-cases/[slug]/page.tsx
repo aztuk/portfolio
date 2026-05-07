@@ -17,6 +17,7 @@ import { getAllUseCases, getUseCaseBySlug } from "@/content/use-cases";
 import { siteContent } from "@/content/site";
 import { routing } from "@/i18n/routing";
 import { getResolvedRelatedUseCases, hasProtectedGalleryItems, redactProtectedGalleryItem } from "@/lib/content";
+import { stripHighlightTags } from "@/lib/rich-text";
 
 type UseCasePageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -42,7 +43,7 @@ export const generateMetadata = async ({
 
   return {
     title: `${useCase.title} - ${siteContent.name}`,
-    description: useCase.overview,
+    description: stripHighlightTags(useCase.overview),
   };
 };
 

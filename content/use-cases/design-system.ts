@@ -1,4 +1,4 @@
-import type { UseCase } from "@/content/use-cases/types";
+﻿import type { UseCase } from "@/content/use-cases/types";
 
 const designSystemFigmaPreview =
   "https://www.figma.com/design/avvTCRSu4yLCeWcyEnJPqL/Slash-Figma?node-id=8845-72979&t=y5MXYta86W8mmaqI-11";
@@ -77,7 +77,7 @@ const en: UseCase = {
         caption:
           "Too many decisions remained open after development had started.",
         chart: {
-          type: "dual-progress",
+          type: "combined-kpi",
           rows: [
             {
               title: "Clarifications after dev start",
@@ -99,14 +99,14 @@ const en: UseCase = {
       {
         caption: "Rework mostly came from decisions that remained implicit.",
         chart: {
-          type: "vertical-bars",
+          type: "bars",
           title: "Implicit decisions in tickets",
           bars: [
             { label: "Missing\nstates", value: 38, color: "var(--color-primary)" },
-            { label: "Ambiguous\nflows", value: 31, color: "#00fe33" },
-            { label: "Unclear\ncriteria", value: 18, color: "#c3fe00" },
-            { label: "No\nreuse", value: 16, color: "#fef100" },
-            { label: "Technical\nconstraint", value: 7, color: "#feba00" },
+            { label: "Ambiguous\nflows", value: 31, color: "var(--color-chart-lime)" },
+            { label: "Unclear\ncriteria", value: 18, color: "var(--color-chart-citron)" },
+            { label: "No\nreuse", value: 16, color: "var(--color-chart-yellow)" },
+            { label: "Technical\nconstraint", value: 7, color: "var(--color-chart-amber)" },
           ],
         },
       },
@@ -289,25 +289,27 @@ const en: UseCase = {
     ],
     charts: [
       {
-        type: "duration-bars",
-        items: [
-          { label: "Standard screen\nprototyping", before: { display: "3h30", value: 3.5 }, after: { display: "1h15", value: 1.25 } },
-          { label: "Standard screen\nimplementation", before: { display: "12h", value: 12 }, after: { display: "5h", value: 5 } },
-          { label: "Post-review\ncorrections", before: { display: "5h", value: 5 }, after: { display: "2h", value: 2 } },
-        ],
-        caption:
-          "Gains appeared mostly on screens covered by the system.",
+        chart: {
+          type: "duration-bars",
+          items: [
+            { label: "Standard screen\nprototyping", before: { display: "3h30", value: 3.5 }, after: { display: "1h15", value: 1.25 } },
+            { label: "Standard screen\nimplementation", before: { display: "12h", value: 12 }, after: { display: "5h", value: 5 } },
+            { label: "Post-review\ncorrections", before: { display: "5h", value: 5 }, after: { display: "2h", value: 2 } },
+          ],
+        },
+        caption: "Gains appeared mostly on screens covered by the system.",
       },
       {
-        type: "kpi-progress",
-        title: "Governance KPIs created",
-        rows: [
-          { label: "Figma / Flutter parity", display: "78%", percent: 78 },
-          { label: "New tickets with DS adoption", display: "62%", percent: 62 },
-          { label: "Pulse survey: handoff clarity score", display: "4.0 / 5", rating: { value: 4, max: 5 } },
-        ],
-        caption:
-          "Alignment became measurable through parity, adoption and clarity.",
+        chart: {
+          type: "kpi-progress",
+          title: "Governance KPIs created",
+          rows: [
+            { label: "Figma / Flutter parity", display: "78%", percent: 78 },
+            { label: "New tickets with DS adoption", display: "62%", percent: 62 },
+            { label: "Pulse survey: handoff clarity score", display: "4.0 / 5", rating: { value: 4, max: 5 } },
+          ],
+        },
+        caption: "Alignment became measurable through parity, adoption and clarity.",
       },
     ],
   },
@@ -405,7 +407,7 @@ const fr: UseCase = {
         caption:
           "Trop de décisions restaient ouvertes après le démarrage du développement",
         chart: {
-          type: "dual-progress",
+          type: "combined-kpi",
           rows: [
             {
               title: "Clarifications après démarrage dev",
@@ -427,14 +429,14 @@ const fr: UseCase = {
       {
         caption: "Le rework venait surtout de décisions restées implicites.",
         chart: {
-          type: "vertical-bars",
+          type: "bars",
           title: "Décisions implicites dans les tickets",
           bars: [
             { label: "États\nmanquants", value: 38, color: "var(--color-primary)" },
-            { label: "Flows\nambigus", value: 31, color: "#00fe33" },
-            { label: "Critères\nflous", value: 18, color: "#c3fe00" },
-            { label: "Re-use\nabsent", value: 16, color: "#fef100" },
-            { label: "Contrainte\ntechnique", value: 7, color: "#feba00" },
+            { label: "Flows\nambigus", value: 31, color: "var(--color-chart-lime)" },
+            { label: "Critères\nflous", value: 18, color: "var(--color-chart-citron)" },
+            { label: "Re-use\nabsent", value: 16, color: "var(--color-chart-yellow)" },
+            { label: "Contrainte\ntechnique", value: 7, color: "var(--color-chart-amber)" },
           ],
         },
       },
@@ -634,25 +636,27 @@ selectedSolutionId: "systeme-delivery-partage",
   ],
     charts: [
       {
-        type: "duration-bars",
-        items: [
-          { label: "Prototypage écran\nstandard", before: { display: "3h30", value: 3.5 }, after: { display: "1h15", value: 1.25 } },
-          { label: "Implémentation\nécran standard", before: { display: "12h", value: 12 }, after: { display: "5h", value: 5 } },
-          { label: "Corrections après\nreview", before: { display: "5h", value: 5 }, after: { display: "2h", value: 2 } },
-        ],
-        caption:
-          "Les gains apparaissaient surtout sur les écrans couverts par le système",
+        chart: {
+          type: "duration-bars",
+          items: [
+            { label: "Prototypage écran\nstandard", before: { display: "3h30", value: 3.5 }, after: { display: "1h15", value: 1.25 } },
+            { label: "Implémentation\nécran standard", before: { display: "12h", value: 12 }, after: { display: "5h", value: 5 } },
+            { label: "Corrections après\nreview", before: { display: "5h", value: 5 }, after: { display: "2h", value: 2 } },
+          ],
+        },
+        caption: "Les gains apparaissaient surtout sur les écrans couverts par le système",
       },
       {
-        type: "kpi-progress",
-        title: "KPI de gouvernance créés",
-        rows: [
-          { label: "Parité Figma / Flutter", display: "78%", percent: 78 },
-          { label: "Nouveaux tickets avec DS (adoption)", display: "62%", percent: 62 },
-          { label: "Pulse survey: Score de clarté handoff", display: "4.0 / 5", rating: { value: 4, max: 5 } },
-        ],
-        caption:
-          "L’alignement devenait mesurable par la parité, l’adoption et la clarté",
+        chart: {
+          type: "kpi-progress",
+          title: "KPI de gouvernance créés",
+          rows: [
+            { label: "Parité Figma / Flutter", display: "78%", percent: 78 },
+            { label: "Nouveaux tickets avec DS (adoption)", display: "62%", percent: 62 },
+            { label: "Pulse survey: Score de clarté handoff", display: "4.0 / 5", rating: { value: 4, max: 5 } },
+          ],
+        },
+        caption: "L’alignement devenait mesurable par la parité, l’adoption et la clarté",
       },
     ],
   },

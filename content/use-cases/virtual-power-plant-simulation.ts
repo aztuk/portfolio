@@ -1,332 +1,408 @@
-import type { UseCase } from "@/content/use-cases/types";
+﻿import type { UseCase } from "@/content/use-cases/types";
 
 
 const en: UseCase = {
-  title: "Creating complex energy offers without writing code",
-  slug: "virtual-power-plant-simulation",
+  title: "From a raw list to a decision",
+  slug: "virtual-power-plant-flexibility",
   overview:
-    "In 2019, our platform helped energy suppliers manage their tariff offers.\n\nOffer teams wanted to create new tariffs without going through IT. I designed a visual editor to define rules and see their effect on the bill.",
+    "In 2019, we were working on a tool that helped energy suppliers manage batteries, solar panels and other distributed assets across the grid.\n\nEnergy traders struggled to quickly know how much energy was available, where it was located and how long it could be used — I designed an interface to make those answers visible and test a power demand.",
   challenge:
-    "Make offer creation simple enough for business teams, without losing the precision required for billing.",
-  roles: ["Lead Product Designer"],
+    "Help traders quickly know how much energy can be used, where it is, and how long it remains available.",
+  roles: {
+    owned: [
+      "Discovery",
+      "Product scoping",
+      "UX architecture",
+      "Data visualization",
+      "Prototyping",
+      "User testing",
+    ],
+    contributed: ["Delivery"],
+  },
   year: "2019",
-  timeline: "12 months",
+  timeline: "9 months",
   tools: ["Figma", "Notion", "Zeplin"],
-  tags: ["B2B", "Complex UX", "Rule Builder", "Energy", "Billing"],
+  tags: ["B2B", "Energy", "Data Visualization", "Simulation", "Trading"],
   projectType: "mobile",
   previewImage: {
     type: "image",
-    src: "/assets/use-cases/energy-offer-rule-builder/EN_empower_preview.png",
-    alt: "Preview of the rule creation tool for energy offers.",
+    src: "/assets/use-cases/cluster/EN_cluster_preview.png",
+    alt: "Before/after montage showing the transition from a raw list of energy assets to a decision interface with map, available capacity and simulation.",
   },
   resultHero: {
-    type: "video",
-    src: "/assets/use-cases/energy-offer-rule-builder/EmpowerVideo.mp4",
-    poster: "/assets/use-cases/energy-offer-rule-builder/EN_empower_preview.png",
-    alt: "Key screens of the tool for creating and verifying complex energy offers.",
+    type: "image",
+    src: "/assets/use-cases/cluster/hero.png",
+    alt: "Before/after montage showing the transition from a raw list of energy assets to a decision interface with map, available capacity and simulation.",
   },
   tension: {
     title: "Understanding the problem",
     tensions: [
       {
-        label: "For offer teams",
+        label: "For energy traders",
         value:
-          "They knew how to imagine new tariffs, but not always how to translate them into reliable rules.",
+          "They had to quickly answer a simple question: how much energy can we use now or soon?",
         bullets: [
-          "Variable schedules",
-          "Consumption thresholds",
-          "Application periods",
+          "Fast decision",
+          "Variable availability",
+          "Trust required",
         ],
       },
       {
-        label: "For the business",
+        label: "For energy providers",
         value:
-          "Each offer variant required too much back-and-forth before it could be tested or launched.",
+          "Thousands of distributed assets had to become a readable and usable reserve.",
         bullets: [
-          "Slower launches",
-          "Difficult tests",
-          "Limited differentiation",
-        ],
-      },
-      {
-        label: "For IT",
-        value:
-          "The billing system was too critical to replace, but too rigid to absorb every new request.",
-        bullets: [
-          "Legacy to preserve",
-          "Migration risk",
-          "Technical dependency",
+          "Distributed assets",
+          "Hard to aggregate potential",
+          "Local comfort to preserve",
         ],
       },
     ],
     coreQuestion:
-      "How can we turn an offer idea into understandable, configurable and verifiable tariff rules?",
+      "How can we help a trader quickly know how much energy can be used, where, and for how long?",
     discoverySignals: [
       "Business expert interviews",
-      "Rule modeling",
-      "Workflow mapping",
-      "Scenario testing",
-      "Edge-case analysis",
+      "Energy portfolio mapping",
+      "Business scenarios",
+      "Data readability tests",
+    ],
+    artifacts: [
+      {
+        type: "image",
+        src: "/assets/use-cases/cluster/Avant liste.png",
+        alt: "Old list-based interface showing distributed energy assets, with no map, no aggregation and no decision support.",
+        caption:
+          "Before: an asset list useful for browsing, but insufficient for making quick decisions.",
+      },
+      {
+        type: "image",
+        src: "/assets/use-cases/cluster/Avant assets disponibles.png",
+        alt: "Old available asset list showing the difficulty of quickly identifying actually mobilisable capacity.",
+        caption:
+          "Availability existed in the data, but was hard to turn into an actionable answer.",
+      },
     ],
     chartCards: [
       {
-        caption:
-          "The scenarios analyzed combined several tariff logics.",
+        caption: "Key answers required too much manual search.",
         chart: {
-          type: "count-bars",
-          title: "Rule types present in offer scenarios",
-          subtitle: "Out of 12 studied",
+          type: "bars",
+          title: "Time needed to find",
           bars: [
-            { label: "Schedules", value: 9, percent: 75, isPrimary: true },
-            { label: "Seasons", value: 7, percent: 58, isPrimary: false },
-            { label: "Thresholds", value: 6, percent: 50, isPrimary: false },
-            { label: "Indexation", value: 5, percent: 42, isPrimary: false },
-            { label: "Bundles", value: 3, percent: 25, isPrimary: false },
+            {
+              label: "Available\npower",
+              value: 18,
+              displayValue: "18mn",
+              color: "var(--color-primary)",
+            },
+            {
+              label: "Available prod or\nstorage units",
+              value: 14,
+              displayValue: "14mn",
+              color: "var(--color-chart-lime)",
+            },
+            {
+              label: "Risk to\nlocal comfort",
+              value: 22,
+              displayValue: "22mn",
+              color: "var(--color-chart-citron)",
+            },
           ],
         },
       },
       {
-        caption:
-          "The critical passage was the translation from offer to rules.",
         chart: {
-          type: "workflow-mapping",
-          title: "Workflow mapping",
-          steps: [
-            { label: "Define", detail: "target - period" },
-            { label: "Translate", detail: "rules - calculation" },
-            { label: "Verify", detail: "simulation - result" },
-            { label: "Bill", detail: "export - billing" },
-          ],
-          frictions: [
-            { label: "Business -> rule", startPercent: 12, widthPercent: 10 },
-            { label: "Effect hard to predict", startPercent: 53, widthPercent: 10 },
-          ],
+          type: "insight",
+          label: "Business insight",
+          icon: "lightbulb",
+          insightTitle: "Data existed but answers didn't",
+          insightDescription:
+            "Traders could see assets, but not directly the energy actually usable",
+          methodology: "Trading scenarios",
+          methodologyIcon: "flask",
+          color: "var(--color-chart-citron)",
         },
       },
       {
-        caption:
-          "The team often abandoned complex offer ideas because they could not express them as clear rules.",
+        caption: "The list displayed data, but not answers.",
         chart: {
-          type: "verbatim",
-          quote: "We struggle a lot to express the rules behind our offer ideas",
-          personaName: "Offer team",
-          color: "#00fe33",
-          methodology: "Business interviews",
-          methodologyIcon: "clipboard-text",
+          type: "combined-kpi",
+          rows: [
+            {
+              title: "Answers obtained without interaction",
+              description:
+                "Without filtering, calculating or cross-referencing outside the tool.",
+              display: "1/10",
+              percent: 10,
+              variant: "primary",
+            },
+            {
+              title: "Answers requiring manual analysis",
+              description:
+                "Comparison, forecasting or estimation outside the tool.",
+              display: "7/10",
+              percent: 70,
+              variant: "secondary",
+            },
+          ],
         },
       },
     ],
   },
+
   solution: {
     title: "Exploration and solution",
     exploredSolutions: [
       {
-        id: "dedicated-forms",
-        title: "One form per offer",
+        id: "filtered-list",
+        title: "Create a filtered list view",
         summary:
-          "Create a dedicated screen for each tariff logic, with simple fields for standard cases.",
-        pros: ["Very easy to read", "Fast on simple cases"],
-        cons: ["Not very flexible", "Too many variants"],
-      },
-      {
-        id: "advanced-only",
-        title: "One advanced editor",
-        summary:
-          "Expose logic close to the rule engine to cover the most complex tariff scenarios.",
-        pros: ["Very flexible", "Covers rare cases"],
-        cons: ["Too technical", "Risk of errors"],
-      },
-      {
-        id: "dual-level-editor",
-        title: "A guided and advanced mode",
-        summary:
-          "Combine readable business blocks with an advanced mode for rules that go beyond common cases.",
-        pros: ["Accessible to business teams", "Flexible when needed"],
-        cons: ["Harder to design", "Model to explain"],
-      },
-    ],
-    selectedSolutionId: "dual-level-editor",
-    keyDecisions: [
-      {
-        id: "productiser-regles",
-        eyebrow: "Productization",
-        title: "Make rules configurable",
-        summary:
-          "Instead of coding every new offer, we made rules creatable from a business interface.",
+          "Add filters, statuses and key columns to find available assets faster.",
+        pros: [
+          "Quick to ship",
+          "Familiar usage",
+        ],
+        cons: [
+          "Answer still to reassemble",
+          "Decision still slow",
+        ],
         media: {
           type: "image",
-          src: "/assets/use-cases/energy-offer-rule-builder/Emp_RuleCreation.png",
-          alt: "Comparison between a rule engine coded by technical teams and a business interface for creating energy offers.",
+          src: "/assets/use-cases/cluster/OPTION A.png",
+          alt: "Mini-wireframe of a filtered list of energy assets.",
+          caption:
+            "Option A: speed up the search, without changing the decision model.",
+        },
+      },
+      {
+        id: "geographic-view",
+        title: "Create a geographic view",
+        summary:
+          "Display assets on a map to understand where available energy is located.",
+        pros: [
+          "Clear localisation",
+          "More readable portfolio",
+        ],
+        cons: [
+          "Observation view only",
+          "No simulation",
+        ],
+        media: {
+          type: "image",
+          src: "/assets/use-cases/cluster/OPTION B.png",
+          alt: "Mini-wireframe of a geographic view of energy assets.",
+          caption:
+            "Option B: make the portfolio visible, without yet testing a demand.",
+        },
+      },
+      {
+        id: "combined-decision-view",
+        title: "Create a decision view",
+        summary:
+          "Combine map, capacity, forecast, local risk and simulation in a single interface.",
+        pros: [
+          "Immediate answer",
+          "Testable action",
+        ],
+        cons: [
+          "More complex",
+          "Thresholds to explain",
+        ],
+        media: {
+          type: "image",
+          src: "/assets/use-cases/cluster/OPTION C.png",
+          alt: "Mini-wireframe of a combined view with map, forecast, local risk and simulation.",
+          caption:
+            "Option C: move from searching for information to a simulable decision.",
+        },
+      },
+    ],
+    selectedSolutionId: "combined-decision-view",
+    keyDecisions: [
+      {
+        id: "answer-not-table",
+        eyebrow: "Readability",
+        title: "Answer, don't list",
+        summary:
+          "The list displayed assets, but the interface had to directly answer the decision questions.",
+        media: {
+          type: "image",
+          src: "/assets/use-cases/cluster/Vue apr%C3%A8s.png",
+          alt: "Comparison between a raw asset list and an after view directly showing power, availability, risk and simulation result.",
         },
         gallery: [
           {
             type: "image",
-            src: "/assets/use-cases/energy-offer-rule-builder/Emp_RuleCreationZoomed.png",
-            alt: "Guided interface for creating a tariff rule from business fields.",
-            caption: "A rule could be created from blocks understandable by business teams.",
+            src: "/assets/use-cases/cluster/Vue apr%C3%A8s.png",
+            alt: "After view showing available power, available assets, local risk, forecast and simulation.",
+            caption:
+              "The after view turned several searches into a single readable answer.",
           },
         ],
         avoidedCost: [
-          "Coding every new offer",
-          "Constantly depending on developers",
+          "Line-by-line searching",
+          "Answer to reassemble manually",
         ],
         acceptedCost: [
-          "Defining which rules were configurable",
-          "Limiting some specific cases",
+          "Prioritising the answers",
+          "Hiding secondary details",
         ],
       },
       {
-        id: "edition-guided-advanced",
-        eyebrow: "Accessibility",
-        title: "Separate guided and advanced modes",
+        id: "map-as-context",
+        eyebrow: "Location",
+        title: "Locate before analysing",
         summary:
-          "Common cases remained simple, while experts kept an escape hatch for complex rules.",
+          "The map made the distribution of capacity visible before going into details.",
         media: {
           type: "image",
-          src: "/assets/use-cases/energy-offer-rule-builder/Emp_RuleCreationAdvanced.png",
-          alt: "Two-level tariff editor combining a guided mode with business blocks and an advanced mode for complex rules.",
+          src: "/assets/use-cases/cluster/Selected zone map.png",
+          alt: "Map showing a selected zone of energy assets with available capacity highlighted.",
+        },
+        gallery: [
+          {
+            type: "image",
+            src: "/assets/use-cases/cluster/Heat map of discomfort.png",
+            alt: "Heat map showing discomfort risk across zones, helping traders weigh local impact before committing.",
+            caption:
+              "The discomfort heat map made local risk visible alongside capacity.",
+          },
+        ],
+        avoidedCost: [
+          "Invisible capacity by zone",
+          "Slow geographic comparison",
+        ],
+        acceptedCost: [
+          "Map to make readable",
+          "Filters to prioritise",
+        ],
+      },
+      {
+        id: "forecast-before-action",
+        eyebrow: "Time",
+        title: "Forecast before acting",
+        summary:
+          "The decision had to distinguish currently available capacity from expected capacity during the target window.",
+        media: {
+          type: "image",
+          src: "/assets/use-cases/cluster/Chart now + forecast.png",
+          alt: "Chart comparing currently available capacity and forecast capacity during the target period.",
         },
         gallery: [],
         avoidedCost: [
-          "A tool that was too technical",
-          "A form that was too rigid",
+          "Too instantaneous a decision",
+          "Poorly anticipated availability",
         ],
         acceptedCost: [
-          "Two modes to connect",
-          "A model to explain",
+          "Displaying uncertainty",
+          "Explaining the forecast",
         ],
       },
       {
-        id: "timeline",
-        eyebrow: "Time",
-        title: "Put time at the center",
+        id: "simulate-before-commit",
+        eyebrow: "Action",
+        title: "Simulate before committing",
         summary:
-          "Rules depended on dates, seasons or schedules, so their application had to become visible over time.",
+          "Before using assets, the trader needed to test the demand and verify its feasibility.",
         media: {
           type: "image",
-          src: "/assets/use-cases/energy-offer-rule-builder/Emp_Timeline.png",
-          alt: "Timeline showing the application periods of several tariff rules over time.",
+          src: "/assets/use-cases/cluster/Simulation.png",
+          alt: "Simulation block showing requested power, target period, result, coverage and confidence.",
         },
-        gallery: [
-          {
-            type: "image",
-            src: "/assets/use-cases/energy-offer-rule-builder/Emp_Timeline_2.png",
-            alt: "Timeline view showing active rules, periods and overlaps.",
-            caption: "The timeline made periods and overlaps visible.",
-          },
-        ],
+        gallery: [],
         avoidedCost: [
-          "Invisible periods",
-          "Conflicts that were hard to spot",
+          "Too risky a commitment",
+          "Underestimated local impact",
         ],
         acceptedCost: [
-          "A more complex visualization",
-          "Overlaps to manage",
-        ],
-      },
-      {
-        id: "verification",
-        eyebrow: "Trust",
-        title: "Verify before billing",
-        summary:
-          "Teams had to see what a rule produced before it reached the billing system.",
-        media: {
-          type: "image",
-          src: "/assets/use-cases/energy-offer-rule-builder/EN_Emp_BillSimulation.png",
-          alt: "Workflow showing the verification of a tariff rule on real data before sending it to the billing system.",
-        },
-        gallery: [
-          {
-            type: "image",
-            src: "/assets/use-cases/energy-offer-rule-builder/EN_Emp_Monitoring.png",
-            alt: "Monitoring view for checking the results generated by rules.",
-            caption: "Monitoring made it possible to verify rule effects before billing.",
-          },
-        ],
-        avoidedCost: [
-          "Discovering errors too late",
-          "Sending unverified results",
-        ],
-        acceptedCost: [
-          "Designing validation views",
-          "Explaining generated results",
+          "Constraints to model",
+          "Limits to display",
         ],
       },
     ],
   },
+
   impactSection: {
     title: "The impacts",
     summary:
-      "The tool made offers faster to create, easier to verify and less dependent on specific development.",
+      "The interface transformed slow searching through a raw list into fast reading of decision-ready answers.",
     bullets: [
       {
-        bold: "Offer teams gained autonomy",
-        regular: "common cases became configurable in a business interface",
+        bold: "Traders found usable energy faster",
+        regular: "less line-by-line searching in the asset list",
       },
       {
-        bold: "New offers became faster to test",
-        regular: "less back-and-forth with IT for each variant",
+        bold: "Available zones and units became more readable",
+        regular: "production, storage and availability visible in a single view",
       },
       {
-        bold: "Rules became verifiable before billing",
-        regular: "simulation, bill preview and control of generated results",
+        bold: "Decisions required fewer manual cross-checks",
+        regular: "more answers obtained directly from the interface",
       },
     ],
     charts: [
       {
-        type: "duration-bars",
-        items: [
-          {
-            label: "Create a\nstandard offer",
-            before: { display: "2 wks", value: 20 },
-            after: { display: "< 1d", value: 5 },
-          },
-          {
-            label: "Adjust an\nexisting rule",
-            before: { display: "3d", value: 20 },
-            after: { display: "< 1h", value: 6 },
-          },
-          {
-            label: "Verify a bill\neffect",
-            before: { display: "3h", value: 20 },
-            after: { display: "20 min", value: 5 },
-          },
-        ],
-        caption:
-          "Tasks that depended on IT became configurable inside the tool.",
+        chart: {
+          type: "duration-bars",
+          items: [
+            {
+              label: "Available\npower",
+              before: { display: "18mn", value: 18 },
+              after: { display: "4mn", value: 4 },
+            },
+            {
+              label: "Available prod or\nstorage units",
+              before: { display: "14mn", value: 14 },
+              after: { display: "3mn", value: 3 },
+            },
+            {
+              label: "Risk to\nlocal comfort",
+              before: { display: "22mn", value: 22 },
+              after: { display: "6mn", value: 6 },
+            },
+          ],
+        },
+        caption: "The same questions became faster to answer.",
       },
       {
-        type: "single-kpi",
-        value: "-60%",
-        title: "Specific requests",
-        description:
-          "Estimate on common scenarios that could be covered by configurable rules.",
-      },
-      {
-        type: "single-kpi",
-        value: "-70%",
-        title: "Implementation effort",
-        description:
-          "Estimate compared with a heavy evolution of the existing billing system.",
+        chart: {
+          type: "before-after-combined-kpi",
+          rows: [
+            {
+              label: "Answers obtained without interaction",
+              before: { display: "1/10", percent: 10 },
+              after: { display: "6/10", percent: 60 },
+            },
+            {
+              label: "Answers requiring manual analysis",
+              before: { display: "7/10", percent: 70 },
+              after: { display: "2/10", percent: 20 },
+            },
+          ],
+        },
+        caption: "The new interface reduced manual cross-checking.",
       },
     ],
   },
+
   retrospective: {
     title: "Retrospective",
+    summary:
+      "This project strengthened the way I design decision interfaces for complex subjects.",
     dontLabel: "DON'T",
     doLabel: "INSTEAD",
     items: [
       {
-        dont: "Create one screen for every case",
-        do: "Design a system that absorbs variants",
+        dont: "Show more data",
+        do: "Turn data into actionable answers",
       },
       {
-        dont: "Hide all complexity",
-        do: "Make it readable and manipulable",
+        dont: "See visualisation as an end",
+        do: "Use it as an entry point for a decision",
       },
       {
-        dont: "Validate only the interface",
-        do: "Verify what the interface actually produces",
+        dont: "Hide uncertainty to simplify",
+        do: "Make it visible to decide with confidence",
       },
     ],
   },
@@ -334,352 +410,411 @@ const en: UseCase = {
 };
 
 const fr: UseCase = {
-
-  title: "Simuler des centrales virtuelles à partir d’assets énergétiques distribués",
-  slug: "virtual-power-plant-simulation",
+  title: "Passer d’une liste brute à une décision"  ,
+  slug: "virtual-power-plant-flexibility",
   overview:
-    "Les acteurs de l’énergie voulaient évaluer le potentiel d’agrégation de batteries et panneaux solaires ; j’ai conçu une interface pour visualiser, filtrer et simuler des portefeuilles d’assets à l’échelle européenne.",
+  "En 2019, nous travaillions sur un outil qui aidait les fournisseurs d’énergie à piloter des batteries, panneaux solaires et autres équipements répartis sur le territoire. \n\nLes traders énergie avaient du mal à savoir rapidement <b>combien d’énergie</b> était disponible, <b>où elle se trouvait</b> et <b>combien de temps</b> elle pouvait être utilisée ; j’ai conçu une interface pour rendre <b>ces réponses visibles</b> et tester une demande de puissance.",
   challenge:
-    "Rendre visible le potentiel d’un parc énergétique distribué avant de lancer une offre VPP.",
-  roles: ["Product Designer", "B2B Product Design", "Data Visualization"],
-  year: "À préciser",
-  timeline: "À préciser",
+  "Aider les traders à savoir rapidement combien d’énergie peut être utilisée, où elle se trouve et combien de temps elle reste disponible.",
+  roles: {
+    owned: [
+      "Discovery",
+      "Cadrage produit",
+      "Architecture UX",
+      "Data visualization",
+      "Prototypage",
+      "Tests utilisateurs",
+    ],
+    contributed: ["Delivery"],
+  },
+  year: "2019",
+  timeline: "9 mois",
   tools: ["Figma", "Notion", "Zeplin"],
-  tags: ["B2B", "Energy", "Data Visualization", "Simulation", "R&D"],
+  tags: ["B2B", "Complexe", "Data Visualization", "Carte", "Régulations"],
+
   previewImage: {
     type: "image",
-    src: "/assets/use-cases/virtual-power-plant-simulation/FR_vpp_simulation_preview.png",
-    alt: "Aperçu de l’outil de simulation pour centrales virtuelles.",
+    src: "/assets/use-cases/cluster/FR_cluster_preview.png",
+    alt: "Montage avant/après montrant le passage d’une liste brute d’équipements énergétiques à une interface de décision avec carte, capacité mobilisable et simulation.",
   },
   resultHero: {
-    type: "video",
-    src: "/assets/use-cases/virtual-power-plant-simulation/VPP_Simulation_Video.mp4",
-    poster: "/assets/use-cases/virtual-power-plant-simulation/FR_vpp_simulation_preview.png",
-    alt: "Écrans clés de l’outil permettant de créer et vérifier des offres d’énergie complexes.",
+    type: "image",
+    src: "/assets/use-cases/cluster/hero.png",
+    alt: "Montage avant/après montrant le passage d’une liste brute d’équipements énergétiques à une interface de décision avec carte, capacité mobilisable et simulation.",
   },
+
   tension: {
-     title: "Comprendre le problème",
-  tensions: [
+    title: "Comprendre le problème",
+    tensions: [
   {
-    label: "Pour les équipes offres",
+    label: "Pour les traders énergie",
     value:
-      "Elles savaient imaginer de nouveaux tarifs, mais pas toujours les traduire en règles fiables.",
+      "Ils devaient répondre vite à une question simple : combien d’énergie peut-on utiliser maintenant ou bientôt ?",
     bullets: [
-      "Horaires variables",
-      "Seuils de consommation",
-      "Périodes d’application",
+      "Décision rapide",
+      "Disponibilité variable",
+      "Confiance nécessaire",
     ],
   },
   {
-    label: "Pour le business",
+    label: "Pour les energy providers",
     value:
-      "Chaque variante d’offre demandait trop d’allers-retours avant de pouvoir être testée ou lancée.",
+      "Des milliers d’équipements dispersés devaient devenir une réserve lisible et utilisable.",
     bullets: [
-      "Lancements ralentis",
-      "Tests difficiles",
-      "Différenciation limitée",
-    ],
-  },
-  {
-    label: "Pour l’IT",
-    value:
-      "Le système de facturation était trop critique pour être remplacé, mais trop rigide pour absorber chaque nouvelle demande.",
-    bullets: [
-      "Legacy à préserver",
-      "Risque de migration",
-      "Dépendance technique",
-    ],
-  },
-],coreQuestion:
-  "Comment transformer une idée d’offre en règles tarifaires compréhensibles, configurables et vérifiables ?",
-  discoverySignals: [
-    "Entretiens experts métier",
-    "Modélisation des règles",
-    "Mapping du workflow",
-    "Tests de scénarios",
-    "Analyse des cas limites",
-  ],
-    chartCards: [
-      {
-  caption:
-    "Les scénarios analysés combinaient plusieurs logiques tarifaires",
-  chart: {
-    type: "count-bars",
-    title: "Types de règles présentes dans les scénarios d’offres",
-    subtitle: "Sur 12 étudiés",
-   bars: [
-  { label: "Horaires", value: 9, percent: 75, isPrimary: true },
-  { label: "Saisons", value: 7, percent: 58, isPrimary: false },
-  { label: "Seuils", value: 6, percent: 50, isPrimary: false },
-  { label: "Indexation", value: 5, percent: 42, isPrimary: false },
-  { label: "Bundles", value: 3, percent: 25, isPrimary: false },
-]
-  },
-},
-    {
-      caption:
-        "Le passage critique était la traduction de l’offre en règles",
-      chart: {
-        type: "workflow-mapping",
-        title: "Mapping du workflow",
-        steps: [
-          { label: "Définir", detail: "cible · période" },
-          { label: "Traduire", detail: "règles · calcul" },
-          { label: "Vérifier", detail: "simulation · résultat" },
-          { label: "Facturer", detail: "export · billing" },
-        ],
-        frictions: [
-          { label: "Métier → règle", startPercent: 12, widthPercent: 10 },
-          { label: "Effet difficile à prévoir", startPercent: 53, widthPercent: 10 },
-        ],
-      },
-    },
-    {
-  caption:
-    "L'équipe abandonnait souvent l’idée d’offres complexes faute de pouvoir les exprimer en règles claires",
-  chart: {
-    type: "verbatim",
-    quote: "On a beaucoup de mal à exprimer les règles de nos idées d’offres",
-    personaName: "Équipe offres",
-    color: "#00fe33",
-    methodology: "Entretiens métier",
-    methodologyIcon: "clipboard-text",
-  },
-},
-  ],
-  },
-  solution: {
-    title: "Exploration et solution",
-    exploredSolutions: [
-  {
-    id: "dedicated-forms",
-    title: "Un formulaire par offre",
-    summary:
-      "Créer un écran dédié pour chaque logique tarifaire, avec des champs simples pour les cas standards.",
-    pros: [
-      "Très facile à lire",
-      "Rapide sur cas simples",
-    ],
-    cons: [
-      "Peu flexible",
-      "Trop de variantes",
-    ],
-  },
-  {
-    id: "advanced-only",
-    title: "Un éditeur avancé unique",
-    summary:
-      "Exposer une logique proche du moteur de règles pour couvrir les scénarios tarifaires les plus complexes.",
-    pros: [
-      "Très flexible",
-      "Couvre les cas rares",
-    ],
-    cons: [
-      "Trop technique",
-      "Risque d’erreurs",
-    ],
-  },
-  {
-    id: "dual-level-editor",
-    title: "Un mode guidé et avancé",
-    summary:
-      "Combiner des briques métier lisibles avec un mode avancé pour les règles qui dépassent les cas courants.",
-    pros: [
-      "Accessible au métier",
-      "Flexible si besoin",
-    ],
-    cons: [
-      "Plus dur à concevoir",
-      "Modèle à expliquer",
+      "Équipements dispersés",
+      "Potentiel difficile à additionner",
+      "Confort local à préserver",
     ],
   },
 ],
-selectedSolutionId: "dual-level-editor",
-keyDecisions: [
-  {
-    id: "productiser-regles",
-    eyebrow: "Productisation",
-    title: "Rendre les règles configurables",
-    summary:
-      "Au lieu de coder chaque nouvelle offre, nous avons rendu les règles créables depuis une interface métier.",
-    media: {
-      type: "image",
-      src: "/assets/use-cases/energy-offer-rule-builder/Emp_RuleCreation.png",
-      alt: "Comparaison entre un moteur de règles codé par les équipes techniques et une interface métier permettant de créer des offres d’énergie.",
-    },
-    gallery: [
+
+   coreQuestion:
+  "Comment aider un trader à savoir rapidement combien d’énergie peut être utilisée, où et pendant combien de temps ?",
+ discoverySignals: [
+  "Entretiens avec experts métier",
+  "Cartographie du parc énergétique",
+  "Scénarios métier",
+  "Tests de lisibilité des données",
+],
+    artifacts: [
       {
         type: "image",
-        src: "/assets/use-cases/energy-offer-rule-builder/Emp_RuleCreationZoomed.png",
-        alt: "Interface guidée permettant de créer une règle tarifaire à partir de champs métier.",
-        caption: "Une règle pouvait être créée à partir de briques compréhensibles par le métier.",
+        src: "/assets/use-cases/cluster/Avant liste.png",
+        alt: "Ancienne interface sous forme de liste brute montrant des équipements énergétiques dispersés, sans carte, sans agrégation et sans aide à la décision.",
+        caption:
+          "Avant : une liste d’équipements utile pour consulter, mais insuffisante pour décider rapidement.",
+      },
+      {
+        type: "image",
+        src: "/assets/use-cases/cluster/Avant assets disponibles.png",
+        alt: "Ancienne liste des équipements disponibles montrant la difficulté à identifier rapidement la capacité réellement mobilisable.",
+        caption:
+          "La disponibilité existait dans les données, mais restait difficile à transformer en réponse actionnable.",
       },
     ],
-    avoidedCost: [
-      "Coder chaque nouvelle offre",
-      "Dépendre constamment des développeurs",
-    ],
-    acceptedCost: [
-      "Cadrer les règles configurables",
-      "Limiter certains cas spécifiques",
+
+    chartCards: [
+      {
+        caption:
+  "Les réponses clés demandaient trop de recherche manuelle",
+        chart: {
+          type: "bars",
+          title: "Temps nécessaire pour chercher",
+          bars: [
+            {
+              label: "Puissance\nmobilisable",
+              value: 18,
+              displayValue: "18mn",
+              color: "var(--color-primary)",
+            },
+            {
+              label: "Unités prod ou\n storage disponibles",
+              value: 14,
+              displayValue: "14mn",
+              color: "var(--color-chart-lime)",
+            },
+            {
+              label: "Risque sur le\nconfort local",
+              value: 22,
+              displayValue: "22mn",
+              color: "var(--color-chart-citron)",
+            },
+          ],
+        },
+      },
+      {
+        chart: {
+          type: "insight",
+          label: "Insight métier",
+          icon: "lightbulb",
+          insightTitle: "La donnée existait mais pas la réponse",
+          insightDescription:
+            "Les traders voyaient les équipements, mais pas directement l’énergie réellement utilisable",
+          methodology: "Scénarios de trading",
+          methodologyIcon: "flask",
+          color: "var(--color-chart-citron)",
+        },
+      },
+      {
+        caption:
+  "La liste affichait les données, mais pas les réponses.",
+  chart: {
+          type: "combined-kpi",
+          rows: [
+            {
+              title: "Réponses obtenues sans interaction",
+              description:
+                "Sans filtre, calcul ou recoupement hors outil.",
+              display: "1/10",
+              percent: 10,
+              variant: "primary",
+            },
+            {
+              title: "Réponses nécessitant analyse manuelle",
+              description:
+                "Comparaison, prévision ou estimation hors outil.",
+              display: "7/10",
+              percent: 70,
+              variant: "secondary",
+            },
+          ],
+        },
+      },
     ],
   },
+
+  solution: {
+    title: "Exploration et solution",
+exploredSolutions: [
   {
-    id: "edition-guided-advanced",
-    eyebrow: "Accessibilité",
-    title: "Séparer guidé et avancé",
+    id: "filtered-list",
+    title: "Créer une vue liste filtrée",
     summary:
-      "Les cas courants restaient simples, tandis que les experts gardaient une porte de sortie pour les règles complexes.",
+      "Ajouter filtres, statuts et colonnes clés pour retrouver plus vite les assets disponibles.",
+    pros: [
+      "Rapide à livrer",
+      "Usage déjà connu",
+    ],
+    cons: [
+      "Réponse à recomposer",
+      "Décision encore lente",
+    ],
     media: {
       type: "image",
-      src: "/assets/use-cases/energy-offer-rule-builder/Emp_RuleCreationAdvanced.png",
-      alt: "Éditeur tarifaire à deux niveaux combinant un mode guidé en briques métier et un mode avancé pour les règles complexes.",
+      src: "/assets/use-cases/cluster/OPTION A.png",
+      alt: "Mini-wireframe d’une liste filtrée d’assets énergétiques.",
+      caption:
+        "Option A : accélérer la recherche, sans changer le modèle de décision.",
+    },
+  },
+  {
+    id: "geographic-view",
+    title: "Créer une vue géographique",
+    summary:
+      "Afficher les assets sur une carte pour comprendre où se trouve l’énergie disponible.",
+    pros: [
+      "Localisation claire",
+      "Parc plus lisible",
+    ],
+    cons: [
+      "Vue d’observation",
+      "Simulation absente",
+    ],
+    media: {
+      type: "image",
+      src: "/assets/use-cases/cluster/OPTION B.png",
+      alt: "Mini-wireframe d’une vue géographique des assets énergétiques.",
+      caption:
+        "Option B : rendre le parc visible, sans encore tester une demande.",
+    },
+  },
+  {
+    id: "combined-decision-view",
+    title: "Créer une vue de décision",
+    summary:
+      "Combiner carte, capacité, prévision, risque local et simulation dans une même interface.",
+    pros: [
+      "Réponse immédiate",
+      "Action testable",
+    ],
+    cons: [
+      "Plus complexe",
+      "Seuils à expliquer",
+    ],
+    media: {
+      type: "image",
+      src: "/assets/use-cases/cluster/OPTION C.png",
+      alt: "Mini-wireframe d’une vue combinée avec carte, prévision, risque local et simulation.",
+      caption:
+        "Option C : passer de la recherche d’information à une décision simulable.",
+    },
+  },
+],
+selectedSolutionId: "combined-decision-view",
+    keyDecisions: [
+  {
+    id: "answer-not-table",
+    eyebrow: "Lecture",
+    title: "Répondre plutôt que lister",
+    summary:
+      "La liste affichait les assets, mais l’interface devait répondre directement aux questions de décision.",
+    media: {
+      type: "image",
+      src: "/assets/use-cases/cluster/Vue apr%C3%A8s.png",
+      alt: "Comparaison entre une liste brute d’assets et une vue après donnant directement puissance, disponibilité, risque et résultat de simulation.",
     },
     gallery: [],
     avoidedCost: [
-      "Un outil trop technique",
-      "Un formulaire trop rigide",
+      "Recherche ligne par ligne",
+      "Réponse à recomposer",
     ],
     acceptedCost: [
-      "Deux modes à relier",
-      "Un modèle à expliquer",
+      "Hiérarchiser les réponses",
+      "Masquer des détails secondaires",
     ],
   },
   {
-    id: "timeline",
+    id: "map-as-context",
+    eyebrow: "Localisation",
+    title: "Localiser avant d’analyser",
+    summary:
+      "La carte rendait visible la répartition des capacités avant d’entrer dans les détails.",
+    media: {
+      type: "image",
+      src: "/assets/use-cases/cluster/Selected zone map.png",
+      alt: "Carte montrant une zone sélectionnée d’assets énergétiques avec la capacité disponible mise en valeur.",
+    },
+    gallery: [
+      {
+        type: "image",
+        src: "/assets/use-cases/cluster/Heat map of discomfort.png",
+        alt: "Carte de chaleur montrant le risque d’inconfort local par zone, pour évaluer l’impact avant engagement.",
+        caption:
+          "La heatmap d’inconfort rendait le risque local visible à côté de la capacité disponible.",
+      },
+    ],
+    avoidedCost: [
+      "Capacité invisible par zone",
+      "Comparaison géographique lente",
+    ],
+    acceptedCost: [
+      "Carte à rendre lisible",
+      "Filtres à hiérarchiser",
+    ],
+  },
+  {
+    id: "forecast-before-action",
     eyebrow: "Temps",
-    title: "Mettre le temps au centre",
+    title: "Prévoir avant d’agir",
     summary:
-      "Les règles dépendaient de dates, saisons ou horaires ; leur application devait donc devenir visible dans le temps.",
+      "La décision devait distinguer la capacité disponible maintenant de celle attendue pendant la période cible.",
     media: {
       type: "image",
-      src: "/assets/use-cases/energy-offer-rule-builder/Emp_Timeline.png",
-      alt: "Timeline montrant les périodes d’application de plusieurs règles tarifaires dans le temps.",
+      src: "/assets/use-cases/cluster/Chart now + forecast.png",
+      alt: "Graphique comparant la capacité disponible maintenant et la capacité prévue pendant la période cible.",
     },
-    gallery: [
-      {
-        type: "image",
-        src: "/assets/use-cases/energy-offer-rule-builder/Emp_Timeline_2.png",
-        alt: "Vue timeline permettant de visualiser les règles actives, les périodes et les chevauchements.",
-        caption: "La timeline rendait les périodes et chevauchements visibles.",
-      },
-    ],
+    gallery: [],
     avoidedCost: [
-      "Des périodes invisibles",
-      "Des conflits difficiles à repérer",
+      "Décision trop instantanée",
+      "Disponibilité mal anticipée",
     ],
     acceptedCost: [
-      "Une visualisation plus complexe",
-      "Des chevauchements à gérer",
+      "Afficher l’incertitude",
+      "Expliquer la prévision",
     ],
   },
   {
-    id: "verification",
-    eyebrow: "Confiance",
-    title: "Vérifier avant facturation",
+    id: "simulate-before-commit",
+    eyebrow: "Action",
+    title: "Simuler avant d’engager",
     summary:
-      "Les équipes devaient voir ce qu’une règle produisait avant son arrivée dans le système de facturation.",
+      "Avant d’utiliser les assets, le trader devait tester la demande et vérifier sa faisabilité.",
     media: {
       type: "image",
-      src: "/assets/use-cases/energy-offer-rule-builder/FR_Emp_BillSimulation.png",
-      alt: "Workflow montrant la vérification d’une règle tarifaire sur des données réelles avant son envoi vers le système de facturation.",
+      src: "/assets/use-cases/cluster/Simulation.png",
+      alt: "Bloc de simulation montrant la puissance demandée, la période cible, le résultat, la couverture et la confiance.",
     },
-    gallery: [
-      {
-        type: "image",
-        src: "/assets/use-cases/energy-offer-rule-builder/FR_Emp_Monitoring.png",
-        alt: "Vue de monitoring permettant de contrôler les résultats générés par les règles.",
-        caption: "Le monitoring permettait de vérifier les effets des règles avant facturation.",
-      },
-    ],
+    gallery: [],
     avoidedCost: [
-      "Découvrir les erreurs trop tard",
-      "Envoyer des résultats non vérifiés",
+      "Engagement trop risqué",
+      "Impact local sous-estimé",
     ],
     acceptedCost: [
-      "Concevoir des vues de validation",
-      "Expliquer les résultats générés",
+      "Contraintes à modéliser",
+      "Limites à afficher",
     ],
   },
-],
+],  
   },
-impactSection: {
+
+ impactSection: {
   title: "Les impacts",
   summary:
-    "L’outil a rendu les offres plus rapides à créer, plus faciles à vérifier et moins dépendantes du développement spécifique.",
+    "L’interface a transformé une recherche lente dans une liste brute en lecture rapide des réponses utiles à la décision.",
   bullets: [
     {
-      bold: "Les équipes offres gagnaient en autonomie",
-      regular: "les cas courants devenaient configurables dans une interface métier",
+      bold: "Les traders trouvaient plus vite l’énergie utilisable",
+      regular:
+        "moins de recherche ligne par ligne dans la liste d’équipements",
     },
     {
-      bold: "Les nouvelles offres devenaient plus rapides à tester",
-      regular: "moins d’allers-retours avec l’IT pour chaque variante",
+      bold: "Les zones et unités disponibles devenaient plus lisibles",
+      regular:
+        "production, stockage et disponibilité visibles dans une même lecture",
     },
     {
-      bold: "Les règles devenaient vérifiables avant facturation",
-      regular: "simulation, aperçu facture et contrôle des résultats générés",
+      bold: "Les décisions demandaient moins de recoupements manuels",
+      regular:
+        "plus de réponses obtenues directement dans l’interface",
     },
   ],
   charts: [
     {
-      type: "duration-bars",
-      items: [
-        {
-          label: "Créer une offre\nstandard",
-          before: { display: "2 sem.", value: 20 },
-          after: { display: "< 1j", value: 5 },
-        },
-        {
-          label: "Ajuster une règle\nexistante",
-          before: { display: "3j", value: 20 },
-          after: { display: "< 1h", value: 6},
-        },
-        {
-          label: "Vérifier un effet\nsur facture",
-          before: { display: "3h", value: 20 },
-          after: { display: "20 min", value: 5 },
-        },
-      ],
-      caption:
-        "Les tâches dépendantes de l’IT devenaient configurables dans l’outil.",
+      chart: {
+        type: "duration-bars",
+        items: [
+          {
+            label: "Puissance\nutilisable",
+            before: { display: "18mn", value: 18 },
+            after: { display: "4mn", value: 4 },
+          },
+          {
+            label: "Unités prod ou\nstorage disponibles",
+            before: { display: "14mn", value: 14 },
+            after: { display: "3mn", value: 3 },
+          },
+          {
+            label: "Risque sur le\nconfort local",
+            before: { display: "22mn", value: 22 },
+            after: { display: "6mn", value: 6 },
+          },
+        ],
+      },
+      caption: "Les mêmes questions devenaient plus rapides à traiter.",
     },
     {
-      type: "single-kpi",
-      value: "-60%",
-      title: "Demandes spécifiques",
-      description:
-        "Estimation sur les scénarios courants pouvant être couverts par les règles configurables.",
-    },
-    {
-      type: "single-kpi",
-      value: "-70%",
-      title: "Effort d’implémentation",
-      description:
-        "Estimation comparée à une évolution lourde du système de facturation existant.",
+      chart: {
+        type: "before-after-combined-kpi",
+        rows: [
+          {
+            label: "Réponses obtenues sans interaction",
+            before: { display: "1/10", percent: 10 },
+            after: { display: "6/10", percent: 60 },
+          },
+          {
+            label: "Réponses nécessitant analyse manuelle",
+            before: { display: "7/10", percent: 70 },
+            after: { display: "2/10", percent: 20 },
+          },
+        ],
+      },
+      caption: "La nouvelle interface réduisait les recoupements manuels.",
     },
   ],
-},retrospective: {
+},
+
+  retrospective: {
   title: "Rétrospective",
+  summary:
+    "Ce projet a renforcé ma manière de concevoir des interfaces de décision pour des sujets complexes.",
   dontLabel: "NE PLUS",
   doLabel: "MAIS PLUTÔT",
   items: [
     {
-      dont: "Créer un écran pour chaque cas",
-      do: "Concevoir un système qui absorbe les variantes",
+      dont: "Montrer plus de données",
+      do: "Transformer les données en réponses actionnables",
     },
     {
-      dont: "Cacher toute la complexité",
-      do: "La rendre lisible et manipulable",
+      dont: "Voir la visualisation comme une fin",
+      do: "L’utiliser comme point d’entrée vers une décision",
     },
     {
-      dont: "Valider seulement l’interface",
-      do: "Vérifier ce que l’interface produit réellement",
+      dont: "Cacher l’incertitude pour simplifier",
+      do: "La rendre visible pour décider avec confiance",
     },
   ],
 },
   relatedUseCaseSlugs: [],
   projectType: "mobile"
 };
-
 export const virtualPowerPlantSimulation: Record<string, UseCase> = { en, fr };

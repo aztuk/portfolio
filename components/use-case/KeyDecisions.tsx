@@ -8,9 +8,9 @@ import { useTranslations } from "next-intl";
 
 import { FigmaBadge } from "@/components/shared/FigmaBadge";
 import { FigmaEmbed } from "@/components/shared/FigmaEmbed";
+import { GalleryPaginationControls } from "@/components/shared/GalleryPaginationControls";
 import { LockedAsset } from "@/components/shared/LockedAsset";
 import { MediaLightbox } from "@/components/shared/MediaLightbox";
-import { MobileCarousel } from "@/components/shared/MobileCarousel";
 import type { GalleryItem, KeyDecision } from "@/content/use-cases/types";
 
 type KeyDecisionsProps = {
@@ -161,6 +161,7 @@ type KeyDecisionCardProps = {
 
 const KeyDecisionCard = ({ item, isAuthenticated = true }: KeyDecisionCardProps) => {
   const t = useTranslations("sections");
+  const ui = useTranslations("ui");
   const mediaItems = useMemo(() => [item.media, ...item.gallery], [item.gallery, item.media]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
@@ -169,6 +170,8 @@ const KeyDecisionCard = ({ item, isAuthenticated = true }: KeyDecisionCardProps)
   const hasMultipleMedia = mediaItems.length > 1;
   const canOpenActiveMedia =
     activeMedia.type !== "figma" && !(activeMedia.protected && !isAuthenticated);
+  const previousSlide = () => setActiveIndex((index) => (index > 0 ? index - 1 : index));
+  const nextSlide = () => setActiveIndex((index) => (index < mediaItems.length - 1 ? index + 1 : index));
 
   return (
     <article className="relative mx-auto flex w-full max-w-[1200px] flex-col items-center gap-6 border-t border-dark-smooth pt-12 lg:gap-8 lg:pt-16">
@@ -186,110 +189,46 @@ const KeyDecisionCard = ({ item, isAuthenticated = true }: KeyDecisionCardProps)
         ) : null}
       </div>
 
-      {/* Mobile: carousel of all media (no thumbnails) */}
-      <MobileCarousel className="w-full lg:hidden" itemClassName="flex flex-col items-center gap-3">
-        {mediaItems.map((media, index) => {
-          const layout = getDecisionMediaLayout(media);
-          const canOpen = media.type !== "figma" && !(media.protected && !isAuthenticated);
-          return (
-            <div key={`${media.src}-${index}`} className="flex w-full flex-col items-center gap-3">
-              {media.type === "figma" ? (
-                <div className="w-full rounded-[20px] border border-dark-smooth bg-canvas/60 shadow-elevation-2 backdrop-blur-md">
-                  <div className="flex flex-col items-center justify-center gap-4 px-6 py-10">
-                    <FigmaBadge size="lg" />
-                    {(media.title ?? media.caption) && (
-                      <p className="type-body-lg-medium text-center text-muted">
-                        {media.title ?? media.caption}
-                      </p>
-                    )}
-                  </div>
-                </div>
-              ) : (
-                <div className={clsx("relative mx-auto w-full", layout.wrapper)}>
-                  <div className={clsx(
-                    "relative overflow-hidden border border-dark-smooth bg-[rgb(53_69_128/31%)] shadow-elevation-2 backdrop-blur-md",
-                    layout.frame,
-                  )}>
-                    <div className={clsx(
-                      "relative h-full w-full overflow-hidden bg-[rgb(53_69_128/31%)]",
-                      layout.inner,
-                    )}>
-                      <DecisionMedia item={media} isAuthenticated={isAuthenticated} sizes={layout.sizes} />
-                      {canOpen && (
-                        <button
-                          type="button"
-                          onClick={() => setLightboxIndex(index)}
-                          className="absolute inset-0 z-20 cursor-zoom-in focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary"
-                          aria-label={mediaLabel(media)}
-                        />
-                      )}
-                    </div>
-                  </div>
-                </div>
-              )}
-              <p className="type-body-lg text-center text-smooth">{mediaLabel(media)}</p>
-            </div>
-          );
-        })}
-      </MobileCarousel>
-
-      {/* Desktop: active image + thumbnail strip */}
-      <div className={clsx("relative mx-auto hidden lg:block", activeMediaLayout.wrapper)}>
-        <div className={clsx(
-          "relative overflow-hidden border border-dark-smooth bg-[rgb(53_69_128/31%)] shadow-elevation-2 backdrop-blur-md",
-          activeMediaLayout.frame,
-        )}>
+      <div className="flex w-full flex-col items-center gap-3">
+        <div className={clsx("relative mx-auto", activeMediaLayout.wrapper)}>
           <div className={clsx(
-            "relative h-full w-full overflow-hidden bg-[rgb(53_69_128/31%)]",
-            activeMediaLayout.inner,
+            "relative overflow-hidden border border-dark-smooth bg-[rgb(53_69_128/31%)] shadow-elevation-2 backdrop-blur-md",
+            activeMediaLayout.frame,
           )}>
-            <DecisionMedia
-              item={activeMedia}
-              isAuthenticated={isAuthenticated}
-              sizes={activeMediaLayout.sizes}
-            />
-            {canOpenActiveMedia && (
-              <button
-                type="button"
-                onClick={() => setLightboxIndex(activeIndex)}
-                className="absolute inset-0 z-20 cursor-zoom-in focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary"
-                aria-label={mediaLabel(activeMedia)}
+            <div className={clsx(
+              "relative h-full w-full overflow-hidden bg-[rgb(53_69_128/31%)]",
+              activeMediaLayout.inner,
+            )}>
+              <DecisionMedia
+                item={activeMedia}
+                isAuthenticated={isAuthenticated}
+                sizes={activeMediaLayout.sizes}
               />
-            )}
+              {canOpenActiveMedia && (
+                <button
+                  type="button"
+                  onClick={() => setLightboxIndex(activeIndex)}
+                  className="absolute inset-0 z-20 cursor-zoom-in focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary"
+                  aria-label={mediaLabel(activeMedia)}
+                />
+              )}
+            </div>
           </div>
+
+          {hasMultipleMedia && (
+            <GalleryPaginationControls
+              count={mediaItems.length}
+              activeIndex={activeIndex}
+              onPrevious={previousSlide}
+              onNext={nextSlide}
+              onSelect={setActiveIndex}
+              previousLabel={ui("previous")}
+              nextLabel={ui("next")}
+            />
+          )}
         </div>
 
-        {hasMultipleMedia && (
-          <div className="flex flex-col gap-3 lg:absolute lg:right-0 lg:top-1/2 lg:z-20 lg:mt-0 lg:w-auto lg:-translate-y-1/2 lg:flex-col lg:overflow-visible xl:left-full xl:right-auto xl:ml-3">
-            {mediaItems.map((media, index) => {
-              const isActive = index === activeIndex;
-              const label = mediaLabel(media);
-
-              return (
-                <div key={`${media.src}-${index}`} className="group relative size-[82px] shrink-0">
-                  <button
-                    type="button"
-                    onClick={() => setActiveIndex(index)}
-                    aria-label={`Afficher ${label}`}
-                    aria-current={isActive}
-                    className={clsx(
-                      "relative size-full overflow-hidden rounded-[10px] border border-dark-smooth bg-[rgb(53_69_128)] shadow-elevation-2 transition duration-200",
-                      "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary",
-                      isActive
-                        ? "ring-2 ring-primary ring-offset-2 ring-offset-canvas"
-                        : "hover:scale-[1.04] hover:ring-1 hover:ring-muted/60",
-                    )}
-                  >
-                    <DecisionMedia item={media} isThumbnail isAuthenticated={isAuthenticated} />
-                  </button>
-                  <span className="type-tooltip pointer-events-none absolute right-[calc(100%+12px)] top-1/2 z-30 hidden w-max max-w-[300px] -translate-y-1/2 rounded-[10px] border border-dark-smooth bg-dark/80 px-4 py-3 text-left text-muted opacity-0 shadow-elevation-2 backdrop-blur-md transition group-hover:opacity-100 group-focus-within:opacity-100 lg:block">
-                    {label}
-                  </span>
-                </div>
-              );
-            })}
-          </div>
-        )}
+        <p className="type-body-lg text-center text-smooth">{mediaLabel(activeMedia)}</p>
       </div>
 
       <div className="flex w-full flex-col items-stretch gap-8 rounded-bl-[20px] p-5 lg:flex-row lg:gap-0">

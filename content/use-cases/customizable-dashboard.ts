@@ -1,4 +1,4 @@
-import type { UseCase } from "@/content/use-cases/types";
+﻿import type { UseCase } from "@/content/use-cases/types";
 
 const en: UseCase = {
   title: "Personalized dashboard for solar households",
@@ -7,7 +7,10 @@ const en: UseCase = {
     "In 2018, our product helped households equipped with renewable energy monitor their energy.\n\nI personalized the dashboard based on their equipment, goals and level of understanding to make the value more visible.",
   challenge:
     "Make energy data useful to every household, whatever their equipment or level of understanding.",
-  roles: ["Principal Product Designer"],
+  roles: {
+    owned: ["Discovery", "UX design", "Visual design", "Prototyping", "User testing", "Delivery"],
+    contributed: [],
+  },
   year: "2018",
   timeline: "4 months",
   tools: ["Figma", "Notion", "Storybook", "Zeplin", "Illustrator"],
@@ -60,21 +63,21 @@ const en: UseCase = {
       {
         caption: "Households did not all have the same equipment level.",
         chart: {
-          type: "vertical-bars",
+          type: "bars",
           title: "Household energy profiles",
           bars: [
             { label: "Consumption\nonly", value: 34, color: "var(--color-primary)" },
-            { label: "Solar\nonly", value: 27, color: "#00fe33" },
-            { label: "Solar +\nbat.", value: 18, color: "#c3fe00" },
-            { label: "Solar +\nEV", value: 11, color: "#fef100" },
-            { label: "Solar +\nbat. + EV", value: 10, color: "#feba00" },
+            { label: "Solar\nonly", value: 27, color: "var(--color-chart-lime)" },
+            { label: "Solar +\nbat.", value: 18, color: "var(--color-chart-citron)" },
+            { label: "Solar +\nEV", value: 11, color: "var(--color-chart-yellow)" },
+            { label: "Solar +\nbat. + EV", value: 10, color: "var(--color-chart-amber)" },
           ],
         },
       },
       {
         caption: "The current dashboard did not hold attention well enough.",
         chart: {
-          type: "dual-progress",
+          type: "combined-kpi",
           rows: [
             {
               title: "Bounce rate",
@@ -97,9 +100,10 @@ const en: UseCase = {
         caption: "Interest dropped sharply after the first discovery.",
         chart: {
           type: "line",
+          title: "Retention over time",
           points: [
             { label: "D0", value: 100, color: "var(--color-primary)" },
-            { label: "D7", value: 26, color: "#00fe33" },
+            { label: "D7", value: 26, color: "var(--color-chart-lime)" },
             { label: "D30", value: 9, color: "var(--color-secondary)" },
           ],
         },
@@ -270,38 +274,17 @@ const en: UseCase = {
       },
     ],
     charts: [
+      { chart: { type: "before-after-bar", title: "D7 retention", before: { display: "26%", value: 26 }, after: { display: "34%", value: 34 } } },
+      { chart: { type: "before-after-bar", title: "D30 retention", before: { display: "09%", value: 9 }, after: { display: "17%", value: 17 } } },
+      { chart: { type: "before-after-bar", title: "Module interactions", before: { display: "22%", value: 22 }, after: { display: "34%", value: 34 } } },
       {
-        type: "bar",
-        title: "D7 retention",
-        before: { display: "26%", value: 26 },
-        after: { display: "34%", value: 34 },
-      },
-      {
-        type: "bar",
-        title: "D30 retention",
-        before: { display: "09%", value: 9 },
-        after: { display: "17%", value: 17 },
-      },
-      {
-        type: "bar",
-        title: "Module interactions",
-        before: { display: "22%", value: 22 },
-        after: { display: "34%", value: 34 },
-      },
-      {
-        type: "progress",
-        rows: [
-          {
-            label: "Bounce rate",
-            before: { display: "48%", percent: 48 },
-            after: { display: "42%", percent: 42 },
-          },
-          {
-            label: "Time on dashboard",
-            before: { display: "41 sec", percent: 41 },
-            after: { display: "54 sec", percent: 54 },
-          },
-        ],
+        chart: {
+          type: "before-after-combined-kpi",
+          rows: [
+            { label: "Bounce rate", before: { display: "48%", percent: 48 }, after: { display: "42%", percent: 42 } },
+            { label: "Time on dashboard", before: { display: "41 sec", percent: 41 }, after: { display: "54 sec", percent: 54 } },
+          ],
+        },
       },
     ],
   },
@@ -387,21 +370,21 @@ challenge:
   chartCards: [
       {caption: "Les foyers n’avaient pas tous le même niveau d’équipement.",
         chart: {
-          type: "vertical-bars",
+          type: "bars",
           title: "Profils énergétiques des foyers",
           bars: [
             { label: "Conso\nseule",         value: 34, color: "var(--color-primary)" },
-            { label: "Solaire\nseul",         value: 27, color: "#00fe33" },
-            { label: "Solaire +\nbat.",       value: 18, color: "#c3fe00" },
-            { label: "Solaire +\nEV",         value: 11, color: "#fef100" },
-            { label: "Solaire +\nbat. + EV",  value: 10, color: "#feba00" },
+            { label: "Solaire\nseul",         value: 27, color: "var(--color-chart-lime)" },
+            { label: "Solaire +\nbat.",       value: 18, color: "var(--color-chart-citron)" },
+            { label: "Solaire +\nEV",         value: 11, color: "var(--color-chart-yellow)" },
+            { label: "Solaire +\nbat. + EV",  value: 10, color: "var(--color-chart-amber)" },
           ],
         },
       },
       {
         caption: "Le dashboard actuel ne retenait pas assez l’attention",
         chart: {
-          type: "dual-progress",
+          type: "combined-kpi",
           rows: [
             {
               title: "Taux de rebond",
@@ -423,9 +406,10 @@ challenge:
       {caption: "L’intérêt chutait fortement après la première découverte",
         chart: {
           type: "line",
+          title: "Rétention dans le temps",
           points: [
             { label: "J0",  value: 100, color: "var(--color-primary)" },
-            { label: "J7",  value: 26,  color: "#00fe33" },
+            { label: "J7",  value: 26,  color: "var(--color-chart-lime)" },
             { label: "J30", value: 9,   color: "var(--color-secondary)" },
           ],
         },
@@ -615,37 +599,45 @@ impactSection: {
   ],
   charts: [
     {
-      type: "bar",
-      title: "Rétention J7",
-      before: { display: "26%", value: 26 },
-      after: { display: "34%", value: 34 },
+      chart: {
+        type: "before-after-bar",
+        title: "Rétention J7",
+        before: { display: "26%", value: 26 },
+        after: { display: "34%", value: 34 },
+      },
     },
     {
-      type: "bar",
-      title: "Rétention J30",
-      before: { display: "09%", value: 9 },
-      after: { display: "17%", value: 17 },
+      chart: {
+        type: "before-after-bar",
+        title: "Rétention J30",
+        before: { display: "09%", value: 9 },
+        after: { display: "17%", value: 17 },
+      },
     },
     {
-      type: "bar",
-      title: "Interactions modules",
-      before: { display: "22%", value: 22 },
-      after: { display: "34%", value: 34 },
+      chart: {
+        type: "before-after-bar",
+        title: "Interactions modules",
+        before: { display: "22%", value: 22 },
+        after: { display: "34%", value: 34 },
+      },
     },
     {
-      type: "progress",
-      rows: [
-        {
-          label: "Taux de rebond",
-          before: { display: "48%", percent: 48 },
-          after: { display: "42%", percent: 42 },
-        },
-        {
-          label: "Temps sur dashboard",
-          before: { display: "41 sec", percent: 41 },
-          after: { display: "54 sec", percent: 54 },
-        },
-      ],
+      chart: {
+        type: "before-after-combined-kpi",
+        rows: [
+          {
+            label: "Taux de rebond",
+            before: { display: "48%", percent: 48 },
+            after: { display: "42%", percent: 42 },
+          },
+          {
+            label: "Temps sur dashboard",
+            before: { display: "41 sec", percent: 41 },
+            after: { display: "54 sec", percent: 54 },
+          },
+        ],
+      },
     },
   ],
 },

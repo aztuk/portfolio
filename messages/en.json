@@ -40,6 +40,8 @@
     "moreWork": "More product work from the same portfolio system.",
     "challenge": "Challenge",
     "myRole": "My role",
+    "owned": "Owned",
+    "contributed": "Contributed",
     "year": "Year",
     "timeline": "Timeline",
     "tools": "Tools",
@@ -47,7 +49,8 @@
     "dontLabel": "DON'T",
     "doLabel": "BUT RATHER",
     "verbatim": "Verbatim",
-    "discoveryDone": "Discovery completed"
+    "discoveryDone": "Methodology",
+    "keyDecisionsCallout": "Check out the {count} key decisions I made"
   },
   "ui": {
     "lock": "Lock",

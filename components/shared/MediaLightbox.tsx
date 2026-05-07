@@ -140,7 +140,7 @@ export const MediaLightbox = ({
         </button>
       )}
 
-      <div className="flex max-w-full flex-col items-center gap-3 rounded-[30px] bg-dark/90 p-1.5 shadow-elevation-2 lg:gap-4 lg:bg-dark/80 lg:p-3" onClick={(e) => e.stopPropagation()}>
+      <div className="flex max-w-full flex-col items-center gap-3 lg:gap-4" onClick={(e) => e.stopPropagation()}>
         <div
           className={clsx(
             "relative overflow-hidden bg-dark shadow-elevation-2",

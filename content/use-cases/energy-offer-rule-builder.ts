@@ -8,7 +8,10 @@ const en: UseCase = {
     "In 2019, our platform helped energy suppliers manage their tariff offers.\n\nOffer teams wanted to create new tariffs without going through IT. I designed a visual editor to define rules and see their effect on the bill.",
   challenge:
     "Make offer creation simple enough for business teams, without losing the precision required for billing.",
-  roles: ["Lead Product Designer"],
+  roles: {
+    owned: ["UX architecture", "Visual design", "Prototyping"],
+    contributed: ["Discovery", "User testing", "Delivery"],
+  },
   year: "2019",
   timeline: "12 months",
   tools: ["Figma", "Notion", "Zeplin"],
@@ -61,9 +64,13 @@ const en: UseCase = {
     ],
     coreQuestion:
       "How can we turn an offer idea into understandable, configurable and verifiable tariff rules?",
+    artifact: {
+      type: "image",
+      src: "/assets/use-cases/energy-offer-rule-builder/Emp_RuleCreationAdvanced.png",
+      alt: "Advanced rule editor showing tariff logic as a technical expression over a blurred schedule interface.",
+    },
     discoverySignals: [
       "Business expert interviews",
-      "Rule modeling",
       "Workflow mapping",
       "Scenario testing",
       "Edge-case analysis",
@@ -71,48 +78,32 @@ const en: UseCase = {
     chartCards: [
       {
         caption:
-          "The scenarios analyzed combined several tariff logics.",
+          "Creating a new offer meant translating a business idea into technical logic",
         chart: {
-          type: "count-bars",
-          title: "Rule types present in offer scenarios",
-          subtitle: "Out of 12 studied",
+          type: "bars",
+          title: "Components of a tariff rule",
           bars: [
-            { label: "Schedules", value: 9, percent: 75, isPrimary: true },
-            { label: "Seasons", value: 7, percent: 58, isPrimary: false },
-            { label: "Thresholds", value: 6, percent: 50, isPrimary: false },
-            { label: "Indexation", value: 5, percent: 42, isPrimary: false },
-            { label: "Bundles", value: 3, percent: 25, isPrimary: false },
+            { label: "Application\nperiods", value: 34, color: "var(--color-primary)" },
+            { label: "Threshold\nconditions", value: 27, color: "var(--color-chart-lime)" },
+            { label: "Contract\ntypes", value: 22, color: "var(--color-chart-citron)" },
+            { label: "Special\nevents", value: 14, color: "var(--color-chart-yellow)" },
+            { label: "Customer\nexceptions", value: 9, color: "var(--color-chart-amber)" },
           ],
         },
       },
       {
         caption:
-          "The critical passage was the translation from offer to rules.",
+          "Offer teams needed to manipulate schedules, thresholds and conditions themselves",
         chart: {
-          type: "workflow-mapping",
-          title: "Workflow mapping",
-          steps: [
-            { label: "Define", detail: "target - period" },
-            { label: "Translate", detail: "rules - calculation" },
-            { label: "Verify", detail: "simulation - result" },
-            { label: "Bill", detail: "export - billing" },
-          ],
-          frictions: [
-            { label: "Business -> rule", startPercent: 12, widthPercent: 10 },
-            { label: "Effect hard to predict", startPercent: 53, widthPercent: 10 },
-          ],
-        },
-      },
-      {
-        caption:
-          "The team often abandoned complex offer ideas because they could not express them as clear rules.",
-        chart: {
-          type: "verbatim",
-          quote: "We struggle a lot to express the rules behind our offer ideas",
-          personaName: "Offer team",
-          color: "#00fe33",
-          methodology: "Business interviews",
+          type: "insight",
+          label: "Understand",
+          icon: "lightbulb",
+          insightTitle: "See when the rule applies",
+          insightDescription:
+            "Offer teams needed to manipulate schedules, thresholds and conditions themselves",
+          methodology: "Observed in business expert interviews",
           methodologyIcon: "clipboard-text",
+          color: "var(--color-chart-lime)",
         },
       },
     ],
@@ -274,40 +265,31 @@ const en: UseCase = {
     ],
     charts: [
       {
-        type: "duration-bars",
-        items: [
-          {
-            label: "Create a\nstandard offer",
-            before: { display: "2 wks", value: 20 },
-            after: { display: "< 1d", value: 5 },
-          },
-          {
-            label: "Adjust an\nexisting rule",
-            before: { display: "3d", value: 20 },
-            after: { display: "< 1h", value: 6 },
-          },
-          {
-            label: "Verify a bill\neffect",
-            before: { display: "3h", value: 20 },
-            after: { display: "20 min", value: 5 },
-          },
-        ],
-        caption:
-          "Tasks that depended on IT became configurable inside the tool.",
+        chart: {
+          type: "duration-bars",
+          items: [
+            { label: "Create a\nstandard offer", before: { display: "2 wks", value: 20 }, after: { display: "< 1d", value: 5 } },
+            { label: "Adjust an\nexisting rule", before: { display: "3d", value: 20 }, after: { display: "< 1h", value: 6 } },
+            { label: "Verify a bill\neffect", before: { display: "3h", value: 20 }, after: { display: "20 min", value: 5 } },
+          ],
+        },
+        caption: "Tasks that depended on IT became configurable inside the tool.",
       },
       {
-        type: "single-kpi",
-        value: "-60%",
-        title: "Specific requests",
-        description:
-          "Estimate on common scenarios that could be covered by configurable rules.",
+        chart: {
+          type: "single-kpi",
+          value: "-60%",
+          title: "Specific requests",
+          description: "Estimate on common scenarios that could be covered by configurable rules.",
+        },
       },
       {
-        type: "single-kpi",
-        value: "-70%",
-        title: "Implementation effort",
-        description:
-          "Estimate compared with a heavy evolution of the existing billing system.",
+        chart: {
+          type: "single-kpi",
+          value: "-70%",
+          title: "Implementation effort",
+          description: "Estimate compared with a heavy evolution of the existing billing system.",
+        },
       },
     ],
   },
@@ -389,9 +371,13 @@ const fr: UseCase = {
   },
 ],coreQuestion:
   "Comment transformer une idée d’offre en règles tarifaires compréhensibles, configurables et vérifiables ?",
+  artifact: {
+    type: "image",
+    src: "/assets/use-cases/energy-offer-rule-builder/Emp_RuleCreationAdvanced.png",
+    alt: "Éditeur avancé montrant une règle tarifaire sous forme d’expression technique au-dessus d’une interface de planning floutée.",
+  },
   discoverySignals: [
     "Entretiens experts métier",
-    "Modélisation des règles",
     "Mapping du workflow",
     "Tests de scénarios",
     "Analyse des cas limites",
@@ -399,50 +385,34 @@ const fr: UseCase = {
     chartCards: [
       {
   caption:
-    "Les scénarios analysés combinaient plusieurs logiques tarifaires",
+    "Créer une nouvelle offre demandait de traduire une idée métier en logique technique",
   chart: {
-    type: "count-bars",
-    title: "Types de règles présentes dans les scénarios d’offres",
-    subtitle: "Sur 12 étudiés",
-   bars: [
-  { label: "Horaires", value: 9, percent: 75, isPrimary: true },
-  { label: "Saisons", value: 7, percent: 58, isPrimary: false },
-  { label: "Seuils", value: 6, percent: 50, isPrimary: false },
-  { label: "Indexation", value: 5, percent: 42, isPrimary: false },
-  { label: "Bundles", value: 3, percent: 25, isPrimary: false },
-]
+    type: "bars",
+    title: "Composants d’une règle tarifaire",
+    bars: [
+      { label: "Périodes\nd’application", value: 34, color: "var(--color-primary)" },
+      { label: "Conditions\nde seuil", value: 27, color: "var(--color-chart-lime)" },
+      { label: "Types de\ncontrat", value: 22, color: "var(--color-chart-citron)" },
+      { label: "Évènements\nspéciaux", value: 14, color: "var(--color-chart-yellow)" },
+      { label: "Exceptions\nclient", value: 9, color: "var(--color-chart-amber)" },
+    ]
   },
 },
     {
       caption:
-        "Le passage critique était la traduction de l’offre en règles",
+        "Les équipes offres avaient besoin de manipuler elles-mêmes les horaires, seuils et conditions",
       chart: {
-        type: "workflow-mapping",
-        title: "Mapping du workflow",
-        steps: [
-          { label: "Définir", detail: "cible · période" },
-          { label: "Traduire", detail: "règles · calcul" },
-          { label: "Vérifier", detail: "simulation · résultat" },
-          { label: "Facturer", detail: "export · billing" },
-        ],
-        frictions: [
-          { label: "Métier → règle", startPercent: 12, widthPercent: 10 },
-          { label: "Effet difficile à prévoir", startPercent: 53, widthPercent: 10 },
-        ],
+        type: "insight",
+        label: "Comprendre",
+        icon: "lightbulb",
+        insightTitle: "Voir quand la règle s’applique",
+        insightDescription:
+          "Les équipes offres avaient besoin de manipuler elles-mêmes les horaires, seuils et conditions",
+        methodology: "Observés dans les entretiens experts métier",
+        methodologyIcon: "clipboard-text",
+        color: "var(--color-chart-lime)",
       },
     },
-    {
-  caption:
-    "L'équipe abandonnait souvent l’idée d’offres complexes faute de pouvoir les exprimer en règles claires",
-  chart: {
-    type: "verbatim",
-    quote: "On a beaucoup de mal à exprimer les règles de nos idées d’offres",
-    personaName: "Équipe offres",
-    color: "#00fe33",
-    methodology: "Entretiens métier",
-    methodologyIcon: "clipboard-text",
-  },
-},
   ],
   },
   solution: {
@@ -620,40 +590,45 @@ impactSection: {
   ],
   charts: [
     {
-      type: "duration-bars",
-      items: [
-        {
-          label: "Créer une offre\nstandard",
-          before: { display: "2 sem.", value: 20 },
-          after: { display: "< 1j", value: 5 },
-        },
-        {
-          label: "Ajuster une règle\nexistante",
-          before: { display: "3j", value: 20 },
-          after: { display: "< 1h", value: 6},
-        },
-        {
-          label: "Vérifier un effet\nsur facture",
-          before: { display: "3h", value: 20 },
-          after: { display: "20 min", value: 5 },
-        },
-      ],
-      caption:
-        "Les tâches dépendantes de l’IT devenaient configurables dans l’outil.",
+      chart: {
+        type: "duration-bars",
+        items: [
+          {
+            label: "Créer une offre\nstandard",
+            before: { display: "2 sem.", value: 20 },
+            after: { display: "< 1j", value: 5 },
+          },
+          {
+            label: "Ajuster une règle\nexistante",
+            before: { display: "3j", value: 20 },
+            after: { display: "< 1h", value: 6 },
+          },
+          {
+            label: "Vérifier un effet\nsur facture",
+            before: { display: "3h", value: 20 },
+            after: { display: "20 min", value: 5 },
+          },
+        ],
+      },
+      caption: "Les tâches dépendantes de l’IT devenaient configurables dans l’outil.",
     },
     {
-      type: "single-kpi",
-      value: "-60%",
-      title: "Demandes spécifiques",
-      description:
-        "Estimation sur les scénarios courants pouvant être couverts par les règles configurables.",
+      chart: {
+        type: "single-kpi",
+        value: "-60%",
+        title: "Demandes spécifiques",
+        description:
+          "Estimation sur les scénarios courants pouvant être couverts par les règles configurables.",
+      },
     },
     {
-      type: "single-kpi",
-      value: "-70%",
-      title: "Effort d’implémentation",
-      description:
-        "Estimation comparée à une évolution lourde du système de facturation existant.",
+      chart: {
+        type: "single-kpi",
+        value: "-70%",
+        title: "Effort d’implémentation",
+        description:
+          "Estimation comparée à une évolution lourde du système de facturation existant.",
+      },
     },
   ],
 },retrospective: {
