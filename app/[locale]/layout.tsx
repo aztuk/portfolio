@@ -4,6 +4,9 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 
+import { siteContent } from "@/content/site";
+import { siteUrl } from "@/lib/site-url";
+
 import "@/app/globals.css";
 
 import { routing } from "@/i18n/routing";
@@ -52,9 +55,28 @@ export const generateMetadata = async ({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "site" });
 
+  const title = t("seoTitle");
+  const description = t("seoDescription");
+
   return {
-    title: t("seoTitle"),
-    description: t("seoDescription"),
+    metadataBase: new URL(siteUrl),
+    title: {
+      default: title,
+      template: `%s — ${siteContent.name}`,
+    },
+    description,
+    openGraph: {
+      type: "website",
+      locale,
+      title,
+      description,
+      siteName: siteContent.name,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
   };
 };
 
