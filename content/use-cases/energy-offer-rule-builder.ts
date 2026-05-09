@@ -17,19 +17,25 @@ const en: UseCase = {
   tools: ["Figma", "Notion", "Zeplin"],
   tags: ["B2B", "Complex UX", "Rule Builder", "Energy", "Billing"],
   projectType: "mobile",
+  thumbnailTagTone: "canvas",
   previewImage: {
     type: "image",
     src: "/assets/use-cases/energy-offer-rule-builder/EN_empower_preview.png",
     alt: "Preview of the rule creation tool for energy offers.",
   },
   resultHero: {
-    type: "video",
-    src: "/assets/use-cases/energy-offer-rule-builder/EmpowerVideo.mp4",
-    poster: "/assets/use-cases/energy-offer-rule-builder/EN_empower_preview.png",
-    alt: "Key screens of the tool for creating and verifying complex energy offers.",
+    type: "image",
+    src: "/assets/use-cases/energy-offer-rule-builder/avantapres.png",
+    alt: "Before/after view showing the transition from technical rule configuration to a guided business interface for creating and verifying energy offers.",
   },
   tension: {
     title: "Understanding the problem",
+    artifact: {
+      type: "image",
+      src: "/assets/use-cases/energy-offer-rule-builder/before.png",
+      alt: "The existing workflow before the tool — offer teams relied on IT to translate each business idea into technical rules.",
+    },
+    artifactAspectRatio: "16/9",
     tensions: [
       {
         label: "For offer teams",
@@ -64,11 +70,6 @@ const en: UseCase = {
     ],
     coreQuestion:
       "How can we turn an offer idea into understandable, configurable and verifiable tariff rules?",
-    artifact: {
-      type: "image",
-      src: "/assets/use-cases/energy-offer-rule-builder/Emp_RuleCreationAdvanced.png",
-      alt: "Advanced rule editor showing tariff logic as a technical expression over a blurred schedule interface.",
-    },
     discoverySignals: [
       "Business expert interviews",
       "Workflow mapping",
@@ -118,6 +119,12 @@ const en: UseCase = {
           "Create a dedicated screen for each tariff logic, with simple fields for standard cases.",
         pros: ["Very easy to read", "Fast on simple cases"],
         cons: ["Not very flexible", "Too many variants"],
+        media: {
+          type: "image",
+          src: "/assets/use-cases/energy-offer-rule-builder/OPTION A.png",
+          alt: "Wireframe showing multiple forms dedicated to different offer types.",
+          caption: "Option A: multiply forms to keep each case simple.",
+        },
       },
       {
         id: "advanced-only",
@@ -126,6 +133,12 @@ const en: UseCase = {
           "Expose logic close to the rule engine to cover the most complex tariff scenarios.",
         pros: ["Very flexible", "Covers rare cases"],
         cons: ["Too technical", "Risk of errors"],
+        media: {
+          type: "image",
+          src: "/assets/use-cases/energy-offer-rule-builder/OPTION B.png",
+          alt: "Wireframe showing a single advanced editor for writing complex tariff rules.",
+          caption: "Option B: make everything possible, at the cost of high complexity.",
+        },
       },
       {
         id: "dual-level-editor",
@@ -134,6 +147,12 @@ const en: UseCase = {
           "Combine readable business blocks with an advanced mode for rules that go beyond common cases.",
         pros: ["Accessible to business teams", "Flexible when needed"],
         cons: ["Harder to design", "Model to explain"],
+        media: {
+          type: "image",
+          src: "/assets/use-cases/energy-offer-rule-builder/OPTION C.png",
+          alt: "Wireframe showing an editor combining a guided mode, an advanced mode and a rule application timeline.",
+          caption: "Option C: guide creation while making application periods visible.",
+        },
       },
     ],
     selectedSolutionId: "dual-level-editor",
@@ -177,7 +196,15 @@ const en: UseCase = {
           src: "/assets/use-cases/energy-offer-rule-builder/Emp_RuleCreationAdvanced.png",
           alt: "Two-level tariff editor combining a guided mode with business blocks and an advanced mode for complex rules.",
         },
-        gallery: [],
+        gallery: [
+          {
+            type: "video",
+            src: "/assets/use-cases/energy-offer-rule-builder/EmpowerVideo.mp4",
+            poster: "/assets/use-cases/energy-offer-rule-builder/EN_empower_preview.png",
+            alt: "Walkthrough of the key screens of the rule creation tool — from guided business blocks to advanced mode and bill verification.",
+            caption: "The tool covered the full flow: create a rule, see when it applies, verify its effect on the bill.",
+          },
+        ],
         avoidedCost: [
           "A tool that was too technical",
           "A form that was too rigid",
@@ -318,13 +345,28 @@ const en: UseCase = {
 
 const fr: UseCase = {
   title: "Créer des offres d’énergie complexes sans écrire de code",
+  
+  thumbnailTagTone: "canvas",
   slug: "energy-offer-rule-builder",
-  overview: "En 2019, notre plateforme aidait les fournisseurs d’énergie à gérer leurs offres tarifaires.\n \n Les équipes offres voulaient créer de nouveaux tarifs sans passer par l’IT. J’ai conçu un éditeur visuel pour définir les règles et voir leur effet sur la facture.",
+  overview:
+  "En 2019, notre plateforme aidait les fournisseurs d’énergie à créer et gérer leurs offres.\n\nAvant, une nouvelle idée d’offre devait souvent passer par l’IT pour être traduite en règles fiables. J’ai conçu une interface permettant aux équipes métier de <b>créer une offre</b>, voir <b>quand elle s’applique</b> et <b>vérifier son effet</b> sur la facture</b>.",
   challenge: "Rendre la création d’offres assez simple pour le métier, sans perdre la précision nécessaire à la facturation.",
-  roles: {
-    owned: ["Architecture UX", "Design visuel", "Prototypage"],
-    contributed: ["Discovery", "Tests utilisateurs", "Delivery"],
-  },
+roles: {
+  owned: [
+    "Discovery",
+    "Cadrage produit",
+    "Architecture UX",
+    "Logique de règles",
+    "Prototypage",
+    "Tests utilisateurs",
+  ],
+  contributed: [
+    "Langage de règles",
+    "Design delivery",
+    "Faisabilité technique",
+    "Workflow de facturation",
+  ],
+},
   year: "2019",
   timeline: "12 mois",
   tools: ["Figma", "Notion", "Zeplin"],
@@ -335,13 +377,18 @@ const fr: UseCase = {
     alt: "Aperçu de l’outil de création de règles pour offres d’énergie.",
   },
   resultHero: {
-    type: "video",
-    src: "/assets/use-cases/energy-offer-rule-builder/EmpowerVideo.mp4",
-    poster: "/assets/use-cases/energy-offer-rule-builder/FR_empower_preview.png",
-    alt: "Écrans clés de l’outil permettant de créer et vérifier des offres d’énergie complexes.",
+    type: "image",
+    src: "/assets/use-cases/energy-offer-rule-builder/avantapres.png",
+    alt: "Vue avant/après montrant le passage d’une configuration technique des règles à une interface métier guidée pour créer et vérifier des offres d’énergie.",
   },
   tension: {
      title: "Comprendre le problème",
+    artifact: {
+      type: "image",
+      src: "/assets/use-cases/energy-offer-rule-builder/before.png",
+      alt: "Le workflow existant avant l’outil — les équipes offres dépendaient de l’IT pour traduire chaque idée métier en règles techniques.",
+    },
+    artifactAspectRatio: "16/9",
   tensions: [
   {
     label: "Pour les équipes offres",
@@ -373,13 +420,9 @@ const fr: UseCase = {
       "Dépendance technique",
     ],
   },
-],coreQuestion:
-  "Comment transformer une idée d’offre en règles tarifaires compréhensibles, configurables et vérifiables ?",
-  artifact: {
-    type: "image",
-    src: "/assets/use-cases/energy-offer-rule-builder/Emp_RuleCreationAdvanced.png",
-    alt: "Éditeur avancé montrant une règle tarifaire sous forme d’expression technique au-dessus d’une interface de planning floutée.",
-  },
+],
+coreQuestion:
+  "Comment aider une équipe métier à transformer une idée d’offre en règles fiables et vérifiables ?",
   discoverySignals: [
     "Entretiens experts métier",
     "Mapping du workflow",
@@ -403,25 +446,25 @@ const fr: UseCase = {
   },
 },
     {
-      caption:
-        "Les équipes offres avaient besoin de manipuler elles-mêmes les horaires, seuils et conditions",
-      chart: {
-        type: "insight",
-        label: "Comprendre",
-        icon: "lightbulb",
-        insightTitle: "Voir quand la règle s’applique",
-        insightDescription:
-          "Les équipes offres avaient besoin de manipuler elles-mêmes les horaires, seuils et conditions",
-        methodology: "Observés dans les entretiens experts métier",
-        methodologyIcon: "clipboard-text",
-        color: "var(--color-chart-lime)",
-      },
-    },
+  caption:
+    "Le moment d’application était l’une des parties les plus difficiles à comprendre.",
+  chart: {
+    type: "insight",
+    label: "Temps",
+    icon: "calendar-dots",
+    insightTitle: "Quand la règle s’applique ?",
+    insightDescription:
+      "Les équipes devaient voir les périodes, horaires et exceptions avant de faire confiance à une règle.",
+    methodology: "Tests de scénarios",
+    methodologyIcon: "flask",
+    color: "var(--color-chart-lime)",
+  },
+},
   ],
   },
   solution: {
     title: "Exploration et solution",
-    exploredSolutions: [
+exploredSolutions: [
   {
     id: "dedicated-forms",
     title: "Un formulaire par offre",
@@ -435,6 +478,13 @@ const fr: UseCase = {
       "Peu flexible",
       "Trop de variantes",
     ],
+    media: {
+      type: "image",
+      src: "/assets/use-cases/energy-offer-rule-builder/OPTION A.png",
+      alt: "Mini-wireframe montrant plusieurs formulaires dédiés à différents types d’offres.",
+      caption:
+        "Option A : multiplier les formulaires pour garder chaque cas simple.",
+    },
   },
   {
     id: "advanced-only",
@@ -449,21 +499,35 @@ const fr: UseCase = {
       "Trop technique",
       "Risque d’erreurs",
     ],
+    media: {
+      type: "image",
+      src: "/assets/use-cases/energy-offer-rule-builder/OPTION B.png",
+      alt: "Mini-wireframe montrant un éditeur avancé unique pour écrire des règles tarifaires complexes.",
+      caption:
+        "Option B : tout rendre possible, mais au prix d’une forte complexité.",
+    },
   },
   {
-    id: "dual-level-editor",
-    title: "Un mode guidé et avancé",
-    summary:
-      "Combiner des briques métier lisibles avec un mode avancé pour les règles qui dépassent les cas courants.",
-    pros: [
-      "Accessible au métier",
-      "Flexible si besoin",
-    ],
-    cons: [
-      "Plus dur à concevoir",
-      "Modèle à expliquer",
-    ],
+  id: "dual-level-editor",
+  title: "Un mode guidé, avancé et temporel",
+  summary:
+    "Combiner des briques métier lisibles, un mode avancé pour les règles complexes et une timeline pour voir quand chaque règle s’applique.",
+  pros: [
+    "Accessible au métier",
+    "Périodes visibles",
+  ],
+  cons: [
+    "Plus dur à concevoir",
+    "Modèle à expliquer",
+  ],
+  media: {
+    type: "image",
+    src: "/assets/use-cases/energy-offer-rule-builder/OPTION C.png",
+    alt: "Mini-wireframe montrant un éditeur combinant mode guidé, mode avancé et timeline d’application des règles.",
+    caption:
+      "Option C : guider la création tout en rendant les périodes d’application visibles.",
   },
+},
 ],
 selectedSolutionId: "dual-level-editor",
 keyDecisions: [
@@ -472,7 +536,7 @@ keyDecisions: [
     eyebrow: "Productisation",
     title: "Rendre les règles configurables",
     summary:
-      "Au lieu de coder chaque nouvelle offre, nous avons rendu les règles créables depuis une interface métier.",
+      "Parce que chaque nouvelle offre ne pouvait pas rester dépendante d’un développement spécifique.",
     media: {
       type: "image",
       src: "/assets/use-cases/energy-offer-rule-builder/Emp_RuleCreation.png",
@@ -500,13 +564,27 @@ keyDecisions: [
     eyebrow: "Accessibilité",
     title: "Séparer guidé et avancé",
     summary:
-      "Les cas courants restaient simples, tandis que les experts gardaient une porte de sortie pour les règles complexes.",
+      "Parce qu’un outil seulement simple aurait été trop limité, et un outil seulement puissant trop difficile à utiliser.",
     media: {
       type: "image",
       src: "/assets/use-cases/energy-offer-rule-builder/Emp_RuleCreationAdvanced.png",
       alt: "Éditeur tarifaire à deux niveaux combinant un mode guidé en briques métier et un mode avancé pour les règles complexes.",
     },
-    gallery: [],
+    gallery: [
+      {
+        type: "image",
+        src: "/assets/use-cases/energy-offer-rule-builder/Emp_RuleCreationZoomed.png",
+        alt: "Interface guidée permettant de créer une règle tarifaire à partir de champs métier.",
+        caption: "Une règle pouvait être créée à partir de briques compréhensibles par le métier.",
+      },
+      {
+        type: "video",
+        src: "/assets/use-cases/energy-offer-rule-builder/EmpowerVideo.mp4",
+        poster: "/assets/use-cases/energy-offer-rule-builder/FR_empower_preview.png",
+        alt: "Parcours des écrans clés de l’outil de création de règles — des briques métier guidées au mode avancé et à la vérification de la facture.",
+        caption: "L’outil couvrait le flux complet : créer une règle, voir quand elle s’applique, vérifier son effet sur la facture.",
+      },
+    ],
     avoidedCost: [
       "Un outil trop technique",
       "Un formulaire trop rigide",
@@ -521,7 +599,7 @@ keyDecisions: [
     eyebrow: "Temps",
     title: "Mettre le temps au centre",
     summary:
-      "Les règles dépendaient de dates, saisons ou horaires ; leur application devait donc devenir visible dans le temps.",
+      "Parce qu’une règle d’offre n’avait de sens que si l’équipe voyait clairement quand elle s’appliquait.",
     media: {
       type: "image",
       src: "/assets/use-cases/energy-offer-rule-builder/Emp_Timeline.png",
@@ -549,7 +627,7 @@ keyDecisions: [
     eyebrow: "Confiance",
     title: "Vérifier avant facturation",
     summary:
-      "Les équipes devaient voir ce qu’une règle produisait avant son arrivée dans le système de facturation.",
+      "Parce qu’une erreur de règle devenait coûteuse si elle n’était découverte qu’au moment de la facture.",
     media: {
       type: "image",
       src: "/assets/use-cases/energy-offer-rule-builder/FR_Emp_BillSimulation.png",
@@ -572,24 +650,24 @@ keyDecisions: [
       "Expliquer les résultats générés",
     ],
   },
-],
+] 
   },
 impactSection: {
   title: "Les impacts",
   summary:
-    "L’outil a rendu les offres plus rapides à créer, plus faciles à vérifier et moins dépendantes du développement spécifique.",
+    "L’outil a rendu les offres plus rapides à créer, plus faciles à tester et vérifiables avant facturation.",
   bullets: [
     {
       bold: "Les équipes offres gagnaient en autonomie",
-      regular: "les cas courants devenaient configurables dans une interface métier",
+      regular: "les cas courants devenaient configurables sans développement spécifique",
     },
     {
-      bold: "Les nouvelles offres devenaient plus rapides à tester",
-      regular: "moins d’allers-retours avec l’IT pour chaque variante",
+      bold: "Les variantes devenaient plus rapides à tester",
+      regular: "moins d’allers-retours avec l’IT pour ajuster une règle",
     },
     {
-      bold: "Les règles devenaient vérifiables avant facturation",
-      regular: "simulation, aperçu facture et contrôle des résultats générés",
+      bold: "Les effets sur facture devenaient vérifiables",
+      regular: "les règles pouvaient être contrôlées avant d’arriver dans la facturation",
     },
   ],
   charts: [
@@ -600,39 +678,31 @@ impactSection: {
         items: [
           {
             label: "Créer une offre\nstandard",
-            before: { display: "2 sem.", value: 20 },
-            after: { display: "< 1j", value: 5 },
+            before: { display: "2 sem.", value: 10 },
+            after: { display: "< 1j", value: 1 },
           },
           {
             label: "Ajuster une règle\nexistante",
-            before: { display: "3j", value: 20 },
-            after: { display: "< 1h", value: 6 },
+            before: { display: "3j", value: 3 },
+            after: { display: "< 1h", value: 0.15 },
           },
           {
             label: "Vérifier un effet\nsur facture",
-            before: { display: "3h", value: 20 },
-            after: { display: "20 min", value: 5 },
+            before: { display: "3h", value: 3 },
+            after: { display: "20 min", value: 0.33 },
           },
         ],
       },
-      caption: "Les tâches dépendantes de l’IT devenaient configurables dans l’outil.",
+      caption:
+        "Les mêmes tâches devenaient plus rapides une fois configurables dans l’outil.",
     },
     {
       chart: {
         type: "single-kpi",
         value: "-60%",
-        title: "Demandes spécifiques",
+        title: "Demandes spécifiques IT",
         description:
-          "Estimation sur les scénarios courants pouvant être couverts par les règles configurables.",
-      },
-    },
-    {
-      chart: {
-        type: "single-kpi",
-        value: "-70%",
-        title: "Effort d’implémentation",
-        description:
-          "Estimation comparée à une évolution lourde du système de facturation existant.",
+          "Estimation sur les scénarios courants couverts par des règles configurables.",
       },
     },
   ],

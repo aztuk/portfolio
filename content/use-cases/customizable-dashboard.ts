@@ -28,6 +28,7 @@ const en: UseCase = {
   tools: ["Figma", "Notion", "Storybook", "Zeplin", "Illustrator"],
   tags: ["B2B2C", "Web & Mobile", "White label", "flagship product", "E2E ownership"],
   projectType: "mobile et web",
+  thumbnailTagTone: "canvas",
   previewImage: {
     type: "image",
     src: "/assets/use-cases/customizable-dashboard/EN_dashboard_preview.png",
@@ -404,6 +405,7 @@ roles: {
   tools: ["Figma", "Notion", "Storybook", "Zeplin", "Illustrator"],
   tags: ["B2B2C", "Web & Mobile", "White label", "flagship product", "E2E ownership"],
   projectType: "mobile et web",
+  thumbnailTagTone: "canvas",
   previewImage: {
     type: "image",
     src: "/assets/use-cases/customizable-dashboard/FR_dashboard_preview.png",

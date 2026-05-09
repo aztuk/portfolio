@@ -3,13 +3,11 @@ import { Space_Grotesk, Teko, Tektur, Special_Elite } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { cookies } from "next/headers";
 
 import "@/app/globals.css";
 
 import { routing } from "@/i18n/routing";
 import { HomeButton } from "@/components/shared/HomeButton";
-import { LogoutButton } from "@/components/shared/LogoutButton";
 import { ThemeDiagnostics } from "@/components/shared/ThemeDiagnostics";
 import { LocaleSwitcher } from "@/components/shared/LocaleSwitcher";
 import { ThemeRgbSync } from "@/components/shared/ThemeRgbSync";
@@ -68,7 +66,6 @@ const LocaleLayout = async ({ children, params }: LocaleLayoutProps) => {
   }
 
   const messages = await getMessages();
-  const isAuthenticated = (await cookies()).get("portfolio_auth")?.value === "1";
 
   return (
     <html lang={locale} suppressHydrationWarning>
@@ -80,7 +77,6 @@ const LocaleLayout = async ({ children, params }: LocaleLayoutProps) => {
           <NoiseOverlay />
           <HomeButton />
           <LocaleSwitcher />
-          <LogoutButton isAuthenticated={isAuthenticated} />
           <div className="relative z-10">{children}</div>
         </NextIntlClientProvider>
       </body>

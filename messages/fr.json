@@ -1,6 +1,6 @@
 {
   "site": {
-    "role": "Lead Product Designer",
+    "role": "Product Designer",
     "heroLabel": "Disponible pour de nouveaux projets",
     "intro": "Je conçois de la clarté là où les produits deviennent complexes",
     "heroDescription": "Un portfolio épuré pour un travail produit end-to-end, de la discovery à l'adoption en passant par la structure et la livraison.",
@@ -10,6 +10,18 @@
   "home": {
     "viewWork": "Derniers travaux →",
     "getInTouch": "Me contacter"
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Parlez-moi de ce que vous construisez.",
+    "description": "Pour du product design, un design system, une interface IA ou un workflow complexe qui a besoin de clarte.",
+    "name": "Nom",
+    "email": "Email",
+    "message": "Message",
+    "submit": "Envoyer",
+    "sending": "Envoi...",
+    "success": "Message envoye. Merci, je vous repondrai rapidement.",
+    "error": "Un probleme est survenu. Reessayez ou envoyez-moi un email directement."
   },
   "navigation": {
     "backHome": "Back",

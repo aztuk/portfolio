@@ -100,7 +100,7 @@ export const TensionSection = async ({ tension, id }: TensionSectionProps) => {
         <h2 className="type-section-title text-muted">{tension.title}</h2>
 
         {beforeImage ? (
-          <TensionBeforeImage item={beforeImage} label={t("before")} />
+          <TensionBeforeImage item={beforeImage} label={t("before")} aspectRatio={tension.artifactAspectRatio} />
         ) : null}
 
         {tension.chartCards && tension.chartCards.length > 0 ? (

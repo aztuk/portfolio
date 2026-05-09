@@ -24,6 +24,7 @@ const en: UseCase = {
   tools: ["Figma", "Notion", "Zeplin"],
   tags: ["B2B", "Energy", "Data Visualization", "Simulation", "Trading"],
   projectType: "mobile",
+  thumbnailTagTone: "white",
   previewImage: {
     type: "image",
     src: "/assets/use-cases/cluster/EN_cluster_preview.png",

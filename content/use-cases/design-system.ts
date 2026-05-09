@@ -28,6 +28,7 @@ const en: UseCase = {
   tools: ["Figma", "Notion", "Storybook", "Jira", "Flutter"],
   tags: ["B2E", "Web & Mobile", "Governance", "Product Ops"],
   projectType: "mobile et web",
+  thumbnailTagTone: "white",
   previewImage: {
     type: "image",
     src: "/assets/use-cases/design-system/EN_designsystem_preview.png",
@@ -434,6 +435,7 @@ const fr: UseCase = {
   tools: ["Figma", "Notion", "Storybook", "Jira", "Flutter"],
   tags: ["B2E", "Web & Mobile", "Governance", "Product Ops"],
   projectType: "mobile et web",
+  thumbnailTagTone: "white",
   previewImage: {
     type: "image",
     src: "/assets/use-cases/design-system/FR_designsystem_preview.png",

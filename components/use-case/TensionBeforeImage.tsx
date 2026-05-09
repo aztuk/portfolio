@@ -9,11 +9,13 @@ import type { ImageAsset } from "@/content/use-cases/types";
 type TensionBeforeImageProps = {
   item: ImageAsset;
   label: string;
+  aspectRatio?: string;
 };
 
 export const TensionBeforeImage = ({
   item,
   label,
+  aspectRatio,
 }: TensionBeforeImageProps) => {
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
@@ -27,12 +29,15 @@ export const TensionBeforeImage = ({
             className="group relative block w-full cursor-zoom-in overflow-visible rounded-[24px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary lg:rounded-[40px]"
             aria-label={item.alt}
           >
-            <span className="relative block aspect-[8/5] w-full overflow-hidden rounded-[24px] border border-dark-smooth bg-[rgb(53_69_128/31%)] shadow-elevation-2 backdrop-blur-md lg:rounded-[40px]">
+            <span
+              className="relative block w-full overflow-hidden rounded-[24px] border border-dark-smooth bg-[rgb(53_69_128/31%)] shadow-elevation-2 backdrop-blur-md lg:rounded-[40px]"
+              style={{ aspectRatio: aspectRatio ?? "8/5" }}
+            >
               <Image
                 src={item.src}
                 alt={item.alt}
                 fill
-                className="object-cover transition-transform duration-300 group-hover:scale-[1.015]"
+                className={`${aspectRatio ? "object-contain" : "object-cover"} transition-transform duration-300 group-hover:scale-[1.015]`}
                 sizes="(min-width: 1280px) 1000px, (min-width: 1024px) 84vw, 100vw"
               />
             </span>

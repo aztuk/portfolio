@@ -5,6 +5,7 @@ import clsx from "clsx";
 import { useTranslations } from "next-intl";
 import { ArrowLeftIcon } from "@phosphor-icons/react";
 
+import { LocaleSwitcher } from "@/components/shared/LocaleSwitcher";
 import { Link } from "@/i18n/navigation";
 
 export type UseCaseTableOfContentsItem = {
@@ -72,7 +73,7 @@ export const UseCaseTableOfContents = ({
   return (
     <aside
       className={clsx(
-        "use-case-toc-rail sticky top-28 z-30 w-[60px] self-start min-[2000px]:w-[200px]",
+        "use-case-toc-rail sticky top-28 z-30 mt-[max(7rem,calc(50svh-190px))] w-[60px] self-start min-[2000px]:w-[200px]",
         className,
       )}
       data-toc-rail
@@ -130,6 +131,9 @@ export const UseCaseTableOfContents = ({
             );
           })}
         </ol>
+        <div className="mt-8 flex justify-center min-[2000px]:justify-end min-[2000px]:pr-6">
+          <LocaleSwitcher variant="inline" />
+        </div>
       </nav>
     </aside>
   );

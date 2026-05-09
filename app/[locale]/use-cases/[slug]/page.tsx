@@ -89,9 +89,8 @@ const UseCasePage = async ({ params }: UseCasePageProps) => {
 
   return (
     <PageTransition>
-      <UseCaseHero useCase={useCase} />
       <div
-        className="mx-auto grid w-full max-w-[1200px] grid-cols-1 px-3 sm:px-5 xl:px-0"
+        className="mx-auto grid w-full max-w-[1200px] grid-cols-1"
         data-use-case-shell
       >
         <UseCaseTableOfContents
@@ -99,33 +98,36 @@ const UseCasePage = async ({ params }: UseCasePageProps) => {
           className="col-start-1 row-start-1 hidden xl:block"
         />
         <div className="col-start-1 row-start-1 min-w-0" data-use-case-content>
-          <MetaInfo id="use-case-context" useCase={useCase} />
-          {safeResultHero && (
-            <UseCaseResultHero
-              id="use-case-result"
-              asset={safeResultHero}
+          <UseCaseHero useCase={useCase} />
+          <div className="px-3 sm:px-5 xl:px-0">
+            <MetaInfo id="use-case-context" useCase={useCase} />
+            {safeResultHero && (
+              <UseCaseResultHero
+                id="use-case-result"
+                asset={safeResultHero}
+                isAuthenticated={isAuthenticated}
+              />
+            )}
+            <TensionSection id="use-case-tension" tension={useCase.tension} />
+            <SolutionSection
+              id="use-case-solution"
+              solution={useCase.solution}
               isAuthenticated={isAuthenticated}
             />
-          )}
-          <TensionSection id="use-case-tension" tension={useCase.tension} />
-          <SolutionSection
-            id="use-case-solution"
-            solution={useCase.solution}
-            isAuthenticated={isAuthenticated}
-          />
-          {useCase.impactSection && (
-            <ImpactSection
-              id="use-case-impact"
-              impactSection={useCase.impactSection}
-            />
-          )}
-          {useCase.retrospective && (
-            <RetrospectiveSection
-              id="use-case-retrospective"
-              retrospective={useCase.retrospective}
-            />
-          )}
-          <RelatedProjects useCases={relatedUseCases} />
+            {useCase.impactSection && (
+              <ImpactSection
+                id="use-case-impact"
+                impactSection={useCase.impactSection}
+              />
+            )}
+            {useCase.retrospective && (
+              <RetrospectiveSection
+                id="use-case-retrospective"
+                retrospective={useCase.retrospective}
+              />
+            )}
+            <RelatedProjects useCases={relatedUseCases} />
+          </div>
         </div>
       </div>
     </PageTransition>

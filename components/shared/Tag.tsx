@@ -5,12 +5,14 @@ type TagProps = {
   label: string;
   className?: string;
   prefix?: ReactNode;
-  tone?: "default" | "success";
+  tone?: "default" | "success" | "white" | "canvas";
 };
 
 const toneClasses = {
   default: "border-white/10 bg-white/[0.06] text-ink",
   success: "border-green/25 bg-green/10 text-green/85",
+  white: "border-white/10 bg-white/[0.06] text-ink",
+  canvas: "border-transparent bg-canvas text-ink",
 } satisfies Record<NonNullable<TagProps["tone"]>, string>;
 
 export const Tag = ({ label, className, prefix, tone = "default" }: TagProps) => {

@@ -1,3 +1,4 @@
+import { ContactSection } from "@/components/home/ContactSection";
 import { HomeHero } from "@/components/home/HomeHero";
 import { UseCaseGrid } from "@/components/home/UseCaseGrid";
 import { PageTransition } from "@/components/shared/PageTransition";
@@ -15,6 +16,7 @@ const HomePage = async ({ params }: HomePageProps) => {
     <PageTransition>
       <HomeHero />
       <UseCaseGrid useCases={useCases} />
+      <ContactSection />
     </PageTransition>
   );
 };

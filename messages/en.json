@@ -1,6 +1,6 @@
 {
   "site": {
-    "role": "Lead Product Designer",
+    "role": "Product Designer",
     "heroLabel": "Currently open for work",
     "intro": "I design clarity where products become complex",
     "heroDescription": "A minimal portfolio for end-to-end product work, from discovery and structure to delivery and adoption.",
@@ -10,6 +10,18 @@
   "home": {
     "viewWork": "View work →",
     "getInTouch": "Get in touch"
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Tell me what you are building.",
+    "description": "For product design, design systems, AI interfaces, or a complex workflow that needs clearer shape.",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "submit": "Send message",
+    "sending": "Sending...",
+    "success": "Message sent. Thanks, I will get back to you soon.",
+    "error": "Something went wrong. Please try again or email me directly."
   },
   "navigation": {
     "backHome": "Back home",

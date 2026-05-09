@@ -58,14 +58,13 @@ const MediaLightboxMedia = ({
     return <FigmaEmbed item={item} showPageNavigation />;
   }
 
-  const isMobile = formatOf(item) === "mobile";
   return (
     <Image
       src={item.src}
       alt={item.alt}
-      fill
-      className="object-contain"
-      sizes={isMobile ? "min(85vh * 9/19, 700px * 9/19)" : "min(90vw, 1100px)"}
+      width={2400}
+      height={2400}
+      className="block h-auto w-auto max-h-[85svh] max-w-[calc(100vw-1.5rem)]"
       priority
       unoptimized
     />
@@ -96,6 +95,7 @@ export const MediaLightbox = ({
   const fmt = formatOf(item);
   const aKey = aspectKey(item);
   const isMobile = fmt === "mobile";
+  const isImage = item.type === "image";
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -145,7 +145,7 @@ export const MediaLightbox = ({
           className={clsx(
             "relative overflow-hidden bg-dark shadow-elevation-2",
             isMobile ? "rounded-[40px]" : "rounded-[32px]",
-            LIGHTBOX_CLASS[aKey],
+            !isImage && LIGHTBOX_CLASS[aKey],
           )}
         >
           <MediaLightboxMedia item={item} isAuthenticated={isAuthenticated} />

@@ -13,7 +13,7 @@
 
   .type-hero-title {
     font-family: var(--font-display), sans-serif;
-    font-size: 120px;
+    font-size: 90px;
     font-weight: 500;
     line-height: 1;
     letter-spacing: -3px;
@@ -574,7 +574,7 @@
 
   @media (min-width: 640px) and (max-width: 1023.98px) {
     .type-hero-title {
-      font-size: 96px;
+      font-size: 90px;
     }
 
     .type-page-title {
@@ -812,6 +812,21 @@ video {
   .animate-blob-1,
   .animate-blob-2,
   .animate-blob-3 {
+    animation: none;
+  }
+}
+
+@keyframes hero-visual-float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-14px); }
+}
+
+.animate-hero-visual-float {
+  animation: hero-visual-float 4.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-visual-float {
     animation: none;
   }
 }

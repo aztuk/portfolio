@@ -229,6 +229,7 @@ export type TensionSectionData = {
   artifacts?: ImageAsset[];
   artifact?: ImageAsset;
   artifactCaption?: string;
+  artifactAspectRatio?: string;
   chartCards?: ChartCardData[];
 };
 
@@ -287,6 +288,8 @@ export type ImpactSectionData = {
   charts: ChartCardData[];
 };
 
+export type ThumbnailTagTone = "white" | "canvas";
+
 export type UseCase = {
   title: string;
   slug: string;
@@ -302,6 +305,7 @@ export type UseCase = {
   previewImage: ImageAsset;
   previewVideo?: VideoAsset;
   previewRatio?: string;
+  thumbnailTagTone?: ThumbnailTagTone;
   resultHero?: GalleryItem;
   resultHeroLabel?: string;
   tension: TensionSectionData;

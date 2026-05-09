@@ -137,6 +137,19 @@ export const heroConfig = {
     waveDecay: 0.95,
   },
 
+  // ─── Hero visual (floating image) ───────────────────────────────────────
+
+  heroVisual: {
+    /** Mouse ease — how fast the tilt tracks the cursor (0 = frozen, 1 = instant) */
+    mouseEase: 0.06,
+
+    /** CSS perspective distance in px applied to the parent */
+    perspective: 900,
+
+    /** Max rotation in degrees at full cursor travel */
+    maxDeg: 7,
+  },
+
   field: {
     /** Radius of the mouse-driven light pool in px */
     lightRadius: 200,
