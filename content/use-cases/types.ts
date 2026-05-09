@@ -303,6 +303,7 @@ export type UseCase = {
   previewVideo?: VideoAsset;
   previewRatio?: string;
   resultHero?: GalleryItem;
+  resultHeroLabel?: string;
   tension: TensionSectionData;
   solution: SolutionSectionData;
   impactSection?: ImpactSectionData;

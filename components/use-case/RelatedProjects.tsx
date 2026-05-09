@@ -3,7 +3,6 @@ import { getTranslations } from "next-intl/server";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { MobileCarousel } from "@/components/shared/MobileCarousel";
-import { HighlightedText } from "@/components/shared/HighlightedText";
 import { PreviewMedia } from "@/components/shared/PreviewMedia";
 import { Tag } from "@/components/shared/Tag";
 import type { UseCase } from "@/content/use-cases/types";
@@ -43,10 +42,6 @@ const RelatedProjectCard = ({ useCase }: { useCase: UseCase }) => {
         <h3 className="type-project-title-medium max-w-[380px] text-center text-muted">
           {useCase.title}
         </h3>
-        <p className="type-body-md max-w-[380px] whitespace-pre-line text-center text-smooth">
-          <HighlightedText text={useCase.overview} />
-        </p>
-
         {useCase.tags.length > 0 && (
           <div className="flex w-full flex-wrap items-center justify-center gap-[4px] pt-[26px]">
             {useCase.tags.slice(0, 4).map((tag) => (

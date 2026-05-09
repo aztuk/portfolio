@@ -1,7 +1,7 @@
 import { getAllUseCases, getUseCaseBySlug } from "@/content/use-cases";
 import type { GalleryItem, ProjectType, UseCase } from "@/content/use-cases/types";
 
-const RELATED_USE_CASE_LIMIT = 3;
+const RELATED_USE_CASE_LIMIT = 2;
 
 export const sortUseCasesByYear = (useCases: UseCase[]): UseCase[] =>
   [...useCases].sort((left, right) => Number(right.year) - Number(left.year));

@@ -1,15 +1,27 @@
 ﻿import type { UseCase } from "@/content/use-cases/types";
 
 const en: UseCase = {
-  title: "Personalized dashboard for solar households",
+  title: "Personalize an energy dashboard",
   slug: "customizable-dashboard",
   overview:
-    "In 2018, our product helped households equipped with renewable energy monitor their energy.\n\nI personalized the dashboard based on their equipment, goals and level of understanding to make the value more visible.",
+    "In 2018, our product helped households equipped with solar, batteries or electric vehicles monitor their energy.\n\nI replaced a <b>single, generic dashboard</b> with a <b>personalized experience</b> based on the household profile, to make the data more useful and the value more visible.",
   challenge:
     "Make energy data useful to every household, whatever their equipment or level of understanding.",
   roles: {
-    owned: ["Discovery", "UX design", "Visual design", "Prototyping", "User testing", "Delivery"],
-    contributed: [],
+    owned: [
+      "Discovery",
+      "Product framing",
+      "UX architecture",
+      "Interaction design",
+      "Prototyping",
+      "User testing",
+      "Design delivery",
+    ],
+    contributed: [
+      "Analytics review",
+      "Business positioning",
+      "White-label constraints",
+    ],
   },
   year: "2018",
   timeline: "4 months",
@@ -26,8 +38,14 @@ const en: UseCase = {
     src: "/assets/use-cases/customizable-dashboard/dashboard_hero.png",
     alt: "Personalized dashboard - overview of the key screens.",
   },
+  resultHeroLabel: "Result",
   tension: {
     title: "Understanding the problem",
+    artifact: {
+      type: "image",
+      src: "/assets/use-cases/customizable-dashboard/EN_Before.png",
+      alt: "The existing dashboard before personalization — same layout shown to all households regardless of equipment or goals.",
+    },
     tensions: [
       {
         label: "For users",
@@ -42,9 +60,9 @@ const en: UseCase = {
       {
         label: "For the business",
         value:
-          "The product value was hard to demonstrate if the dashboard felt too generic or too technical.",
+          "The product value became hard to demonstrate with a dashboard that was too generic or too technical.",
         bullets: [
-          "Value not visible enough",
+          "Value barely visible",
           "Limited engagement",
           "Difficult differentiation",
         ],
@@ -75,7 +93,7 @@ const en: UseCase = {
         },
       },
       {
-        caption: "The current dashboard did not hold attention well enough.",
+        caption: "The single dashboard did not hold attention well enough.",
         chart: {
           type: "combined-kpi",
           rows: [
@@ -133,6 +151,12 @@ const en: UseCase = {
           "Create dedicated sections: save money, understand consumption and track production.",
         pros: ["User language", "Goals more visible"],
         cons: ["Fragmented overview", "Not very suited to hybrid profiles"],
+        media: {
+          type: "image",
+          src: "/assets/use-cases/customizable-dashboard/OPTION A.png",
+          alt: "Wireframe of a dashboard organized by user needs: save money, understand consumption and track production.",
+          caption: "Option A: organize the dashboard around user intentions.",
+        },
       },
       {
         id: "profile-dashboard",
@@ -141,6 +165,12 @@ const en: UseCase = {
           "Generate a dashboard adapted to the household's equipment, goals and level of understanding.",
         pros: ["Immediate value", "Needs better targeted"],
         cons: ["Sensitive configuration", "Personalization to justify"],
+        media: {
+          type: "image",
+          src: "/assets/use-cases/customizable-dashboard/OPTION B.png",
+          alt: "Wireframe showing a household profile generating a personalized dashboard.",
+          caption: "Option B: use the household profile to generate a useful dashboard from the first visit.",
+        },
       },
       {
         id: "contextual-learning",
@@ -149,6 +179,12 @@ const en: UseCase = {
           "Keep one view, but progressively reveal the explanations and indicators that are useful.",
         pros: ["Less costly", "Improves understanding"],
         cons: ["Limited personalization", "Problem less targeted"],
+        media: {
+          type: "image",
+          src: "/assets/use-cases/customizable-dashboard/OPTION C.png",
+          alt: "Wireframe of a single dashboard view with progressive levels of explanation.",
+          caption: "Option C: keep a shared view and add progressive pedagogy.",
+        },
       },
     ],
     selectedSolutionId: "profile-dashboard",
@@ -158,7 +194,7 @@ const en: UseCase = {
         eyebrow: "Personalization",
         title: "Adapt the dashboard to the household",
         summary:
-          "The dashboard had to reflect the household's equipment, goals and level of understanding.",
+          "Because the same dashboard could not be useful to households with different equipment, motivations and levels of understanding.",
         media: {
           type: "image",
           src: "/assets/use-cases/customizable-dashboard/household_generated_profile.png",
@@ -173,21 +209,21 @@ const en: UseCase = {
           },
           {
             type: "figma",
-            src: "https://www.figma.com/proto/gUTv202uYQooOVed5IXOPT/Portfolio-%E2%80%94-Design-Reference?node-id=196-4197&viewport=285%2C928%2C0.11&t=JxcNWhKBZJ0kL01V-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=196%3A4197&show-proto-sidebar=0&page-id=18%3A38",
+            src: "https://www.figma.com/proto/gUTv202uYQooOVed5IXOPT/Portfolio-%E2%80%94-Design-Reference?node-id=865-11930&viewport=-2073%2C860%2C0.18&t=IsFhSH1PHI1VYnPG-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=865%3A12243&page-id=1%3A2",
             title: "Progressive reveal",
             caption: "Indicators became more detailed depending on the level of understanding.",
             mode: "file",
             format: "web",
-            protected: true,
+            protected: false,
             disableInteraction: true,
           },
         ],
         avoidedCost: [
-          "A dashboard that was too generic",
+          "A view that was too generic",
           "Modules that were not very useful",
         ],
         acceptedCost: [
-          "A more substantial onboarding",
+          "A profile to explain",
           "Variants to maintain",
         ],
       },
@@ -196,7 +232,7 @@ const en: UseCase = {
         eyebrow: "Control",
         title: "Let users adjust it",
         summary:
-          "The generated dashboard served as a starting point, but remained editable by the user.",
+          "Because an initial profile could help at the start, but should not lock users into a frozen configuration.",
         media: {
           type: "image",
           src: "/assets/use-cases/customizable-dashboard/dashboard_edit_mode.png",
@@ -234,13 +270,13 @@ const en: UseCase = {
       },
       {
         id: "energy-translation",
-        eyebrow: "Education",
+        eyebrow: "Pedagogy",
         title: "Translate energy data",
         summary:
-          "Technical data had to become understandable and actionable messages.",
+          "Because households were not looking for raw data, but for a clear explanation of their consumption and savings.",
         media: {
           type: "image",
-          src: "/assets/use-cases/customizable-dashboard/raw_to_meaningul.png",
+          src: "/assets/use-cases/customizable-dashboard/raw_to_meaningful.png",
           alt: "Transformation of raw energy data into understandable messages for the user.",
         },
         gallery: [],
@@ -258,33 +294,62 @@ const en: UseCase = {
   impactSection: {
     title: "The impacts",
     summary:
-      "Personalization improved engagement, comprehension and retention signals.",
+      "Personalization improved the dashboard's key signals: initial attention, retention and perceived value.",
     bullets: [
       {
         bold: "The first visit became more relevant",
-        regular: "lower bounce and more time spent on the dashboard",
-      },
-      {
-        bold: "Value was better perceived",
-        regular: "modules related to savings were consulted more often",
+        regular: "with lower bounce and more time spent on the dashboard",
       },
       {
         bold: "Interest held better after discovery",
-        regular: "D7 and D30 retention increased on personalized profiles",
+        regular: "with D7 and D30 retention increasing on personalized profiles",
+      },
+      {
+        bold: "Value was better perceived",
+        regular: "with savings-related modules consulted more often",
       },
     ],
     charts: [
-      { chart: { type: "before-after-bar", title: "D7 retention", before: { display: "26%", value: 26 }, after: { display: "34%", value: 34 } } },
-      { chart: { type: "before-after-bar", title: "D30 retention", before: { display: "09%", value: 9 }, after: { display: "17%", value: 17 } } },
-      { chart: { type: "before-after-bar", title: "Module interactions", before: { display: "22%", value: 22 }, after: { display: "34%", value: 34 } } },
       {
         chart: {
           type: "before-after-combined-kpi",
           rows: [
-            { label: "Bounce rate", before: { display: "48%", percent: 48 }, after: { display: "42%", percent: 42 } },
+            { label: "Bounce rate", before: { display: "48%", percent: 48 }, after: { display: "36%", percent: 36 } },
             { label: "Time on dashboard", before: { display: "41 sec", percent: 41 }, after: { display: "54 sec", percent: 54 } },
           ],
         },
+        caption:
+          "The dashboard held attention better from the first visit.",
+      },
+      {
+        chart: {
+          type: "before-after-bar",
+          title: "D7 retention",
+          before: { display: "26%", value: 26 },
+          after: { display: "34%", value: 34 },
+        },
+        caption:
+          "More users came back after the first week.",
+      },
+      {
+        chart: {
+          type: "before-after-bar",
+          title: "D30 retention",
+          before: { display: "09%", value: 9 },
+          after: { display: "17%", value: 17 },
+        },
+        caption:
+          "Interest held better after one month.",
+      },
+      {
+        chart: {
+          type: "before-after-bar",
+          title: "Module interactions",
+          before: { display: "22%", value: 22 },
+          after: { display: "34%", value: 34 },
+        },
+        caption:
+          "Modules useful to the profile were consulted more often.",
       },
     ],
   },
@@ -296,7 +361,7 @@ const en: UseCase = {
     items: [
       {
         dont: "Design one view for everyone",
-        do: "Adapt the experience to profiles and motivations",
+        do: "Adapt the visible value to the user's context",
       },
       {
         dont: "Organize the interface around the product",
@@ -312,16 +377,28 @@ const en: UseCase = {
 };
 
 const fr: UseCase = {
-  title: "Dashboard personnalisé pour foyers solaires",
+  title: "Personnaliser un dashboard énergétique",
   slug: "customizable-dashboard",
-  overview:
-  "En 2018, notre produit aidait les foyers équipés d’énergie renouvelable à suivre leur énergie. \n\n J’ai personnalisé le dashboard selon leur équipement, leurs objectifs et leur niveau de compréhension pour rendre la valeur plus visible.",
-challenge:
+ overview:
+  "En 2018, notre produit aidait les foyers équipés de solaire, batterie ou véhicules électriques à suivre leur énergie.\n\nJ’ai remplacé un <b>dashboard unique et générique</b> par une <b>expérience personnalisée</b> selon le profil du foyer, pour rendre les données plus utiles et la valeur plus visible.",
+  challenge:
   "Rendre les données énergétiques utiles à chaque foyer, quel que soit son équipement ou son niveau de compréhension.",
-  roles: {
-    owned: ["Discovery", "UX design", "Design visuel", "Prototypage", "Tests utilisateurs", "Delivery"],
-    contributed: [],
-  },
+roles: {
+  owned: [
+    "Discovery",
+    "Product framing",
+    "UX architecture",
+    "Interaction design",
+    "Prototyping",
+    "User testing",
+    "Design delivery",
+  ],
+  contributed: [
+    "Analytics review",
+    "Business positioning",
+    "White-label constraints",
+  ],
+},
   year: "2018",
   timeline: "4 mois",
   tools: ["Figma", "Notion", "Storybook", "Zeplin", "Illustrator"],
@@ -337,8 +414,14 @@ challenge:
     src: "/assets/use-cases/customizable-dashboard/dashboard_hero.png",
     alt: "Dashboard personnalisé — aperçu des écrans clés.",
   },
+  resultHeroLabel: "Résultat",
   tension: {
     title: "Comprendre le problème",
+    artifact: {
+      type: "image",
+      src: "/assets/use-cases/customizable-dashboard/FR_Before.png",
+      alt: "Le dashboard existant avant personnalisation — même disposition affichée à tous les foyers, indépendamment de leur équipement ou de leurs objectifs.",
+    },
     tensions: [
   {
     label: "Pour les utilisateurs",
@@ -353,7 +436,7 @@ challenge:
   {
     label: "Pour le business",
     value:
-      "La valeur du produit était difficile à démontrer si le dashboard semblait trop générique ou trop technique.",
+      "La valeur du produit devenait difficile à démontrer avec un dashboard trop générique ou trop technique.",
     bullets: [
       "Valeur peu visible",
       "Engagement limité",
@@ -385,7 +468,7 @@ challenge:
         },
       },
       {
-        caption: "Le dashboard actuel ne retenait pas assez l’attention",
+        caption: "Le dashboard unique ne retenait pas assez l’attention",
         chart: {
           type: "combined-kpi",
           rows: [
@@ -447,6 +530,13 @@ exploredSolutions: [
       "Vue globale fragmentée",
       "Peu adapté aux hybrides",
     ],
+    media: {
+      type: "image",
+      src: "/assets/use-cases/customizable-dashboard/OPTION A.png",
+      alt: "Mini-wireframe d’un dashboard organisé par besoins : économiser, comprendre sa consommation et suivre sa production.",
+      caption:
+        "Option A : organiser le dashboard autour des intentions utilisateur.",
+    },
   },
   {
     id: "profile-dashboard",
@@ -461,6 +551,13 @@ exploredSolutions: [
       "Configuration sensible",
       "Personnalisation à justifier",
     ],
+    media: {
+      type: "image",
+      src: "/assets/use-cases/customizable-dashboard/OPTION B.png",
+      alt: "Mini-wireframe montrant un profil foyer générant un dashboard personnalisé.",
+      caption:
+        "Option B : partir du profil foyer pour générer un dashboard utile dès l’arrivée.",
+    },
   },
   {
     id: "contextual-learning",
@@ -475,6 +572,13 @@ exploredSolutions: [
       "Personnalisation limitée",
       "Problème moins ciblé",
     ],
+    media: {
+      type: "image",
+      src: "/assets/use-cases/customizable-dashboard/OPTION C.png",
+      alt: "Mini-wireframe d’un dashboard unique avec niveaux progressifs d’explication.",
+      caption:
+        "Option C : conserver une vue commune et ajouter de la pédagogie progressive.",
+    },
   },
 ],
 selectedSolutionId: "profile-dashboard",
@@ -484,11 +588,11 @@ keyDecisions: [
     eyebrow: "Personnalisation",
     title: "Adapter le dashboard au foyer",
     summary:
-      "Le dashboard devait refléter l’équipement, les objectifs et le niveau de compréhension du foyer.",
+      "Parce qu’un même dashboard ne pouvait pas être utile à des foyers équipés, motivés et compétents différemment.",
     media: {
       type: "image",
       src: "/assets/use-cases/customizable-dashboard/household_generated_profile.png",
-      alt: "Profil énergétique généré à partir de l’onboarding, avec motivations, équipements et niveau de compréhension.",
+      alt: "Profil énergétique généré pour un foyer, avec motivations, équipements et niveau de compréhension.",
     },
     gallery: [
       {
@@ -499,12 +603,12 @@ keyDecisions: [
       },
       {
         type: "figma",
-        src: "https://www.figma.com/proto/gUTv202uYQooOVed5IXOPT/Portfolio-%E2%80%94-Design-Reference?node-id=196-4197&viewport=285%2C928%2C0.11&t=JxcNWhKBZJ0kL01V-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=196%3A4197&show-proto-sidebar=0&page-id=18%3A38",
+        src: "https://www.figma.com/proto/gUTv202uYQooOVed5IXOPT/Portfolio-%E2%80%94-Design-Reference?node-id=865-11930&viewport=-2073%2C860%2C0.18&t=IsFhSH1PHI1VYnPG-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=865%3A12243&page-id=1%3A2",
         title: "Progressive reveal",
         caption: "Les indicateurs devenaient plus détaillés selon le niveau de compréhension.",
         mode: "file",
         format: "web",
-        protected: true,
+        protected: false,
         disableInteraction: true,
       },
     ],
@@ -513,7 +617,7 @@ keyDecisions: [
       "Des modules peu utiles",
     ],
     acceptedCost: [
-      "Un onboarding plus important",
+      "Un profil à expliquer",
       "Des variantes à maintenir",
     ],
   },
@@ -522,7 +626,7 @@ keyDecisions: [
     eyebrow: "Contrôle",
     title: "Laisser l’utilisateur ajuster",
     summary:
-      "Le dashboard généré servait de point de départ, mais restait modifiable par l’utilisateur.",
+      "Parce qu’un profil initial pouvait aider au départ, mais ne devait pas enfermer l’utilisateur dans une configuration figée.",
     media: {
       type: "image",
       src: "/assets/use-cases/customizable-dashboard/dashboard_edit_mode.png",
@@ -563,14 +667,13 @@ keyDecisions: [
     eyebrow: "Pédagogie",
     title: "Traduire les données énergétiques",
     summary:
-      "Les données techniques devaient devenir des messages compréhensibles et actionnables.",
+      "Parce que les foyers ne cherchaient pas des données brutes, mais une explication claire de leur consommation et de leurs économies.",
     media: {
       type: "image",
-      src: "/assets/use-cases/customizable-dashboard/raw_to_meaningul.png",
+      src: "/assets/use-cases/customizable-dashboard/raw_to_meaningful.png",
       alt: "Transformation des données énergétiques brutes en messages compréhensibles pour l’utilisateur.",
     },
-    gallery: [
-    ],
+    gallery: [],
     avoidedCost: [
       "Des données incomprises",
       "Une valeur peu visible",
@@ -585,46 +688,22 @@ keyDecisions: [
 impactSection: {
   title: "Les impacts",
   summary:
-    "La personnalisation a amélioré les signaux d’engagement, de compréhension et de rétention.",
+    "La personnalisation a amélioré les signaux clés du dashboard : attention initiale, rétention et compréhension de la valeur.",
   bullets: [
     {
       bold: "La première visite devenait plus pertinente",
       regular: "moins de rebond et plus de temps passé sur le dashboard",
     },
     {
-      bold: "La valeur était mieux perçue",
-      regular: "les modules liés aux économies étaient davantage consultés",
-    },
-    {
       bold: "L’intérêt se maintenait mieux après découverte",
       regular: "rétention J7 et J30 en hausse sur les profils personnalisés",
     },
+    {
+      bold: "La valeur était mieux perçue",
+      regular: "les modules liés aux économies étaient davantage consultés",
+    },
   ],
   charts: [
-    {
-      chart: {
-        type: "before-after-bar",
-        title: "Rétention J7",
-        before: { display: "26%", value: 26 },
-        after: { display: "34%", value: 34 },
-      },
-    },
-    {
-      chart: {
-        type: "before-after-bar",
-        title: "Rétention J30",
-        before: { display: "09%", value: 9 },
-        after: { display: "17%", value: 17 },
-      },
-    },
-    {
-      chart: {
-        type: "before-after-bar",
-        title: "Interactions modules",
-        before: { display: "22%", value: 22 },
-        after: { display: "34%", value: 34 },
-      },
-    },
     {
       chart: {
         type: "before-after-combined-kpi",
@@ -632,7 +711,7 @@ impactSection: {
           {
             label: "Taux de rebond",
             before: { display: "48%", percent: 48 },
-            after: { display: "42%", percent: 42 },
+            after: { display: "36%", percent: 36 },
           },
           {
             label: "Temps sur dashboard",
@@ -641,6 +720,38 @@ impactSection: {
           },
         ],
       },
+      caption:
+        "Le dashboard retenait mieux l’attention dès la première visite.",
+    },
+    {
+      chart: {
+        type: "before-after-bar",
+        title: "Rétention J7",
+        before: { display: "26%", value: 26 },
+        after: { display: "34%", value: 34 },
+      },
+      caption:
+        "Plus d’utilisateurs revenaient après la première semaine.",
+    },
+    {
+      chart: {
+        type: "before-after-bar",
+        title: "Rétention J30",
+        before: { display: "09%", value: 9 },
+        after: { display: "17%", value: 17 },
+      },
+      caption:
+        "L’intérêt se maintenait mieux après un mois.",
+    },
+    {
+      chart: {
+        type: "before-after-bar",
+        title: "Interactions modules",
+        before: { display: "22%", value: 22 },
+        after: { display: "34%", value: 34 },
+      },
+      caption:
+        "Les modules utiles au profil étaient davantage consultés.",
     },
   ],
 },
@@ -652,7 +763,7 @@ retrospective: {
   items: [
     {
       dont: "Concevoir une vue unique pour tous",
-      do: "Adapter l’expérience aux profils et motivations",
+      do: "Adapter la valeur visible au contexte utilisateur",
     },
     {
       dont: "Organiser l’interface selon le produit",

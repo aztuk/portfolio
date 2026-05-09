@@ -76,7 +76,7 @@ const UseCasePage = async ({ params }: UseCasePageProps) => {
     : undefined;
   const tableOfContentsItems = [
     { id: "use-case-context", label: t("challenge") },
-    ...(useCase.resultHero ? [{ id: "use-case-result", label: t("result") }] : []),
+    ...(useCase.resultHero ? [{ id: "use-case-result", label: useCase.resultHeroLabel ?? t("result") }] : []),
     { id: "use-case-tension", label: useCase.tension.title },
     { id: "use-case-solution", label: t("explorationAndSolution") },
     ...(useCase.impactSection

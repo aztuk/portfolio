@@ -23,21 +23,27 @@ type ProsConsProps = {
 };
 
 const ProsCons = ({ pros, cons }: ProsConsProps) => (
-  <div className="flex w-full shrink-0 gap-2">
-    <div className="flex min-w-0 flex-1 flex-col items-center gap-3">
-      <ThumbsUp size={24} weight="light" className="shrink-0 text-green" />
+  <div className="flex w-full shrink-0 flex-col items-center gap-3">
+    <div className="flex flex-col items-center gap-2">
       {pros.map((pro) => (
-        <p key={pro} className="type-body-lg w-full text-center text-green">
-          {pro}
-        </p>
+        <div
+          key={pro}
+          className="flex items-center gap-3 rounded-full border border-dark-smooth bg-dark-smooth/40 px-3 py-1"
+        >
+          <ThumbsUp size={18} weight="light" className="shrink-0 text-green" />
+          <p className="type-body-lg whitespace-nowrap text-muted">{pro}</p>
+        </div>
       ))}
     </div>
-    <div className="flex min-w-0 flex-1 flex-col items-center gap-3">
-      <ThumbsDown size={24} weight="light" className="shrink-0 text-[#d9746b]" />
+    <div className="flex flex-col items-center gap-2">
       {cons.map((con) => (
-        <p key={con} className="type-body-lg w-full text-center text-[#d9746b]">
-          {con}
-        </p>
+        <div
+          key={con}
+          className="flex items-center gap-3 rounded-full border border-dark-smooth bg-dark-smooth/40 px-3 py-1"
+        >
+          <ThumbsDown size={18} weight="light" className="shrink-0 text-[#d9746b]" />
+          <p className="type-body-lg whitespace-nowrap text-muted">{con}</p>
+        </div>
       ))}
     </div>
   </div>
@@ -47,11 +53,12 @@ type DesktopPosition = "left" | "center" | "right";
 
 type NumberBadgeProps = {
   index: number;
+  displayIndex?: number;
   isSelected: boolean;
   desktopPosition?: DesktopPosition;
 };
 
-const NumberBadge = ({ index, isSelected, desktopPosition }: NumberBadgeProps) => (
+const NumberBadge = ({ index, displayIndex, isSelected, desktopPosition }: NumberBadgeProps) => (
   <div
     className={clsx(
       "absolute z-10 flex items-center justify-center",
@@ -82,7 +89,7 @@ const NumberBadge = ({ index, isSelected, desktopPosition }: NumberBadgeProps) =
         isSelected ? "type-data-index-tight-selected text-dark" : "type-data-index-tight text-primary",
       )}
     >
-      {String(index + 1).padStart(2, "0")}
+      {String((displayIndex ?? index) + 1).padStart(2, "0")}
     </span>
   </div>
 );
@@ -91,6 +98,7 @@ type SolutionCardProps = {
   item: ExploredSolution;
   isSelected: boolean;
   index: number;
+  displayIndex?: number;
   selectedLabel: string;
   exploredLabel: string;
   desktopPosition?: DesktopPosition;
@@ -100,6 +108,7 @@ const SolutionCard = ({
   item,
   isSelected,
   index,
+  displayIndex,
   selectedLabel,
   exploredLabel,
   desktopPosition,
@@ -125,15 +134,13 @@ const SolutionCard = ({
         isSelected ? "border-primary bg-[#2d5580]" : "border-dark-smooth bg-dark-smooth/20",
       )}
     >
-      <NumberBadge index={index} isSelected={isSelected} desktopPosition={desktopPosition} />
+      <NumberBadge index={index} displayIndex={displayIndex} isSelected={isSelected} desktopPosition={desktopPosition} />
 
       {/* Head */}
       <div
         className={clsx(
           "flex shrink-0 flex-col gap-2",
-          hasDesktopPosition && "lg:py-8",
-          isCenter && "lg:items-center lg:text-center",
-          isRight && "lg:items-end lg:text-right",
+          hasDesktopPosition && "lg:items-center lg:py-8 lg:text-center",
         )}
       >
         <p className="type-body-xl-medium text-muted">{item.title}</p>
@@ -231,6 +238,7 @@ export const SolutionSection = async ({
                 item={leftSolution}
                 isSelected={false}
                 index={solution.exploredSolutions.indexOf(leftSolution)}
+                displayIndex={0}
                 selectedLabel={t("selected")}
                 exploredLabel={t("explored")}
                 desktopPosition="left"
@@ -248,6 +256,7 @@ export const SolutionSection = async ({
                 item={rightSolution}
                 isSelected={false}
                 index={solution.exploredSolutions.indexOf(rightSolution)}
+                displayIndex={2}
                 selectedLabel={t("selected")}
                 exploredLabel={t("explored")}
                 desktopPosition="right"
@@ -262,6 +271,7 @@ export const SolutionSection = async ({
                 item={centerSolution}
                 isSelected
                 index={selectedIndex}
+                displayIndex={1}
                 selectedLabel={t("selected")}
                 exploredLabel={t("explored")}
                 desktopPosition="center"

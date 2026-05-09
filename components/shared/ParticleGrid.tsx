@@ -38,7 +38,8 @@ export const ParticleGrid = ({ className }: { className?: string }) => {
     let raf: number;
     let canvasW = 0;
     let canvasH = 0;
-    let gridShiftY = 0;
+    let tileStartY = 0;
+    let tileHeight = 0;
 
     // Click / pinch state
     let isPressed = false;
@@ -59,13 +60,14 @@ export const ParticleGrid = ({ className }: { className?: string }) => {
 
     const build = (w: number, h: number) => {
       dots = [];
-      const verticalMargin = cfg.gap;
+      const verticalMargin = cfg.gap * 2;
+      tileStartY = cfg.gap / 2 - verticalMargin;
+      const rowCount = Math.ceil((h + verticalMargin * 2) / cfg.gap);
+      tileHeight = rowCount * cfg.gap;
+
       for (let x = cfg.gap / 2; x < w + cfg.gap; x += cfg.gap) {
-        for (
-          let y = cfg.gap / 2 - verticalMargin;
-          y < h + cfg.gap + verticalMargin;
-          y += cfg.gap
-        ) {
+        for (let row = 0; row < rowCount; row += 1) {
+          const y = tileStartY + row * cfg.gap;
           dots.push({ ox: x, oy: y, x, y, vx: 0, vy: 0, jx: 0, jy: 0 });
         }
       }
@@ -83,9 +85,6 @@ export const ParticleGrid = ({ className }: { className?: string }) => {
       canvas.height = h * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       build(w, h);
-      gridShiftY = reducedMotion
-        ? 0
-        : Math.trunc((-window.scrollY * cfg.scrollParallax) / cfg.gap) * cfg.gap;
     };
 
     const getLightFactor = (x: number, y: number) => {
@@ -102,18 +101,31 @@ export const ParticleGrid = ({ className }: { className?: string }) => {
 
     const getScrollOffset = () => {
       if (reducedMotion) return 0;
-      const rawOffset = -window.scrollY * cfg.scrollParallax - gridShiftY;
-      const shiftSteps = Math.trunc(rawOffset / cfg.gap);
-      if (shiftSteps === 0) return rawOffset;
+      return -window.scrollY * cfg.scrollParallax;
+    };
 
-      const shift = shiftSteps * cfg.gap;
-      gridShiftY += shift;
-      for (const dot of dots) {
-        dot.y += shift;
-        dot.oy += shift;
+    const wrapY = (y: number) => {
+      const localY = y - tileStartY;
+      return ((localY % tileHeight) + tileHeight) % tileHeight + tileStartY;
+    };
+
+    const getClosestTiledY = (y: number, targetY: number) => {
+      const wrappedY = wrapY(y);
+      const previousY = wrappedY - tileHeight;
+      const nextY = wrappedY + tileHeight;
+      const previousDistance = Math.abs(targetY - previousY);
+      const wrappedDistance = Math.abs(targetY - wrappedY);
+      const nextDistance = Math.abs(targetY - nextY);
+
+      if (previousDistance < wrappedDistance && previousDistance < nextDistance) {
+        return previousY;
       }
 
-      return rawOffset - shift;
+      if (nextDistance < wrappedDistance) {
+        return nextY;
+      }
+
+      return wrappedY;
     };
 
     const tick = () => {
@@ -128,7 +140,7 @@ export const ParticleGrid = ({ className }: { className?: string }) => {
       for (let index = 0; index < dots.length; index += 1) {
         const d = dots[index];
         const px = d.x;
-        const py = d.y + scrollOffset;
+        const py = getClosestTiledY(d.y + scrollOffset, my);
         if (!reducedMotion) {
           const dx = mx - px;
           const dy = my - py;
@@ -151,7 +163,8 @@ export const ParticleGrid = ({ className }: { className?: string }) => {
           // Click pinch — extra attraction toward fixed click center
           if (isPressed) {
             const cdx = cx - px;
-            const cdy = cy - py;
+            const clickY = getClosestTiledY(d.y + scrollOffset, cy);
+            const cdy = cy - clickY;
             const cdist = Math.sqrt(cdx * cdx + cdy * cdy);
             if (cdist < cfg.holdPullRadius && cdist > 1) {
               const t = 1 - cdist / cfg.holdPullRadius;
@@ -162,7 +175,7 @@ export const ParticleGrid = ({ className }: { className?: string }) => {
 
             // Jitter — render-time offset, independent of physics
             // Uses d.x/d.y so proximity matches visual dot position
-            const jdist = Math.hypot(px - cx, py - cy);
+            const jdist = Math.hypot(px - cx, clickY - cy);
             if (jdist < cfg.jitterRadius) {
               const proximity = 1 - jdist / cfg.jitterRadius;
               const amp = holdFactor * cfg.jitterAmplitude * proximity * proximity;
@@ -180,7 +193,8 @@ export const ParticleGrid = ({ className }: { className?: string }) => {
           // Wave impulse — expanding ring after release
           if (wave) {
             const wdx = px - wave.cx;
-            const wdy = py - wave.cy;
+            const waveY = getClosestTiledY(d.y + scrollOffset, wave.cy);
+            const wdy = waveY - wave.cy;
             const wdist = Math.sqrt(wdx * wdx + wdy * wdy);
             const distFromFront = Math.abs(wdist - wave.radius);
             if (distFromFront < cfg.waveWidth && wdist > 1) {
@@ -207,13 +221,20 @@ export const ParticleGrid = ({ className }: { className?: string }) => {
         }
 
         const rx = d.x + d.jx;
-        const ry = d.y + d.jy + scrollOffset;
-        const lightFactor = getLightFactor(rx, ry);
+        const ry = wrapY(d.y + d.jy + scrollOffset);
+        const paint = (y: number) => {
+          if (y < -cfg.gap || y > canvasH + cfg.gap) return;
 
-        ctx.beginPath();
-        ctx.arc(rx, ry, cfg.dotRadius, 0, Math.PI * 2);
-        ctx.fillStyle = colorToRgba(inkColor, cfg.dotAlpha * lightFactor);
-        ctx.fill();
+          const lightFactor = getLightFactor(rx, y);
+          ctx.beginPath();
+          ctx.arc(rx, y, cfg.dotRadius, 0, Math.PI * 2);
+          ctx.fillStyle = colorToRgba(inkColor, cfg.dotAlpha * lightFactor);
+          ctx.fill();
+        };
+
+        paint(ry);
+        paint(ry - tileHeight);
+        paint(ry + tileHeight);
       }
 
       // Advance wave each frame

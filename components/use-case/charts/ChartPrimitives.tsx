@@ -39,7 +39,7 @@ export const ChartTitle = ({
   className = "",
 }: ChartTitleProps) => (
   <p
-    className={`type-data-title type-chart-title-mobile w-full ${
+    className={`type-data-title type-chart-title type-chart-title-mobile w-full ${
       tone === "muted" ? "text-muted" : ""
     } ${
       align === "center" ? "text-center" : ""

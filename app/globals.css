@@ -299,6 +299,10 @@
     letter-spacing: -0.04em;
   }
 
+  .type-chart-title {
+    font-size: 21px;
+  }
+
   .type-data-label {
     font-family: var(--font-tektur), sans-serif;
     font-size: 15px;
@@ -429,11 +433,19 @@
   }
 
   .type-before-stamp {
-    font-family: var(--font-elite), serif;
-    font-size: 22px;
-    font-weight: 400;
+    font-family: var(--font-display), sans-serif;
+    font-size: 38px;
+    font-weight: 500;
     line-height: 1;
-    letter-spacing: -0.04em;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    text-shadow:
+      1.5px 1.5px 0 #6f1c18,
+      0 2px 4px rgb(44 8 8 / 0.28);
+    box-shadow:
+      0 12px 20px rgb(16 24 50 / 0.2),
+      inset 0 7px 12px rgb(255 255 255 / 0.1),
+      inset 0 -10px 16px rgb(70 12 12 / 0.24);
   }
 
   @media (min-width: 768px) {
@@ -530,11 +542,11 @@
     }
 
     .type-before-stamp {
-      font-size: 22px;
+      font-size: 36px;
     }
 
     .type-chart-title-mobile {
-      font-size: 20px;
+      font-size: 21px;
       line-height: 1.15;
     }
 
@@ -580,13 +592,13 @@
 
   @media (min-width: 640px) {
     .type-before-stamp {
-      font-size: 26px;
+      font-size: 46px;
     }
   }
 
   @media (min-width: 1024px) {
     .type-before-stamp {
-      font-size: 30px;
+      font-size: 56px;
     }
 
     .type-data-index-tight-selected {
