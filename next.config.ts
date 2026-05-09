@@ -13,6 +13,19 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    const domain = process.env.NEXT_PUBLIC_SITE_URL;
+    if (!domain) return [];
+    const hostname = new URL(domain).hostname;
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: `www.${hostname}` }],
+        destination: `${domain}/:path*`,
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default withNextIntl(nextConfig);
