@@ -26,7 +26,7 @@ export const HeroVisual = () => {
     };
 
     const animate = () => {
-      if (!reducedMotion && tiltRef.current) {
+      if (!reducedMotion && !document.hidden && tiltRef.current) {
         currentX += (targetX - currentX) * cfg.mouseEase;
         currentY += (targetY - currentY) * cfg.mouseEase;
 

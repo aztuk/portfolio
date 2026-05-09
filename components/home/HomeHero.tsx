@@ -45,11 +45,11 @@ export const HomeHero = async () => {
                 className="type-control-lg inline-flex items-center justify-center gap-2 rounded-full bg-primary px-8 py-3 text-dark shadow-elevation-2 transition-opacity hover:opacity-85 sm:py-2.5"
               >
                 {tHome("viewWork")}
-            </a>
-            <a
-              href="#contact"
-              className="type-control-lg inline-flex items-center justify-center rounded-full border-2 border-ink px-8 py-3 text-ink transition-colors hover:border-primary hover:text-primary sm:py-2.5"
-            >
+              </a>
+              <a
+                href="#contact"
+                className="type-control-lg inline-flex items-center justify-center rounded-full border-2 border-ink px-8 py-3 text-ink transition-colors hover:border-primary hover:text-primary sm:py-2.5"
+              >
                 {tHome("getInTouch")}
               </a>
             </div>

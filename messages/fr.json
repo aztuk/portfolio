@@ -61,6 +61,7 @@
     "dontLabel": "NE PLUS",
     "doLabel": "MAIS PLUTÔT",
     "verbatim": "Verbatim",
+    "friction": "Friction",
     "discoveryDone": "Méthodologie",
     "keyDecisionsCallout": "Découvrez les {count} décisions clés que j'ai prises"
   },

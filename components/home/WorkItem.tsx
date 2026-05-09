@@ -15,7 +15,7 @@ export const WorkItem = ({ useCase }: WorkItemProps) => {
   return (
     <Link href={href} className="group flex w-full items-center">
       <div className="flex w-full flex-col items-center lg:hidden">
-        <div className="relative z-10 mb-[-70px] flex w-full items-center justify-center">
+        <div className="flex w-full items-center justify-center">
           <div
             className="relative aspect-[307/371] w-full overflow-hidden rounded-[24px] border border-dark-smooth sm:max-w-[307px]"
             style={{
@@ -48,10 +48,13 @@ export const WorkItem = ({ useCase }: WorkItemProps) => {
           </div>
         </div>
 
-        <div className="relative z-20 flex w-full flex-col items-center gap-[16px] pb-[70px]">
-          <h3 className="type-project-title-medium max-w-[320px] whitespace-pre-line text-center text-muted">
+        <div className="flex w-full flex-col items-center gap-[16px] pt-[24px]">
+          <h3 className="type-project-title max-w-[320px] whitespace-pre-line text-center text-muted">
             {useCase.title}
           </h3>
+          <p className="type-body-md max-w-[320px] whitespace-pre-line text-center text-smooth">
+            <HighlightedText text={useCase.overview} />
+          </p>
         </div>
       </div>
 

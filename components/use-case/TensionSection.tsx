@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { getTranslations } from "next-intl/server";
 
 import { BulletPoint } from "@/components/use-case/BulletPoint";
@@ -22,9 +23,10 @@ type TensionSectionProps = {
 type ProblemCardProps = {
   item: TensionPoint;
   index: number;
+  frictionLabel: string;
 };
 
-const ProblemCard = ({ item, index }: ProblemCardProps) => (
+const ProblemCard = ({ item, index, frictionLabel }: ProblemCardProps) => (
   <article className="relative flex w-full max-w-[400px] flex-1 flex-col gap-2 rounded-[24px] py-6 pl-16 pr-6 lg:rounded-[30px]">
     <div className="absolute left-[-2px] top-[22px] flex size-[54px] items-center justify-center">
       <div className="absolute size-[38px] -rotate-45 bg-dark-smooth/50 backdrop-blur-[4px]" />
@@ -35,7 +37,7 @@ const ProblemCard = ({ item, index }: ProblemCardProps) => (
 
     <div className="flex w-full flex-col uppercase leading-[1.2]">
       <p className="type-tension-kicker mb-[-8px] w-full text-primary">
-        Friction
+        {frictionLabel}
       </p>
       <p className="type-tension-persona-title w-full text-muted">{item.label}</p>
     </div>
@@ -90,6 +92,7 @@ const DiscoverySignals = ({ signals, label }: DiscoverySignalsProps) => {
 
 export const TensionSection = async ({ tension, id }: TensionSectionProps) => {
   const t = await getTranslations("sections");
+  const frictionLabel = t("friction");
   const beforeImage = tension.artifact
     ? { ...tension.artifact, caption: tension.artifact.caption ?? tension.artifactCaption }
     : tension.artifacts?.[0];
@@ -127,12 +130,13 @@ export const TensionSection = async ({ tension, id }: TensionSectionProps) => {
         </div>
 
         <div
-          className={`grid justify-items-start gap-8 lg:gap-12 ${
-            tension.tensions.length >= 3 ? "lg:grid-cols-3" : "lg:grid-cols-2"
-          }`}
+          className={clsx(
+            "grid justify-items-start gap-8 lg:gap-12",
+            tension.tensions.length >= 3 ? "lg:grid-cols-3" : "lg:grid-cols-2",
+          )}
         >
           {tension.tensions.map((item, index) => (
-            <ProblemCard key={item.label} item={item} index={index} />
+            <ProblemCard key={item.label} item={item} index={index} frictionLabel={frictionLabel} />
           ))}
         </div>
       </Container>

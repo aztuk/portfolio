@@ -61,6 +61,7 @@
     "dontLabel": "DON'T",
     "doLabel": "BUT RATHER",
     "verbatim": "Verbatim",
+    "friction": "Friction",
     "discoveryDone": "Methodology",
     "keyDecisionsCallout": "Check out the {count} key decisions I made"
   },

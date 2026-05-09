@@ -10,7 +10,7 @@ import { FigmaEmbed } from "@/components/shared/FigmaEmbed";
 import { LockedAsset } from "@/components/shared/LockedAsset";
 import type { GalleryItem } from "@/content/use-cases/types";
 
-const LIGHTBOX_CLASS: Record<string, string> = {
+const LIGHTBOX_CLASS: Record<"web" | "figma-web" | "mobile", string> = {
   web: "w-[calc(100vw-0.75rem)] aspect-[8/5] lg:w-[min(90vw,1200px)]",
   "figma-web": "w-[calc(100vw-0.75rem)] aspect-[8/5] lg:w-[min(90vw,1200px)]",
   mobile: "h-[min(82svh,620px)] max-w-[calc(100vw-0.75rem)] aspect-[9/19] lg:h-[min(85vh,700px)]",
@@ -18,9 +18,9 @@ const LIGHTBOX_CLASS: Record<string, string> = {
 
 const formatOf = (item: GalleryItem) => item.format ?? "web";
 
-const aspectKey = (item: GalleryItem): string => {
+const aspectKey = (item: GalleryItem): "web" | "figma-web" | "mobile" => {
   if (item.type === "figma" && formatOf(item) === "web") return "figma-web";
-  return formatOf(item);
+  return formatOf(item) as "web" | "mobile";
 };
 
 type MediaLightboxMediaProps = {
@@ -96,6 +96,12 @@ export const MediaLightbox = ({
   const aKey = aspectKey(item);
   const isMobile = fmt === "mobile";
   const isImage = item.type === "image";
+
+  useEffect(() => {
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = prev; };
+  }, []);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {

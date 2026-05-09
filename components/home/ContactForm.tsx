@@ -28,26 +28,30 @@ export const ContactForm = ({ labels }: ContactFormProps) => {
     const form = event.currentTarget;
     const formData = new FormData(form);
 
-    const response = await fetch("/api/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: formData.get("name"),
-        email: formData.get("email"),
-        message: formData.get("message"),
-        website: formData.get("website"),
-      }),
-    });
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.get("name"),
+          email: formData.get("email"),
+          message: formData.get("message"),
+          website: formData.get("website"),
+        }),
+      });
 
-    if (!response.ok) {
+      if (!response.ok) {
+        setState("error");
+        return;
+      }
+
+      form.reset();
+      setState("success");
+    } catch {
       setState("error");
-      return;
     }
-
-    form.reset();
-    setState("success");
   };
 
   return (
