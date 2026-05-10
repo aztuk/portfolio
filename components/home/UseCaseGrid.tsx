@@ -15,7 +15,7 @@ export const UseCaseGrid = ({ useCases }: UseCaseGridProps) => {
           {useCases.map((useCase) => (
             <div
               key={useCase.slug}
-              className="flex h-screen items-center py-10 lg:py-0"
+              className="py-12 lg:py-20"
             >
               <WorkItem useCase={useCase} />
             </div>

@@ -9,14 +9,12 @@ import { ParticleGrid } from "@/components/shared/ParticleGrid";
 export const SiteBackground = () => {
   return (
     <div className="fixed inset-0 z-0 overflow-hidden bg-canvas" aria-hidden="true">
-      {/* Animated color blobs */}
-      <BlobBackground />
-
-      {/* Geometric shapes — subtle outlines with scroll parallax */}
-      <GeometricShapes className="absolute inset-0 z-[1]" />
-
-      {/* Particle grid — sits above blobs */}
-      <ParticleGrid className="absolute inset-0 z-[1]" />
+      {/* Animation layers — desktop only for performance */}
+      <div className="absolute inset-0 hidden lg:block">
+        <BlobBackground />
+        <GeometricShapes className="absolute inset-0 z-[1]" />
+        <ParticleGrid className="absolute inset-0 z-[1]" />
+      </div>
 
       {/* Grain — overlay layer */}
       <div
