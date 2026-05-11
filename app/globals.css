@@ -70,7 +70,7 @@
   }
 
   html[data-theme="light"] .decision-media-surface {
-    background: rgb(var(--color-paper-rgb) / 1);
+    background: var(--color-canvas);
   }
 
   .site-action-button {
@@ -924,23 +924,23 @@ html[data-theme="light"] {
   --button-primary-border-hover: rgb(var(--color-primary-strong-rgb) / 1);
   --button-primary-text: #ffffff;
 
-  --blob-1-from: #b8c5ff;
+  --blob-1-from: #ced7ff;
   --blob-1-from-rgb: 184 197 255;
-  --blob-1-to: #f0d6ff;
+  --blob-1-to: #f4e0ff;
   --blob-1-to-rgb: 240 214 255;
   --blob-1-opacity: 0.34;
   --blob-1-ambient-alpha: 0.24;
 
-  --blob-2-from: #91d9ff;
+  --blob-2-from: #b4e5ff;
   --blob-2-from-rgb: 145 217 255;
-  --blob-2-to: #b8f1df;
+  --blob-2-to: #caffee;
   --blob-2-to-rgb: 184 241 223;
   --blob-2-opacity: 0.28;
   --blob-2-ambient-alpha: 0.18;
 
-  --blob-3-from: #c9eea4;
+  --blob-3-from: #e2ffc4;
   --blob-3-from-rgb: 201 238 164;
-  --blob-3-to: #fff0b8;
+  --blob-3-to: #fff5cf;
   --blob-3-to-rgb: 255 240 184;
   --blob-3-opacity: 0.2;
   --blob-3-ambient-alpha: 0.12;

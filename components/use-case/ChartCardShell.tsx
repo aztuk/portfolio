@@ -12,7 +12,7 @@ export const ChartCardShell = ({
   style,
 }: ChartCardShellProps) => (
   <div
-    className={`w-full overflow-hidden rounded-[24px] border border-dark-smooth bg-dark-smooth/20 backdrop-blur-[2px] lg:rounded-[30px] ${className}`}
+    className={`w-full overflow-hidden rounded-[24px] border border-dark-smooth bg-canvas lg:rounded-[30px] ${className}`}
     style={style}
   >
     {children}

@@ -30,7 +30,7 @@ export const TensionBeforeImage = ({
             aria-label={item.alt}
           >
             <span
-              className="relative block w-full overflow-hidden rounded-[24px] border border-dark-smooth bg-[rgb(53_69_128/31%)] shadow-elevation-2 backdrop-blur-md lg:rounded-[40px]"
+              className="relative block w-full overflow-hidden rounded-[24px] border border-dark-smooth bg-canvas lg:rounded-[40px]"
               style={{ aspectRatio: aspectRatio ?? "8/5" }}
             >
               <Image

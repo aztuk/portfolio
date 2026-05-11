@@ -122,7 +122,8 @@ const SolutionCard = ({
   return (
     <article
       className={clsx(
-        "relative flex h-full min-w-0 flex-col rounded-[24px] border shadow-elevation-2 backdrop-blur-[2px] lg:rounded-[30px]",
+        "relative flex h-full min-w-0 flex-col rounded-[24px] border lg:rounded-[30px]",
+        isSelected && "shadow-elevation-2 backdrop-blur-[2px]",
         // Mobile padding
         "p-5 pt-8",
         // Desktop padding per position
@@ -132,7 +133,7 @@ const SolutionCard = ({
         isLeft && "lg:-rotate-2",
         isRight && "lg:rotate-2",
         // Colors
-        isSelected ? "border-primary bg-[var(--solution-selected-bg)]" : "border-dark-smooth bg-dark-smooth/20",
+        isSelected ? "border-primary bg-[var(--solution-selected-bg)]" : "border-dark-smooth bg-canvas",
       )}
     >
       <NumberBadge index={index} displayIndex={displayIndex} isSelected={isSelected} desktopPosition={desktopPosition} />

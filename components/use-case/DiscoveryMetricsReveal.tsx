@@ -41,7 +41,7 @@ export const DiscoveryMetricsReveal = ({
           >
             <button
               type="button"
-              className="group inline-flex min-h-14 items-center justify-center gap-3 rounded-full border border-line/20 bg-paper/5 px-6 py-4 text-muted shadow-soft backdrop-blur-md transition duration-200 hover:border-primary/45 hover:bg-paper/10 hover:text-paper focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary sm:px-8"
+              className="group inline-flex min-h-14 items-center justify-center gap-3 rounded-full border border-line/20 bg-paper/5 px-6 py-4 text-muted shadow-soft backdrop-blur-md transition duration-200 hover:border-primary/45 hover:bg-paper/10 hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary sm:px-8"
               aria-controls={contentId}
               aria-expanded={false}
               onClick={revealMetrics}

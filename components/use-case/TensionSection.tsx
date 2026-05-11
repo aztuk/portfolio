@@ -31,7 +31,7 @@ type ProblemCardProps = {
 };
 
 const ProblemCard = ({ item, frictionLabel }: ProblemCardProps) => (
-  <article className="relative flex w-full max-w-[400px] flex-1 flex-col items-center gap-2 rounded-[24px] px-6 py-6 text-center lg:rounded-[30px]">
+  <article className="relative flex w-[400px] flex-col items-center gap-2 rounded-[24px] border border-dark-smooth bg-canvas px-7 py-8 text-center lg:rounded-[30px] lg:px-8 lg:py-10">
     <div className="flex w-full flex-col uppercase leading-[1.2]">
       <p className="type-tension-kicker mb-[-8px] w-full text-primary">
         {frictionLabel}
@@ -155,12 +155,7 @@ export const TensionSection = async ({ tension, id }: TensionSectionProps) => {
           </div>
         ) : null}
 
-        <div
-          className={clsx(
-            "grid justify-items-start gap-8 lg:gap-12",
-            tension.tensions.length >= 3 ? "lg:grid-cols-3" : "lg:grid-cols-2",
-          )}
-        >
+        <div className="flex flex-wrap justify-center gap-10">
           {tension.tensions.map((item) => (
             <ProblemCard key={item.label} item={item} frictionLabel={frictionLabel} />
           ))}
