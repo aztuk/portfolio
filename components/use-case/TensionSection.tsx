@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import { getTranslations } from "next-intl/server";
 import type { CSSProperties } from "react";
 
