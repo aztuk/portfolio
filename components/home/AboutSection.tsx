@@ -1,5 +1,12 @@
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
+import {
+  EnvelopeIcon,
+  FileArrowDownIcon,
+  GithubLogoIcon,
+  LinkedinLogoIcon,
+  PhoneIcon,
+} from "@phosphor-icons/react/ssr";
 
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
@@ -7,6 +14,42 @@ import { siteContent } from "@/content/site";
 
 export const AboutSection = async () => {
   const t = await getTranslations("about");
+  const tFooter = await getTranslations("footer");
+  const aboutLinks = [
+    {
+      label: "GitHub",
+      href: siteContent.links.github,
+      value: "GitHub",
+      icon: GithubLogoIcon,
+      external: true,
+    },
+    {
+      label: "LinkedIn",
+      href: siteContent.links.linkedIn,
+      value: "LinkedIn",
+      icon: LinkedinLogoIcon,
+      external: true,
+    },
+    {
+      label: tFooter("resume"),
+      href: siteContent.links.resume,
+      value: tFooter("resume"),
+      icon: FileArrowDownIcon,
+      download: true,
+    },
+    {
+      label: tFooter("phone"),
+      href: siteContent.phone.href,
+      value: siteContent.phone.label,
+      icon: PhoneIcon,
+    },
+    {
+      label: tFooter("email"),
+      href: `mailto:${siteContent.email}`,
+      value: siteContent.email,
+      icon: EnvelopeIcon,
+    },
+  ];
 
   return (
     <Section
@@ -35,6 +78,29 @@ export const AboutSection = async () => {
             <div className="type-about-body w-full max-w-[544px] whitespace-pre-wrap text-muted">
               <p>{t("bio1")}</p>
               <p className="mt-[35.7px]">{t("bio2")}</p>
+            </div>
+            <div className="mt-8 flex w-full max-w-[544px] flex-wrap gap-3">
+              {aboutLinks.map((link) => {
+                const Icon = link.icon;
+                const accessibleLabel = `${link.label}: ${link.value}`;
+
+                return (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    aria-label={accessibleLabel}
+                    title={accessibleLabel}
+                    className="inline-flex min-h-10 items-center justify-center gap-2 rounded-full border border-line/15 bg-line/[0.05] px-3 text-muted transition-colors hover:border-primary/60 hover:text-primary focus-visible:border-primary focus-visible:text-primary focus-visible:outline-none"
+                    {...(link.download ? { download: true } : {})}
+                    {...(link.external
+                      ? { target: "_blank", rel: "noreferrer" }
+                      : {})}
+                  >
+                    <Icon size={22} weight="regular" aria-hidden="true" />
+                    <span className="type-body-sm">{link.value}</span>
+                  </a>
+                );
+              })}
             </div>
           </div>
         </div>
