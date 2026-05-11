@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { ChartCardsGrid } from "@/components/use-case/ChartCardsGrid";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
+import { SectionTitle } from "@/components/use-case/SectionTitle";
 import type { ImpactSectionData } from "@/content/use-cases/types";
 
 type ImpactSectionProps = {
@@ -23,9 +24,7 @@ export const ImpactSection = async ({ impactSection, id }: ImpactSectionProps) =
   return (
     <Section id={id}>
       <Container className="px-6 sm:px-8 lg:px-0">
-        <h2 className="type-section-title text-muted">
-          {impactSection.title}
-        </h2>
+        <SectionTitle>{impactSection.title}</SectionTitle>
 
         <div className="mt-10 flex max-w-[800px] flex-col gap-5 lg:mt-12 lg:gap-6">
           <p className="type-body-lg text-ink">
@@ -39,7 +38,7 @@ export const ImpactSection = async ({ impactSection, id }: ImpactSectionProps) =
                   <p className="type-body-lg-bold w-full text-muted">
                     {bullet.bold}
                   </p>
-                  <p className="type-body-sm w-full text-smooth">
+                  <p className="type-body-lg-light w-full text-smooth">
                     {bullet.regular}
                   </p>
                 </div>

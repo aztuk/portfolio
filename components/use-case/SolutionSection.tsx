@@ -8,6 +8,7 @@ import { MobileCarousel } from "@/components/shared/MobileCarousel";
 import { Tag } from "@/components/shared/Tag";
 import { KeyDecisions } from "@/components/use-case/KeyDecisions";
 import { SolutionGallery } from "@/components/use-case/SolutionGallery";
+import { SectionTitle } from "@/components/use-case/SectionTitle";
 import type { ExploredSolution, SolutionSectionData } from "@/content/use-cases/types";
 import { redactProtectedGalleryItem } from "@/lib/content";
 
@@ -28,7 +29,7 @@ const ProsCons = ({ pros, cons }: ProsConsProps) => (
       {pros.map((pro) => (
         <div
           key={pro}
-          className="flex items-center gap-3 rounded-full border border-dark-smooth bg-dark-smooth/40 px-3 py-1"
+          className="flex items-center gap-3 px-3 py-1"
         >
           <ThumbsUp size={18} weight="light" className="shrink-0 text-green" />
           <p className="type-body-lg whitespace-nowrap text-muted">{pro}</p>
@@ -39,7 +40,7 @@ const ProsCons = ({ pros, cons }: ProsConsProps) => (
       {cons.map((con) => (
         <div
           key={con}
-          className="flex items-center gap-3 rounded-full border border-dark-smooth bg-dark-smooth/40 px-3 py-1"
+          className="flex items-center gap-3 px-3 py-1"
         >
           <ThumbsDown size={18} weight="light" className="shrink-0 text-[#d9746b]" />
           <p className="type-body-lg whitespace-nowrap text-muted">{con}</p>
@@ -79,14 +80,14 @@ const NumberBadge = ({ index, displayIndex, isSelected, desktopPosition }: Numbe
           "-rotate-45 backdrop-blur-[4px]",
           isSelected
             ? "size-[38px] bg-primary lg:size-[57px]"
-            : "size-[38px] bg-dark-smooth/50",
+            : "size-[38px] bg-[var(--diamond-bg)]",
         )}
       />
     </div>
     <span
       className={clsx(
         "relative",
-        isSelected ? "type-data-index-tight-selected text-dark" : "type-data-index-tight text-primary",
+        isSelected ? "type-data-index-tight-selected text-dark" : "type-data-index-tight text-ink",
       )}
     >
       {String((displayIndex ?? index) + 1).padStart(2, "0")}
@@ -131,7 +132,7 @@ const SolutionCard = ({
         isLeft && "lg:-rotate-2",
         isRight && "lg:rotate-2",
         // Colors
-        isSelected ? "border-primary bg-[#2d5580]" : "border-dark-smooth bg-dark-smooth/20",
+        isSelected ? "border-primary bg-[var(--solution-selected-bg)]" : "border-dark-smooth bg-dark-smooth/20",
       )}
     >
       <NumberBadge index={index} displayIndex={displayIndex} isSelected={isSelected} desktopPosition={desktopPosition} />
@@ -170,10 +171,10 @@ const SolutionCard = ({
         <Tag
           label={isSelected ? selectedLabel : exploredLabel}
           className={clsx(
-            "w-full",
+            "w-full !rounded-full !py-4",
             isSelected
               ? "type-chip-bold !border-primary bg-primary/10 text-primary"
-              : "border-white/10 bg-white/[0.06] text-white",
+              : "border-[var(--chip-default-border)] bg-[var(--chip-default-bg)] text-[var(--chip-default-text)]",
           )}
         />
       </div>
@@ -208,7 +209,7 @@ export const SolutionSection = async ({
   return (
     <Section id={id}>
       <Container className="px-6 sm:px-8 lg:px-0">
-        <h2 className="type-section-title text-muted">{t("explorationAndSolution")}</h2>
+        <SectionTitle>{t("explorationAndSolution")}</SectionTitle>
 
         {/* Mobile: standard carousel */}
         <MobileCarousel className="mt-10 pt-4 lg:hidden" itemClassName="flex flex-col">

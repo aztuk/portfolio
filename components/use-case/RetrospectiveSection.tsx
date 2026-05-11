@@ -4,6 +4,7 @@ import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { MobileCarousel } from "@/components/shared/MobileCarousel";
 import { RetroCard } from "@/components/use-case/RetroCard";
+import { SectionTitle } from "@/components/use-case/SectionTitle";
 import type { RetrospectiveSectionData } from "@/content/use-cases/types";
 
 type RetrospectiveSectionProps = {
@@ -23,9 +24,7 @@ export const RetrospectiveSection = async ({
     <Section id={id}>
       <Container className="px-6 sm:px-8 lg:px-0">
         <div className="mb-12">
-          <h2 className="type-section-title text-muted">
-            {retrospective.title}
-          </h2>
+          <SectionTitle>{retrospective.title}</SectionTitle>
         </div>
 
         {/* Card pairs — centered within the 1200px container */}

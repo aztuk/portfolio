@@ -1,15 +1,20 @@
 {
   "site": {
-    "role": "Product Designer",
-    "heroLabel": "Disponible pour de nouveaux projets",
-    "intro": "Je conçois de la clarté là où les produits deviennent complexes",
-    "heroDescription": "Un portfolio épuré pour un travail produit end-to-end, de la discovery à l'adoption en passant par la structure et la livraison.",
-    "seoTitle": "Quentin Gillon — Product Designer",
-    "seoDescription": "Portfolio d'un AI Product Designer spécialisé en design systems, workflow et pensée produit AI-first."
+    "role": "Lead Product Designer",
+    "heroLabel": "OPEN FOR NEW OPPORTUNITIES",
+    "intro": "Lead Product Designer\nspécialisé dans les produits <b>B2B Saas</b>,\navec <b>15 ans d’expérience</b> dans le secteur de l’énergie.",
+    "heroDescription": "J’utilise le systems thinking pour aligner les équipes, structurer les workflows et concevoir des expériences produit plus scalables.",
+    "seoTitle": "Quentin Gillon — Lead Product Designer",
+    "seoDescription": "Portfolio de Quentin Gillon, Lead Product Designer utilisant le systems thinking pour concevoir de meilleures décisions, de meilleurs workflows et des expériences produit scalables pour des produits B2B complexes."
   },
   "home": {
     "viewWork": "Derniers travaux →",
     "getInTouch": "Me contacter"
+  },
+  "footer": {
+    "resume": "CV",
+    "phone": "Téléphone",
+    "email": "Email"
   },
   "contact": {
     "eyebrow": "Contact",
@@ -25,7 +30,32 @@
   },
   "navigation": {
     "backHome": "Back",
-    "useCaseNav": "Navigation du cas d'usage"
+    "useCaseNav": "Navigation du cas d'usage",
+    "mainNav": "Navigation principale",
+    "home": "Accueil",
+    "works": "Travaux",
+    "about": "À propos",
+    "contact": "Contact",
+    "themeToLight": "Activer le thème clair",
+    "themeToDark": "Activer le thème sombre"
+  },
+  "works": {
+    "seoTitle": "Travaux",
+    "seoDescription": "Les travaux récents de Quentin Gillon — Lead Product Designer spécialisé en produits B2B complexes.",
+    "heading": "Mes travaux récents"
+  },
+  "about": {
+    "seoTitle": "À propos",
+    "seoDescription": "À propos de Quentin Gillon — Lead Product Designer spécialisé en produits B2B complexes, plateformes et design systems.",
+    "heading": "À propos",
+    "greeting": "Hey, moi c’est Quentin!",
+    "bio1": "Je suis Product Designer avec 15 belles années à concevoir des produits B2B dans le secteur de l’énergie.",
+    "bio2": "Au-delà des interfaces, j’ai développé une expertise dans la structuration de workflows, la création de design systems, l’alignement des équipes de delivery et l’accompagnement de designers vers une approche plus systémique du design produit.",
+    "networkTitle": "Réseau & liens",
+    "backgroundTitle": "Mon parcours",
+    "backgroundIntro1": "Ma carrière s'est construite à travers des produits complexes et des responsabilités croissantes.",
+    "backgroundIntro2": "Au fil du temps, cela m'a naturellement conduit vers un rôle centré sur la structure, l'alignement et le leadership produit, en travaillant étroitement avec les équipes.",
+    "downloadCv": "Télécharger le CV"
   },
   "sections": {
     "theTension": "La tension",
@@ -63,6 +93,7 @@
     "verbatim": "Verbatim",
     "friction": "Friction",
     "discoveryDone": "Méthodologie",
+    "viewDiscoveryMetrics": "Consulter les métriques de discovery",
     "keyDecisionsCallout": "Découvrez les {count} décisions clés que j'ai prises"
   },
   "ui": {

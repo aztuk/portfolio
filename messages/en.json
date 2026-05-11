@@ -1,15 +1,20 @@
 {
-  "site": {
-    "role": "Product Designer",
-    "heroLabel": "Currently open for work",
-    "intro": "I design clarity where products become complex",
-    "heroDescription": "A minimal portfolio for end-to-end product work, from discovery and structure to delivery and adoption.",
-    "seoTitle": "Quentin Gillon — Product Designer",
-    "seoDescription": "Portfolio for an AI Product Designer focused on design systems, workflow, and AI-first product thinking."
+    "site": {
+    "role": "Lead Product Designer",
+    "heroLabel": "OPEN FOR NEW OPPORTUNITIES",
+    "intro": "Lead Product Designer\nspecialized in <b>B2B SaaS</b> products,\nwith <b>15 years of experience</b> in the energy sector.",
+    "heroDescription": "I use systems thinking to align teams, structure workflows, and design more scalable product experiences.",
+    "seoTitle": "Quentin Gillon — Lead Product Designer",
+    "seoDescription": "Portfolio of Quentin Gillon, Lead Product Designer using systems thinking to design better decisions, workflows and scalable product experiences for complex B2B products."
   },
   "home": {
     "viewWork": "View work →",
     "getInTouch": "Get in touch"
+  },
+  "footer": {
+    "resume": "Resume",
+    "phone": "Phone",
+    "email": "Email"
   },
   "contact": {
     "eyebrow": "Contact",
@@ -25,7 +30,32 @@
   },
   "navigation": {
     "backHome": "Back home",
-    "useCaseNav": "Use case navigation"
+    "useCaseNav": "Use case navigation",
+    "mainNav": "Main navigation",
+    "home": "Home",
+    "works": "Works",
+    "about": "About",
+    "contact": "Contact",
+    "themeToLight": "Switch to light theme",
+    "themeToDark": "Switch to dark theme"
+  },
+  "works": {
+    "seoTitle": "Works",
+    "seoDescription": "Recent work by Quentin Gillon — Lead Product Designer specialising in complex B2B products.",
+    "heading": "Recent work"
+  },
+  "about": {
+    "seoTitle": "About",
+    "seoDescription": "About Quentin Gillon — Lead Product Designer specialising in complex B2B products, platforms, and design systems.",
+    "heading": "About",
+    "greeting": "Hey, I’m Quentin!",
+    "bio1": "I'm a Product Designer with 15 rewarding years designing B2B products in the energy sector.",
+    "bio2": "Beyond interfaces, I’ve developed expertise in structuring workflows, creating design systems, aligning delivery teams, and coaching designers toward a more systemic approach to product design.",
+    "networkTitle": "Network & links",
+    "backgroundTitle": "My background",
+    "backgroundIntro1": "My career has been shaped through complex products and growing responsibilities.",
+    "backgroundIntro2": "Over time, it naturally led me toward a role focused on structure, alignment, and product leadership, working closely with teams.",
+    "downloadCv": "Download CV"
   },
   "sections": {
     "theTension": "The tension",
@@ -63,6 +93,7 @@
     "verbatim": "Verbatim",
     "friction": "Friction",
     "discoveryDone": "Methodology",
+    "viewDiscoveryMetrics": "View discovery metrics",
     "keyDecisionsCallout": "Check out the {count} key decisions I made"
   },
   "ui": {

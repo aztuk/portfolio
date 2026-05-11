@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Teko, Tektur, Special_Elite } from "next/font/google";
+import {
+  Tektur,
+  Special_Elite,
+  Roboto_Serif,
+} from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -10,24 +14,23 @@ import { siteUrl } from "@/lib/site-url";
 import "@/app/globals.css";
 
 import { routing } from "@/i18n/routing";
-import { HomeButton } from "@/components/shared/HomeButton";
 import { ThemeDiagnostics } from "@/components/shared/ThemeDiagnostics";
-import { LocaleSwitcher } from "@/components/shared/LocaleSwitcher";
 import { ThemeRgbSync } from "@/components/shared/ThemeRgbSync";
 import { NoiseOverlay } from "@/components/layout/NoiseOverlay";
 import { SiteBackground } from "@/components/layout/SiteBackground";
+import { SiteFooter } from "@/components/layout/SiteFooter";
+import { SiteNav } from "@/components/layout/SiteNav";
 
-const sans = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  weight: ["300", "400", "500", "600", "700"],
-});
-
-const display = Teko({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-display",
-});
+const themeBootstrapScript = `
+(() => {
+  try {
+    const storedTheme = window.localStorage.getItem("portfolio-theme");
+    document.documentElement.dataset.theme = storedTheme === "dark" ? "dark" : "light";
+  } catch {
+    document.documentElement.dataset.theme = "light";
+  }
+})();
+`;
 
 const tektur = Tektur({
   subsets: ["latin"],
@@ -39,6 +42,12 @@ const elite = Special_Elite({
   subsets: ["latin"],
   weight: ["400"],
   variable: "--font-elite",
+});
+
+const serif = Roboto_Serif({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-display",
 });
 
 type LocaleLayoutProps = {
@@ -90,16 +99,19 @@ const LocaleLayout = async ({ children, params }: LocaleLayoutProps) => {
   const messages = await getMessages();
 
   return (
-    <html lang={locale} suppressHydrationWarning>
-      <body className={`${sans.variable} ${display.variable} ${tektur.variable} ${elite.variable} bg-canvas text-ink antialiased`}>
+    <html lang={locale} data-theme="light" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeBootstrapScript }} />
+      </head>
+      <body className={`${tektur.variable} ${elite.variable} ${serif.variable} bg-canvas text-ink antialiased`}>
         <NextIntlClientProvider messages={messages}>
           <ThemeRgbSync />
           <ThemeDiagnostics />
           <SiteBackground />
           <NoiseOverlay />
-          <HomeButton />
-          <LocaleSwitcher />
+          <SiteNav />
           <div className="relative z-10">{children}</div>
+          <SiteFooter />
         </NextIntlClientProvider>
       </body>
     </html>

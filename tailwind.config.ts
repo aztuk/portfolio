@@ -41,9 +41,9 @@ const config: Config = {
         elite: ["var(--font-elite)", "serif"],
       },
       boxShadow: {
-        soft: "0 40px 120px rgb(var(--color-dark-deep-rgb) / 0.48), inset 0 1px 0 rgb(var(--color-line-rgb) / 0.05)",
-        card: "0 24px 60px rgb(var(--color-dark-deep-rgb) / 0.34), inset 0 1px 0 rgb(var(--color-line-rgb) / 0.04)",
-        "elevation-2": "0px 8px 21px rgb(var(--color-dark-deep-rgb) / 0.15), 0px 5px 13px rgb(var(--color-dark-deep-rgb) / 0.15), 0px 3px 8px rgb(var(--color-dark-deep-rgb) / 0.15), 0px 2px 5px rgb(var(--color-dark-deep-rgb) / 0.15), 0px 1px 3px rgb(var(--color-dark-deep-rgb) / 0.15)",
+        soft: "0 40px 120px rgb(var(--shadow-color-rgb) / 0.48), inset 0 1px 0 rgb(var(--color-line-rgb) / 0.05)",
+        card: "0 24px 60px rgb(var(--shadow-color-rgb) / 0.34), inset 0 1px 0 rgb(var(--color-line-rgb) / 0.04)",
+        "elevation-2": "0px 8px 21px rgb(var(--shadow-color-rgb) / 0.06), 0px 5px 13px rgb(var(--shadow-color-rgb) / 0.06), 0px 3px 8px rgb(var(--shadow-color-rgb) / 0.06), 0px 2px 5px rgb(var(--shadow-color-rgb) / 0.06), 0px 1px 3px rgb(var(--shadow-color-rgb) / 0.06)",
         "green-glow": "0 0 10px rgb(var(--color-green-rgb) / 0.75)",
       },
       borderRadius: {

@@ -65,7 +65,7 @@ export const LineChartCard = ({ chart }: LineChartCardProps) => {
   return (
     <ChartCardShell className="flex flex-1 flex-col">
       <ChartCardContent variant="default" className="justify-end gap-8 p-6 sm:p-8 lg:p-8">
-        <ChartTitle className="sm:leading-[1.7] sm:tracking-[-0.04em]">
+        <ChartTitle className="sm:leading-[1.7] sm:tracking-[-0.03em]">
           {chart.title}
         </ChartTitle>
 

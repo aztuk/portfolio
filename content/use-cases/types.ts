@@ -114,6 +114,11 @@ export type InsightIconName = "piggy-bank" | "lightbulb" | "users-three" | "cale
 
 export type InsightMethodologyIconName = "flask" | "clipboard-text" | "chart-bar";
 
+export type ThemeAwareColor = string | {
+  dark: string;
+  light: string;
+};
+
 export type QuoteChartData = {
   type: "quote";
   quote: string;
@@ -131,7 +136,7 @@ export type InsightChartData = {
   insightDescription: string;
   methodology: string;
   methodologyIcon: InsightMethodologyIconName;
-  color: string;
+  color: ThemeAwareColor;
 };
 
 export type WorkflowMappingStep = {
@@ -291,6 +296,7 @@ export type ImpactSectionData = {
 export type ThumbnailTagTone = "white" | "canvas";
 
 export type UseCase = {
+  order: number;
   title: string;
   slug: string;
   protected?: boolean;
@@ -312,5 +318,4 @@ export type UseCase = {
   solution: SolutionSectionData;
   impactSection?: ImpactSectionData;
   retrospective?: RetrospectiveSectionData;
-  relatedUseCaseSlugs: string[];
 };

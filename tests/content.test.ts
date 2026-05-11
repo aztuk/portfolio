@@ -1,29 +1,18 @@
 import { describe, expect, it } from "vitest";
 
 import { getAllUseCases } from "@/content/use-cases";
-import type { UseCase } from "@/content/use-cases/types";
 import {
   getAllUseCasesSorted,
   getNormalizedPreviewRatio,
   getResolvedRelatedUseCases,
-  sortUseCasesBySharedTags,
 } from "@/lib/content";
 
-const makeUseCase = (
-  base: UseCase,
-  overrides: Pick<UseCase, "slug" | "title" | "tags" | "year">,
-): UseCase => ({
-  ...base,
-  relatedUseCaseSlugs: [],
-  ...overrides,
-});
-
 describe("content helpers", () => {
-  it("sorts use cases by descending year", () => {
+  it("sorts use cases by ascending order field", () => {
     const sorted = getAllUseCasesSorted();
-    const years = sorted.map((useCase) => Number(useCase.year));
+    const orders = sorted.map((useCase) => useCase.order);
 
-    expect(years).toEqual([...years].sort((left, right) => right - left));
+    expect(orders).toEqual([...orders].sort((left, right) => left - right));
   });
 
   it("returns normalized ratios by project type", () => {
@@ -31,56 +20,16 @@ describe("content helpers", () => {
     expect(getNormalizedPreviewRatio("web")).toBe("aspect-[8/5]");
   });
 
-  it("resolves up to three related use cases without returning the current case", () => {
+  it("resolves related use cases from the assigned order", () => {
     const [firstUseCase] = getAllUseCases();
     const related = getResolvedRelatedUseCases(firstUseCase);
-    const expectedRelatedCount = Math.min(getAllUseCases().length - 1, 3);
+    const expected = getAllUseCasesSorted()
+      .filter((useCase) => useCase.slug !== firstUseCase.slug)
+      .slice(0, 2)
+      .map((useCase) => useCase.slug);
 
-    expect(related).toHaveLength(expectedRelatedCount);
-    expect(related.some((useCase) => useCase.slug === firstUseCase.slug)).toBe(false);
-  });
-
-  it("prioritizes related use cases by shared tag count", () => {
-    const [baseUseCase] = getAllUseCases();
-    const current = makeUseCase(baseUseCase, {
-      slug: "current",
-      title: "Current",
-      tags: ["Mobile", "Growth", "B2C"],
-      year: "2020",
-    });
-    const candidates = [
-      makeUseCase(baseUseCase, {
-        slug: "one-shared",
-        title: "One shared",
-        tags: ["Mobile", "SaaS"],
-        year: "2026",
-      }),
-      makeUseCase(baseUseCase, {
-        slug: "three-shared",
-        title: "Three shared",
-        tags: ["B2C", "Mobile", "Growth"],
-        year: "2021",
-      }),
-      makeUseCase(baseUseCase, {
-        slug: "two-shared-newer",
-        title: "Two shared newer",
-        tags: ["Growth", "Mobile", "Ops"],
-        year: "2024",
-      }),
-      makeUseCase(baseUseCase, {
-        slug: "two-shared-older",
-        title: "Two shared older",
-        tags: ["B2C", "Mobile", "Ops"],
-        year: "2022",
-      }),
-    ];
-
-    expect(sortUseCasesBySharedTags(current, candidates).map((useCase) => useCase.slug)).toEqual([
-      "three-shared",
-      "two-shared-newer",
-      "two-shared-older",
-      "one-shared",
-    ]);
+    expect(related.map((useCase) => useCase.slug)).toEqual(expected);
+    expect(related).toHaveLength(2);
   });
 
   it("keeps each use case within the expected content limits", () => {

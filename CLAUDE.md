@@ -66,7 +66,7 @@ public/assets/        # Static assets (images, videos)
 - All custom colors available as Tailwind classes: `canvas`, `ink`, `muted`, `line`, `accent`, `paper`, `primary`, `green`, `smooth`, `dark`, `dark-smooth`
 - Custom shadows: `shadow-soft`, `shadow-card`, `shadow-elevation-2`
 - Custom border radius: `rounded-xl2` (1.75rem)
-- Custom fonts: `font-sans` (Space Grotesk), `font-display` (Teko)
+- Custom fonts: `font-sans` (Google Sans), `font-display` (Roboto Serif)
 
 ### Design Tokens (CSS Variables)
 ```css

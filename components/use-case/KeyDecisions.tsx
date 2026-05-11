@@ -192,11 +192,11 @@ const KeyDecisionCard = ({ item, isAuthenticated = true }: KeyDecisionCardProps)
       <div className="flex w-full flex-col items-center gap-3">
         <div className={clsx("relative mx-auto", activeMediaLayout.wrapper)}>
           <div className={clsx(
-            "relative overflow-hidden border border-dark-smooth bg-[rgb(53_69_128/31%)] shadow-elevation-2 backdrop-blur-md",
+            "decision-media-surface relative overflow-hidden border border-dark-smooth shadow-elevation-2 backdrop-blur-md",
             activeMediaLayout.frame,
           )}>
             <div className={clsx(
-              "relative h-full w-full overflow-hidden bg-[rgb(53_69_128/31%)]",
+              "decision-media-surface relative h-full w-full overflow-hidden",
               activeMediaLayout.inner,
             )}>
               <DecisionMedia

@@ -8,7 +8,7 @@ type CaptionedCardProps = {
 };
 
 export const CaptionedCard = ({ children, caption }: CaptionedCardProps) => (
-  <div className="flex w-full flex-col items-stretch justify-start gap-6">
+  <div className="flex w-full flex-col items-stretch justify-start gap-4">
     {children}
     {caption ? <ChartCaption>{caption}</ChartCaption> : null}
   </div>

@@ -24,7 +24,7 @@ const KpiRow = ({ row }: KpiRowProps) => {
   return (
     <div className="flex w-full flex-col items-center gap-1">
       <div className="flex w-full items-baseline gap-3" style={{ color }}>
-        <ChartTitle tone="inherit" className="min-w-0 flex-1 sm:leading-[1.7] sm:tracking-[-0.04em]">
+        <ChartTitle tone="inherit" className="min-w-0 flex-1 sm:leading-[1.7] sm:tracking-[-0.03em]">
           {row.title}
         </ChartTitle>
         <ChartValue className="type-chart-value-mobile sm:leading-[0.7]">
@@ -34,7 +34,7 @@ const KpiRow = ({ row }: KpiRowProps) => {
 
       <ProgressBar percent={row.percent} color={color} />
 
-      <ChartBodyText className="type-chart-body-mobile w-full sm:text-[15px] sm:leading-[1.7] sm:tracking-[-0.04em]">
+      <ChartBodyText className="type-chart-body-mobile w-full sm:text-[15px] sm:leading-[1.7] sm:tracking-[-0.03em]">
         {row.description}
       </ChartBodyText>
     </div>

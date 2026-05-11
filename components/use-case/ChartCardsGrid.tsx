@@ -1,3 +1,5 @@
+import type { CSSProperties } from "react";
+
 import { CaptionedCard } from "@/components/use-case/CaptionedCard";
 import { ChartCardsLayout } from "@/components/use-case/ChartCardsLayout";
 import { BeforeAfterBarCard } from "@/components/use-case/charts/BeforeAfterBarCard";
@@ -15,12 +17,16 @@ import { SingleKpiCard } from "@/components/use-case/charts/SingleKpiCard";
 import { WorkflowMappingCard } from "@/components/use-case/charts/WorkflowMappingCard";
 import type { ChartCardData, ChartVariant } from "@/content/use-cases/types";
 
+const getRevealDelayStyle = (index: number, offsetMs = 0) =>
+  ({ "--reveal-delay": `${offsetMs + index * 120}ms` } as CSSProperties);
+
 type ChartCardsGridProps = {
   cards: ChartCardData[];
   labels?: ChartLabels;
   mobileClassName?: string;
   gridClassName?: string;
   itemClassName?: string;
+  revealDelayOffsetMs?: number;
 };
 
 const renderChart = (chart: ChartVariant, labels?: ChartLabels) => {
@@ -58,6 +64,7 @@ export const ChartCardsGrid = ({
   mobileClassName,
   gridClassName,
   itemClassName,
+  revealDelayOffsetMs = 0,
 }: ChartCardsGridProps) => (
   <ChartCardsLayout
     mobileClassName={mobileClassName}
@@ -65,9 +72,15 @@ export const ChartCardsGrid = ({
     itemClassName={itemClassName}
   >
     {cards.map((card, index) => (
-      <CaptionedCard key={index} caption={card.caption}>
-        {renderChart(card.chart, labels)}
-      </CaptionedCard>
+      <div
+        key={index}
+        className="discovery-reveal-chart w-full"
+        style={getRevealDelayStyle(index, revealDelayOffsetMs)}
+      >
+        <CaptionedCard caption={card.caption}>
+          {renderChart(card.chart, labels)}
+        </CaptionedCard>
+      </div>
     ))}
   </ChartCardsLayout>
 );

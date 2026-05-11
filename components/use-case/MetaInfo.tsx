@@ -48,10 +48,10 @@ export const MetaInfo = ({ useCase, id }: MetaInfoProps) => {
             <div className="border-b border-dark-smooth p-5 lg:p-6">
               <div className="mb-3 flex items-center gap-2.5">
                 <p className={clsx(labelClassName, "flex-1")}>{t("myRole")}</p>
-                <span className="type-role-tag rounded-lg bg-dark-smooth px-1.5 py-1 text-muted whitespace-nowrap">
+                <span className="type-role-tag rounded-lg px-1.5 py-1 text-muted whitespace-nowrap" style={{ backgroundColor: "var(--role-owned-bg)" }}>
                   {t("owned")}
                 </span>
-                <span className="type-role-tag rounded-lg bg-dark-smooth/50 px-1.5 py-1 text-smooth whitespace-nowrap">
+                <span className="type-role-tag rounded-lg px-1.5 py-1 text-smooth whitespace-nowrap" style={{ backgroundColor: "var(--role-contributed-bg)" }}>
                   {t("contributed")}
                 </span>
               </div>
@@ -59,7 +59,8 @@ export const MetaInfo = ({ useCase, id }: MetaInfoProps) => {
                 {useCase.roles.owned.map((tag) => (
                   <span
                     key={tag}
-                    className="type-role-tag rounded-lg bg-dark-smooth px-1.5 py-1 text-muted whitespace-nowrap"
+                    className="type-role-tag rounded-lg px-1.5 py-1 text-muted whitespace-nowrap"
+                    style={{ backgroundColor: "var(--role-owned-bg)" }}
                   >
                     {tag}
                   </span>
@@ -67,7 +68,8 @@ export const MetaInfo = ({ useCase, id }: MetaInfoProps) => {
                 {useCase.roles.contributed.map((tag) => (
                   <span
                     key={tag}
-                    className="type-role-tag rounded-lg bg-dark-smooth/50 px-1.5 py-1 text-smooth whitespace-nowrap"
+                    className="type-role-tag rounded-lg px-1.5 py-1 text-smooth whitespace-nowrap"
+                    style={{ backgroundColor: "var(--role-contributed-bg)" }}
                   >
                     {tag}
                   </span>

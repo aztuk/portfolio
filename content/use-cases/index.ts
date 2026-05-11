@@ -24,6 +24,7 @@ export const getUseCaseBySlug = (slug: string, locale = "en"): UseCase | undefin
   getAllUseCases(locale).find((useCase) => useCase.slug === slug);
 
 export const getRelatedUseCases = (useCase: UseCase, locale = "en"): UseCase[] =>
-  useCase.relatedUseCaseSlugs
-    .map((slug) => getUseCaseBySlug(slug, locale))
-    .filter((candidate): candidate is UseCase => Boolean(candidate));
+  getAllUseCases(locale)
+    .filter((candidate) => candidate.slug !== useCase.slug)
+    .sort((left, right) => left.order - right.order)
+    .slice(0, 2);

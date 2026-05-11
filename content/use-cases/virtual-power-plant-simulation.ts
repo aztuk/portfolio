@@ -2,6 +2,7 @@
 
 
 const en: UseCase = {
+  order: 3,
   title: "From a raw list to a decision",
   slug: "virtual-power-plant-flexibility",
   overview:
@@ -121,7 +122,10 @@ const en: UseCase = {
             "Traders could see assets, but not directly the energy actually usable",
           methodology: "Trading scenarios",
           methodologyIcon: "flask",
-          color: "var(--color-chart-citron)",
+          color: {
+            dark: "var(--color-chart-citron)",
+            light: "#667200",
+          },
         },
       },
       {
@@ -408,10 +412,10 @@ const en: UseCase = {
       },
     ],
   },
-  relatedUseCaseSlugs: [],
 };
 
 const fr: UseCase = {
+  order: 3,
   title: "Passer d’une liste brute à une décision"  ,
   slug: "virtual-power-plant-flexibility",
   overview:
@@ -534,7 +538,10 @@ const fr: UseCase = {
             "Les traders voyaient les équipements, mais pas directement l’énergie réellement utilisable",
           methodology: "Scénarios de trading",
           methodologyIcon: "flask",
-          color: "var(--color-chart-citron)",
+          color: {
+            dark: "var(--color-chart-citron)",
+            light: "#667200",
+          },
         },
       },
       {
@@ -817,7 +824,6 @@ selectedSolutionId: "combined-decision-view",
     },
   ],
 },
-  relatedUseCaseSlugs: [],
   projectType: "mobile"
 };
 export const virtualPowerPlantSimulation: Record<string, UseCase> = { en, fr };

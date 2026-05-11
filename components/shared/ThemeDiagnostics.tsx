@@ -104,9 +104,19 @@ export const ThemeDiagnostics = () => {
       characterData: true,
     });
 
+    const themeObserver = new MutationObserver(() => {
+      window.setTimeout(runDiagnostics, 0);
+    });
+
+    themeObserver.observe(root, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
+
     return () => {
       window.clearTimeout(timeoutId);
       observer.disconnect();
+      themeObserver.disconnect();
     };
   }, []);
 

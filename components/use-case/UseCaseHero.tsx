@@ -40,14 +40,10 @@ export const UseCaseHero = ({ useCase }: UseCaseHeroProps) => {
           >
             {/* Shadow layer — no overflow-hidden so shadow isn't clipped */}
             <div
-              className="relative mx-auto w-[calc(100vw-60px)] rounded-[20px] sm:mx-0 sm:w-[320px] sm:rounded-[24px] lg:w-[500px] lg:rounded-[30px]"
-              style={{
-                aspectRatio: "380 / 460",
-                boxShadow: "0 -10px 60px 10px rgba(28, 40, 90, 0.85), 0 0 40px 15px rgba(28, 40, 90, 0.6), 0 0 0 1px rgba(72, 90, 156, 0.3)",
-              }}
+              className="relative mx-auto aspect-[380/460] w-[calc(100vw-60px)] rounded-[20px] shadow-[var(--thumbnail-shadow)] sm:mx-0 sm:w-[320px] sm:rounded-[24px] lg:w-[500px] lg:rounded-[30px]"
             >
               {/* Image layer — clips content to rounded corners */}
-              <div className="absolute inset-0 overflow-hidden rounded-[inherit] border border-dark-smooth">
+              <div className="absolute inset-0 overflow-hidden rounded-[inherit]">
                 <PreviewMedia
                   previewImage={useCase.previewImage}
                   previewVideo={useCase.previewVideo}

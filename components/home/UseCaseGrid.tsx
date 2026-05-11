@@ -11,7 +11,7 @@ export const UseCaseGrid = ({ useCases }: UseCaseGridProps) => {
   return (
     <Section id="work">
       <Container className="px-5 lg:px-0">
-        <div className="flex flex-col">
+        <div className="flex flex-col divide-y divide-dark-smooth">
           {useCases.map((useCase) => (
             <div
               key={useCase.slug}

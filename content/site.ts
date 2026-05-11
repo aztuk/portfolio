@@ -1,15 +1,14 @@
 export const siteContent = {
   name: "Quentin Gillon",
   email: "quentingillon1@gmail.com",
-  role: "Product Designer",
-  heroLabel: "Available for senior product design roles",
-  intro:
-    "I design product systems and complex interfaces that help teams move faster without sacrificing clarity.",
-  specialties: "Design Systems, Product Design, Editorial UX",
-  seo: {
-    title: "Quentin Gillon - Product Designer",
-    description:
-      "Portfolio of Quentin Gillon, product designer focused on design systems, product clarity, and design-engineering collaboration.",
+  phone: {
+    label: "+33 (0) 6 30 34 16 35",
+    href: "tel:+33630341635",
+  },
+  links: {
+    github: "https://github.com/aztuk",
+    linkedIn: "https://www.linkedin.com/in/quentin-gillon-84364423",
+    resume: "/assets/QuentinGillonResume.pdf",
   },
 };
 

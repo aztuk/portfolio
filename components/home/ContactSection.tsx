@@ -15,11 +15,11 @@ export const ContactSection = async () => {
       <Container className="px-5 lg:px-0">
         <div className="grid gap-10 border-t border-dark-smooth pt-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)] lg:gap-16 lg:pt-16">
           <div className="flex flex-col gap-4">
-            <p className="type-eyebrow text-primary">{t("eyebrow")}</p>
-            <h2 className="type-section-title max-w-[680px] text-muted">
+            <p className="type-eyebrow text-[18px] text-primary">{t("eyebrow")}</p>
+            <h2 className="type-section-title max-w-[680px] text-left text-[40px] text-muted">
               {t("title")}
             </h2>
-            <p className="type-body-lg-light max-w-[560px] text-smooth">
+            <p className="type-body-lg-light max-w-[560px] text-muted">
               {t("description")}
             </p>
           </div>

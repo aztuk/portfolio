@@ -2,6 +2,7 @@
 
 
 const en: UseCase = {
+  order: 4,
   title: "Turning delivery into a verifiable system",
   slug: "product-ops-transformation",
   overview:
@@ -45,6 +46,7 @@ const en: UseCase = {
       type: "image",
       src: "/assets/use-cases/design-system/EN_Tensions.png",
       alt: "Diagram showing the interpretation gaps between product, design and development before the shared delivery system.",
+      caption: "Interpretation gaps between product, design and development before the shared delivery system.",
     },
     tensions: [
       {
@@ -407,10 +409,10 @@ const en: UseCase = {
       },
     ],
   },
-  relatedUseCaseSlugs: [],
 };
 
 const fr: UseCase = {
+  order: 4,
   title: "Transformer la delivery en un système vérifiable",
   slug: "product-ops-transformation",
   overview: "Lorsque Enphase nous a rachetés en 2022, nos équipes ont dû passer <b>d’une delivery startup</b> à une organisation produit <b>plus globale</b>. \n\nJ’ai structuré un système de delivery partagé entre <b>product, design et dev</b> pour réduire l’interprétation, le rework et les écarts design/dev.",
@@ -452,6 +454,7 @@ const fr: UseCase = {
       type: "image",
       src: "/assets/use-cases/design-system/FR_tensions.png",
       alt: "Schéma illustrant les écarts d’interprétation entre product, design et développement avant le système de delivery partagé.",
+      caption: "Les écarts d’interprétation entre product, design et développement avant le système de delivery partagé.",
     },
     tensions: [
   {
@@ -813,7 +816,6 @@ selectedSolutionId: "systeme-delivery-partage",
     },
   ],
 },
-  relatedUseCaseSlugs: [],
 };
 
 export const designSystem: Record<string, UseCase> = { en, fr };

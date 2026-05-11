@@ -65,7 +65,13 @@ const bodyTextToneClasses: Record<NonNullable<ChartBodyTextProps["tone"]>, strin
 export const getTintedSurface = (color: string, amount = 15) => {
   const varMatch = color.match(/var\(--(.+?)\)/);
   if (varMatch) {
-    return `rgb(var(--${varMatch[1]}-rgb) / ${amount / 100})`;
+    const tokenName = varMatch[1];
+
+    if (tokenName === "theme-chart-color") {
+      return `color-mix(in srgb, ${color} ${amount}%, transparent)`;
+    }
+
+    return `rgb(var(--${tokenName}-rgb) / ${amount / 100})`;
   }
   return `color-mix(in srgb, ${color} ${amount}%, transparent)`;
 };
@@ -122,7 +128,10 @@ type ProgressBarProps = {
 };
 
 export const ProgressBar = ({ percent, color, size = "md", className = "" }: ProgressBarProps) => (
-  <div className={`w-full rounded-[20px] border border-dark bg-dark p-px ${className}`}>
+  <div
+    className={`w-full rounded-[20px] border p-px ${className}`}
+    style={{ backgroundColor: "var(--progress-bar-track)", borderColor: "var(--progress-bar-track)" }}
+  >
     <div
       className={`${size === "sm" ? "h-2" : "h-3"} rounded-[20px]`}
       style={{ width: `${percent}%`, backgroundColor: color }}

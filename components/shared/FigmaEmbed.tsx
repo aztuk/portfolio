@@ -96,7 +96,7 @@ export const FigmaEmbed = ({
               <button
                 type="button"
                 onClick={() => setLoadOnMobile(true)}
-                className="type-control rounded-full border border-primary/40 bg-primary/10 px-5 py-2.5 text-primary transition-colors hover:bg-primary/15"
+                className="site-action-button rounded-full px-5"
               >
                 {t("loadAnyway")}
               </button>
@@ -176,7 +176,7 @@ export const FigmaEmbed = ({
           <button
             type="button"
             onClick={retry}
-            className="type-control flex items-center gap-2 rounded-full border border-white/20 px-5 py-2.5 text-white transition-colors hover:border-white/40 hover:bg-white/10"
+            className="site-action-button gap-2 rounded-full px-5"
           >
             <RetryIcon />
             {t("retry")}

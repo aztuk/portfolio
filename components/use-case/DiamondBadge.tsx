@@ -23,19 +23,17 @@ export const DiamondBadge = ({
         : "type-data-value";
   const textColor = variant === "filled" ? "var(--color-chart-badge-text)" : color;
 
+  const bgStyle =
+    variant === "filled"
+      ? `color-mix(in srgb, ${color} 60%, transparent)`
+      : "var(--diamond-bg)";
+
   return (
     <div className={`relative flex ${outer} shrink-0 items-center justify-center ${className}`}>
       <div className="absolute inset-0 flex items-center justify-center">
         <div
-          className={`${inner} -rotate-45 backdrop-blur-[4px] backdrop-saturate-150 ${
-            variant === "transparent" ? "bg-dark-smooth/50" : ""
-          }`}
-          style={{
-            backgroundColor:
-              variant === "filled"
-                ? `color-mix(in srgb, ${color} 60%, transparent)`
-                : undefined,
-          }}
+          className={`${inner} -rotate-45 backdrop-blur-[4px] backdrop-saturate-150`}
+          style={{ backgroundColor: bgStyle }}
         />
       </div>
       <span

@@ -1,6 +1,7 @@
 ﻿import type { UseCase } from "@/content/use-cases/types";
 
 const en: UseCase = {
+  order: 1,
   title: "Personalize an energy dashboard",
   slug: "customizable-dashboard",
   overview:
@@ -46,6 +47,7 @@ const en: UseCase = {
       type: "image",
       src: "/assets/use-cases/customizable-dashboard/EN_Before.png",
       alt: "The existing dashboard before personalization — same layout shown to all households regardless of equipment or goals.",
+      caption: "The same dashboard layout shown to all households, regardless of equipment or goals.",
     },
     tensions: [
       {
@@ -137,7 +139,10 @@ const en: UseCase = {
             "Households mostly consulted data that could explain concrete savings.",
           methodology: "Interviews and engagement tests",
           methodologyIcon: "flask",
-          color: "#AEED6B",
+          color: {
+            dark: "#AEED6B",
+            light: "#4f7d1b",
+          },
         },
       },
     ],
@@ -374,10 +379,10 @@ const en: UseCase = {
       },
     ],
   },
-  relatedUseCaseSlugs: [],
 };
 
 const fr: UseCase = {
+  order: 1,
   title: "Personnaliser un dashboard énergétique",
   slug: "customizable-dashboard",
  overview:
@@ -423,6 +428,7 @@ roles: {
       type: "image",
       src: "/assets/use-cases/customizable-dashboard/FR_Before.png",
       alt: "Le dashboard existant avant personnalisation — même disposition affichée à tous les foyers, indépendamment de leur équipement ou de leurs objectifs.",
+      caption: "La même disposition affichée à tous les foyers, indépendamment de leur équipement ou de leurs objectifs.",
     },
     tensions: [
   {
@@ -511,7 +517,10 @@ roles: {
       "Les foyers consultaient surtout les données capables d’expliquer une économie concrète.",
     methodology: "Entretiens et tests d’engagement",
     methodologyIcon: "flask",
-    color: "#AEED6B",
+    color: {
+      dark: "#AEED6B",
+      light: "#4f7d1b",
+    },
   },
 }
     ],
@@ -777,7 +786,6 @@ retrospective: {
     },
   ],
 },
-  relatedUseCaseSlugs: [],
 };
 
 export const customizableDashboard: Record<string, UseCase> = { en, fr };

@@ -85,7 +85,7 @@ export const LoginForm = ({ locale, redirectTo = "/", onSuccess }: LoginFormProp
         <button
           type="submit"
           disabled={loading || !value}
-          className="type-body-md-bold mt-1 w-full rounded-2xl bg-primary px-5 py-3.5 text-canvas transition-opacity hover:opacity-90 disabled:opacity-30"
+          className="site-action-button mt-1 w-full rounded-2xl px-5"
         >
           {l.submit}
         </button>

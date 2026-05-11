@@ -45,7 +45,7 @@ export const UseCaseCard = ({ useCase }: UseCaseCardProps) => {
         {useCase.tags.length > 0 && (
           <div className="flex flex-wrap gap-[4px] items-center justify-center pt-[26px] w-full">
             {useCase.tags.map((tag) => (
-              <Tag key={tag} label={tag} className="text-white" />
+              <Tag key={tag} label={tag} tone="white" />
             ))}
           </div>
         )}

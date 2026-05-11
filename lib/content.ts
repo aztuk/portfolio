@@ -6,11 +6,14 @@ const RELATED_USE_CASE_LIMIT = 2;
 export const sortUseCasesByYear = (useCases: UseCase[]): UseCase[] =>
   [...useCases].sort((left, right) => Number(right.year) - Number(left.year));
 
+export const sortUseCasesByOrder = (useCases: UseCase[]): UseCase[] =>
+  [...useCases].sort((left, right) => left.order - right.order);
+
 export const getNormalizedPreviewRatio = (projectType: ProjectType): string =>
   projectType === "mobile" ? "aspect-[4/5]" : "aspect-[8/5]";
 
 export const getAllUseCasesSorted = (locale = "en"): UseCase[] =>
-  sortUseCasesByYear(getAllUseCases(locale));
+  sortUseCasesByOrder(getAllUseCases(locale));
 
 export const findUseCaseOrThrow = (slug: string, locale = "en"): UseCase => {
   const useCase = getUseCaseBySlug(slug, locale);
@@ -21,36 +24,6 @@ export const findUseCaseOrThrow = (slug: string, locale = "en"): UseCase => {
 
   return useCase;
 };
-
-const getNormalizedTags = (tags: string[]): Set<string> =>
-  new Set(tags.map((tag) => tag.trim().toLowerCase()).filter(Boolean));
-
-export const getSharedTagCount = (left: UseCase, right: UseCase): number => {
-  const leftTags = getNormalizedTags(left.tags);
-  const rightTags = getNormalizedTags(right.tags);
-
-  return [...leftTags].filter((tag) => rightTags.has(tag)).length;
-};
-
-export const sortUseCasesBySharedTags = (
-  useCase: UseCase,
-  candidates: UseCase[],
-): UseCase[] =>
-  [...candidates].sort((left, right) => {
-    const tagDelta = getSharedTagCount(useCase, right) - getSharedTagCount(useCase, left);
-
-    if (tagDelta !== 0) {
-      return tagDelta;
-    }
-
-    const yearDelta = Number(right.year) - Number(left.year);
-
-    if (yearDelta !== 0) {
-      return yearDelta;
-    }
-
-    return left.title.localeCompare(right.title);
-  });
 
 const collectGalleryItems = (useCase: UseCase): GalleryItem[] => [
   ...(useCase.resultHero ? [useCase.resultHero] : []),
@@ -73,7 +46,6 @@ export const redactProtectedGalleryItem = (
 };
 
 export const getResolvedRelatedUseCases = (useCase: UseCase, locale = "en"): UseCase[] =>
-  sortUseCasesBySharedTags(
-    useCase,
+  sortUseCasesByOrder(
     getAllUseCases(locale).filter((candidate) => candidate.slug !== useCase.slug),
   ).slice(0, RELATED_USE_CASE_LIMIT);

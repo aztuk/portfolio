@@ -2,10 +2,11 @@ import type { UseCase } from "@/content/use-cases/types";
 
 
 const en: UseCase = {
+  order: 2,
   title: "Creating complex energy offers without writing code",
   slug: "energy-offer-rule-builder",
   overview:
-    "In 2019, our platform helped energy suppliers manage their tariff offers.\n\nOffer teams wanted to create new tariffs without going through IT. I designed a visual editor to define rules and see their effect on the bill.",
+    "In 2019, our platform helped energy suppliers manage their tariff offers.\n\nOffer teams wanted to create <b>new tariffs without going through IT</b>. I designed a <b>visual editor</b> to define rules and see their effect on the bill.",
   challenge:
     "Make offer creation simple enough for business teams, without losing the precision required for billing.",
   roles: {
@@ -34,6 +35,7 @@ const en: UseCase = {
       type: "image",
       src: "/assets/use-cases/energy-offer-rule-builder/before.png",
       alt: "The existing workflow before the tool — offer teams relied on IT to translate each business idea into technical rules.",
+      caption: "Offer teams relied on IT to translate each business idea into technical rules.",
     },
     artifactAspectRatio: "16/9",
     tensions: [
@@ -104,7 +106,10 @@ const en: UseCase = {
             "Offer teams needed to manipulate schedules, thresholds and conditions themselves",
           methodology: "Observed in business expert interviews",
           methodologyIcon: "clipboard-text",
-          color: "var(--color-chart-lime)",
+          color: {
+            dark: "var(--color-chart-lime)",
+            light: "#2f7d32",
+          },
         },
       },
     ],
@@ -340,10 +345,10 @@ const en: UseCase = {
       },
     ],
   },
-  relatedUseCaseSlugs: [],
 };
 
 const fr: UseCase = {
+  order: 2,
   title: "Créer des offres d’énergie complexes sans écrire de code",
   
   thumbnailTagTone: "canvas",
@@ -387,6 +392,7 @@ roles: {
       type: "image",
       src: "/assets/use-cases/energy-offer-rule-builder/before.png",
       alt: "Le workflow existant avant l’outil — les équipes offres dépendaient de l’IT pour traduire chaque idée métier en règles techniques.",
+      caption: "Les équipes offres dépendaient de l’IT pour traduire chaque idée métier en règles techniques.",
     },
     artifactAspectRatio: "16/9",
   tensions: [
@@ -457,7 +463,10 @@ coreQuestion:
       "Les équipes devaient voir les périodes, horaires et exceptions avant de faire confiance à une règle.",
     methodology: "Tests de scénarios",
     methodologyIcon: "flask",
-    color: "var(--color-chart-lime)",
+    color: {
+      dark: "var(--color-chart-lime)",
+      light: "#2f7d32",
+    },
   },
 },
   ],
@@ -725,7 +734,6 @@ impactSection: {
     },
   ],
 },
-  relatedUseCaseSlugs: [],
   projectType: "mobile"
 };
 

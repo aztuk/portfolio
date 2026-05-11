@@ -95,7 +95,7 @@ const UseCasePage = async ({ params }: UseCasePageProps) => {
       >
         <UseCaseTableOfContents
           items={tableOfContentsItems}
-          className="col-start-1 row-start-1 hidden xl:block"
+          className="col-start-1 row-start-1 hidden min-[2000px]:block"
         />
         <div className="col-start-1 row-start-1 min-w-0" data-use-case-content>
           <UseCaseHero useCase={useCase} />

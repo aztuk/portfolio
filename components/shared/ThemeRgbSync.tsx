@@ -21,11 +21,15 @@ const TOKEN_MAPPINGS = [
   "--color-smooth",
   "--color-dark",
   "--color-dark-smooth",
+  "--color-secondary",
+  "--color-negative",
+  "--color-positive",
   "--color-chart-lime",
   "--color-chart-citron",
   "--color-chart-yellow",
   "--color-chart-amber",
   "--color-chart-badge-border",
+  "--color-chart-badge-text",
   "--blob-1-from",
   "--blob-1-to",
   "--blob-2-from",
@@ -89,8 +93,18 @@ export const ThemeRgbSync = () => {
       characterData: true,
     });
 
+    const themeObserver = new MutationObserver(() => {
+      sync();
+    });
+
+    themeObserver.observe(root, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
+
     return () => {
       observer.disconnect();
+      themeObserver.disconnect();
       probe.remove();
     };
   }, []);
