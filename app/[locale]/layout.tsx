@@ -14,6 +14,7 @@ import { siteUrl } from "@/lib/site-url";
 import "@/app/globals.css";
 
 import { routing } from "@/i18n/routing";
+import { Analytics } from "@vercel/analytics/next";
 import { ThemeDiagnostics } from "@/components/shared/ThemeDiagnostics";
 import { ThemeRgbSync } from "@/components/shared/ThemeRgbSync";
 import { NoiseOverlay } from "@/components/layout/NoiseOverlay";
@@ -112,6 +113,7 @@ const LocaleLayout = async ({ children, params }: LocaleLayoutProps) => {
           <SiteNav />
           <div className="relative z-10">{children}</div>
           <SiteFooter />
+          <Analytics />
         </NextIntlClientProvider>
       </body>
     </html>
