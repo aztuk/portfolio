@@ -1,4 +1,4 @@
-﻿import type { UseCase } from "@/content/use-cases/types";
+import type { UseCase } from "@/content/use-cases/types";
 
 
 const en: UseCase = {
@@ -18,22 +18,22 @@ const en: UseCase = {
       "Prototyping",
       "User testing",
     ],
-    contributed: ["Delivery"],
+    contributed: ["Delivery", "Handoff"],
   },
   year: "2019",
   timeline: "9 months",
   tools: ["Figma", "Notion", "Zeplin"],
-  tags: ["B2B", "Energy", "Data Visualization", "Simulation", "Trading"],
+  tags: ["B2B", "Complex", "Data Visualization", "Map", "Regulations"],
   projectType: "mobile",
   thumbnailTagTone: "white",
   previewImage: {
     type: "image",
-    src: "/assets/use-cases/cluster/EN_cluster_preview.png",
+    src: "/assets/use-cases/cluster/ALL_Thumbnail.png",
     alt: "Before/after montage showing the transition from a raw list of energy assets to a decision interface with map, available capacity and simulation.",
   },
   resultHero: {
     type: "image",
-    src: "/assets/use-cases/cluster/hero.png",
+    src: "/assets/use-cases/cluster/ALL_Hero.png",
     alt: "Before/after montage showing the transition from a raw list of energy assets to a decision interface with map, available capacity and simulation.",
   },
   tension: {
@@ -71,18 +71,11 @@ const en: UseCase = {
     artifacts: [
       {
         type: "image",
-        src: "/assets/use-cases/cluster/Avant liste.png",
+        src: "/assets/use-cases/cluster/ALL_Tension_Before.png",
         alt: "Old list-based interface showing distributed energy assets, with no map, no aggregation and no decision support.",
         caption:
           "Before: an asset list useful for browsing, but insufficient for making quick decisions.",
-      },
-      {
-        type: "image",
-        src: "/assets/use-cases/cluster/Avant assets disponibles.png",
-        alt: "Old available asset list showing the difficulty of quickly identifying actually mobilisable capacity.",
-        caption:
-          "Availability existed in the data, but was hard to turn into an actionable answer.",
-      },
+      }
     ],
     chartCards: [
       {
@@ -145,8 +138,8 @@ const en: UseCase = {
               title: "Answers requiring manual analysis",
               description:
                 "Comparison, forecasting or estimation outside the tool.",
-              display: "7/10",
-              percent: 70,
+              display: "9/10",
+              percent: 90,
               variant: "secondary",
             },
           ],
@@ -173,7 +166,7 @@ const en: UseCase = {
         ],
         media: {
           type: "image",
-          src: "/assets/use-cases/cluster/OPTION A.png",
+          src: "/assets/use-cases/cluster/ALL_option_A.png",
           alt: "Mini-wireframe of a filtered list of energy assets.",
           caption:
             "Option A: speed up the search, without changing the decision model.",
@@ -194,7 +187,7 @@ const en: UseCase = {
         ],
         media: {
           type: "image",
-          src: "/assets/use-cases/cluster/OPTION B.png",
+          src: "/assets/use-cases/cluster/ALL_option_B.png",
           alt: "Mini-wireframe of a geographic view of energy assets.",
           caption:
             "Option B: make the portfolio visible, without yet testing a demand.",
@@ -215,7 +208,7 @@ const en: UseCase = {
         ],
         media: {
           type: "image",
-          src: "/assets/use-cases/cluster/OPTION C.png",
+          src: "/assets/use-cases/cluster/ALL_option_C.png",
           alt: "Mini-wireframe of a combined view with map, forecast, local risk and simulation.",
           caption:
             "Option C: move from searching for information to a simulable decision.",
@@ -223,27 +216,21 @@ const en: UseCase = {
       },
     ],
     selectedSolutionId: "combined-decision-view",
+    why:
+      "Because in a trading context, searching or merely visualizing was not enough: the value came from getting a fast, actionable answer.",
     keyDecisions: [
       {
         id: "answer-not-table",
         eyebrow: "Readability",
-        title: "Answer, don't list",
+        title: "Put the decision at the heart of the journey",
         summary:
-          "The list displayed assets, but the interface had to directly answer the decision questions.",
+          "Because an asset list forced traders to search, compare and recalculate before they could decide.",
         media: {
           type: "image",
-          src: "/assets/use-cases/cluster/Vue apr%C3%A8s.png",
-          alt: "Comparison between a raw asset list and an after view directly showing power, availability, risk and simulation result.",
+          src: "/assets/use-cases/cluster/ALL_KD1-0_RealTimeTrading.png",
+          alt: "The three biggest decision questions (where, when, how much) displayed directly in the interface, without needing to search or cross-check data.",
         },
-        gallery: [
-          {
-            type: "image",
-            src: "/assets/use-cases/cluster/Vue apr%C3%A8s.png",
-            alt: "After view showing available power, available assets, local risk, forecast and simulation.",
-            caption:
-              "The after view turned several searches into a single readable answer.",
-          },
-        ],
+        gallery: [],
         avoidedCost: [
           "Line-by-line searching",
           "Answer to reassemble manually",
@@ -258,16 +245,16 @@ const en: UseCase = {
         eyebrow: "Location",
         title: "Locate before analysing",
         summary:
-          "The map made the distribution of capacity visible before going into details.",
+          "Because available capacity did not have the same value depending on its zone, density and local impact.",
         media: {
           type: "image",
-          src: "/assets/use-cases/cluster/Selected zone map.png",
+          src: "/assets/use-cases/cluster/ALL_KD2-0_SelectedZone.png",
           alt: "Map showing a selected zone of energy assets with available capacity highlighted.",
         },
         gallery: [
           {
             type: "image",
-            src: "/assets/use-cases/cluster/Heat map of discomfort.png",
+            src: "/assets/use-cases/cluster/ALL_KD2-1_HeatmapDiscomfort.png",
             alt: "Heat map showing discomfort risk across zones, helping traders weigh local impact before committing.",
             caption:
               "The discomfort heat map made local risk visible alongside capacity.",
@@ -287,10 +274,10 @@ const en: UseCase = {
         eyebrow: "Time",
         title: "Forecast before acting",
         summary:
-          "The decision had to distinguish currently available capacity from expected capacity during the target window.",
+          "Because capacity available now could disappear before the period actually requested.",
         media: {
           type: "image",
-          src: "/assets/use-cases/cluster/Chart now + forecast.png",
+          src: "/assets/use-cases/cluster/ALL_KD3-0_Forecast.png",
           alt: "Chart comparing currently available capacity and forecast capacity during the target period.",
         },
         gallery: [],
@@ -308,10 +295,10 @@ const en: UseCase = {
         eyebrow: "Action",
         title: "Simulate before committing",
         summary:
-          "Before using assets, the trader needed to test the demand and verify its feasibility.",
+          "Because committing a demand without testing it could exceed real capacity or degrade local comfort.",
         media: {
           type: "image",
-          src: "/assets/use-cases/cluster/Simulation.png",
+          src: "/assets/use-cases/cluster/ALL_KD4-0_Simulation.png",
           alt: "Simulation block showing requested power, target period, result, coverage and confidence.",
         },
         gallery: [],
@@ -381,7 +368,7 @@ const en: UseCase = {
             },
             {
               label: "Answers requiring manual analysis",
-              before: { display: "7/10", percent: 70 },
+              before: { display: "9/10", percent: 90 },
               after: { display: "2/10", percent: 20 },
             },
           ],
@@ -416,12 +403,12 @@ const en: UseCase = {
 
 const fr: UseCase = {
   order: 3,
-  title: "Passer d’une liste brute à une décision"  ,
+  title: "Passer d'une liste brute à une décision",
   slug: "virtual-power-plant-flexibility",
   overview:
-  "En 2019, nous travaillions sur un outil qui aidait les fournisseurs d’énergie à piloter des batteries, panneaux solaires et autres équipements répartis sur le territoire. \n\nLes traders énergie avaient du mal à savoir rapidement <b>combien d’énergie</b> était disponible, <b>où elle se trouvait</b> et <b>combien de temps</b> elle pouvait être utilisée ; j’ai conçu une interface pour rendre <b>ces réponses visibles</b> et tester une demande de puissance.",
+    "En 2019, nous travaillions sur un outil qui aidait les fournisseurs d'énergie à piloter des batteries, panneaux solaires et autres équipements répartis sur le territoire. \n\nLes traders énergie avaient du mal à savoir rapidement <b>combien d'énergie</b> était disponible, <b>où elle se trouvait</b> et <b>combien de temps</b> elle pouvait être utilisée ; j'ai conçu une interface pour rendre <b>ces réponses visibles</b> et tester une demande de puissance.",
   challenge:
-  "Aider les traders à savoir rapidement combien d’énergie peut être utilisée, où elle se trouve et combien de temps elle reste disponible.",
+    "Aider les traders à savoir rapidement combien d'énergie peut être utilisée, où elle se trouve et combien de temps elle reste disponible.",
   roles: {
     owned: [
       "Discovery",
@@ -437,72 +424,64 @@ const fr: UseCase = {
   timeline: "9 mois",
   tools: ["Figma", "Notion", "Zeplin"],
   tags: ["B2B", "Complexe", "Data Visualization", "Carte", "Régulations"],
+  thumbnailTagTone: "white",
 
   previewImage: {
     type: "image",
-    src: "/assets/use-cases/cluster/FR_cluster_preview.png",
-    alt: "Montage avant/après montrant le passage d’une liste brute d’équipements énergétiques à une interface de décision avec carte, capacité mobilisable et simulation.",
+    src: "/assets/use-cases/cluster/ALL_Thumbnail.png",
+    alt: "Montage avant/après montrant le passage d'une liste brute d'équipements énergétiques à une interface de décision avec carte, capacité mobilisable et simulation.",
   },
   resultHero: {
     type: "image",
-    src: "/assets/use-cases/cluster/hero.png",
-    alt: "Montage avant/après montrant le passage d’une liste brute d’équipements énergétiques à une interface de décision avec carte, capacité mobilisable et simulation.",
+    src: "/assets/use-cases/cluster/ALL_Hero.png",
+    alt: "Montage avant/après montrant le passage d'une liste brute d'équipements énergétiques à une interface de décision avec carte, capacité mobilisable et simulation.",
   },
 
   tension: {
     title: "Comprendre le problème",
     tensions: [
-  {
-    label: "Pour les traders énergie",
-    value:
-      "Ils devaient répondre vite à une question simple : combien d’énergie peut-on utiliser maintenant ou bientôt ?",
-    bullets: [
-      "Décision rapide",
-      "Disponibilité variable",
-      "Confiance nécessaire",
+      {
+        label: "Pour les traders énergie",
+        value:
+          "Ils devaient répondre vite à une question simple : combien d'énergie peut-on utiliser maintenant ou bientôt ?",
+        bullets: [
+          "Décision rapide",
+          "Disponibilité variable",
+          "Confiance nécessaire",
+        ],
+      },
+      {
+        label: "Pour les fournisseurs d'énergie",
+        value:
+          "Des milliers d'équipements dispersés devaient devenir une réserve lisible et utilisable.",
+        bullets: [
+          "Équipements dispersés",
+          "Potentiel difficile à additionner",
+          "Confort local à préserver",
+        ],
+      },
     ],
-  },
-  {
-    label: "Pour les energy providers",
-    value:
-      "Des milliers d’équipements dispersés devaient devenir une réserve lisible et utilisable.",
-    bullets: [
-      "Équipements dispersés",
-      "Potentiel difficile à additionner",
-      "Confort local à préserver",
+    coreQuestion:
+      "Comment aider un trader à savoir rapidement combien d'énergie peut être utilisée, où et pendant combien de temps ?",
+    discoverySignals: [
+      "Entretiens avec experts métier",
+      "Cartographie du parc énergétique",
+      "Scénarios métier",
+      "Tests de lisibilité des données",
     ],
-  },
-],
-
-   coreQuestion:
-  "Comment aider un trader à savoir rapidement combien d’énergie peut être utilisée, où et pendant combien de temps ?",
- discoverySignals: [
-  "Entretiens avec experts métier",
-  "Cartographie du parc énergétique",
-  "Scénarios métier",
-  "Tests de lisibilité des données",
-],
     artifacts: [
       {
         type: "image",
-        src: "/assets/use-cases/cluster/Avant liste.png",
+        src: "/assets/use-cases/cluster/ALL_Tension_Before.png",
         alt: "Ancienne interface sous forme de liste brute montrant des équipements énergétiques dispersés, sans carte, sans agrégation et sans aide à la décision.",
         caption:
-          "Avant : une liste d’équipements utile pour consulter, mais insuffisante pour décider rapidement.",
-      },
-      {
-        type: "image",
-        src: "/assets/use-cases/cluster/Avant assets disponibles.png",
-        alt: "Ancienne liste des équipements disponibles montrant la difficulté à identifier rapidement la capacité réellement mobilisable.",
-        caption:
-          "La disponibilité existait dans les données, mais restait difficile à transformer en réponse actionnable.",
-      },
+          "Avant : une liste d'équipements utile pour consulter, mais insuffisante pour décider rapidement.",
+      }
     ],
 
     chartCards: [
       {
-        caption:
-  "Les réponses clés demandaient trop de recherche manuelle",
+        caption: "Les réponses clés demandaient trop de recherche manuelle",
         chart: {
           type: "bars",
           title: "Temps nécessaire pour chercher",
@@ -514,7 +493,7 @@ const fr: UseCase = {
               color: "var(--color-primary)",
             },
             {
-              label: "Unités prod ou\n storage disponibles",
+              label: "Unités prod ou\nstorage disponibles",
               value: 14,
               displayValue: "14mn",
               color: "var(--color-chart-lime)",
@@ -535,7 +514,7 @@ const fr: UseCase = {
           icon: "lightbulb",
           insightTitle: "La donnée existait mais pas la réponse",
           insightDescription:
-            "Les traders voyaient les équipements, mais pas directement l’énergie réellement utilisable",
+            "Les traders voyaient les équipements, mais pas directement l'énergie réellement utilisable",
           methodology: "Scénarios de trading",
           methodologyIcon: "flask",
           color: {
@@ -545,9 +524,8 @@ const fr: UseCase = {
         },
       },
       {
-        caption:
-  "La liste affichait les données, mais pas les réponses.",
-  chart: {
+        caption: "La liste affichait les données, mais pas les réponses.",
+        chart: {
           type: "combined-kpi",
           rows: [
             {
@@ -574,256 +552,259 @@ const fr: UseCase = {
 
   solution: {
     title: "Exploration et solution",
-exploredSolutions: [
-  {
-    id: "filtered-list",
-    title: "Créer une vue liste filtrée",
-    summary:
-      "Ajouter filtres, statuts et colonnes clés pour retrouver plus vite les assets disponibles.",
-    pros: [
-      "Rapide à livrer",
-      "Usage déjà connu",
-    ],
-    cons: [
-      "Réponse à recomposer",
-      "Décision encore lente",
-    ],
-    media: {
-      type: "image",
-      src: "/assets/use-cases/cluster/OPTION A.png",
-      alt: "Mini-wireframe d’une liste filtrée d’assets énergétiques.",
-      caption:
-        "Option A : accélérer la recherche, sans changer le modèle de décision.",
-    },
-  },
-  {
-    id: "geographic-view",
-    title: "Créer une vue géographique",
-    summary:
-      "Afficher les assets sur une carte pour comprendre où se trouve l’énergie disponible.",
-    pros: [
-      "Localisation claire",
-      "Parc plus lisible",
-    ],
-    cons: [
-      "Vue d’observation",
-      "Simulation absente",
-    ],
-    media: {
-      type: "image",
-      src: "/assets/use-cases/cluster/OPTION B.png",
-      alt: "Mini-wireframe d’une vue géographique des assets énergétiques.",
-      caption:
-        "Option B : rendre le parc visible, sans encore tester une demande.",
-    },
-  },
-  {
-    id: "combined-decision-view",
-    title: "Créer une vue de décision",
-    summary:
-      "Combiner carte, capacité, prévision, risque local et simulation dans une même interface.",
-    pros: [
-      "Réponse immédiate",
-      "Action testable",
-    ],
-    cons: [
-      "Plus complexe",
-      "Seuils à expliquer",
-    ],
-    media: {
-      type: "image",
-      src: "/assets/use-cases/cluster/OPTION C.png",
-      alt: "Mini-wireframe d’une vue combinée avec carte, prévision, risque local et simulation.",
-      caption:
-        "Option C : passer de la recherche d’information à une décision simulable.",
-    },
-  },
-],
-selectedSolutionId: "combined-decision-view",
-    keyDecisions: [
-  {
-    id: "answer-not-table",
-    eyebrow: "Lecture",
-    title: "Mettre la décision au coeur du parcours ",
-    summary:
-      "Parce qu’une liste d’assets obligeait le trader à chercher, comparer et recalculer avant de pouvoir décider",
-    media: {
-      type: "image",
-      src: "/assets/use-cases/cluster/Vue apr%C3%A8s.png",
-      alt: "Les 3 plus grandes questions de décision (où, quand, combien) affichées directement dans l’interface, sans besoin de chercher ou recouper les données",
-    },
-    gallery: [],
-    avoidedCost: [
-      "Recherche ligne par ligne",
-      "Réponse à recomposer",
-    ],
-    acceptedCost: [
-      "Hiérarchiser les réponses",
-      "Masquer des détails secondaires",
-    ],
-  },
-  {
-    id: "map-as-context",
-    eyebrow: "Localisation",
-    title: "Localiser avant d’analyser",
-    summary:
-      "Parce que la capacité disponible n’avait pas la même valeur selon sa zone, sa densité et son impact local",
-    media: {
-      type: "image",
-      src: "/assets/use-cases/cluster/Selected zone map.png",
-      alt: "Carte montrant une zone sélectionnée d’assets énergétiques avec la capacité disponible mise en valeur.",
-    },
-    gallery: [
+    exploredSolutions: [
       {
-        type: "image",
-        src: "/assets/use-cases/cluster/Heat map of discomfort.png",
-        alt: "Carte de chaleur montrant le risque d’inconfort local par zone, pour évaluer l’impact avant engagement.",
-        caption:
-          "La heatmap d’inconfort rendait le risque local visible à côté de la capacité disponible.",
+        id: "filtered-list",
+        title: "Créer une vue liste filtrée",
+        summary:
+          "Ajouter filtres, statuts et colonnes clés pour retrouver plus vite les assets disponibles.",
+        pros: [
+          "Rapide à livrer",
+          "Usage déjà connu",
+        ],
+        cons: [
+          "Réponse à recomposer",
+          "Décision encore lente",
+        ],
+        media: {
+          type: "image",
+          src: "/assets/use-cases/cluster/ALL_option_A.png",
+          alt: "Mini-wireframe d'une liste filtrée d'assets énergétiques.",
+          caption:
+            "Option A : accélérer la recherche, sans changer le modèle de décision.",
+        },
+      },
+      {
+        id: "geographic-view",
+        title: "Créer une vue géographique",
+        summary:
+          "Afficher les assets sur une carte pour comprendre où se trouve l'énergie disponible.",
+        pros: [
+          "Localisation claire",
+          "Parc plus lisible",
+        ],
+        cons: [
+          "Vue d'observation",
+          "Simulation absente",
+        ],
+        media: {
+          type: "image",
+          src: "/assets/use-cases/cluster/ALL_option_B.png",
+          alt: "Mini-wireframe d'une vue géographique des assets énergétiques.",
+          caption:
+            "Option B : rendre le parc visible, sans encore tester une demande.",
+        },
+      },
+      {
+        id: "combined-decision-view",
+        title: "Créer une vue de décision",
+        summary:
+          "Combiner carte, capacité, prévision, risque local et simulation dans une même interface.",
+        pros: [
+          "Réponse immédiate",
+          "Action testable",
+        ],
+        cons: [
+          "Plus complexe",
+          "Seuils à expliquer",
+        ],
+        media: {
+          type: "image",
+          src: "/assets/use-cases/cluster/ALL_option_C.png",
+          alt: "Mini-wireframe d'une vue combinée avec carte, prévision, risque local et simulation.",
+          caption:
+            "Option C : passer de la recherche d'information à une décision simulable.",
+        },
       },
     ],
-    avoidedCost: [
-      "Capacité invisible par zone",
-      "Comparaison géographique lente",
+    selectedSolutionId: "combined-decision-view",
+    why:
+      "Parce qu'en contexte de trading, chercher ou seulement visualiser ne suffisait pas : la valeur venait d'une réponse obtenue rapidement et actionnable.",
+    keyDecisions: [
+      {
+        id: "answer-not-table",
+        eyebrow: "Lecture",
+        title: "Mettre la décision au coeur du parcours",
+        summary:
+          "Parce qu'une liste d'assets obligeait le trader à chercher, comparer et recalculer avant de pouvoir décider",
+        media: {
+          type: "image",
+          src: "/assets/use-cases/cluster/ALL_KD1-0_RealTimeTrading.png",
+          alt: "Les 3 plus grandes questions de décision (où, quand, combien) affichées directement dans l'interface, sans besoin de chercher ou recouper les données",
+        },
+        gallery: [],
+        avoidedCost: [
+          "Recherche ligne par ligne",
+          "Réponse à recomposer",
+        ],
+        acceptedCost: [
+          "Hiérarchiser les réponses",
+          "Masquer des détails secondaires",
+        ],
+      },
+      {
+        id: "map-as-context",
+        eyebrow: "Localisation",
+        title: "Localiser avant d'analyser",
+        summary:
+          "Parce que la capacité disponible n'avait pas la même valeur selon sa zone, sa densité et son impact local",
+        media: {
+          type: "image",
+          src: "/assets/use-cases/cluster/ALL_KD2-0_SelectedZone.png",
+          alt: "Carte montrant une zone sélectionnée d'assets énergétiques avec la capacité disponible mise en valeur.",
+        },
+        gallery: [
+          {
+            type: "image",
+            src: "/assets/use-cases/cluster/ALL_KD2-1_HeatmapDiscomfort.png",
+            alt: "Carte de chaleur montrant le risque d'inconfort local par zone, pour évaluer l'impact avant engagement.",
+            caption:
+              "La heatmap d'inconfort rendait le risque local visible à côté de la capacité disponible.",
+          },
+        ],
+        avoidedCost: [
+          "Capacité invisible par zone",
+          "Comparaison géographique lente",
+        ],
+        acceptedCost: [
+          "Carte à rendre lisible",
+          "Filtres à hiérarchiser",
+        ],
+      },
+      {
+        id: "forecast-before-action",
+        eyebrow: "Temps",
+        title: "Prévoir avant d'agir",
+        summary:
+          "Parce qu'une capacité disponible maintenant pouvait disparaître avant la période réellement demandée",
+        media: {
+          type: "image",
+          src: "/assets/use-cases/cluster/ALL_KD3-0_Forecast.png",
+          alt: "Graphique comparant la capacité disponible maintenant et la capacité prévue pendant la période cible.",
+        },
+        gallery: [],
+        avoidedCost: [
+          "Décision trop instantanée",
+          "Disponibilité mal anticipée",
+        ],
+        acceptedCost: [
+          "Afficher l'incertitude",
+          "Expliquer la prévision",
+        ],
+      },
+      {
+        id: "simulate-before-commit",
+        eyebrow: "Action",
+        title: "Simuler avant d'engager",
+        summary:
+          "Parce qu'engager une demande sans test pouvait dépasser la capacité réelle ou dégrader le confort local",
+        media: {
+          type: "image",
+          src: "/assets/use-cases/cluster/ALL_KD4-0_Simulation.png",
+          alt: "Bloc de simulation montrant la puissance demandée, la période cible, le résultat, la couverture et la confiance.",
+        },
+        gallery: [],
+        avoidedCost: [
+          "Engagement trop risqué",
+          "Impact local sous-estimé",
+        ],
+        acceptedCost: [
+          "Contraintes à modéliser",
+          "Limites à afficher",
+        ],
+      },
     ],
-    acceptedCost: [
-      "Carte à rendre lisible",
-      "Filtres à hiérarchiser",
-    ],
-  },
-  {
-    id: "forecast-before-action",
-    eyebrow: "Temps",
-    title: "Prévoir avant d’agir",
-    summary:
-      "Parce qu’une capacité disponible maintenant pouvait disparaître avant la période réellement demandée",
-    media: {
-      type: "image",
-      src: "/assets/use-cases/cluster/Chart now + forecast.png",
-      alt: "Graphique comparant la capacité disponible maintenant et la capacité prévue pendant la période cible.",
-    },
-    gallery: [],
-    avoidedCost: [
-      "Décision trop instantanée",
-      "Disponibilité mal anticipée",
-    ],
-    acceptedCost: [
-      "Afficher l’incertitude",
-      "Expliquer la prévision",
-    ],
-  },
-  {
-    id: "simulate-before-commit",
-    eyebrow: "Action",
-    title: "Simuler avant d’engager",
-    summary:
-      "Parce qu’engager une demande sans test pouvait dépasser la capacité réelle ou dégrader le confort local",
-    media: {
-      type: "image",
-      src: "/assets/use-cases/cluster/Simulation.png",
-      alt: "Bloc de simulation montrant la puissance demandée, la période cible, le résultat, la couverture et la confiance.",
-    },
-    gallery: [],
-    avoidedCost: [
-      "Engagement trop risqué",
-      "Impact local sous-estimé",
-    ],
-    acceptedCost: [
-      "Contraintes à modéliser",
-      "Limites à afficher",
-    ],
-  },
-],  
   },
 
- impactSection: {
-  title: "Les impacts",
-  summary:
-    "L’interface a transformé une recherche lente dans une liste brute en lecture rapide des réponses utiles à la décision.",
-  bullets: [
-    {
-      bold: "Les traders trouvaient plus vite l’énergie utilisable",
-      regular:
-        "moins de recherche ligne par ligne dans la liste d’équipements",
-    },
-    {
-      bold: "Les zones et unités disponibles devenaient plus lisibles",
-      regular:
-        "production, stockage et disponibilité visibles dans une même lecture",
-    },
-    {
-      bold: "Les décisions demandaient moins de recoupements manuels",
-      regular:
-        "plus de réponses obtenues directement dans l’interface",
-    },
-  ],
-  charts: [
-    {
-      chart: {
-        type: "duration-bars",
-        title: "Temps pour obtenir une réponse",
-        items: [
-          {
-            label: "Puissance\nutilisable",
-            before: { display: "18mn", value: 18 },
-            after: { display: "4mn", value: 4 },
-          },
-          {
-            label: "Unités prod ou\nstorage disponibles",
-            before: { display: "14mn", value: 14 },
-            after: { display: "3mn", value: 3 },
-          },
-          {
-            label: "Risque sur le\nconfort local",
-            before: { display: "22mn", value: 22 },
-            after: { display: "6mn", value: 6 },
-          },
-        ],
+  impactSection: {
+    title: "Les impacts",
+    summary:
+      "L'interface a transformé une recherche lente dans une liste brute en lecture rapide des réponses utiles à la décision.",
+    bullets: [
+      {
+        bold: "Les traders trouvaient plus vite l'énergie utilisable",
+        regular:
+          "moins de recherche ligne par ligne dans la liste d'équipements",
       },
-      caption: "Les mêmes questions devenaient plus rapides à traiter.",
-    },
-    {
-      chart: {
-        type: "before-after-combined-kpi",
-        rows: [
-          {
-            label: "Réponses obtenues sans interaction",
-            before: { display: "1/10", percent: 10 },
-            after: { display: "6/10", percent: 60 },
-          },
-          {
-            label: "Réponses nécessitant analyse manuelle",
-            before: { display: "7/10", percent: 70 },
-            after: { display: "2/10", percent: 20 },
-          },
-        ],
+      {
+        bold: "Les zones et unités disponibles devenaient plus lisibles",
+        regular:
+          "production, stockage et disponibilité visibles dans une même lecture",
       },
-      caption: "La nouvelle interface réduisait les recoupements manuels.",
-    },
-  ],
-},
+      {
+        bold: "Les décisions demandaient moins de recoupements manuels",
+        regular:
+          "plus de réponses obtenues directement dans l'interface",
+      },
+    ],
+    charts: [
+      {
+        chart: {
+          type: "duration-bars",
+          title: "Temps pour obtenir une réponse",
+          items: [
+            {
+              label: "Puissance\nutilisable",
+              before: { display: "18mn", value: 18 },
+              after: { display: "4mn", value: 4 },
+            },
+            {
+              label: "Unités prod ou\nstorage disponibles",
+              before: { display: "14mn", value: 14 },
+              after: { display: "3mn", value: 3 },
+            },
+            {
+              label: "Risque sur le\nconfort local",
+              before: { display: "22mn", value: 22 },
+              after: { display: "6mn", value: 6 },
+            },
+          ],
+        },
+        caption: "Les mêmes questions devenaient plus rapides à traiter.",
+      },
+      {
+        chart: {
+          type: "before-after-combined-kpi",
+          rows: [
+            {
+              label: "Réponses obtenues sans interaction",
+              before: { display: "1/10", percent: 10 },
+              after: { display: "6/10", percent: 60 },
+            },
+            {
+              label: "Réponses nécessitant analyse manuelle",
+              before: { display: "9/10", percent: 90 },
+              after: { display: "2/10", percent: 20 },
+            },
+          ],
+        },
+        caption: "La nouvelle interface réduisait les recoupements manuels.",
+      },
+    ],
+  },
 
   retrospective: {
-  title: "Rétrospective",
-  summary:
-    "Ce projet a renforcé ma manière de concevoir des interfaces de décision pour des sujets complexes.",
-  dontLabel: "NE PLUS",
-  doLabel: "MAIS PLUTÔT",
-  items: [
-    {
-      dont: "Montrer plus de données",
-      do: "Transformer les données en réponses actionnables",
-    },
-    {
-      dont: "Voir la visualisation comme une fin",
-      do: "L’utiliser comme point d’entrée vers une décision",
-    },
-    {
-      dont: "Cacher l’incertitude pour simplifier",
-      do: "La rendre visible pour décider avec confiance",
-    },
-  ],
-},
-  projectType: "mobile"
+    title: "Rétrospective",
+    summary:
+      "Ce projet a renforcé ma manière de concevoir des interfaces de décision pour des sujets complexes.",
+    dontLabel: "NE PLUS",
+    doLabel: "MAIS PLUTÔT",
+    items: [
+      {
+        dont: "Montrer plus de données",
+        do: "Transformer les données en réponses actionnables",
+      },
+      {
+        dont: "Voir la visualisation comme une fin",
+        do: "L'utiliser comme point d'entrée vers une décision",
+      },
+      {
+        dont: "Cacher l'incertitude pour simplifier",
+        do: "La rendre visible pour décider avec confiance",
+      },
+    ],
+  },
+  projectType: "mobile",
 };
+
 export const virtualPowerPlantSimulation: Record<string, UseCase> = { en, fr };

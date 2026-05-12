@@ -7,6 +7,7 @@ import { Section } from "@/components/layout/Section";
 import { MobileCarousel } from "@/components/shared/MobileCarousel";
 import { Tag } from "@/components/shared/Tag";
 import { KeyDecisions } from "@/components/use-case/KeyDecisions";
+import { QuestionCallout } from "@/components/use-case/QuestionCallout";
 import { SolutionGallery } from "@/components/use-case/SolutionGallery";
 import { SectionTitle } from "@/components/use-case/SectionTitle";
 import type { ExploredSolution, SolutionSectionData } from "@/content/use-cases/types";
@@ -87,7 +88,9 @@ const NumberBadge = ({ index, displayIndex, isSelected, desktopPosition }: Numbe
     <span
       className={clsx(
         "relative",
-        isSelected ? "type-data-index-tight-selected text-dark" : "type-data-index-tight text-ink",
+        isSelected
+          ? "type-data-index-tight-selected text-[var(--solution-selected-badge-text)]"
+          : "type-data-index-tight text-ink",
       )}
     >
       {String((displayIndex ?? index) + 1).padStart(2, "0")}
@@ -227,14 +230,14 @@ export const SolutionSection = async ({
         </MobileCarousel>
 
         {/*
-         * Desktop: CSS grid [1fr 390px 1fr]
-         * Center card (450px absolute) overflows the 390px col by 30px on each side,
-         * creating the "laid on top" overlap effect.
-         * The outer py-6 lets the center card overflow ±24px vertically.
+         * Desktop: CSS grid [1fr 390px 1fr].
+         * Center card stays in flow so its full content height is measured.
+         * Its 450px width still overflows the 390px column by 30px on each side.
+         * The outer py-6 reserves room for the floating number badge.
          */}
         <div className="relative mt-16 hidden py-6 lg:grid lg:grid-cols-[1fr_390px_1fr]">
           {/* Left card */}
-          <div className="flex min-w-0 flex-col">
+          <div className="flex min-w-0 flex-col lg:col-start-1 lg:row-start-1">
             {leftSolution && (
               <SolutionCard
                 item={leftSolution}
@@ -248,11 +251,22 @@ export const SolutionSection = async ({
             )}
           </div>
 
-          {/* Center column — spacer only, occupied by the absolute card */}
-          <div />
+          {centerSolution && (
+            <div className="z-10 flex w-[450px] max-w-none -translate-y-1 justify-self-center lg:col-start-2 lg:row-start-1">
+              <SolutionCard
+                item={centerSolution}
+                isSelected
+                index={selectedIndex}
+                displayIndex={1}
+                selectedLabel={t("selected")}
+                exploredLabel={t("explored")}
+                desktopPosition="center"
+              />
+            </div>
+          )}
 
           {/* Right card */}
-          <div className="flex min-w-0 flex-col">
+          <div className="flex min-w-0 flex-col lg:col-start-3 lg:row-start-1">
             {rightSolution && (
               <SolutionCard
                 item={rightSolution}
@@ -266,21 +280,11 @@ export const SolutionSection = async ({
             )}
           </div>
 
-          {/* Center card: absolute, centered, overflows ±24px via top-0/bottom-0 inside py-6 wrapper */}
-          {centerSolution && (
-            <div className="absolute bottom-0 left-1/2 top-0 z-10 w-[450px] -translate-x-1/2">
-              <SolutionCard
-                item={centerSolution}
-                isSelected
-                index={selectedIndex}
-                displayIndex={1}
-                selectedLabel={t("selected")}
-                exploredLabel={t("explored")}
-                desktopPosition="center"
-              />
-            </div>
-          )}
         </div>
+
+        {solution.why ? (
+          <QuestionCallout question={solution.why} label={t("why")} />
+        ) : null}
 
         {/* Callout: only shown when there are key decisions below */}
         {hasKeyDecisions && (

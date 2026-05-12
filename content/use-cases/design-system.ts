@@ -32,19 +32,19 @@ const en: UseCase = {
   thumbnailTagTone: "white",
   previewImage: {
     type: "image",
-    src: "/assets/use-cases/design-system/EN_designsystem_preview.png",
+    src: "/assets/use-cases/design-system/EN/EN_Thumbnail.png",
     alt: "Preview of the Product Ops transformation — handoff, development and review better aligned.",
   },
   resultHero: {
     type: "image",
-    src: "/assets/use-cases/design-system/EN_hero.png",
+    src: "/assets/use-cases/design-system/EN/EN_Hero.png",
     alt: "Overview of the shared delivery and design system built for product, design and development.",
   },
   tension: {
     title: "Understanding the problem",
     artifact: {
       type: "image",
-      src: "/assets/use-cases/design-system/EN_Tensions.png",
+      src: "/assets/use-cases/design-system/EN/EN_Tension_Silos.png",
       alt: "Diagram showing the interpretation gaps between product, design and development before the shared delivery system.",
       caption: "Interpretation gaps between product, design and development before the shared delivery system.",
     },
@@ -158,7 +158,7 @@ const en: UseCase = {
         ],
         media: {
           type: "image",
-          src: "/assets/use-cases/design-system/OPTION A.png",
+          src: "/assets/use-cases/design-system/ALL_option_A.png",
           alt: "Wireframe of a documentation hub centralizing rules, components and guidelines.",
         },
       },
@@ -177,7 +177,7 @@ const en: UseCase = {
         ],
         media: {
           type: "image",
-          src: "/assets/use-cases/design-system/OPTION B.png",
+          src: "/assets/use-cases/design-system/ALL_option_B.png",
           alt: "Wireframe of a workflow adding a strengthened review gate after development.",
         },
       },
@@ -196,12 +196,14 @@ const en: UseCase = {
         ],
         media: {
           type: "image",
-          src: "/assets/use-cases/design-system/OPTION C.png",
+          src: "/assets/use-cases/design-system/ALL_option_C.png",
           alt: "Wireframe of a shared delivery system with handoff, gates and quality criteria before development.",
         },
       },
     ],
     selectedSolutionId: "shared-delivery-system",
+    why:
+      "Because the stack change and flagship product redesign made a clearer delivery system necessary before scaling.",
     keyDecisions: [
       {
         id: "delivery",
@@ -211,13 +213,13 @@ const en: UseCase = {
           "Because decisions reopened during review cost more than trade-offs made upfront.",
         media: {
           type: "image",
-          src: "/assets/use-cases/design-system/EN_keydecision1_workflow.png",
+          src: "/assets/use-cases/design-system/EN/EN_KD1-0_workflow.png",
           alt: "Workflow showing the shift of product, design and engineering decisions before development starts.",
         },
         gallery: [
           {
             type: "image",
-            src: "/assets/use-cases/design-system/FullWorkflow.png.png",
+            src: "/assets/use-cases/design-system/ALL_KD1-1_FullWorkflow.png",
             alt: "Full workflow showing the complete product delivery alignment and validation process.",
           },
         ],
@@ -238,7 +240,7 @@ const en: UseCase = {
           "Because a single library was mixing global decisions, components, product usage and responsibilities.",
         media: {
           type: "image",
-          src: "/assets/use-cases/design-system/EN_keydecision2_designArchitecture.png",
+          src: "/assets/use-cases/design-system/EN/EN_KD2-0_designArchitecture.png",
           alt: "Design system architecture separating foundations, components, product usage and governance responsibilities.",
         },
         gallery: [
@@ -278,7 +280,7 @@ const en: UseCase = {
           "Because reviews came too late and relied too often on different opinions.",
         media: {
           type: "image",
-          src: "/assets/use-cases/design-system/EN_keydecision3_HandoffPackage.png",
+          src: "/assets/use-cases/design-system/EN/EN_KD3-0_HandoffPackage.png",
           alt: "Handoff package and review checklist reducing interpretation gaps during development.",
         },
         gallery: [],
@@ -299,7 +301,7 @@ const en: UseCase = {
           "Because a shared system couldn’t be sustainably adopted if it remained design-only.",
         media: {
           type: "image",
-          src: "/assets/use-cases/design-system/EN_keydecision4_Adoption.png",
+          src: "/assets/use-cases/design-system/EN/EN_KD4-0_Adoption.png",
           alt: "Adoption model showing how technical advocates helped teams use the shared system.",
         },
         gallery: [],
@@ -440,19 +442,19 @@ const fr: UseCase = {
   thumbnailTagTone: "white",
   previewImage: {
     type: "image",
-    src: "/assets/use-cases/design-system/FR_designsystem_preview.png",
+    src: "/assets/use-cases/design-system/FR/FR_Thumbnail.png",
     alt: "Aperçu de la transformation Product Ops — handoff, développement et review mieux alignés",
   },
   resultHero: {
     type: "image",
-    src: "/assets/use-cases/design-system/FR_hero.png",
+    src: "/assets/use-cases/design-system/FR/FR_Hero.png",
     alt: "Vue d'ensemble du système de delivery et design system partagé entre product, design et développement.",
   },
   tension: {
     title: "Comprendre le problème",
     artifact: {
       type: "image",
-      src: "/assets/use-cases/design-system/FR_tensions.png",
+      src: "/assets/use-cases/design-system/FR/FR_Tension_Silos.png",
       alt: "Schéma illustrant les écarts d’interprétation entre product, design et développement avant le système de delivery partagé.",
       caption: "Les écarts d’interprétation entre product, design et développement avant le système de delivery partagé.",
     },
@@ -551,7 +553,7 @@ const fr: UseCase = {
     title: "Exploration et solution",
     exploredSolutions: [
   {
-    id: "renforcer-documentation",
+    id: "strengthen-documentation",
     title: "Renforcer la documentation",
     summary:
       "Centraliser règles, composants et guidelines dans un hub consultable par les équipes.",
@@ -565,12 +567,12 @@ const fr: UseCase = {
     ],
     media: {
       type: "image",
-      src: "/assets/use-cases/design-system/OPTION A.png",
+      src: "/assets/use-cases/design-system/ALL_option_A.png",
       alt: "Mini-wireframe d’un hub documentaire centralisant règles, composants et guidelines.",
     },
   },
   {
-    id: "renforcer-reviews",
+    id: "strengthen-reviews",
     title: "Renforcer les reviews",
     summary:
       "Ajouter plus de contrôles en fin de cycle pour détecter les écarts avant livraison.",
@@ -584,12 +586,12 @@ const fr: UseCase = {
     ],
     media: {
       type: "image",
-      src: "/assets/use-cases/design-system/OPTION B.png",
+      src: "/assets/use-cases/design-system/ALL_option_B.png",
       alt: "Mini-wireframe d’un workflow ajoutant une review renforcée après développement.",
     },
   },
   {
-    id: "systeme-delivery-partage",
+    id: "shared-delivery-system",
     title: "Créer une delivery partagée",
     summary:
       "Aligner product, design et dev autour de gates, artefacts et critères qualité communs.",
@@ -603,12 +605,14 @@ const fr: UseCase = {
     ],
     media: {
       type: "image",
-      src: "/assets/use-cases/design-system/OPTION C.png",
+      src: "/assets/use-cases/design-system/ALL_option_C.png",
       alt: "Mini-wireframe d’un système de delivery partagé avec handoff, gates et critères qualité avant développement.",
     },
   },
 ],
-selectedSolutionId: "systeme-delivery-partage",
+selectedSolutionId: "shared-delivery-system",
+why:
+  "Parce que le changement de stack et la refonte du produit flagship rendaient nécessaire un système de delivery plus clair avant de scaler.",
     keyDecisions: [
   {
     id: "delivery",
@@ -618,13 +622,13 @@ selectedSolutionId: "systeme-delivery-partage",
       "Parce que les décisions réouvertes en review coûtaient plus cher que les arbitrages faits en amont.",
     media: {
       type: "image",
-      src: "/assets/use-cases/design-system/FR_keydecision1_workflow.png",
+      src: "/assets/use-cases/design-system/FR/FR_KD1-0_workflow.png",
       alt: "Workflow montrant le déplacement des décisions product, design et engineering avant le développement.",
     },
     gallery: [
       {
         type: "image",
-        src: "/assets/use-cases/design-system/FullWorkflow.png.png",
+        src: "/assets/use-cases/design-system/ALL_KD1-1_FullWorkflow.png",
         alt: "Workflow complet montrant le processus d'alignement et de validation de la delivery produit.",
       },
     ],
@@ -645,7 +649,7 @@ selectedSolutionId: "systeme-delivery-partage",
       "Parce qu’une bibliothèque unique mélangeait décisions globales, composants, usages produit et responsabilités.",
     media: {
       type: "image",
-      src: "/assets/use-cases/design-system/FR_keydecision2_designArchitecture.png",
+      src: "/assets/use-cases/design-system/FR/FR_KD2-0_designArchitecture.png",
       alt: "Architecture du design system séparant foundations, composants, usages produit et responsabilités de gouvernance.",
     },
     gallery: [
@@ -685,7 +689,7 @@ selectedSolutionId: "systeme-delivery-partage",
       "Parce que les reviews arrivaient trop tard et reposaient trop souvent sur des opinions différentes.",
     media: {
       type: "image",
-      src: "/assets/use-cases/design-system/FR_keydecision3_HandoffPackage.png",
+      src: "/assets/use-cases/design-system/FR/FR_KD3-0_HandoffPackage.png",
       alt: "Handoff package et checklist de review permettant de réduire les interprétations pendant le développement.",
     },
     gallery: [],
@@ -706,7 +710,7 @@ selectedSolutionId: "systeme-delivery-partage",
       "Parce qu’un système partagé ne pouvait pas être adopté durablement s’il restait porté uniquement par le design.",
     media: {
       type: "image",
-      src: "/assets/use-cases/design-system/FR_keydecision4_Adoption.png",
+      src: "/assets/use-cases/design-system/FR/FR_KD4-0_Adoption.png",
       alt: "Modèle d’adoption montrant comment les relais techniques aidaient les équipes à utiliser le système.",
     },
     gallery: [],

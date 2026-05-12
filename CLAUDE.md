@@ -117,6 +117,38 @@ public/assets/        # Static assets (images, videos)
 - Utility functions for content manipulation go in `lib/content.ts`
 - Types for content live in `content/use-cases/types.ts`
 
+### Use-Case Asset Conventions
+
+All use-case assets live under `public/assets/use-cases/<project-slug>/` and follow strict naming and placement rules.
+
+**Directory layout:**
+```
+public/assets/use-cases/<project-slug>/
+  ALL_<name>.<ext>      # shared across both locales — prefix ALL_
+  FR/
+    FR_<name>.<ext>     # French-specific — prefix FR_
+  EN/
+    EN_<name>.<ext>     # English-specific — prefix EN_
+```
+
+**Naming segments** (after the locale prefix):
+
+| Segment | Used for |
+|---|---|
+| `Thumbnail` | Use-case preview / card image |
+| `Hero` | Result hero image (below the Context section) |
+| `option_A`, `option_B`, `option_C` | Explored-solutions images |
+| `Tension_<descriptor>` | Tension section images (one or more) |
+| `KD<X>-<Y>` | Key Decision images — X = decision index (1-based), Y = position in gallery (0 = main media) |
+
+**Rules enforced by `/check-use-case-assets`:**
+1. Every `FR_*` image must have a matching `EN_*` counterpart (same name after the prefix) and vice versa.
+2. `FR_` images must live in the `FR/` subfolder; `EN_` images in `EN/`; `ALL_` images at the root.
+3. Every `src` path referenced in a use-case content file must point to a file that exists on disk.
+4. Every image filename must match one of the naming segments above.
+
+When editing or adding use-case content files, always run `/check-use-case-assets` before marking work done.
+
 ### TypeScript
 - Strict mode is on — no `any`, no `@ts-ignore` without a comment explaining why
 - Prefer `type` over `interface`

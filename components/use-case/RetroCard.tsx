@@ -14,7 +14,7 @@ export const RetroCard = ({ text, variant, label, className }: RetroCardProps) =
     <div
       className={clsx(
         "relative flex flex-1 flex-col items-center justify-center",
-        "rounded-[24px] border border-dark-smooth border-b-8 bg-canvas lg:rounded-[30px]",
+        "rounded-[10px] border border-dark-smooth border-b-4 bg-canvas",
         "min-w-0 px-6 pb-14 pt-8 sm:px-8 lg:px-12 lg:pb-16",
         isDont
           ? "[border-bottom-color:var(--color-negative)]"
@@ -27,7 +27,7 @@ export const RetroCard = ({ text, variant, label, className }: RetroCardProps) =
       </p>
       <span
         className={clsx(
-          "absolute bottom-0 left-7",
+          "absolute bottom-0 left-2",
           "type-retro-label whitespace-nowrap",
           isDont
             ? "text-[color:var(--color-negative)]"

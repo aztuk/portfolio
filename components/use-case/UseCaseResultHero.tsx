@@ -59,17 +59,16 @@ export const UseCaseResultHero = ({
           <button
             type="button"
             onClick={() => setIsLightboxOpen(true)}
-            className="block w-full cursor-zoom-in overflow-hidden rounded-[24px] shadow-elevation-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary lg:rounded-[40px]"
+            className="relative block aspect-[8/5] w-full cursor-zoom-in overflow-hidden rounded-[24px] shadow-elevation-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary lg:rounded-[40px]"
             aria-label={asset.alt}
           >
             <Image
               src={asset.src}
               alt={asset.alt}
-              width={1200}
-              height={750}
+              fill
               sizes="(min-width: 1280px) 1200px, 100vw"
               priority
-              className="block h-auto max-h-[75vh] w-full"
+              className="object-cover"
               unoptimized
             />
           </button>

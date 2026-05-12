@@ -7,6 +7,7 @@ import { DiscoveryMetricsReveal } from "@/components/use-case/DiscoveryMetricsRe
 import { Section } from "@/components/layout/Section";
 import { MobileCarousel } from "@/components/shared/MobileCarousel";
 import { Tag } from "@/components/shared/Tag";
+import { QuestionCallout } from "@/components/use-case/QuestionCallout";
 import { TensionBeforeImage } from "@/components/use-case/TensionBeforeImage";
 import { SectionTitle } from "@/components/use-case/SectionTitle";
 import type {
@@ -53,20 +54,6 @@ const ProblemCard = ({ item, frictionLabel }: ProblemCardProps) => (
 );
 
 // ─── Discovery signals ────────────────────────────────────────────────────────
-
-type CoreQuestionCardProps = {
-  question: string;
-  label: string;
-};
-
-const CoreQuestionCard = ({ question, label }: CoreQuestionCardProps) => (
-  <div className="mt-14 flex w-full flex-col items-center justify-center bg-[var(--core-question-bg)] px-6 py-10 text-center sm:px-10 lg:mt-16 lg:px-20 lg:py-20">
-    <p className="type-about-kicker text-primary">{label}</p>
-    <p className="type-about-body max-w-[880px] whitespace-pre-line text-muted">
-      {question}
-    </p>
-  </div>
-);
 
 type DiscoverySignalsProps = {
   signals: string[];
@@ -160,7 +147,7 @@ export const TensionSection = async ({ tension, id }: TensionSectionProps) => {
           ))}
         </div>
 
-        <CoreQuestionCard question={tension.coreQuestion} label={t("coreQuestion")} />
+        <QuestionCallout question={tension.coreQuestion} label={t("coreQuestion")} />
       </Container>
     </Section>
   );

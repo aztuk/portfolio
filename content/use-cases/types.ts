@@ -277,6 +277,7 @@ export type SolutionSectionData = {
   title: string;
   exploredSolutions: ExploredSolution[];
   selectedSolutionId: SelectedSolutionId;
+  why?: string;
   gallery?: GalleryItem[];
   keyDecisions?: KeyDecision[];
 };

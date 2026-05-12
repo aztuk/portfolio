@@ -32,12 +32,12 @@ const en: UseCase = {
   thumbnailTagTone: "canvas",
   previewImage: {
     type: "image",
-    src: "/assets/use-cases/customizable-dashboard/EN_dashboard_preview.png",
+    src: "/assets/use-cases/customizable-dashboard/ALL_Thumbnail.png",
     alt: "Preview of the personalized dashboard - modular widget layout.",
   },
   resultHero: {
     type: "image",
-    src: "/assets/use-cases/customizable-dashboard/dashboard_hero.png",
+    src: "/assets/use-cases/customizable-dashboard/ALL_Hero.png",
     alt: "Personalized dashboard - overview of the key screens.",
   },
   resultHeroLabel: "Result",
@@ -45,7 +45,7 @@ const en: UseCase = {
     title: "Understanding the problem",
     artifact: {
       type: "image",
-      src: "/assets/use-cases/customizable-dashboard/EN_Before.png",
+      src: "/assets/use-cases/customizable-dashboard/EN/EN_Tension_Before.png",
       alt: "The existing dashboard before personalization — same layout shown to all households regardless of equipment or goals.",
       caption: "The same dashboard layout shown to all households, regardless of equipment or goals.",
     },
@@ -159,7 +159,7 @@ const en: UseCase = {
         cons: ["Fragmented overview", "Not very suited to hybrid profiles"],
         media: {
           type: "image",
-          src: "/assets/use-cases/customizable-dashboard/OPTION A.png",
+          src: "/assets/use-cases/customizable-dashboard/ALL_option_A.png",
           alt: "Wireframe of a dashboard organized by user needs: save money, understand consumption and track production.",
           caption: "Option A: organize the dashboard around user intentions.",
         },
@@ -173,7 +173,7 @@ const en: UseCase = {
         cons: ["Sensitive configuration", "Personalization to justify"],
         media: {
           type: "image",
-          src: "/assets/use-cases/customizable-dashboard/OPTION B.png",
+          src: "/assets/use-cases/customizable-dashboard/ALL_option_B.png",
           alt: "Wireframe showing a household profile generating a personalized dashboard.",
           caption: "Option B: use the household profile to generate a useful dashboard from the first visit.",
         },
@@ -187,13 +187,15 @@ const en: UseCase = {
         cons: ["Limited personalization", "Problem less targeted"],
         media: {
           type: "image",
-          src: "/assets/use-cases/customizable-dashboard/OPTION C.png",
+          src: "/assets/use-cases/customizable-dashboard/ALL_option_C.png",
           alt: "Wireframe of a single dashboard view with progressive levels of explanation.",
           caption: "Option C: keep a shared view and add progressive pedagogy.",
         },
       },
     ],
     selectedSolutionId: "profile-dashboard",
+    why:
+      "Because households had needs that were too different for a single view, and personalization also reinforced the white-label logic expected by large accounts.",
     keyDecisions: [
       {
         id: "profile-personalization",
@@ -203,13 +205,13 @@ const en: UseCase = {
           "Because the same dashboard could not be useful to households with different equipment, motivations and levels of understanding.",
         media: {
           type: "image",
-          src: "/assets/use-cases/customizable-dashboard/household_generated_profile.png",
+          src: "/assets/use-cases/customizable-dashboard/ALL_KD1-0_Profile.png",
           alt: "Energy profile generated from onboarding, with motivations, equipment and level of understanding.",
         },
         gallery: [
           {
             type: "image",
-            src: "/assets/use-cases/customizable-dashboard/dashboard_hero.png",
+            src: "/assets/use-cases/customizable-dashboard/ALL_KD1-1_Generated.png",
             alt: "Dashboard automatically generated according to the household profile.",
             caption: "The dashboard prioritized the modules most useful to the profile.",
           },
@@ -241,25 +243,25 @@ const en: UseCase = {
           "Because an initial profile could help at the start, but should not lock users into a frozen configuration.",
         media: {
           type: "image",
-          src: "/assets/use-cases/customizable-dashboard/dashboard_edit_mode.png",
+          src: "/assets/use-cases/customizable-dashboard/ALL_KD2-0_EditMode.png",
           alt: "Edit mode allowing users to change the dashboard widgets.",
         },
         gallery: [
           {
             type: "image",
-            src: "/assets/use-cases/customizable-dashboard/dashboard_generated_1.png",
+            src: "/assets/use-cases/customizable-dashboard/ALL_KD2-1_EditedDashboard.png",
             alt: "Generated dashboard with a personalized widget layout.",
             caption: "A dashboard could be generated from the initial profile.",
           },
           {
             type: "image",
-            src: "/assets/use-cases/customizable-dashboard/dashboard_generated_2.png",
+            src: "/assets/use-cases/customizable-dashboard/ALL_KD2-2_EditedDashboard2.png",
             alt: "Generated dashboard variation with a different module layout.",
             caption: "Modules could change depending on the household's needs.",
           },
           {
             type: "video",
-            src: "/assets/use-cases/customizable-dashboard/mobile_creation_widget.mp4",
+            src: "/assets/use-cases/customizable-dashboard/ALL_KD2-3_MobileWidgetCreation.mp4",
             alt: "Mobile video showing widget creation and editing.",
             caption: "Users could add and configure their widgets.",
             format: "mobile",
@@ -282,7 +284,7 @@ const en: UseCase = {
           "Because households were not looking for raw data, but for a clear explanation of their consumption and savings.",
         media: {
           type: "image",
-          src: "/assets/use-cases/customizable-dashboard/raw_to_meaningful.png",
+          src: "/assets/use-cases/customizable-dashboard/ALL_KD3-0_DataTransformation.png",
           alt: "Transformation of raw energy data into understandable messages for the user.",
         },
         gallery: [],
@@ -300,7 +302,7 @@ const en: UseCase = {
   impactSection: {
     title: "The impacts",
     summary:
-      "Personalization improved the dashboard's key signals: initial attention, retention and perceived value.",
+      "Personalization improved the dashboard's key signals: initial attention, retention and understanding of value.",
     bullets: [
       {
         bold: "The first visit became more relevant",
@@ -413,12 +415,12 @@ roles: {
   thumbnailTagTone: "canvas",
   previewImage: {
     type: "image",
-    src: "/assets/use-cases/customizable-dashboard/FR_dashboard_preview.png",
+    src: "/assets/use-cases/customizable-dashboard/ALL_Thumbnail.png",
     alt: "Aperçu du dashboard personnalisé — disposition modulaire des widgets.",
   },
   resultHero: {
     type: "image",
-    src: "/assets/use-cases/customizable-dashboard/dashboard_hero.png",
+    src: "/assets/use-cases/customizable-dashboard/ALL_Hero.png",
     alt: "Dashboard personnalisé — aperçu des écrans clés.",
   },
   resultHeroLabel: "Résultat",
@@ -426,7 +428,7 @@ roles: {
     title: "Comprendre le problème",
     artifact: {
       type: "image",
-      src: "/assets/use-cases/customizable-dashboard/FR_Before.png",
+      src: "/assets/use-cases/customizable-dashboard/FR/FR_Tension_Before.png",
       alt: "Le dashboard existant avant personnalisation — même disposition affichée à tous les foyers, indépendamment de leur équipement ou de leurs objectifs.",
       caption: "La même disposition affichée à tous les foyers, indépendamment de leur équipement ou de leurs objectifs.",
     },
@@ -543,7 +545,7 @@ exploredSolutions: [
     ],
     media: {
       type: "image",
-      src: "/assets/use-cases/customizable-dashboard/OPTION A.png",
+      src: "/assets/use-cases/customizable-dashboard/ALL_option_A.png",
       alt: "Mini-wireframe d’un dashboard organisé par besoins : économiser, comprendre sa consommation et suivre sa production.",
       caption:
         "Option A : organiser le dashboard autour des intentions utilisateur.",
@@ -564,7 +566,7 @@ exploredSolutions: [
     ],
     media: {
       type: "image",
-      src: "/assets/use-cases/customizable-dashboard/OPTION B.png",
+      src: "/assets/use-cases/customizable-dashboard/ALL_option_B.png",
       alt: "Mini-wireframe montrant un profil foyer générant un dashboard personnalisé.",
       caption:
         "Option B : partir du profil foyer pour générer un dashboard utile dès l’arrivée.",
@@ -585,7 +587,7 @@ exploredSolutions: [
     ],
     media: {
       type: "image",
-      src: "/assets/use-cases/customizable-dashboard/OPTION C.png",
+      src: "/assets/use-cases/customizable-dashboard/ALL_option_C.png",
       alt: "Mini-wireframe d’un dashboard unique avec niveaux progressifs d’explication.",
       caption:
         "Option C : conserver une vue commune et ajouter de la pédagogie progressive.",
@@ -593,6 +595,8 @@ exploredSolutions: [
   },
 ],
 selectedSolutionId: "profile-dashboard",
+why:
+  "Parce que les foyers avaient des besoins trop différents pour une vue unique, et que la personnalisation renforçait aussi la logique white-label attendue par les grands comptes.",
 keyDecisions: [
   {
     id: "profile-personalization",
@@ -602,13 +606,13 @@ keyDecisions: [
       "Parce qu’un même dashboard ne pouvait pas être utile à des foyers équipés, motivés et compétents différemment.",
     media: {
       type: "image",
-      src: "/assets/use-cases/customizable-dashboard/household_generated_profile.png",
+      src: "/assets/use-cases/customizable-dashboard/ALL_KD1-0_Profile.png",
       alt: "Profil énergétique généré pour un foyer, avec motivations, équipements et niveau de compréhension.",
     },
     gallery: [
       {
         type: "image",
-        src: "/assets/use-cases/customizable-dashboard/dashboard_hero.png",
+        src: "/assets/use-cases/customizable-dashboard/ALL_KD1-1_Generated.png",
         alt: "Dashboard généré automatiquement selon le profil du foyer.",
         caption: "Le dashboard priorisait les modules les plus utiles au profil.",
       },
@@ -640,25 +644,25 @@ keyDecisions: [
       "Parce qu’un profil initial pouvait aider au départ, mais ne devait pas enfermer l’utilisateur dans une configuration figée.",
     media: {
       type: "image",
-      src: "/assets/use-cases/customizable-dashboard/dashboard_edit_mode.png",
+      src: "/assets/use-cases/customizable-dashboard/ALL_KD2-0_EditMode.png",
       alt: "Mode édition permettant de modifier les widgets du dashboard.",
     },
     gallery: [
       {
         type: "image",
-        src: "/assets/use-cases/customizable-dashboard/dashboard_generated_1.png",
+        src: "/assets/use-cases/customizable-dashboard/ALL_KD2-1_EditedDashboard.png",
         alt: "Dashboard généré avec une organisation de widgets personnalisée.",
         caption: "Un dashboard pouvait être généré selon le profil initial.",
       },
       {
         type: "image",
-        src: "/assets/use-cases/customizable-dashboard/dashboard_generated_2.png",
+        src: "/assets/use-cases/customizable-dashboard/ALL_KD2-2_EditedDashboard2.png",
         alt: "Variation du dashboard généré avec une disposition différente des modules.",
         caption: "Les modules pouvaient changer selon les besoins du foyer.",
       },
       {
         type: "video",
-        src: "/assets/use-cases/customizable-dashboard/mobile_creation_widget.mp4",
+        src: "/assets/use-cases/customizable-dashboard/ALL_KD2-3_MobileWidgetCreation.mp4",
         alt: "Vidéo mobile montrant la création et l’édition d’un widget.",
         caption: "L’utilisateur pouvait ajouter et configurer ses widgets.",
         format: "mobile",
@@ -681,7 +685,7 @@ keyDecisions: [
       "Parce que les foyers ne cherchaient pas des données brutes, mais une explication claire de leur consommation et de leurs économies.",
     media: {
       type: "image",
-      src: "/assets/use-cases/customizable-dashboard/raw_to_meaningful.png",
+      src: "/assets/use-cases/customizable-dashboard/ALL_KD3-0_DataTransformation.png",
       alt: "Transformation des données énergétiques brutes en messages compréhensibles pour l’utilisateur.",
     },
     gallery: [],

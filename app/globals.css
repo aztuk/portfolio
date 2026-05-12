@@ -542,9 +542,9 @@
   }
 
   .type-retro-label {
-    font-family: var(--font-display), sans-serif;
-    font-size: 16px;
-    font-weight: 500;
+    font-family: var(--font-sans), sans-serif;
+    font-size: 10px;
+    font-weight: 600;
     line-height: 1.2;
     letter-spacing: 0;
     text-transform: uppercase;
@@ -845,6 +845,7 @@
   --role-contributed-bg: rgb(var(--color-dark-smooth-rgb) / 0.5);
   --progress-bar-track: rgb(50 66 122);
   --solution-selected-bg: #2d5580;
+  --solution-selected-badge-text: var(--color-dark);
   --diamond-bg: rgb(72 90 156 / 50%);
 }
 
@@ -956,6 +957,7 @@ html[data-theme="light"] {
   --role-contributed-bg: rgb(207 224 237 / 0.36);
   --progress-bar-track: rgb(233, 237, 248);
   --solution-selected-bg: rgb(247 250 254);
+  --solution-selected-badge-text: #ffffff;
   --diamond-bg: rgb(222 232 249 / 83%);
 }
 
