@@ -120,6 +120,14 @@
     letter-spacing: -0.04em;
   }
 
+  .type-section-heading-compact {
+    font-family: var(--font-display), sans-serif;
+    font-size: 34px;
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
   .type-section-title {
     font-family: var(--font-display), sans-serif;
     font-size: 32px;
@@ -570,6 +578,10 @@
     .type-section-heading {
       font-size: 3.75rem;
     }
+
+    .type-section-heading-compact {
+      font-size: 44px;
+    }
   }
 
   @media (min-width: 640px) {
@@ -725,6 +737,12 @@
 
     .type-chart-axis-label {
       font-size: 11px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .type-section-heading-compact {
+      font-size: 48px;
     }
   }
 

@@ -14,6 +14,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 1,
   }));
 
+  const aiEntries = routing.locales.map((locale) => ({
+    url: `${siteUrl}/${locale}/ai`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
   const useCaseEntries = routing.locales.flatMap((locale) =>
     publicUseCases.map((useCase) => ({
       url: `${siteUrl}/${locale}/use-cases/${useCase.slug}`,
@@ -23,5 +30,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   );
 
-  return [...homeEntries, ...useCaseEntries];
+  return [...homeEntries, ...aiEntries, ...useCaseEntries];
 }

@@ -1,10 +1,13 @@
 import clsx from "clsx";
 
+import { HighlightedText } from "@/components/shared/HighlightedText";
+
 type SectionHeadingProps = {
   eyebrow?: string;
   title: string;
   description?: string;
   align?: "left" | "center";
+  size?: "default" | "compact";
 };
 
 export const SectionHeading = ({
@@ -12,8 +15,13 @@ export const SectionHeading = ({
   title,
   description,
   align = "left",
+  size = "default",
 }: SectionHeadingProps) => {
   const alignment = align === "center" ? "mx-auto text-center" : "";
+  const titleClassName =
+    size === "compact"
+      ? "type-section-heading-compact text-ink"
+      : "type-section-heading text-ink";
 
   return (
     <div className={clsx("max-w-3xl", alignment)}>
@@ -22,12 +30,12 @@ export const SectionHeading = ({
           {eyebrow}
         </p>
       ) : null}
-      <h2 className="type-section-heading text-ink">
+      <h2 className={titleClassName}>
         {title}
       </h2>
       {description ? (
-        <p className="type-body-md mt-6 max-w-2xl text-muted md:type-body-lg">
-          {description}
+        <p className="type-body-md mt-6 max-w-2xl whitespace-pre-line text-muted md:type-body-lg">
+          <HighlightedText text={description} />
         </p>
       ) : null}
     </div>
