@@ -212,7 +212,7 @@ export const SolutionSection = async ({
 
   return (
     <Section id={id}>
-      <Container className="px-6 sm:px-8 lg:px-0">
+      <Container className="px-2 sm:px-8 lg:px-0">
         <SectionTitle>{t("explorationAndSolution")}</SectionTitle>
 
         {/* Mobile: standard carousel */}

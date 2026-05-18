@@ -18,7 +18,7 @@ export const MobileCarousel = ({
   children,
   ariaLabel,
   className,
-  edgeSpacerClassName = "w-[11vw]",
+  edgeSpacerClassName = "w-2",
   inset = "flush",
   itemClassName,
   snapAlign = "center",
@@ -36,8 +36,8 @@ export const MobileCarousel = ({
         "overflow-x-auto scroll-smooth overscroll-x-contain pb-1 [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
         snapAlign !== "none" && "snap-x snap-mandatory",
         inset === "padded"
-          ? "-mx-6 px-6 [scroll-padding-inline:24px]"
-          : "mx-[calc(50%_-_50vw)] w-screen max-w-none [scroll-padding-inline:1.5rem] sm:[scroll-padding-inline:2rem]",
+          ? "-mx-2 px-2 [scroll-padding-inline:0.5rem] sm:-mx-6 sm:px-6 sm:[scroll-padding-inline:24px]"
+          : "mx-[calc(50%_-_50vw)] w-screen max-w-none [scroll-padding-inline:0.5rem] sm:[scroll-padding-inline:2rem]",
         className,
       )}
     >

@@ -36,7 +36,7 @@ const AiPage = async ({ params }: AiPageProps) => {
       <AiHero content={content.hero} />
 
       <Section id="ai-impact" className="py-16 md:py-20 lg:py-24">
-        <Container className="px-5 lg:px-0">
+        <Container className="px-2 sm:px-5 lg:px-0">
           <div className="space-y-10 md:space-y-9">
             <SectionHeading
               title={content.impact.title}
@@ -49,7 +49,7 @@ const AiPage = async ({ params }: AiPageProps) => {
       </Section>
 
       <Section id="ai-workflow" className="py-16 md:py-20 lg:py-24">
-        <Container className="px-5 lg:px-0">
+        <Container className="px-2 sm:px-5 lg:px-0">
           <div className="space-y-10 md:space-y-9">
             <SectionHeading
               title={content.workflow.title}
@@ -62,7 +62,7 @@ const AiPage = async ({ params }: AiPageProps) => {
       </Section>
 
       <Section id="ai-vibe-coding" className="py-16 md:py-20 lg:py-24">
-        <Container className="px-5 lg:px-0">
+        <Container className="px-2 sm:px-5 lg:px-0">
           <div className="space-y-10 md:space-y-9">
             <SectionHeading
               title={content.prototypingLoop.title}
@@ -75,7 +75,7 @@ const AiPage = async ({ params }: AiPageProps) => {
       </Section>
 
       <Section id="ai-handoff" className="pb-24 pt-16 md:pt-20 lg:pb-28 lg:pt-24">
-        <Container className="px-5 lg:px-0">
+        <Container className="px-2 sm:px-5 lg:px-0">
           <div className="mx-auto max-w-[980px] space-y-10 md:space-y-9">
             <SectionHeading title={content.handoff.title} size="compact" />
             <HandoffPackage content={content.handoff} />

@@ -19,7 +19,7 @@ export const UseCaseHero = ({ useCase }: UseCaseHeroProps) => {
 
   return (
     <section className="flex min-h-[100svh] flex-col items-center justify-center py-16 lg:min-h-screen lg:py-20">
-      <Container className="flex flex-col items-center gap-8 px-6 sm:px-8 lg:gap-[60px] lg:px-6">
+      <Container className="flex flex-col items-center gap-8 px-2 sm:px-8 lg:gap-[60px] lg:px-6">
         {/* Tags */}
         <div className="flex flex-wrap justify-center gap-2">
           {useCase.tags.map((tag) => (
@@ -40,7 +40,7 @@ export const UseCaseHero = ({ useCase }: UseCaseHeroProps) => {
           >
             {/* Shadow layer — no overflow-hidden so shadow isn't clipped */}
             <div
-              className="relative mx-auto aspect-[380/460] w-[calc(100vw-60px)] rounded-[20px] shadow-[var(--thumbnail-shadow)] sm:mx-0 sm:w-[320px] sm:rounded-[24px] lg:w-[500px] lg:rounded-[30px]"
+              className="relative mx-auto aspect-[380/460] w-[calc(100vw-1rem)] rounded-[20px] shadow-[var(--thumbnail-shadow)] sm:mx-0 sm:w-[320px] sm:rounded-[24px] lg:w-[500px] lg:rounded-[30px]"
             >
               {/* Image layer — clips content to rounded corners */}
               <div className="absolute inset-0 overflow-hidden rounded-[inherit]">
@@ -49,7 +49,7 @@ export const UseCaseHero = ({ useCase }: UseCaseHeroProps) => {
                   previewVideo={useCase.previewVideo}
                   priority
                   mediaClassName="object-cover object-top"
-                  sizes="(min-width: 1024px) 500px, (min-width: 640px) 320px, calc(100vw - 60px)"
+                  sizes="(min-width: 1024px) 500px, (min-width: 640px) 320px, calc(100vw - 1rem)"
                 />
                 <button
                   type="button"

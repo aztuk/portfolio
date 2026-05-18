@@ -23,7 +23,7 @@ export const ImpactSection = async ({ impactSection, id }: ImpactSectionProps) =
 
   return (
     <Section id={id}>
-      <Container className="px-6 sm:px-8 lg:px-0">
+      <Container className="px-2 sm:px-8 lg:px-0">
         <SectionTitle>{impactSection.title}</SectionTitle>
 
         <div className="mt-10 flex max-w-[800px] flex-col gap-5 lg:mt-12 lg:gap-6">

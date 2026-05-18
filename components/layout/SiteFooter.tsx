@@ -49,7 +49,7 @@ export const SiteFooter = async () => {
 
   return (
     <footer className="relative z-10 py-12 lg:py-16">
-      <Container className="px-5 lg:px-0">
+      <Container className="px-2 sm:px-5 lg:px-0">
         <div className="site-glass-surface flex flex-col gap-8 rounded-[34px] p-6 md:flex-row md:items-end md:justify-between md:p-8 lg:p-10">
           <div>
             <p className="type-body-lg-medium text-primary">{siteContent.name}</p>

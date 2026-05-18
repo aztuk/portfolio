@@ -41,10 +41,10 @@ const getDecisionMediaLayout = (item: GalleryItem) => {
   }
 
   return {
-    wrapper: "w-[95%] max-w-[1000px]",
+    wrapper: "w-[calc(100vw-1rem)] max-w-[1000px] sm:w-[95%]",
     frame: "aspect-[1200/750] rounded-[30px]",
     inner: "rounded-[29px]",
-    sizes: "(min-width: 1280px) 1000px, 95vw",
+    sizes: "(min-width: 1280px) 1000px, (min-width: 640px) 95vw, calc(100vw - 1rem)",
   };
 };
 

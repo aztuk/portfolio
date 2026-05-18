@@ -34,7 +34,7 @@ export const MetaInfo = ({ useCase, id }: MetaInfoProps) => {
       viewport={fadeUp.viewport}
       transition={fadeUp.transition}
     >
-      <Container className="px-6 sm:px-8 lg:px-0">
+      <Container className="px-2 sm:px-8 lg:px-0">
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
           {/* Challenge */}
           <div className="flex min-w-0 flex-col justify-center border-b border-dark-smooth p-5 lg:border-b-0 lg:border-r lg:p-6">

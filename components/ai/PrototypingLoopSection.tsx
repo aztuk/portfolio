@@ -69,7 +69,7 @@ export const PrototypingLoopSection = ({
 }: PrototypingLoopSectionProps) => {
   return (
     <div className="overflow-hidden rounded-[26px] border border-dark-smooth bg-canvas/80 shadow-card backdrop-blur-xl lg:rounded-[28px]">
-      <div className="relative overflow-x-auto overflow-y-hidden p-6 sm:p-8 md:p-12">
+      <div className="relative overflow-x-auto overflow-y-hidden bg-paper p-6 sm:p-8 md:p-12">
         <div
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgb(var(--color-line-rgb)_/_0.14)_1px,transparent_1px)] bg-[length:28px_28px] opacity-40"
           aria-hidden="true"

@@ -31,7 +31,7 @@ const WorksPage = async ({ params }: WorksPageProps) => {
   return (
     <PageTransition>
       <section className="flex min-h-[40svh] items-end pb-10 pt-32 lg:min-h-[36vh] lg:pb-14 lg:pt-40">
-        <Container className="px-5 lg:px-0">
+        <Container className="px-2 sm:px-5 lg:px-0">
           <h1 className="type-page-title text-ink">{t("heading")}</h1>
         </Container>
       </section>

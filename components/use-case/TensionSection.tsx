@@ -112,7 +112,7 @@ export const TensionSection = async ({ tension, id }: TensionSectionProps) => {
 
   return (
     <Section id={id} className="py-16 lg:py-20">
-      <Container className="px-6 sm:px-8 lg:px-0">
+      <Container className="px-2 sm:px-8 lg:px-0">
         <SectionTitle>{tension.title}</SectionTitle>
 
         {beforeImage ? (

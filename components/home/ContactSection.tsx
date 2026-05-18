@@ -12,7 +12,7 @@ export const ContactSection = async () => {
       id="contact"
       className="flex min-h-[100svh] items-center py-16 lg:min-h-screen lg:py-20"
     >
-      <Container className="px-5 lg:px-0">
+      <Container className="px-2 sm:px-5 lg:px-0">
         <div className="grid gap-10 border-t border-dark-smooth pt-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)] lg:gap-16 lg:pt-16">
           <div className="flex flex-col gap-4">
             <p className="type-eyebrow text-[18px] text-primary">{t("eyebrow")}</p>

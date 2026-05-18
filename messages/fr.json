@@ -37,6 +37,12 @@
     "ai": "My take on IA",
     "about": "À propos",
     "contact": "Contact",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu",
+    "language": "Langue",
+    "theme": "Thème",
+    "lightTheme": "Thème clair",
+    "darkTheme": "Thème sombre",
     "themeToLight": "Activer le thème clair",
     "themeToDark": "Activer le thème sombre"
   },

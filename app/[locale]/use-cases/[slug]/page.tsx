@@ -99,7 +99,7 @@ const UseCasePage = async ({ params }: UseCasePageProps) => {
         />
         <div className="col-start-1 row-start-1 min-w-0" data-use-case-content>
           <UseCaseHero useCase={useCase} />
-          <div className="px-3 sm:px-5 xl:px-0">
+          <div className="px-2 sm:px-5 xl:px-0">
             <MetaInfo id="use-case-context" useCase={useCase} />
             {safeResultHero && (
               <UseCaseResultHero

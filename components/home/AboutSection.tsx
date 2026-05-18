@@ -56,7 +56,7 @@ export const AboutSection = async () => {
       id="about"
       className="flex min-h-[620px] items-center justify-center py-16 md:py-20 lg:min-h-[640px] lg:py-0"
     >
-      <Container className="px-5 lg:px-0">
+      <Container className="px-2 sm:px-5 lg:px-0">
         <div className="flex w-full flex-col items-center justify-center gap-10 md:gap-[60px] lg:flex-row">
           <div className="flex min-w-0 flex-1 items-center justify-center">
             <div className="relative size-[min(78vw,424px)] shrink-0 overflow-hidden rounded-full md:size-[424px]">

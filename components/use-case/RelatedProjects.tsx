@@ -31,7 +31,7 @@ const RelatedProjectCard = ({ useCase }: { useCase: UseCase }) => {
             previewImage={useCase.previewImage}
             previewVideo={useCase.previewVideo}
             mediaClassName="object-cover object-top transition duration-700 group-hover:scale-[1.03]"
-            sizes="(min-width: 1024px) 307px, (min-width: 640px) 307px, calc(100vw - 48px)"
+            sizes="(min-width: 1024px) 307px, (min-width: 640px) 307px, calc(100vw - 1rem)"
           />
         </div>
       </div>
@@ -62,7 +62,7 @@ export const RelatedProjects = async ({ useCases }: RelatedProjectsProps) => {
 
   return (
     <Section className="pb-16 pt-28 lg:pb-20 lg:pt-40">
-      <Container className="px-6 sm:px-8 lg:px-6">
+      <Container className="px-2 sm:px-8 lg:px-6">
         <div className="mb-12">
           <SectionTitle>{t("otherUseCases")}</SectionTitle>
         </div>

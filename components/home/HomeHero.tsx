@@ -10,9 +10,10 @@ export const HomeHero = async () => {
 
   return (
     <section id="hero" className="relative flex min-h-[100svh] items-center justify-center overflow-hidden lg:min-h-screen">
-      <Container className="relative z-10 flex w-full items-center justify-center px-5">
+      <Container className="relative z-10 flex w-full items-center justify-center px-2 sm:px-5">
         <div className="flex w-full items-center justify-center gap-[60px]">
           <div className="flex min-w-0 flex-1 flex-col items-center justify-center gap-6 text-center">
+            <Tag label={t("heroLabel")} tone="default" />
             <h1 className="type-hero-statement w-full whitespace-pre-wrap text-muted">
               <HighlightedText
                 text={intro}
@@ -22,7 +23,6 @@ export const HomeHero = async () => {
             <p className="type-hero-description w-full max-w-[544px] text-smooth">
               {t("heroDescription")}
             </p>
-            <Tag label={t("heroLabel")} tone="default" />
           </div>
         </div>
       </Container>
