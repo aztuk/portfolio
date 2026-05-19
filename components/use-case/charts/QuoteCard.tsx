@@ -8,31 +8,33 @@ import {
   TintedPill,
   getTintedSurface,
 } from "@/components/use-case/charts/ChartPrimitives";
-import { INSIGHT_METHODOLOGY_ICONS } from "@/components/use-case/charts/InsightChartCard";
+import { METHODOLOGY_ICONS } from "@/components/use-case/charts/ChartPrimitives";
 import type { QuoteChartData } from "@/content/use-cases/types";
 
-type QuoteCardProps = { chart: QuoteChartData };
+type QuoteCardProps = { chart: QuoteChartData; caption?: string };
 
 export const QuoteCard = ({ chart }: QuoteCardProps) => {
-  const MethodologyIcon = INSIGHT_METHODOLOGY_ICONS[chart.methodologyIcon];
+  const MethodologyIcon = METHODOLOGY_ICONS[chart.methodologyIcon];
   const tintedSurface = getTintedSurface(chart.color);
 
   return (
     <ChartCardShell className="flex flex-1 flex-col">
-      <ChartCardContent variant="default" className="justify-end gap-8 p-6 sm:p-8 lg:p-8">
-        <div className="flex w-full items-start gap-6">
-          <div className="flex min-w-0 items-center gap-3">
-            <div
-              className="flex size-12 shrink-0 items-center justify-center rounded-full"
-              style={{ backgroundColor: tintedSurface, color: chart.color }}
-            >
-              <UserIcon size={24} weight="fill" aria-hidden="true" />
+      <ChartCardContent variant="default" className="justify-end">
+        <div className="flex flex-col gap-1">
+          <div className="flex w-full items-start gap-6">
+            <div className="flex min-w-0 items-center gap-3">
+              <div
+                className="flex size-12 shrink-0 items-center justify-center rounded-full"
+                style={{ backgroundColor: tintedSurface, color: chart.color }}
+              >
+                <UserIcon size={24} weight="fill" aria-hidden="true" />
+              </div>
+              <span className="type-data-value truncate text-ink">{chart.personaName}</span>
             </div>
-            <span className="type-data-value truncate text-white">{chart.personaName}</span>
+            <TintedPill color={chart.color} className="ml-auto shrink-0 rounded-[18px] px-3 py-3">
+              Verbatim
+            </TintedPill>
           </div>
-          <TintedPill color={chart.color} className="ml-auto shrink-0 rounded-[18px] px-3 py-3">
-            Verbatim
-          </TintedPill>
         </div>
 
         <div className="relative flex flex-1 flex-col justify-center py-5">

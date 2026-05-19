@@ -61,12 +61,17 @@ export const UseCaseHero = ({ useCase }: UseCaseHeroProps) => {
             </div>
           </div>
 
-          {/* Title + overview — rendered over the image, padding-top pushes text into the lower portion */}
+          {/* Title + tagline + overview — rendered over the image, padding-top pushes text into the lower portion */}
           <div className="pointer-events-none relative z-10 w-full px-0 pt-[280px] text-center min-[375px]:pt-[310px] sm:pt-[224px] lg:px-[90px] lg:pt-[350px]">
             <h1 className="type-page-title mx-auto max-w-[828px] text-ink">
               {useCase.title}
             </h1>
-            <p className="type-body-md mx-auto mt-8 max-w-[828px] whitespace-pre-line text-smooth lg:type-body-lg-light">
+            {useCase.tagline && (
+              <p className="type-tagline mx-auto mt-5 max-w-[828px] text-center text-muted">
+                {useCase.tagline}
+              </p>
+            )}
+            <p className="type-body-md mx-auto mt-5 max-w-[828px] whitespace-pre-line text-smooth lg:type-body-lg-light">
               <HighlightedText text={useCase.overview} />
             </p>
           </div>

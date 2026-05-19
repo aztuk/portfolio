@@ -51,9 +51,10 @@ export const ImpactSection = async ({ impactSection, id }: ImpactSectionProps) =
           cards={impactSection.charts}
           labels={labels}
           mobileClassName="mt-4"
-          gridClassName="mt-4 gap-y-10 lg:gap-x-16"
+          gridClassName="lg:mt-4 lg:gap-4"
           itemClassName="flex flex-col"
         />
+
       </Container>
     </Section>
   );

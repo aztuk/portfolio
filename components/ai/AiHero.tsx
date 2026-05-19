@@ -21,9 +21,11 @@ export const AiHero = ({ content }: AiHeroProps) => {
             <p className="type-body-xl mt-6 max-w-[760px] whitespace-pre-line text-muted md:mt-7">
               <HighlightedText text={content.intro} />
             </p>
-            <p className="type-body-md mt-6 max-w-[660px] whitespace-pre-line border-l border-primary/45 pl-5 text-smooth md:mt-7">
-              <HighlightedText text={content.note} />
-            </p>
+            {content.note ? (
+              <p className="type-body-md mt-6 max-w-[660px] whitespace-pre-line border-l border-primary/45 pl-5 text-smooth md:mt-7">
+                <HighlightedText text={content.note} />
+              </p>
+            ) : null}
           </div>
 
           <div className="relative mx-auto w-full max-w-[480px] lg:mx-0 lg:max-w-[520px]">

@@ -18,13 +18,14 @@ import {
   ChartBodyText,
   ChartCardContent,
   ChartTitle,
+  METHODOLOGY_ICONS,
   MethodologyFooter,
   TintedIconTile,
   TintedPill,
 } from "@/components/use-case/charts/ChartPrimitives";
 import type { InsightChartData } from "@/content/use-cases/types";
 
-type InsightChartCardProps = { chart: InsightChartData };
+type InsightChartCardProps = { chart: InsightChartData; caption?: string };
 
 type InsightColorStyle = CSSProperties & {
   "--theme-chart-color-dark": string;
@@ -57,25 +58,21 @@ const INSIGHT_ICONS = {
   "clipboard-text": ClipboardTextIcon,
 } satisfies Record<InsightChartData["icon"], typeof PiggyBankIcon>;
 
-export const INSIGHT_METHODOLOGY_ICONS = {
-  "chart-bar": ChartBarIcon,
-  "clipboard-text": ClipboardTextIcon,
-  flask: FlaskIcon,
-} satisfies Record<InsightChartData["methodologyIcon"], typeof FlaskIcon>;
-
 export const InsightChartCard = ({ chart }: InsightChartCardProps) => {
   const InsightIcon = INSIGHT_ICONS[chart.icon];
-  const MethodologyIcon = INSIGHT_METHODOLOGY_ICONS[chart.methodologyIcon];
+  const MethodologyIcon = METHODOLOGY_ICONS[chart.methodologyIcon];
 
   return (
     <ChartCardShell
       className="theme-chart-color-scope flex flex-1 flex-col"
       style={getInsightColorStyle(chart.color)}
     >
-      <ChartCardContent variant="default" className="justify-end gap-8 p-8">
-        <div className="flex items-start justify-between gap-6">
-          <TintedPill color={insightColor}>{chart.label}</TintedPill>
-          <TintedIconTile icon={InsightIcon} color={insightColor} />
+      <ChartCardContent variant="default" className="justify-end">
+        <div className="flex flex-col gap-1">
+          <div className="flex items-start justify-between gap-6">
+            <TintedPill color={insightColor}>{chart.label}</TintedPill>
+            <TintedIconTile icon={InsightIcon} color={insightColor} />
+          </div>
         </div>
         <div className="flex flex-1 flex-col gap-2">
           <ChartTitle>{chart.insightTitle}</ChartTitle>

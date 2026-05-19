@@ -2,32 +2,36 @@
 
 const en: UseCase = {
   order: 1,
-  title: "Personalize an energy dashboard",
+  title: "Customizable dashboard",
   slug: "customizable-dashboard",
+  tagline:
+    "Turning a generic screen into a personalized experience for a white-label B2B2C product.",
   overview:
-    "In 2018, our product helped households equipped with solar, batteries or electric vehicles monitor their energy.\n\nI replaced a <b>single, generic dashboard</b> with a <b>personalized experience</b> based on the household profile, to make the data more useful and the value more visible.",
+    "Tracking energy was still difficult for households equipped with solar, a battery, or an electric vehicle.\n\nI replaced a <b>generic dashboard</b> with a <b>personalized experience by household profile</b>, to make the data more useful and the value more visible.",
+  cardDescription:
+    "Turning a generic energy dashboard into a personalized experience for different household profiles.",
   challenge:
     "Make energy data useful to every household, whatever their equipment or level of understanding.",
   roles: {
     owned: [
-      "Discovery",
       "Product framing",
       "UX architecture",
-      "Interaction design",
+      "Personalization logic",
+      "Dashboard modularity",
       "Prototyping",
-      "User testing",
-      "Design delivery",
+      "Product/dev alignment",
     ],
-    contributed: [
-      "Analytics review",
-      "Business positioning",
-      "White-label constraints",
+    team: [
+      "Product",
+      "Engineering",
+      "Grand compte clients",
+      "Sales",
     ],
   },
   year: "2018",
   timeline: "4 months",
   tools: ["Figma", "Notion", "Storybook", "Zeplin", "Illustrator"],
-  tags: ["B2B2C", "Web & Mobile", "White label", "flagship product", "E2E ownership"],
+  tags: ["B2B2C", "Dashboard", "Personalization", "White-label", "Energy literacy"],
   projectType: "mobile et web",
   thumbnailTagTone: "canvas",
   previewImage: {
@@ -71,18 +75,13 @@ const en: UseCase = {
         ],
       },
     ],
-    discoverySignals: [
-      "User interviews",
-      "Behavioral analysis",
-      "Profile segmentation",
-      "Comprehension tests",
-      "Engagement analysis",
-    ],
     coreQuestion:
       "How can we make the dashboard useful to different households primarily motivated by savings?",
     chartCards: [
       {
         caption: "Households did not all have the same equipment level.",
+        methodology: "Profile segmentation",
+        methodologyIcon: "flask",
         chart: {
           type: "bars",
           title: "Household energy profiles",
@@ -97,6 +96,8 @@ const en: UseCase = {
       },
       {
         caption: "The single dashboard did not hold attention well enough.",
+        methodology: "Anonymized usage data",
+        methodologyIcon: "chart-bar",
         chart: {
           type: "combined-kpi",
           rows: [
@@ -119,6 +120,8 @@ const en: UseCase = {
       },
       {
         caption: "Interest dropped sharply after the first discovery.",
+        methodology: "Anonymized usage data",
+        methodologyIcon: "chart-bar",
         chart: {
           type: "line",
           title: "Retention over time",
@@ -326,8 +329,9 @@ const en: UseCase = {
             { label: "Time on dashboard", before: { display: "41 sec", percent: 41 }, after: { display: "54 sec", percent: 54 } },
           ],
         },
-        caption:
-          "The dashboard held attention better from the first visit.",
+        caption: "The dashboard held attention better from the first visit.",
+        methodology: "Anonymized usage data",
+        methodologyIcon: "chart-bar",
       },
       {
         chart: {
@@ -336,8 +340,9 @@ const en: UseCase = {
           before: { display: "26%", value: 26 },
           after: { display: "34%", value: 34 },
         },
-        caption:
-          "More users came back after the first week.",
+        caption: "More users came back after the first week.",
+        methodology: "Anonymized usage data",
+        methodologyIcon: "chart-bar",
       },
       {
         chart: {
@@ -346,8 +351,9 @@ const en: UseCase = {
           before: { display: "09%", value: 9 },
           after: { display: "17%", value: 17 },
         },
-        caption:
-          "Interest held better after one month.",
+        caption: "Interest held better after one month.",
+        methodology: "Anonymized usage data",
+        methodologyIcon: "chart-bar",
       },
       {
         chart: {
@@ -356,8 +362,9 @@ const en: UseCase = {
           before: { display: "22%", value: 22 },
           after: { display: "34%", value: 34 },
         },
-        caption:
-          "Modules useful to the profile were consulted more often.",
+        caption: "Modules useful to the profile were consulted more often.",
+        methodology: "Anonymized usage data",
+        methodologyIcon: "chart-bar",
       },
     ],
   },
@@ -385,32 +392,36 @@ const en: UseCase = {
 
 const fr: UseCase = {
   order: 1,
-  title: "Personnaliser un dashboard énergétique",
+  title: "Dashboard personnalisable",
   slug: "customizable-dashboard",
- overview:
-  "En 2018, notre produit aidait les foyers équipés de solaire, batterie ou véhicules électriques à suivre leur énergie.\n\nJ’ai remplacé un <b>dashboard unique et générique</b> par une <b>expérience personnalisée</b> selon le profil du foyer, pour rendre les données plus utiles et la valeur plus visible.",
+  tagline:
+    "Transformer un écran générique en expérience personnalisée à un produit B2B2C white-label.",
+  overview:
+    "Suivre l’énergie restait difficile pour les foyers équipés de solaire, batterie ou véhicule électrique. \n\nJ’ai remplacé un <b>dashboard générique</b> par une <b>expérience personnalisée par profil de foyer</b>, pour rendre les données plus utiles et la valeur plus visible.",
+  cardDescription:
+    "Transformer un dashboard énergétique générique en expérience personnalisée selon les profils de foyers.",
   challenge:
-  "Rendre les données énergétiques utiles à chaque foyer, quel que soit son équipement ou son niveau de compréhension.",
+    "Rendre les données énergétiques utiles à chaque foyer, quel que soit son équipement ou son niveau de compréhension.",
 roles: {
   owned: [
-    "Discovery",
-    "Product framing",
-    "UX architecture",
-    "Interaction design",
-    "Prototyping",
-    "User testing",
-    "Design delivery",
+    "Framing produit",
+    "Architecture UX",
+    "Logique de personnalisation",
+    "Modularité dashboard",
+    "Prototypage",
+    "Alignement product/dev",
   ],
-  contributed: [
-    "Analytics review",
-    "Business positioning",
-    "White-label constraints",
+  team: [
+    "Product",
+    "Engineering",
+    "Grand compte clients",
+    "Sales",
   ],
 },
   year: "2018",
   timeline: "4 mois",
   tools: ["Figma", "Notion", "Storybook", "Zeplin", "Illustrator"],
-  tags: ["B2B2C", "Web & Mobile", "White label", "flagship product", "E2E ownership"],
+  tags: ["B2B2C", "Dashboard", "Personnalisation", "White-label", "Energy literacy"],
   projectType: "mobile et web",
   thumbnailTagTone: "canvas",
   previewImage: {
@@ -454,17 +465,13 @@ roles: {
     ],
   },
 ],
-    discoverySignals: [
-  "Entretiens utilisateurs",
-  "Analyse comportementale",
-  "Segmentation des profils",
-  "Tests de compréhension",
-  "Analyse d’engagement",
-    ],
     coreQuestion:
   "Comment rendre le dashboard utile à des foyers différents, motivés d’abord par les économies ?",
   chartCards: [
-      {caption: "Les foyers n’avaient pas tous le même niveau d’équipement.",
+      {
+        caption: "Les foyers n’avaient pas tous le même niveau d’équipement.",
+        methodology: "Segmentation des profils",
+        methodologyIcon: "flask",
         chart: {
           type: "bars",
           title: "Profils énergétiques des foyers",
@@ -479,6 +486,8 @@ roles: {
       },
       {
         caption: "Le dashboard unique ne retenait pas assez l’attention",
+        methodology: "Données d’usage anonymisées",
+        methodologyIcon: "chart-bar",
         chart: {
           type: "combined-kpi",
           rows: [
@@ -499,7 +508,10 @@ roles: {
           ],
         },
       },
-      {caption: "L’intérêt chutait fortement après la première découverte",
+      {
+        caption: "L’intérêt chutait fortement après la première découverte",
+        methodology: "Données d’usage anonymisées",
+        methodologyIcon: "chart-bar",
         chart: {
           type: "line",
           title: "Rétention dans le temps",
@@ -735,8 +747,9 @@ impactSection: {
           },
         ],
       },
-      caption:
-        "Le dashboard retenait mieux l’attention dès la première visite.",
+      caption: "Le dashboard retenait mieux l’attention dès la première visite.",
+      methodology: "Données d’usage anonymisées",
+      methodologyIcon: "chart-bar",
     },
     {
       chart: {
@@ -745,8 +758,9 @@ impactSection: {
         before: { display: "26%", value: 26 },
         after: { display: "34%", value: 34 },
       },
-      caption:
-        "Plus d’utilisateurs revenaient après la première semaine.",
+      caption: "Plus d’utilisateurs revenaient après la première semaine.",
+      methodology: "Données d’usage anonymisées",
+      methodologyIcon: "chart-bar",
     },
     {
       chart: {
@@ -755,8 +769,9 @@ impactSection: {
         before: { display: "09%", value: 9 },
         after: { display: "17%", value: 17 },
       },
-      caption:
-        "L’intérêt se maintenait mieux après un mois.",
+      caption: "L’intérêt se maintenait mieux après un mois.",
+      methodology: "Données d’usage anonymisées",
+      methodologyIcon: "chart-bar",
     },
     {
       chart: {
@@ -765,8 +780,9 @@ impactSection: {
         before: { display: "22%", value: 22 },
         after: { display: "34%", value: 34 },
       },
-      caption:
-        "Les modules utiles au profil étaient davantage consultés.",
+      caption: "Les modules utiles au profil étaient davantage consultés.",
+      methodology: "Données d’usage anonymisées",
+      methodologyIcon: "chart-bar",
     },
   ],
 },

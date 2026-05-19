@@ -4,7 +4,6 @@ import { getTranslations } from "next-intl/server";
 
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
-import { MobileCarousel } from "@/components/shared/MobileCarousel";
 import { Tag } from "@/components/shared/Tag";
 import { KeyDecisions } from "@/components/use-case/KeyDecisions";
 import { QuestionCallout } from "@/components/use-case/QuestionCallout";
@@ -198,88 +197,62 @@ export const SolutionSection = async ({
     ? solution.selectedSolutionId
     : [solution.selectedSolutionId];
 
-  // Desktop layout: split into left / center / right
-  const selectedIndex = solution.exploredSolutions.findIndex((s) =>
-    selectedSolutionIds.includes(s.id),
-  );
-  const centerSolution =
-    selectedIndex >= 0 ? solution.exploredSolutions[selectedIndex] : null;
   const nonSelectedSolutions = solution.exploredSolutions.filter(
     (s) => !selectedSolutionIds.includes(s.id),
   );
-  const leftSolution = nonSelectedSolutions[0] ?? null;
-  const rightSolution = nonSelectedSolutions[1] ?? null;
+  const getDesktopPosition = (item: ExploredSolution): DesktopPosition | undefined => {
+    if (selectedSolutionIds.includes(item.id)) return "center";
+    if (nonSelectedSolutions[0]?.id === item.id) return "left";
+    if (nonSelectedSolutions[1]?.id === item.id) return "right";
+    return undefined;
+  };
+  const getDesktopDisplayIndex = (position: DesktopPosition | undefined) => {
+    if (position === "left") return 0;
+    if (position === "center") return 1;
+    if (position === "right") return 2;
+    return undefined;
+  };
 
   return (
     <Section id={id}>
       <Container className="px-2 sm:px-8 lg:px-0">
         <SectionTitle>{t("explorationAndSolution")}</SectionTitle>
 
-        {/* Mobile: standard carousel */}
-        <MobileCarousel className="mt-10 pt-4 lg:hidden" itemClassName="flex flex-col">
-          {solution.exploredSolutions.map((item, index) => (
-            <SolutionCard
-              key={item.id}
-              item={item}
-              isSelected={selectedSolutionIds.includes(item.id)}
-              index={index}
-              selectedLabel={t("selected")}
-              exploredLabel={t("explored")}
-            />
-          ))}
-        </MobileCarousel>
+        <div
+          data-mobile-carousel
+          className="mx-[calc(50%_-_50vw)] mt-10 w-screen max-w-none overflow-x-auto overscroll-x-contain pb-1 pt-4 scroll-smooth snap-x snap-mandatory [scroll-padding-inline:0.5rem] [-webkit-overflow-scrolling:touch] [scrollbar-width:none] sm:[scroll-padding-inline:2rem] lg:mx-0 lg:mt-16 lg:grid lg:w-auto lg:grid-cols-[1fr_390px_1fr] lg:overflow-visible lg:py-6 lg:snap-none [&::-webkit-scrollbar]:hidden"
+        >
+          <div className="flex gap-4 lg:contents">
+            <div className="w-2 shrink-0 lg:hidden" aria-hidden="true" />
+            {solution.exploredSolutions.map((item, index) => {
+              const desktopPosition = getDesktopPosition(item);
 
-        {/*
-         * Desktop: CSS grid [1fr 390px 1fr].
-         * Center card stays in flow so its full content height is measured.
-         * Its 450px width still overflows the 390px column by 30px on each side.
-         * The outer py-6 reserves room for the floating number badge.
-         */}
-        <div className="relative mt-16 hidden py-6 lg:grid lg:grid-cols-[1fr_390px_1fr]">
-          {/* Left card */}
-          <div className="flex min-w-0 flex-col lg:col-start-1 lg:row-start-1">
-            {leftSolution && (
-              <SolutionCard
-                item={leftSolution}
-                isSelected={false}
-                index={solution.exploredSolutions.indexOf(leftSolution)}
-                displayIndex={0}
-                selectedLabel={t("selected")}
-                exploredLabel={t("explored")}
-                desktopPosition="left"
-              />
-            )}
+              return (
+                <div
+                  key={item.id}
+                  className={clsx(
+                    "flex min-w-[78vw] flex-col snap-center snap-always lg:min-w-0",
+                    desktopPosition === "left" && "lg:col-start-1 lg:row-start-1",
+                    desktopPosition === "center" &&
+                      "z-10 lg:col-start-2 lg:row-start-1 lg:w-[450px] lg:max-w-none lg:-translate-y-1 lg:justify-self-center",
+                    desktopPosition === "right" && "lg:col-start-3 lg:row-start-1",
+                    desktopPosition === undefined && "lg:hidden",
+                  )}
+                >
+                  <SolutionCard
+                    item={item}
+                    isSelected={selectedSolutionIds.includes(item.id)}
+                    index={index}
+                    displayIndex={getDesktopDisplayIndex(desktopPosition)}
+                    selectedLabel={t("selected")}
+                    exploredLabel={t("explored")}
+                    desktopPosition={desktopPosition}
+                  />
+                </div>
+              );
+            })}
+            <div className="w-2 shrink-0 lg:hidden" aria-hidden="true" />
           </div>
-
-          {centerSolution && (
-            <div className="z-10 flex w-[450px] max-w-none -translate-y-1 justify-self-center lg:col-start-2 lg:row-start-1">
-              <SolutionCard
-                item={centerSolution}
-                isSelected
-                index={selectedIndex}
-                displayIndex={1}
-                selectedLabel={t("selected")}
-                exploredLabel={t("explored")}
-                desktopPosition="center"
-              />
-            </div>
-          )}
-
-          {/* Right card */}
-          <div className="flex min-w-0 flex-col lg:col-start-3 lg:row-start-1">
-            {rightSolution && (
-              <SolutionCard
-                item={rightSolution}
-                isSelected={false}
-                index={solution.exploredSolutions.indexOf(rightSolution)}
-                displayIndex={2}
-                selectedLabel={t("selected")}
-                exploredLabel={t("explored")}
-                desktopPosition="right"
-              />
-            )}
-          </div>
-
         </div>
 
         {solution.why ? (

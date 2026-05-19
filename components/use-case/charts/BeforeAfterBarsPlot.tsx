@@ -23,6 +23,7 @@ type BeforeAfterBarsPlotProps = BeforeAfterBarValues & {
   minBarHeight?: number;
   plotHeight?: number;
   labelClassName?: string;
+  showAxisLine?: boolean;
 };
 
 const getBarHeight = (
@@ -44,18 +45,19 @@ export const BeforeAfterBarsPlot = ({
   minBarHeight = DEFAULT_MIN_BAR_HEIGHT,
   plotHeight = DEFAULT_PLOT_HEIGHT,
   labelClassName = "min-h-[42px] w-full text-muted",
+  showAxisLine = true,
 }: BeforeAfterBarsPlotProps) => {
   const scaleMax = maxValue ?? Math.max(before.value, after.value);
   const beforeHeight = getBarHeight(before.value, scaleMax, maxBarHeight, minBarHeight);
   const afterHeight = getBarHeight(after.value, scaleMax, maxBarHeight, minBarHeight);
 
   return (
-    <div className="flex min-w-0 flex-1 flex-col items-center gap-3">
+    <div className={`flex min-w-0 flex-1 flex-col items-center ${showAxisLine ? "gap-3" : "gap-1"}`}>
       <div
-        className="relative flex w-full items-end justify-center px-2 pb-2"
+        className={`relative flex w-full items-end justify-center px-2 ${showAxisLine ? "pb-2" : ""}`}
         style={{ height: `${plotHeight}px` }}
       >
-        <ChartAxisLine className="absolute inset-x-0 bottom-0" />
+        {showAxisLine && <ChartAxisLine className="absolute inset-x-0 bottom-0" />}
         <div className="relative z-10 flex items-end justify-center gap-2">
           <div
             className="relative flex w-[54px] flex-col items-start"

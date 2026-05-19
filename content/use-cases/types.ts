@@ -221,6 +221,8 @@ export type ChartVariant =
 export type ChartCardData = {
   chart: ChartVariant;
   caption?: string;
+  methodology?: string;
+  methodologyIcon?: InsightMethodologyIconName;
 };
 
 // ─── Section data types ───────────────────────────────────────────────────────
@@ -230,7 +232,6 @@ export type TensionSectionData = {
   summary?: string;
   tensions: TensionPoint[];
   coreQuestion: string;
-  discoverySignals?: string[];
   artifacts?: ImageAsset[];
   artifact?: ImageAsset;
   artifactCaption?: string;
@@ -302,8 +303,10 @@ export type UseCase = {
   slug: string;
   protected?: boolean;
   overview: string;
+  cardDescription?: string;
+  tagline?: string;
   challenge: string;
-  roles: { owned: string[]; contributed: string[] };
+  roles: { owned: string[]; team: string[] };
   year: string;
   timeline: string;
   tools: string[];

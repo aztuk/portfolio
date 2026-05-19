@@ -2,7 +2,6 @@ import { getTranslations } from "next-intl/server";
 
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
-import { MobileCarousel } from "@/components/shared/MobileCarousel";
 import { PreviewMedia } from "@/components/shared/PreviewMedia";
 import { Tag } from "@/components/shared/Tag";
 import { SectionTitle } from "@/components/use-case/SectionTitle";
@@ -67,20 +66,24 @@ export const RelatedProjects = async ({ useCases }: RelatedProjectsProps) => {
           <SectionTitle>{t("otherUseCases")}</SectionTitle>
         </div>
 
-        <MobileCarousel
-          ariaLabel={t("otherUseCases")}
-          className="md:hidden"
-          itemClassName="flex flex-col"
+        <div
+          data-mobile-carousel
+          role="region"
+          aria-label={t("otherUseCases")}
+          className="mx-[calc(50%_-_50vw)] w-screen max-w-none overflow-x-auto overscroll-x-contain pb-1 scroll-smooth snap-x snap-mandatory [scroll-padding-inline:0.5rem] [-webkit-overflow-scrolling:touch] [scrollbar-width:none] sm:[scroll-padding-inline:2rem] md:mx-0 md:w-auto md:overflow-visible md:snap-none [&::-webkit-scrollbar]:hidden"
         >
-          {useCases.map((useCase) => (
-            <RelatedProjectCard key={useCase.slug} useCase={useCase} />
-          ))}
-        </MobileCarousel>
-
-        <div className="hidden gap-16 md:grid md:grid-cols-2 lg:gap-20">
-          {useCases.map((useCase) => (
-            <RelatedProjectCard key={useCase.slug} useCase={useCase} />
-          ))}
+          <div className="flex gap-4 md:grid md:grid-cols-2 md:gap-16 lg:gap-20">
+            <div className="w-2 shrink-0 md:hidden" aria-hidden="true" />
+            {useCases.map((useCase) => (
+              <div
+                key={useCase.slug}
+                className="flex min-w-[78vw] flex-col snap-center snap-always md:min-w-0"
+              >
+                <RelatedProjectCard useCase={useCase} />
+              </div>
+            ))}
+            <div className="w-2 shrink-0 md:hidden" aria-hidden="true" />
+          </div>
         </div>
       </Container>
     </Section>

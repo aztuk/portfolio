@@ -40,7 +40,7 @@ export const UseCaseCard = ({ useCase }: UseCaseCardProps) => {
           {useCase.title}
         </h3>
         <p className="type-body-md mt-2 w-full whitespace-pre-line text-center text-smooth">
-          <HighlightedText text={useCase.overview} />
+          <HighlightedText text={useCase.cardDescription ?? useCase.overview} />
         </p>
         {useCase.tags.length > 0 && (
           <div className="flex flex-wrap gap-[4px] items-center justify-center pt-[26px] w-full">

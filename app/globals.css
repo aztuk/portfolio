@@ -217,6 +217,14 @@
     letter-spacing: 0;
   }
 
+  .type-tagline {
+    font-family: var(--font-display), serif;
+    font-size: 21px;
+    font-weight: 300;
+    line-height: 1.55;
+    letter-spacing: -0.01em;
+  }
+
   .type-about-kicker {
     font-family: var(--font-display), serif;
     font-size: 18px;

@@ -3,32 +3,37 @@ import type { UseCase } from "@/content/use-cases/types";
 
 const en: UseCase = {
   order: 2,
-  title: "Creating complex energy offers without writing code",
+  title: "A rule builder without going through IT",
   slug: "energy-offer-rule-builder",
+  tagline:
+    "Turning complex business logic into a reliable no-code workflow, usable by business teams.",
   overview:
-    "In 2019, our platform helped energy suppliers create and manage their offers.\n\nBefore, a new offer idea often had to go through IT to be translated into reliable rules. I designed an interface that allowed business teams to <b>create an offer</b>, see <b>when it applies</b> and <b>verify its effect</b> on the bill.",
+    "Business teams often relied on IT to translate their energy offers into reliable rules.\n\nI designed an interface that allowed them to <b>create an offer</b>, see <b>when it applies</b>, and <b>verify its effect</b> on the bill.",
+  cardDescription:
+    "Making complex energy offer logic editable by business teams without relying on IT.",
   challenge:
     "Make offer creation simple enough for business teams, without losing the precision required for billing.",
   roles: {
     owned: [
-      "Discovery",
-      "Product scoping",
+      "No-code framing",
       "UX architecture",
+      "Interaction model",
       "Rule logic",
+      "Business validation",
       "Prototyping",
-      "User testing",
     ],
-    contributed: [
-      "Rule language",
-      "Design delivery",
-      "Technical feasibility",
-      "Billing workflow",
+    team: [
+      "Product",
+      "Engineering",
+      "Backend",
+      "Equipe métier client",
+      "Sales",
     ],
   },
   year: "2019",
   timeline: "12 months",
   tools: ["Figma", "Notion", "Zeplin"],
-  tags: ["B2B", "Complex UX", "Rule Builder", "Energy", "Billing"],
+  tags: ["No-code", "Rule builder", "Billing logic", "Business tooling", "Risk reduction"],
   projectType: "mobile",
   thumbnailTagTone: "canvas",
   previewImage: {
@@ -84,16 +89,12 @@ const en: UseCase = {
     ],
     coreQuestion:
       "How can we help a business team turn an offer idea into reliable and verifiable rules?",
-    discoverySignals: [
-      "Business expert interviews",
-      "Workflow mapping",
-      "Scenario testing",
-      "Edge-case analysis",
-    ],
     chartCards: [
       {
         caption:
           "Creating a new offer meant translating a business idea into technical logic",
+        methodology: "Workflow mapping",
+        methodologyIcon: "clipboard-text",
         chart: {
           type: "bars",
           title: "Components of a tariff rule",
@@ -320,6 +321,8 @@ const en: UseCase = {
           ],
         },
         caption: "The same tasks became faster once configurable inside the tool.",
+        methodology: "Workflow estimates",
+        methodologyIcon: "clipboard-text",
       },
       {
         chart: {
@@ -328,6 +331,8 @@ const en: UseCase = {
           title: "Specific requests",
           description: "Estimate on common scenarios that could be covered by configurable rules.",
         },
+        methodology: "Internal estimate",
+        methodologyIcon: "clipboard-text",
       },
     ],
   },
@@ -354,32 +359,37 @@ const en: UseCase = {
 
 const fr: UseCase = {
   order: 2,
-  title: "Créer des offres d'énergie complexes sans écrire de code",
+  title: "Un rule builder sans passer par IT",
   thumbnailTagTone: "canvas",
   slug: "energy-offer-rule-builder",
+  tagline:
+    "Transformer une logique métier complexe en workflow no-code fiable, utilisable par les équipes business",
   overview:
-    "En 2019, notre plateforme aidait les fournisseurs d'énergie à créer et gérer leurs offres.\n\nAvant, une nouvelle idée d'offre devait souvent passer par l'IT pour être traduite en règles fiables. J'ai conçu une interface permettant aux équipes métier de <b>créer une offre</b>, voir <b>quand elle s'applique</b> et <b>vérifier son effet</b> sur la facture.",
+    "Les équipes métier dépendaient souvent de l’IT pour traduire leurs offres énergétiques en règles fiables.\n\nJ’ai conçu une interface permettant de <b>créer une offre</b>, voir <b>quand elle s’applique</b> et <b>vérifier son effet</b> sur la facture.",
+  cardDescription:
+    "Rendre une logique d'offres énergétiques complexe manipulable par les équipes métier sans dépendre de l'IT.",
   challenge: "Rendre la création d'offres assez simple pour le métier, sans perdre la précision nécessaire à la facturation.",
   roles: {
     owned: [
-      "Discovery",
-      "Cadrage produit",
+      "Framing no-code",
       "Architecture UX",
+      "Modèle d’interaction",
       "Logique de règles",
+      "Validation métier",
       "Prototypage",
-      "Tests utilisateurs",
     ],
-    contributed: [
-      "Langage de règles",
-      "Design delivery",
-      "Faisabilité technique",
-      "Workflow de facturation",
+    team: [
+      "Product",
+      "Engineering",
+      "Backend",
+      "Equipe métier client",
+      "Sales",
     ],
   },
   year: "2019",
   timeline: "12 mois",
   tools: ["Figma", "Notion", "Zeplin"],
-  tags: ["B2B", "Complex UX", "Rule Builder", "Energy", "Billing"],
+  tags: ["No-code", "Rule builder", "Billing logic", "Business tooling", "Risk reduction"],
   previewImage: {
     type: "image",
     src: "/assets/use-cases/energy-offer-rule-builder/ALL_Thumbnail.png",
@@ -433,16 +443,12 @@ const fr: UseCase = {
     ],
     coreQuestion:
       "Comment aider une équipe métier à transformer une idée d'offre en règles fiables et vérifiables ?",
-    discoverySignals: [
-      "Entretiens experts métier",
-      "Mapping du workflow",
-      "Tests de scénarios",
-      "Analyse des cas limites",
-    ],
     chartCards: [
       {
         caption:
           "Créer une nouvelle offre demandait de traduire une idée métier en logique technique",
+        methodology: "Mapping du workflow",
+        methodologyIcon: "clipboard-text",
         chart: {
           type: "bars",
           title: "Composants d'une règle tarifaire",
@@ -701,8 +707,9 @@ const fr: UseCase = {
             },
           ],
         },
-        caption:
-          "Les mêmes tâches devenaient plus rapides une fois configurables dans l'outil.",
+        caption: "Les mêmes tâches devenaient plus rapides une fois configurables dans l'outil.",
+        methodology: "Estimations de workflow",
+        methodologyIcon: "clipboard-text",
       },
       {
         chart: {
@@ -712,6 +719,8 @@ const fr: UseCase = {
           description:
             "Estimation sur les scénarios courants couverts par des règles configurables.",
         },
+        methodology: "Estimation interne",
+        methodologyIcon: "clipboard-text",
       },
     ],
   },

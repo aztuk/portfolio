@@ -1,14 +1,14 @@
 import { DiamondBadge } from "@/components/use-case/DiamondBadge";
-import { ChartCardShell } from "@/components/use-case/ChartCardShell";
+import { ChartCardShell, type MethodologyProps } from "@/components/use-case/ChartCardShell";
 import {
   AxisLabel,
-  ChartAxisLine,
   ChartCardContent,
+  ChartMethodologyNote,
   ChartTitle,
 } from "@/components/use-case/charts/ChartPrimitives";
 import type { LineChartData } from "@/content/use-cases/types";
 
-type LineChartCardProps = { chart: LineChartData };
+type LineChartCardProps = { chart: LineChartData; caption?: string } & MethodologyProps;
 
 type LinePoint = {
   x: number;
@@ -53,7 +53,7 @@ const getSegmentPath = (points: LinePoint[], index: number) => {
   return `M ${p1.x} ${p1.y} C ${c1x.toFixed(1)} ${c1y.toFixed(1)} ${c2x.toFixed(1)} ${c2y.toFixed(1)} ${p2.x} ${p2.y}`;
 };
 
-export const LineChartCard = ({ chart }: LineChartCardProps) => {
+export const LineChartCard = ({ chart, caption, methodology, methodologyIcon }: LineChartCardProps) => {
   const W = 496;
   const H = 205;
   const xRatios = getLinePointXRatios(chart.points);
@@ -64,10 +64,11 @@ export const LineChartCard = ({ chart }: LineChartCardProps) => {
 
   return (
     <ChartCardShell className="flex flex-1 flex-col">
-      <ChartCardContent variant="default" className="justify-end gap-8 p-6 sm:p-8 lg:p-8">
-        <ChartTitle className="sm:leading-[1.7] sm:tracking-[-0.03em]">
-          {chart.title}
-        </ChartTitle>
+      <ChartCardContent variant="default" className="justify-end">
+        <div className="flex flex-col">
+          <ChartTitle className="sm:leading-[1.7] sm:tracking-[-0.03em]">{chart.title}</ChartTitle>
+          {caption && <p className="type-body-lg mt-1 leading-[1.7] text-smooth">{caption}</p>}
+        </div>
 
         <div className="relative flex h-[220px] w-full shrink-0 flex-col justify-end gap-3 sm:h-[246px]">
           <div className="relative min-h-0 w-full flex-1">
@@ -106,27 +107,27 @@ export const LineChartCard = ({ chart }: LineChartCardProps) => {
             ))}
           </div>
 
-          <div className="flex h-[29px] shrink-0 flex-col gap-3">
-            <ChartAxisLine />
-            <div className="relative h-[15px] w-full">
-              {chart.points.map((p, i) => (
-                <AxisLabel
-                  key={p.label}
-                  className="absolute top-0 whitespace-nowrap"
-                  color={p.color}
-                  style={{
-                    left: `${xRatios[i] * 100}%`,
-                    transform: `translateX(${
-                      i === 0 ? "0" : i === chart.points.length - 1 ? "-100%" : "-50%"
-                    })`,
-                  }}
-                >
-                  {p.label}
-                </AxisLabel>
-              ))}
-            </div>
+          <div className="relative h-[15px] w-full shrink-0">
+            {chart.points.map((p, i) => (
+              <AxisLabel
+                key={p.label}
+                className="absolute top-0 whitespace-nowrap"
+                color={p.color}
+                style={{
+                  left: `${xRatios[i] * 100}%`,
+                  transform: `translateX(${
+                    i === 0 ? "0" : i === chart.points.length - 1 ? "-100%" : "-50%"
+                  })`,
+                }}
+              >
+                {p.label}
+              </AxisLabel>
+            ))}
           </div>
         </div>
+        {methodology && methodologyIcon && (
+          <ChartMethodologyNote methodology={methodology} methodologyIcon={methodologyIcon} />
+        )}
       </ChartCardContent>
     </ChartCardShell>
   );

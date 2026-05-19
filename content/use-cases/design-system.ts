@@ -3,31 +3,36 @@
 
 const en: UseCase = {
   order: 4,
-  title: "Turning delivery into a verifiable system",
+  title: "A system to deliver better across product, design, and engineering",
   slug: "product-ops-transformation",
+  tagline:
+    "Moving from an interpreted handoff to a clear, verifiable, and scalable delivery system.",
   overview:
-    "When Enphase acquired us in 2022, our teams had to move from <b>startup-style delivery</b> to a more <b>global product organization</b>.\n\nI structured a shared delivery system between <b>product, design and dev</b> to reduce interpretation, rework and design/dev gaps.",
+    "After the acquisition by Enphase in 2022, we moved from <b>startup delivery</b> to a <b>more global</b> product organization.\n\nI structured a shared delivery system between <b>product, design and dev</b> to reduce ambiguity, rework and design/dev gaps.",
+  cardDescription:
+    "Redesigning the delivery system between product, design, and engineering after acquisition.",
   challenge:
     "Scale delivery without letting each team reinterpret what needed to be shipped.",
   roles: {
     owned: [
-      "Product Ops strategy",
-      "Design system",
-      "Governance",
-      "UX architecture",
-      "Quality framework",
-      "Team enablement",
-      "Design mentoring",
+      "Delivery workflow",
+      "Quality gates",
+      "Design handoff",
+      "Design system governance",
+      "Cross-team alignment",
+      "Product/design/dev ops",
     ],
-    contributed: [
-      "Delivery",
-      "User testing",
+    team: [
+      "Product",
+      "Engineering",
+      "Design",
+      "Executive",
     ],
   },
   year: "2023",
   timeline: "2 years",
   tools: ["Figma", "Notion", "Storybook", "Jira", "Flutter"],
-  tags: ["B2E", "Web & Mobile", "Governance", "Product Ops"],
+  tags: ["Product ops", "Design ops", "Delivery system", "Quality gates", "Design system governance"],
   projectType: "mobile et web",
   thumbnailTagTone: "white",
   previewImage: {
@@ -82,17 +87,12 @@ const en: UseCase = {
     ],
     coreQuestion:
       "How can we make decisions, criteria and responsibilities verifiable before development starts?",
-    discoverySignals: [
-      "Workflow audit",
-      "Ticket analysis",
-      "Review analysis",
-      "Artifact mapping",
-      "Stakeholder interviews",
-    ],
     chartCards: [
       {
         caption:
           "Too many decisions remained open after development had started.",
+        methodology: "Ticket analysis",
+        methodologyIcon: "clipboard-text",
         chart: {
           type: "combined-kpi",
           rows: [
@@ -115,6 +115,8 @@ const en: UseCase = {
       },
       {
         caption: "Rework mostly came from decisions that remained implicit.",
+        methodology: "Ticket analysis",
+        methodologyIcon: "clipboard-text",
         chart: {
           type: "bars",
           title: "Implicit decisions in tickets",
@@ -130,6 +132,8 @@ const en: UseCase = {
       {
         caption:
           "Teams did not always share the same definition of the deliverable.",
+        methodology: "Review analysis",
+        methodologyIcon: "clipboard-text",
         chart: {
           type: "single-kpi",
           value: "61%",
@@ -342,8 +346,9 @@ const en: UseCase = {
           before: { display: "59%", value: 59 },
           after: { display: "31%", value: 31 },
         },
-        caption:
-          "Fewer decisions were reopened after development had started.",
+        caption: "Fewer decisions were reopened after development had started.",
+        methodology: "Ticket analysis",
+        methodologyIcon: "clipboard-text",
       },
       {
         chart: {
@@ -352,8 +357,9 @@ const en: UseCase = {
           before: { display: "40%", value: 40 },
           after: { display: "18%", value: 18 },
         },
-        caption:
-          "Tickets required fewer back-and-forth review cycles.",
+        caption: "Tickets required fewer back-and-forth review cycles.",
+        methodology: "Ticket analysis",
+        methodologyIcon: "clipboard-text",
       },
       {
         chart: {
@@ -362,8 +368,9 @@ const en: UseCase = {
           before: { display: "61%", value: 61 },
           after: { display: "34%", value: 34 },
         },
-        caption:
-          "Teams more often shared the same definition of the deliverable.",
+        caption: "Teams more often shared the same definition of the deliverable.",
+        methodology: "Review analysis",
+        methodologyIcon: "clipboard-text",
       },
       {
         chart: {
@@ -387,8 +394,9 @@ const en: UseCase = {
             },
           ],
         },
-        caption:
-          "Gains were mostly visible on screens covered by the system.",
+        caption: "Gains were mostly visible on screens covered by the system.",
+        methodology: "Workflow estimates",
+        methodologyIcon: "clipboard-text",
       },
     ],
   },
@@ -415,29 +423,35 @@ const en: UseCase = {
 
 const fr: UseCase = {
   order: 4,
-  title: "Transformer la delivery en un système vérifiable",
+  title: "Un système pour mieux livrer entre product, design et engineering",
   slug: "product-ops-transformation",
-  overview: "Lorsque Enphase nous a rachetés en 2022, nos équipes ont dû passer <b>d’une delivery startup</b> à une organisation produit <b>plus globale</b>. \n\nJ’ai structuré un système de delivery partagé entre <b>product, design et dev</b> pour réduire l’interprétation, le rework et les écarts design/dev.",
- challenge: "Faire scaler la delivery sans laisser chaque équipe réinterpréter ce qui devait être livré.",
+  tagline:
+    "Passer d’une handoff interprétées à un système de delivery clair, vérifiable et scalable",
+  overview:
+    "Après le rachat par Enphase en 2022, nous sommes passés <b>d’une delivery startup</b> à une organisation produit <b>plus globale</b>.\n\nJ’ai structuré un système de delivery partagé entre <b>product, design et dev</b>, pour réduire l’ambiguïté, le rework et les écarts design/dev.",
+  cardDescription:
+    "Refondre le système de delivery product/design/engineering après acquisition.",
+  challenge: "Faire scaler la delivery sans laisser chaque équipe réinterpréter ce qui devait être livré.",
   roles: {
   owned: [
-    "Product Ops strategy",
-    "Design system",
-    "Governance",
-    "UX architecture",
-    "Quality framework",
-    "Team enablement",
-    "Design mentoring",
+    "Workflow de delivery",
+    "Quality gates",
+    "Design handoff",
+    "Gouvernance design system",
+    "Alignement transverse",
+    "Product/design/dev ops",
   ],
-  contributed: [
-    "Delivery",
-    "User testing",
+  team: [
+    "Product",
+    "Engineering",
+    "Design",
+    "Executive",
   ],
 },
   year: "2023",
   timeline: "2 ans",
   tools: ["Figma", "Notion", "Storybook", "Jira", "Flutter"],
-  tags: ["B2E", "Web & Mobile", "Governance", "Product Ops"],
+  tags: ["Product ops", "Design ops", "Delivery system", "Quality gates", "Gouvernance design system"],
   projectType: "mobile et web",
   thumbnailTagTone: "white",
   previewImage: {
@@ -491,17 +505,12 @@ const fr: UseCase = {
   },
 ],coreQuestion:
   "Comment rendre les décisions, critères et responsabilités vérifiables avant le développement ?",
-  discoverySignals: [
-  "Audit du workflow",
-  "Analyse de tickets",
-  "Analyse des reviews",
-  "Cartographie des artefacts",
-  "Entretiens avec les parties prenantes",
-    ],
     chartCards: [
       {
         caption:
           "Trop de décisions restaient ouvertes après le démarrage du développement",
+        methodology: "Analyse de tickets",
+        methodologyIcon: "clipboard-text",
         chart: {
           type: "combined-kpi",
           rows: [
@@ -524,6 +533,8 @@ const fr: UseCase = {
       },
       {
         caption: "Le rework venait surtout de décisions restées implicites.",
+        methodology: "Analyse de tickets",
+        methodologyIcon: "clipboard-text",
         chart: {
           type: "bars",
           title: "Décisions implicites dans les tickets",
@@ -539,6 +550,8 @@ const fr: UseCase = {
       {
         caption:
           "Les équipes ne partageaient pas toujours la même définition du livrable",
+        methodology: "Analyse des reviews",
+        methodologyIcon: "clipboard-text",
         chart: {
           type: "single-kpi",
           value: "61%",
@@ -751,8 +764,9 @@ why:
       before: { display: "59%", value: 59 },
       after: { display: "31%", value: 31 },
     },
-    caption:
-      "Moins de décisions étaient réouvertes après le démarrage du dev.",
+    caption: "Moins de décisions étaient réouvertes après le démarrage du dev.",
+    methodology: "Analyse de tickets",
+    methodologyIcon: "clipboard-text",
   },
   {
     chart: {
@@ -761,8 +775,9 @@ why:
       before: { display: "40%", value: 40 },
       after: { display: "18%", value: 18 },
     },
-    caption:
-      "Les tickets demandaient moins d’allers-retours en review.",
+    caption: "Les tickets demandaient moins d’allers-retours en review.",
+    methodology: "Analyse de tickets",
+    methodologyIcon: "clipboard-text",
   },
   {
     chart: {
@@ -771,8 +786,9 @@ why:
       before: { display: "61%", value: 61 },
       after: { display: "34%", value: 34 },
     },
-    caption:
-      "Les équipes partageaient plus souvent la même définition du livrable.",
+    caption: "Les équipes partageaient plus souvent la même définition du livrable.",
+    methodology: "Analyse des reviews",
+    methodologyIcon: "clipboard-text",
   },
   {
     chart: {
@@ -796,10 +812,11 @@ why:
         },
       ],
     },
-    caption:
-      "Les gains étaient surtout visibles sur les écrans couverts par le système.",
+    caption: "Les gains étaient surtout visibles sur les écrans couverts par le système.",
+    methodology: "Estimations de workflow",
+    methodologyIcon: "clipboard-text",
   },
-]
+],
 },
   retrospective: {
   title: "Rétrospective",

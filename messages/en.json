@@ -33,8 +33,8 @@
     "useCaseNav": "Use case navigation",
     "mainNav": "Main navigation",
     "home": "Home",
-    "works": "Works",
-    "ai": "My take on IA",
+    "works": "Work",
+    "ai": "AI & Product Design",
     "about": "About",
     "contact": "Contact",
     "openMenu": "Open menu",
@@ -47,9 +47,9 @@
     "themeToDark": "Switch to dark theme"
   },
   "works": {
-    "seoTitle": "Works",
+    "seoTitle": "Work",
     "seoDescription": "Recent work by Quentin Gillon — Lead Product Designer specialising in complex B2B products.",
-    "heading": "Recent work"
+    "heading": "Work"
   },
   "about": {
     "seoTitle": "About",
@@ -89,9 +89,9 @@
     "otherUseCases": "Other use cases",
     "moreWork": "More product work from the same portfolio system.",
     "challenge": "Challenge",
-    "myRole": "My role",
+    "myRole": "I led",
+    "team": "Team",
     "owned": "Owned",
-    "contributed": "Contributed",
     "year": "Year",
     "timeline": "Timeline",
     "tools": "Tools",

@@ -1,23 +1,21 @@
-import { ChartCardShell } from "@/components/use-case/ChartCardShell";
+import { ChartCardShell, type MethodologyProps } from "@/components/use-case/ChartCardShell";
 import { DiamondBadge } from "@/components/use-case/DiamondBadge";
 import {
-  ChartBodyText,
   ChartCardContent,
+  ChartMethodologyNote,
   ChartTitle,
   ProgressBar,
 } from "@/components/use-case/charts/ChartPrimitives";
 import type { RankedBarsChartData } from "@/content/use-cases/types";
 
-type RankedBarsCardProps = { chart: RankedBarsChartData };
+type RankedBarsCardProps = { chart: RankedBarsChartData; caption?: string } & MethodologyProps;
 
-export const RankedBarsCard = ({ chart }: RankedBarsCardProps) => (
+export const RankedBarsCard = ({ chart, caption, methodology, methodologyIcon }: RankedBarsCardProps) => (
   <ChartCardShell className="flex flex-1 flex-col">
-    <ChartCardContent variant="default" className="justify-end p-8">
+    <ChartCardContent variant="default" className="justify-end">
       <div className="flex flex-col w-full">
         <ChartTitle>{chart.title}</ChartTitle>
-        {chart.subtitle && (
-          <ChartBodyText>{chart.subtitle}</ChartBodyText>
-        )}
+        {caption && <p className="type-body-lg mt-1 leading-[1.7] text-smooth">{caption}</p>}
       </div>
 
       <div className="flex flex-col gap-2">
@@ -30,7 +28,7 @@ export const RankedBarsCard = ({ chart }: RankedBarsCardProps) => (
               </div>
               <div className="flex flex-1 flex-col items-center pl-[39px] pt-2 pb-4">
                 <div className="flex h-[30px] w-full items-start pl-5 mb-[-8px]">
-                  <p className="type-data-label flex-1 min-w-0" style={{ color }}>
+                  <p className="type-body-sm flex-1 min-w-0" style={{ color }}>
                     {bar.label}
                   </p>
                 </div>
@@ -40,6 +38,9 @@ export const RankedBarsCard = ({ chart }: RankedBarsCardProps) => (
           );
         })}
       </div>
+      {methodology && methodologyIcon && (
+        <ChartMethodologyNote methodology={methodology} methodologyIcon={methodologyIcon} />
+      )}
     </ChartCardContent>
   </ChartCardShell>
 );

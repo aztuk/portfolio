@@ -16,6 +16,7 @@ import { RankedBarsCard } from "@/components/use-case/charts/RankedBarsCard";
 import { SingleKpiCard } from "@/components/use-case/charts/SingleKpiCard";
 import { WorkflowMappingCard } from "@/components/use-case/charts/WorkflowMappingCard";
 import type { ChartCardData, ChartVariant } from "@/content/use-cases/types";
+import type { MethodologyProps } from "@/components/use-case/ChartCardShell";
 
 const getRevealDelayStyle = (index: number, offsetMs = 0) =>
   ({ "--reveal-delay": `${offsetMs + index * 120}ms` } as CSSProperties);
@@ -29,32 +30,32 @@ type ChartCardsGridProps = {
   revealDelayOffsetMs?: number;
 };
 
-const renderChart = (chart: ChartVariant, labels?: ChartLabels) => {
+const renderChart = (chart: ChartVariant, labels?: ChartLabels, m?: MethodologyProps, caption?: string) => {
   switch (chart.type) {
     case "bars":
-      return <BarsCard chart={chart} />;
+      return <BarsCard chart={chart} caption={caption} {...m} />;
     case "combined-kpi":
-      return <CombinedKpiCard chart={chart} />;
+      return <CombinedKpiCard chart={chart} caption={caption} {...m} />;
     case "line":
-      return <LineChartCard chart={chart} />;
+      return <LineChartCard chart={chart} caption={caption} {...m} />;
     case "ranked-bars":
-      return <RankedBarsCard chart={chart} />;
+      return <RankedBarsCard chart={chart} caption={caption} {...m} />;
     case "insight":
-      return <InsightChartCard chart={chart} />;
+      return <InsightChartCard chart={chart} caption={caption} />;
     case "quote":
-      return <QuoteCard chart={chart} />;
+      return <QuoteCard chart={chart} caption={caption} />;
     case "workflow-mapping":
-      return <WorkflowMappingCard chart={chart} />;
+      return <WorkflowMappingCard chart={chart} caption={caption} {...m} />;
     case "before-after-bar":
-      return <BeforeAfterBarCard chart={chart} beforeLabel={labels?.beforeLabel ?? ""} afterLabel={labels?.afterLabel ?? ""} />;
+      return <BeforeAfterBarCard chart={chart} caption={caption} beforeLabel={labels?.beforeLabel ?? ""} afterLabel={labels?.afterLabel ?? ""} {...m} />;
     case "before-after-combined-kpi":
-      return <BeforeAfterCombinedKpiCard chart={chart} beforeLabel={labels?.beforeLabel ?? ""} afterLabel={labels?.afterLabel ?? ""} />;
+      return <BeforeAfterCombinedKpiCard chart={chart} caption={caption} beforeLabel={labels?.beforeLabel ?? ""} afterLabel={labels?.afterLabel ?? ""} {...m} />;
     case "duration-bars":
-      return <DurationBarsChartCard chart={chart} beforeLabel={labels?.beforeLabel ?? ""} afterLabel={labels?.afterLabel ?? ""} />;
+      return <DurationBarsChartCard chart={chart} caption={caption} beforeLabel={labels?.beforeLabel ?? ""} afterLabel={labels?.afterLabel ?? ""} {...m} />;
     case "kpi-progress":
-      return <KpiProgressChartCard chart={chart} />;
+      return <KpiProgressChartCard chart={chart} caption={caption} {...m} />;
     case "single-kpi":
-      return <SingleKpiCard chart={chart} />;
+      return <SingleKpiCard chart={chart} caption={caption} {...m} />;
   }
 };
 
@@ -77,8 +78,8 @@ export const ChartCardsGrid = ({
         className="discovery-reveal-chart w-full"
         style={getRevealDelayStyle(index, revealDelayOffsetMs)}
       >
-        <CaptionedCard caption={card.caption}>
-          {renderChart(card.chart, labels)}
+        <CaptionedCard>
+          {renderChart(card.chart, labels, { methodology: card.methodology, methodologyIcon: card.methodologyIcon }, card.caption)}
         </CaptionedCard>
       </div>
     ))}

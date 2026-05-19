@@ -1,7 +1,8 @@
-import { ChartCardShell } from "@/components/use-case/ChartCardShell";
+import { ChartCardShell, type MethodologyProps } from "@/components/use-case/ChartCardShell";
 import {
   ChartCardContent,
   ChartDivider,
+  ChartMethodologyNote,
   ChartTitle,
   ChartValue,
   ProgressBar,
@@ -20,7 +21,7 @@ const StarRating = ({ value, max }: StarRatingProps) => (
       return (
         <span
           key={index}
-          className="relative block size-8 overflow-hidden sm:size-10"
+          className="relative block size-6 overflow-hidden sm:size-7"
           style={{ clipPath: starClipPath }}
           aria-hidden="true"
         >
@@ -35,12 +36,15 @@ const StarRating = ({ value, max }: StarRatingProps) => (
   </div>
 );
 
-type KpiProgressChartCardProps = { chart: KpiProgressChartData };
+type KpiProgressChartCardProps = { chart: KpiProgressChartData; caption?: string } & MethodologyProps;
 
-export const KpiProgressChartCard = ({ chart }: KpiProgressChartCardProps) => (
+export const KpiProgressChartCard = ({ chart, caption, methodology, methodologyIcon }: KpiProgressChartCardProps) => (
   <ChartCardShell className="flex flex-1 flex-col">
-    <ChartCardContent variant="bottom">
-      <ChartTitle>{chart.title}</ChartTitle>
+    <ChartCardContent variant="default" className="justify-end">
+      <div className="flex flex-col">
+        <ChartTitle>{chart.title}</ChartTitle>
+        {caption && <p className="type-body-lg mt-1 leading-[1.7] text-smooth">{caption}</p>}
+      </div>
       <div className="flex w-full flex-col gap-4">
         {chart.rows.map((row, index) => (
           <div key={row.label} className="pb-4">
@@ -60,6 +64,9 @@ export const KpiProgressChartCard = ({ chart }: KpiProgressChartCardProps) => (
           </div>
         ))}
       </div>
+      {methodology && methodologyIcon && (
+        <ChartMethodologyNote methodology={methodology} methodologyIcon={methodologyIcon} />
+      )}
     </ChartCardContent>
   </ChartCardShell>
 );

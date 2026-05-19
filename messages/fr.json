@@ -2,13 +2,13 @@
   "site": {
     "role": "Lead Product Designer",
     "heroLabel": "OPEN FOR NEW OPPORTUNITIES",
-    "intro": "Lead Product Designer\nspécialisé dans les produits <b>B2B Saas</b>,\navec <b>15 ans d’expérience</b> dans le secteur de l’énergie.",
+    "intro": "Lead Product Designer\nspécialisé dans les produits <b>B2B SaaS</b>,\navec <b>15 ans d’expérience</b> dans le secteur de l’énergie.",
     "heroDescription": "J’utilise le systems thinking pour aligner les équipes, structurer les workflows et concevoir des expériences produit plus scalables.",
     "seoTitle": "Quentin Gillon — Lead Product Designer",
     "seoDescription": "Portfolio de Quentin Gillon, Lead Product Designer utilisant le systems thinking pour concevoir de meilleures décisions, de meilleurs workflows et des expériences produit scalables pour des produits B2B complexes."
   },
   "home": {
-    "viewWork": "Derniers travaux →",
+    "viewWork": "Voir le Work →",
     "getInTouch": "Me contacter"
   },
   "footer": {
@@ -29,12 +29,12 @@
     "error": "Un probleme est survenu. Reessayez ou envoyez-moi un email directement."
   },
   "navigation": {
-    "backHome": "Back",
+    "backHome": "Retour",
     "useCaseNav": "Navigation du cas d'usage",
     "mainNav": "Navigation principale",
     "home": "Accueil",
-    "works": "Travaux",
-    "ai": "My take on IA",
+    "works": "Work",
+    "ai": "IA & Product Design",
     "about": "À propos",
     "contact": "Contact",
     "openMenu": "Ouvrir le menu",
@@ -47,9 +47,9 @@
     "themeToDark": "Activer le thème sombre"
   },
   "works": {
-    "seoTitle": "Travaux",
+    "seoTitle": "Work",
     "seoDescription": "Les travaux récents de Quentin Gillon — Lead Product Designer spécialisé en produits B2B complexes.",
-    "heading": "Mes travaux récents"
+    "heading": "Work"
   },
   "about": {
     "seoTitle": "À propos",
@@ -89,9 +89,9 @@
     "otherUseCases": "Autres cas d'usage",
     "moreWork": "D'autres projets produit du même portfolio.",
     "challenge": "Challenge",
-    "myRole": "Mon rôle",
+    "myRole": "J’ai piloté",
+    "team": "Équipe",
     "owned": "Piloté",
-    "contributed": "Contribué",
     "year": "Année",
     "timeline": "Planning",
     "tools": "Outils",

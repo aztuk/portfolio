@@ -1,15 +1,13 @@
-import { ChartCardShell } from "@/components/use-case/ChartCardShell";
+import { ChartCardShell, type MethodologyProps } from "@/components/use-case/ChartCardShell";
 import {
-  ChartBodyText,
   ChartCardContent,
   ChartDivider,
-  ChartTitle,
-  ChartValue,
+  ChartMethodologyNote,
   ProgressBar,
 } from "@/components/use-case/charts/ChartPrimitives";
 import type { CombinedKpiChartData, CombinedKpiRow } from "@/content/use-cases/types";
 
-type CombinedKpiCardProps = { chart: CombinedKpiChartData };
+type CombinedKpiCardProps = { chart: CombinedKpiChartData; caption?: string } & MethodologyProps;
 
 const colorForVariant = (variant: CombinedKpiRow["variant"]) =>
   variant === "primary" ? "var(--color-primary)" : "var(--color-secondary)";
@@ -24,34 +22,32 @@ const KpiRow = ({ row }: KpiRowProps) => {
   return (
     <div className="flex w-full flex-col items-center gap-1">
       <div className="flex w-full items-baseline gap-3" style={{ color }}>
-        <ChartTitle tone="inherit" className="min-w-0 flex-1 sm:leading-[1.7] sm:tracking-[-0.03em]">
-          {row.title}
-        </ChartTitle>
-        <ChartValue className="type-chart-value-mobile sm:leading-[0.7]">
-          {row.display}
-        </ChartValue>
+        <p className="type-body-lg-bold min-w-0 flex-1">{row.title}</p>
+        <span className="type-body-lg-bold shrink-0 whitespace-nowrap">{row.display}</span>
       </div>
 
       <ProgressBar percent={row.percent} color={color} />
 
-      <ChartBodyText className="type-chart-body-mobile w-full sm:text-[15px] sm:leading-[1.7] sm:tracking-[-0.03em]">
-        {row.description}
-      </ChartBodyText>
+      <p className="type-body-sm w-full text-smooth">{row.description}</p>
     </div>
   );
 };
 
-export const CombinedKpiCard = ({ chart }: CombinedKpiCardProps) => {
+export const CombinedKpiCard = ({ chart, caption, methodology, methodologyIcon }: CombinedKpiCardProps) => {
   const [top, bottom] = chart.rows;
 
   return (
     <ChartCardShell className="flex flex-1 flex-col">
-      <ChartCardContent variant="default" className="items-center justify-end p-6 sm:p-8 lg:p-8">
+      <ChartCardContent variant="default" className="items-center justify-end">
+        {caption && <p className="type-body-lg w-full leading-[1.7] text-smooth">{caption}</p>}
         <div className="flex w-full flex-col items-center gap-8">
           <KpiRow row={top} />
           <ChartDivider />
           <KpiRow row={bottom} />
         </div>
+        {methodology && methodologyIcon && (
+          <ChartMethodologyNote methodology={methodology} methodologyIcon={methodologyIcon} />
+        )}
       </ChartCardContent>
     </ChartCardShell>
   );

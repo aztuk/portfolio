@@ -3,27 +3,36 @@ import type { UseCase } from "@/content/use-cases/types";
 
 const en: UseCase = {
   order: 3,
-  title: "From a raw list to a decision",
+  title: "An energy trading tool",
   slug: "virtual-power-plant-flexibility",
+  tagline:
+    "Turning a raw asset list into a decision-support interface for energy operations.",
   overview:
-    "In 2019, we were working on a tool that helped energy suppliers manage batteries, solar panels and other distributed assets across the grid.\n\nEnergy traders struggled to quickly know how much energy was available, where it was located and how long it could be used — I designed an interface to make those answers visible and test a power demand.",
+    "Energy traders needed to quickly know <b>how much energy</b> was available, <b>where</b>, and <b>for how long</b>.\n\nI designed an interface that made <b>those answers visible</b> and made it possible to test a power demand.",
+  cardDescription:
+    "Turning raw energy asset data into a decision-support interface for operational teams.",
   challenge:
     "Help traders quickly know how much energy can be used, where it is, and how long it remains available.",
   roles: {
     owned: [
-      "Discovery",
-      "Product scoping",
-      "UX architecture",
+      "Decision framing",
+      "Information architecture",
       "Data visualization",
+      "Prioritization model",
+      "Operational interface",
       "Prototyping",
-      "User testing",
     ],
-    contributed: ["Delivery", "Handoff"],
+    team: [
+      "Product",
+      "Engineering",
+      "Grand compte clients",
+      "Data Science",
+    ],
   },
   year: "2019",
   timeline: "9 months",
   tools: ["Figma", "Notion", "Zeplin"],
-  tags: ["B2B", "Complex", "Data Visualization", "Map", "Regulations"],
+  tags: ["Data visualization", "Decision support", "Energy operations", "Prioritization", "VPP"],
   projectType: "mobile",
   thumbnailTagTone: "white",
   previewImage: {
@@ -62,12 +71,6 @@ const en: UseCase = {
     ],
     coreQuestion:
       "How can we help a trader quickly know how much energy can be used, where, and for how long?",
-    discoverySignals: [
-      "Business expert interviews",
-      "Energy portfolio mapping",
-      "Business scenarios",
-      "Data readability tests",
-    ],
     artifacts: [
       {
         type: "image",
@@ -80,6 +83,8 @@ const en: UseCase = {
     chartCards: [
       {
         caption: "Key answers required too much manual search.",
+        methodology: "Trading scenarios",
+        methodologyIcon: "flask",
         chart: {
           type: "bars",
           title: "Time needed to find",
@@ -123,6 +128,8 @@ const en: UseCase = {
       },
       {
         caption: "The list displayed data, but not answers.",
+        methodology: "Workflow analysis",
+        methodologyIcon: "clipboard-text",
         chart: {
           type: "combined-kpi",
           rows: [
@@ -356,6 +363,8 @@ const en: UseCase = {
           ],
         },
         caption: "The same questions became faster to answer.",
+        methodology: "Trading scenarios",
+        methodologyIcon: "flask",
       },
       {
         chart: {
@@ -374,6 +383,8 @@ const en: UseCase = {
           ],
         },
         caption: "The new interface reduced manual cross-checking.",
+        methodology: "Workflow analysis",
+        methodologyIcon: "clipboard-text",
       },
     ],
   },
@@ -403,27 +414,36 @@ const en: UseCase = {
 
 const fr: UseCase = {
   order: 3,
-  title: "Passer d'une liste brute à une décision",
+  title: "Un outil de trading énergétiques",
   slug: "virtual-power-plant-flexibility",
+  tagline:
+    "Transformer une liste brute d'actifs en interface d'aide à la décision pour les opérations énergie",
   overview:
-    "En 2019, nous travaillions sur un outil qui aidait les fournisseurs d'énergie à piloter des batteries, panneaux solaires et autres équipements répartis sur le territoire. \n\nLes traders énergie avaient du mal à savoir rapidement <b>combien d'énergie</b> était disponible, <b>où elle se trouvait</b> et <b>combien de temps</b> elle pouvait être utilisée ; j'ai conçu une interface pour rendre <b>ces réponses visibles</b> et tester une demande de puissance.",
+    "Les traders énergie devaient savoir vite <b>combien d’énergie</b> était disponible, <b>où</b> et <b>pour combien de temps</b>.\n\nJ’ai conçu une interface rendant <b>ces réponses visibles</b> et permettant de tester une demande de puissance.",
+  cardDescription:
+    "Transformer une liste brute d'actifs énergétiques en interface d'aide à la décision pour les équipes opérationnelles.",
   challenge:
     "Aider les traders à savoir rapidement combien d'énergie peut être utilisée, où elle se trouve et combien de temps elle reste disponible.",
   roles: {
     owned: [
-      "Discovery",
-      "Cadrage produit",
-      "Architecture UX",
+      "Framing décisionnel",
+      "Architecture d’information",
       "Data visualization",
+      "Priorisation",
+      "Interface opérationnelle",
       "Prototypage",
-      "Tests utilisateurs",
     ],
-    contributed: ["Delivery", "Handoff"],
+    team: [
+      "Product",
+      "Engineering",
+      "Grand compte clients",
+      "Data Science",
+    ],
   },
   year: "2019",
   timeline: "9 mois",
   tools: ["Figma", "Notion", "Zeplin"],
-  tags: ["B2B", "Complexe", "Data Visualization", "Carte", "Régulations"],
+  tags: ["Data visualization", "Decision support", "Energy operations", "Priorisation", "VPP"],
   thumbnailTagTone: "white",
 
   previewImage: {
@@ -463,12 +483,6 @@ const fr: UseCase = {
     ],
     coreQuestion:
       "Comment aider un trader à savoir rapidement combien d'énergie peut être utilisée, où et pendant combien de temps ?",
-    discoverySignals: [
-      "Entretiens avec experts métier",
-      "Cartographie du parc énergétique",
-      "Scénarios métier",
-      "Tests de lisibilité des données",
-    ],
     artifacts: [
       {
         type: "image",
@@ -482,6 +496,8 @@ const fr: UseCase = {
     chartCards: [
       {
         caption: "Les réponses clés demandaient trop de recherche manuelle",
+        methodology: "Scénarios de trading",
+        methodologyIcon: "flask",
         chart: {
           type: "bars",
           title: "Temps nécessaire pour chercher",
@@ -525,6 +541,8 @@ const fr: UseCase = {
       },
       {
         caption: "La liste affichait les données, mais pas les réponses.",
+        methodology: "Analyse du workflow",
+        methodologyIcon: "clipboard-text",
         chart: {
           type: "combined-kpi",
           rows: [
@@ -761,6 +779,8 @@ const fr: UseCase = {
           ],
         },
         caption: "Les mêmes questions devenaient plus rapides à traiter.",
+        methodology: "Scénarios de trading",
+        methodologyIcon: "flask",
       },
       {
         chart: {
@@ -779,6 +799,8 @@ const fr: UseCase = {
           ],
         },
         caption: "La nouvelle interface réduisait les recoupements manuels.",
+        methodology: "Analyse du workflow",
+        methodologyIcon: "clipboard-text",
       },
     ],
   },

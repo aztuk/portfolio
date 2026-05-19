@@ -1,4 +1,8 @@
-import type { AiImpactCriterionId, AiImpactTaskId } from "@/content/ai/ai-impact.config";
+import type {
+  AiImpactCriterionId,
+  AiImpactLevel,
+  AiImpactTaskId,
+} from "@/content/ai/ai-impact.config";
 import type { Locale } from "@/i18n/routing";
 
 export type PrototypingLoopIconName =
@@ -42,15 +46,15 @@ export type AiPageContent = {
     eyebrow: string;
     title: string;
     intro: string;
-    note: string;
+    note?: string;
   };
   impact: {
     title: string;
     description: string;
     modelLabel: string;
-    scoreLabel: string;
-    maxScoreLabel: string;
+    explanation: string;
     criteriaLabels: Record<AiImpactCriterionId, string>;
+    levelLabels: Record<AiImpactLevel, string>;
     taskLabels: Record<AiImpactTaskId, string>;
     taskDescriptions: Record<AiImpactTaskId, string>;
   };
@@ -109,28 +113,31 @@ export type AiPageContent = {
 
 export const aiPageContent = {
   en: {
-    seoTitle: "My take on AI",
+    seoTitle: "AI & Product Design",
     seoDescription:
       "A personal, critical and structured view of how Quentin Gillon uses AI as a quality lever in Product Design.",
     hero: {
-      eyebrow: "AI × Product Design",
-      title: "My take on AI",
+      eyebrow: "Approach",
+      title: "AI & Product Design",
       intro:
-        "For now, I don’t see AI as a tool meant to accelerate or replace product design work.\n\nAI is a <b>quality lever</b> in design thinking. It helps us explore <b>more options</b>, be <b>clearer</b>, more exhaustive, and above all <b>invert the prototyping process</b> by allowing tests to happen much earlier.",
-      note:
-        "DISCLAIMER: This is my current workflow for personal projects, not an enterprise process I have already industrialized with a full team.",
+        "I don’t see AI as a way to replace design judgment. For me, it is mainly a way to <b>think better</b>: <b>explore more options</b>, challenge assumptions, structure decisions, and test ideas earlier.\n\nIt can help things move faster, but the Product Designer <b>still keeps the responsibility</b> for framing the problem, making trade-offs, understanding users, and shaping the final craft.",
     },
     impact: {
       title: "Where AI helps most",
       description:
-        "A personal scoring model based on how I use AI in Product Design. The goal is not to prove a universal truth, but to make my own judgment visible.",
-      modelLabel: "Personal working model",
-      scoreLabel: "Score",
-      maxScoreLabel: "out of 15",
+        "A qualitative view of where I trust AI, and where I deliberately keep more human control.",
+      modelLabel: "Personal reflection grid",
+      explanation:
+        "This scoring is not a scientific measurement. It is a personal reflection grid to separate areas where AI genuinely improves my reasoning from areas where I deliberately keep a lower level of trust.",
       criteriaLabels: {
         speedGain: "Time gain",
         qualityGain: "Quality gain",
-        riskControl: "Trust in AI",
+        riskControl: "AI trust",
+      },
+      levelLabels: {
+        low: "Low",
+        medium: "Medium",
+        high: "High",
       },
       taskLabels: {
         understand: "Understand",
@@ -145,16 +152,16 @@ export const aiPageContent = {
         polish: "Polish",
       },
       taskDescriptions: {
-        understand: "Discovery, research, interviews, analysis",
-        structure: "Problem framing, workflow, decision criteria",
-        explore: "Solutions, options, scenarios, alternatives",
-        prototype: "Figma, vibe coding, interactive prototypes",
-        evaluate: "Testing, critique, edge cases, review",
-        decide: "Arbitration, trade-offs, solution choices",
-        document: "Specs, handoff, memory, guidelines, design system",
-        communicate: "Storytelling, alignment, presentations, team conversations",
-        produce: "Screen creation, flow, assets, components",
-        polish: "Visual craft, finishing, microcopy, UI details",
+        understand: "Notes, qualitative feedback, quantitative inputs",
+        structure: "Problem framing, workflows, decision criteria",
+        explore: "Options, scenarios, alternatives, edge cases",
+        prototype: "Interactive flows, states, first implementation paths",
+        evaluate: "Critique, test scenarios, risks, blind spots",
+        decide: "Trade-offs, product risks, solution choices",
+        document: "Specs, memory, guidelines, design system notes",
+        communicate: "Narrative, alignment, presentations, team conversations",
+        produce: "Screens, assets, components, final implementation",
+        polish: "Visual craft, microcopy, finishing details",
       },
     },
     workflow: {
@@ -408,28 +415,31 @@ export const aiPageContent = {
     },
   },
   fr: {
-    seoTitle: "Ma vision de l’IA",
+    seoTitle: "IA & Product Design",
     seoDescription:
       "Une vision personnelle, critique et structurée de la façon dont Quentin Gillon utilise l’IA comme levier de qualité en Product Design.",
     hero: {
-      eyebrow: "IA × Product Design",
-      title: "Ma vision de l’IA",
+      eyebrow: "Approche",
+      title: "IA & Product Design",
       intro:
-        "Pour moi, l'IA n'est pour le moment pas un outil visant à accélerer ni à remplacer le travail du product design. \n \nL'ia est un <b>levier de qualité</b> dans la réflexion design. Il nous permet d'explorer <b>plus d'options</b>, d'etre <b>plus clair</b>, <b>plus exhaustif</b>, et surtout d'<b>inverser le processus de prototypage</b> en permattant les tests d'arriver beaucoup plus tôt.",
-      note:
-        "DISCLAIMER: Il s'agit de mon workflow actuel pour des projets personnels, et non d'un processus d'entreprise que j'aurais déjà industrialisé avec une équipe complète.",
+        "Je ne vois pas l’IA comme une façon de remplacer le jugement design. Pour moi, elle sert surtout à <b>mieux réfléchir</b> : <b>explorer plus d’options</b>, challenger les hypothèses, structurer les décisions et tester des idées plus tôt.\n\nElle peut aider à aller plus vite sur certaines étapes, mais le Product Designer <b>reste responsable</b> du cadrage du problème, des arbitrages, de la compréhension utilisateur et du craft final.",
     },
     impact: {
       title: "Où l’IA m’aide le plus",
       description:
-        "Un modèle de scoring personnel basé sur ma pratique du Product Design avec l’IA.",
-      modelLabel: "Scoring personnel des étapes de product design",
-      scoreLabel: "Score",
-      maxScoreLabel: "sur 15",
+        "Une lecture qualitative de là où je fais confiance à l’IA, et là où je garde volontairement plus de contrôle humain.",
+      modelLabel: "Grille personnelle de recul",
+      explanation:
+        "Ce scoring n’est pas une mesure scientifique. C’est une grille personnelle de recul pour distinguer les usages où l’IA améliore réellement mon raisonnement de ceux où je garde volontairement un niveau de confiance plus faible.",
       criteriaLabels: {
         speedGain: "Gain de temps",
         qualityGain: "Gain de qualité",
-        riskControl: "Confiance en l’IA",
+        riskControl: "Confiance IA",
+      },
+      levelLabels: {
+        low: "Faible",
+        medium: "Moyen",
+        high: "Fort",
       },
       taskLabels: {
         understand: "Comprendre",
@@ -444,22 +454,22 @@ export const aiPageContent = {
         polish: "Polir",
       },
       taskDescriptions: {
-        understand: "Discovery, Recherche, Interview, Analyses",
-        structure: "Cadrage problème, Workflow, Critères de décision",
-        explore: "Solutions, Options, Scénarios, Alternatives",
-        prototype: "Figma, Vibe coding, Prototypes interactifs",
-        evaluate: "Tests, Critique, Edge cases, Review",
-        decide: "Arbitrages, Trade-offs, Choix de solutions",
-        document: "Specs, Handoff, Mémoires, Guidelines, Design System",
-        communicate: "Storytelling, Alignment, Presentations, Conversations d’équipe",
-        produce: "Création d'écrans, Flow, Assets, Composants",
-        polish: "Craft visuel, Finition, Microcopy, Détails UI",
+        understand: "Notes, retours qualitatifs, données quantitatives",
+        structure: "Cadrage, workflows, critères de décision",
+        explore: "Options, scénarios, alternatives, edge cases",
+        prototype: "Flows interactifs, états, premières pistes d’implémentation",
+        evaluate: "Critique, scénarios de test, risques, angles morts",
+        decide: "Arbitrages, risques produit, choix de solutions",
+        document: "Specs, mémoire, guidelines, notes de design system",
+        communicate: "Narration, alignement, présentations, échanges d’équipe",
+        produce: "Écrans, assets, composants, implémentation finale",
+        polish: "Craft visuel, microcopy, détails de finition",
       },
     },
     workflow: {
       title: "Mon workflow augmenté par l’IA",
       intro:
-        "À chaque étape, je garde la décision et le jugement design. L’IA m’aide à structurer, challenger, explorer et documenter mais elle ne décide pas pour moi et ne créé pas de preuves.",
+        "À chaque étape, je garde la décision et le jugement design. L’IA m’aide à structurer, challenger, explorer et documenter, mais elle ne décide pas pour moi et ne crée pas de preuves.",
       steps: [
         {
           title: "Discovery",
@@ -503,13 +513,13 @@ export const aiPageContent = {
         {
           title: "Prototyping",
           whatAiDoes: [
-            "Créé les flows interactifs",
-            "Documente les références figma dans design.md",
+            "Crée les flows interactifs",
+            "Documente les références Figma dans design.md",
             "Documente les trade-offs et décisions dans Roadmap.md & Memory.md",
           ],
           whatAiDoesNotDo: [
             "Ne produit pas du code de production",
-            "Ne créé rien dans figma ni dans le design system",
+            "Ne crée rien dans Figma ni dans le design system",
             "Ne valide pas l’expérience sans test utilisateur",
           ],
         },
@@ -542,7 +552,7 @@ export const aiPageContent = {
         {
           title: "Handoff",
           whatAiDoes: [
-            "Créé un package structuré pour l'équipe d'engineering",
+            "Crée un package structuré pour l’équipe d’engineering",
             "Aide à produire Design.md, Memory.md, Roadmap.md et Specifications.md",
             "Transforme le prototype validé en support plus exploitable pour les devs",
           ],

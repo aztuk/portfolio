@@ -13,6 +13,21 @@ type MetaInfoProps = {
   id?: string;
 };
 
+type ChipListProps = {
+  items: string[];
+  tone?: "strong" | "soft";
+};
+
+type RoleBlockProps = {
+  title: string;
+  items: string[];
+};
+
+type TeamBlockProps = {
+  title: string;
+  items: string[];
+};
+
 const labelClassName =
   "type-context-label text-smooth/70";
 
@@ -21,6 +36,47 @@ const bodyLargeClassName =
 
 const bodySmallClassName =
   "type-context-meta text-muted";
+
+const ChipList = ({ items, tone = "soft" }: ChipListProps) => (
+  <div className="flex flex-wrap gap-1.5">
+    {items.map((item) => (
+      <span
+        key={item}
+        className={clsx(
+          "type-role-tag rounded-lg px-2 py-1 text-muted",
+          tone === "strong" ? "bg-[var(--role-owned-bg)]" : "bg-[var(--role-contributed-bg)]",
+        )}
+      >
+        {item}
+      </span>
+    ))}
+  </div>
+);
+
+const DotSeparatedList = ({ items }: { items: string[] }) => (
+  <p className={bodySmallClassName}>
+    {items.map((item, index) => (
+      <span key={item}>
+        {index > 0 ? <span className="px-2 text-smooth/60">·</span> : null}
+        {item}
+      </span>
+    ))}
+  </p>
+);
+
+const RoleBlock = ({ title, items }: RoleBlockProps) => (
+  <div className="border-b border-dark-smooth p-5 lg:p-6">
+    <p className={labelClassName}>{title}</p>
+    <ChipList items={items} tone="strong" />
+  </div>
+);
+
+const TeamBlock = ({ title, items }: TeamBlockProps) => (
+  <div className="p-5 lg:p-6">
+    <p className={labelClassName}>{title}</p>
+    <DotSeparatedList items={items} />
+  </div>
+);
 
 export const MetaInfo = ({ useCase, id }: MetaInfoProps) => {
   const t = useTranslations("sections");
@@ -36,45 +92,18 @@ export const MetaInfo = ({ useCase, id }: MetaInfoProps) => {
     >
       <Container className="px-2 sm:px-8 lg:px-0">
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-          {/* Challenge */}
-          <div className="flex min-w-0 flex-col justify-center border-b border-dark-smooth p-5 lg:border-b-0 lg:border-r lg:p-6">
-            <p className={labelClassName}>{t("challenge")}</p>
-            <p className={bodyLargeClassName}>{useCase.challenge}</p>
+          {/* Role + Team */}
+          <div className="flex min-w-0 flex-col border-b border-dark-smooth lg:border-b-0 lg:border-r">
+            <RoleBlock title={t("myRole")} items={useCase.roles.owned} />
+            <TeamBlock title={t("team")} items={useCase.roles.team} />
           </div>
 
           {/* Other info */}
           <div className="flex min-w-0 flex-col">
-            {/* My role */}
+            {/* Challenge */}
             <div className="border-b border-dark-smooth p-5 lg:p-6">
-              <div className="mb-3 flex items-center gap-2.5">
-                <p className={clsx(labelClassName, "flex-1")}>{t("myRole")}</p>
-                <span className="type-role-tag rounded-lg px-1.5 py-1 text-muted whitespace-nowrap" style={{ backgroundColor: "var(--role-owned-bg)" }}>
-                  {t("owned")}
-                </span>
-                <span className="type-role-tag rounded-lg px-1.5 py-1 text-smooth whitespace-nowrap" style={{ backgroundColor: "var(--role-contributed-bg)" }}>
-                  {t("contributed")}
-                </span>
-              </div>
-              <div className="flex flex-wrap gap-1">
-                {useCase.roles.owned.map((tag) => (
-                  <span
-                    key={tag}
-                    className="type-role-tag rounded-lg px-1.5 py-1 text-muted whitespace-nowrap"
-                    style={{ backgroundColor: "var(--role-owned-bg)" }}
-                  >
-                    {tag}
-                  </span>
-                ))}
-                {useCase.roles.contributed.map((tag) => (
-                  <span
-                    key={tag}
-                    className="type-role-tag rounded-lg px-1.5 py-1 text-smooth whitespace-nowrap"
-                    style={{ backgroundColor: "var(--role-contributed-bg)" }}
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+              <p className={labelClassName}>{t("challenge")}</p>
+              <p className={bodyLargeClassName}>{useCase.challenge}</p>
             </div>
 
             {/* Year + Timeline + Tools */}

@@ -1,5 +1,13 @@
 import type { ComponentType, CSSProperties, ReactNode } from "react";
 
+import {
+  ChartBarIcon,
+  ClipboardTextIcon,
+  FlaskIcon,
+} from "@phosphor-icons/react/ssr";
+
+import type { InsightMethodologyIconName } from "@/content/use-cases/types";
+
 type Align = "left" | "center";
 
 type ChartCardContentProps = {
@@ -9,7 +17,7 @@ type ChartCardContentProps = {
 };
 
 const contentVariants: Record<NonNullable<ChartCardContentProps["variant"]>, string> = {
-  default: "gap-6 p-5 lg:gap-8 lg:p-8",
+  default: "gap-8 p-5 lg:p-8",
   centered: "items-center justify-center gap-6 px-5 pb-6 pt-10 sm:px-8 lg:px-12 lg:pb-8 lg:pt-12",
   bottom: "justify-end gap-6 px-5 pb-6 pt-10 sm:px-8 lg:gap-8 lg:px-12 lg:pb-8 lg:pt-12",
   compact: "gap-5 p-5 lg:gap-6 lg:p-8",
@@ -39,7 +47,7 @@ export const ChartTitle = ({
   className = "",
 }: ChartTitleProps) => (
   <p
-    className={`type-data-title type-chart-title type-chart-title-mobile w-full ${
+    className={`type-data-title w-full ${
       tone === "muted" ? "text-muted" : ""
     } ${
       align === "center" ? "text-center" : ""
@@ -92,7 +100,7 @@ type ChartValueProps = {
 
 export const ChartValue = ({ children, color, className = "" }: ChartValueProps) => (
   <span
-    className={`type-data-value shrink-0 whitespace-nowrap ${className}`}
+    className={`type-data-title shrink-0 whitespace-nowrap ${className}`}
     style={color ? { color } : undefined}
   >
     {children}
@@ -105,7 +113,7 @@ type ChartCaptionProps = {
 };
 
 export const ChartCaption = ({ children, className = "" }: ChartCaptionProps) => (
-  <p className={`type-body-lg w-full text-center text-smooth ${className}`}>
+  <p className={`type-body-lg w-full text-center text-ink ${className}`}>
     {children}
   </p>
 );
@@ -115,7 +123,7 @@ type ChartDividerProps = {
 };
 
 export const ChartDivider = ({ className = "" }: ChartDividerProps) => (
-  <div className={`h-0.5 w-full shrink-0 bg-dark-smooth ${className}`} />
+  <div className={`h-px w-full shrink-0 bg-dark-smooth ${className}`} />
 );
 
 export const ChartAxisLine = ChartDivider;
@@ -150,12 +158,11 @@ type AxisLabelProps = {
 export const AxisLabel = ({
   children,
   color,
-  size = "md",
   className = "",
   style,
 }: AxisLabelProps) => (
   <span
-    className={`${size === "sm" ? "type-data-label-sm" : "type-chart-axis-label"} text-center ${className}`}
+    className={`type-body-sm text-center ${className}`}
     style={{ ...style, ...(color ? { color } : {}) }}
   >
     {children}
@@ -176,7 +183,7 @@ export const TintedPill = ({ children, color, className = "" }: TintedPillProps)
       className={`rounded-[18px] p-3 ${className}`}
       style={{ backgroundColor: surface, border: `1px solid ${surface}` }}
     >
-      <span className="type-data-label whitespace-nowrap" style={{ color }}>
+      <span className="type-body-sm whitespace-nowrap" style={{ color }}>
         {children}
       </span>
     </div>
@@ -202,6 +209,12 @@ export const TintedIconTile = ({ icon: Icon, color, className = "" }: TintedIcon
   );
 };
 
+export const METHODOLOGY_ICONS = {
+  flask: FlaskIcon,
+  "clipboard-text": ClipboardTextIcon,
+  "chart-bar": ChartBarIcon,
+} satisfies Record<InsightMethodologyIconName, typeof FlaskIcon>;
+
 type MethodologyFooterProps = {
   icon: ComponentType<{ size?: number; weight?: "regular"; className?: string; style?: CSSProperties; "aria-hidden"?: boolean }>;
   color: string;
@@ -217,15 +230,15 @@ export const MethodologyFooter = ({
   className = "",
   textClassName = "",
 }: MethodologyFooterProps) => (
-  <div className={`flex items-center gap-4 border-t border-dark-smooth pt-4 ${className}`}>
+  <div className={`flex w-full items-center gap-3 border-t border-dark-smooth pt-4 ${className}`}>
     <Icon
-      size={24}
+      size={18}
       weight="regular"
       className="shrink-0"
       style={{ color }}
       aria-hidden={true}
     />
-    <p className={`type-body-lg ${textClassName}`} style={{ color }}>
+    <p className={`type-body-sm ${textClassName}`} style={{ color }}>
       {children}
     </p>
   </div>
@@ -238,6 +251,7 @@ type MetricProgressRowProps = {
   color: string;
   labelPosition?: "top" | "bottom";
   labelClassName?: string;
+  valueClassName?: string;
   className?: string;
 };
 
@@ -247,13 +261,17 @@ export const MetricProgressRow = ({
   percent,
   color,
   labelPosition = "top",
-  labelClassName = "type-body-lg text-smooth",
+  labelClassName = "type-body-lg text-muted",
+  valueClassName,
   className = "",
 }: MetricProgressRowProps) => {
   const labelRow = (
     <div className="flex items-baseline justify-between gap-4">
       <span className={labelClassName}>{label}</span>
-      <ChartValue color={color}>{value}</ChartValue>
+      {valueClassName
+        ? <span className={`shrink-0 whitespace-nowrap ${valueClassName}`} style={{ color }}>{value}</span>
+        : <ChartValue color={color}>{value}</ChartValue>
+      }
     </div>
   );
 
@@ -268,6 +286,22 @@ export const MetricProgressRow = ({
     </div>
   );
 };
+
+type ChartMethodologyNoteProps = {
+  methodology: string;
+  methodologyIcon: InsightMethodologyIconName;
+  className?: string;
+};
+
+export const ChartMethodologyNote = ({ methodology, methodologyIcon, className = "" }: ChartMethodologyNoteProps) => (
+  <MethodologyFooter
+    icon={METHODOLOGY_ICONS[methodologyIcon]}
+    color="var(--color-muted)"
+    className={className}
+  >
+    {methodology}
+  </MethodologyFooter>
+);
 
 type VerticalBarProps = {
   color: string;

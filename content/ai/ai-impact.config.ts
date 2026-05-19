@@ -15,9 +15,11 @@ export type AiImpactTaskId =
   | "produce"
   | "polish";
 
-export type AiImpactScore = {
+export type AiImpactLevel = "low" | "medium" | "high";
+
+export type AiImpactAssessment = {
   taskId: AiImpactTaskId;
-  scores: Record<AiImpactCriterionId, number>;
+  levels: Record<AiImpactCriterionId, AiImpactLevel>;
 };
 
 export const AI_IMPACT_CRITERIA = [
@@ -26,92 +28,85 @@ export const AI_IMPACT_CRITERIA = [
   "riskControl",
 ] as const satisfies AiImpactCriterionId[];
 
-export const AI_IMPACT_SCORES: AiImpactScore[] = [
+export const AI_IMPACT_ASSESSMENTS: AiImpactAssessment[] = [
   {
     taskId: "understand",
-    scores: {
-      speedGain: 1,
-      qualityGain: 5,
-      riskControl: 4,
+    levels: {
+      speedGain: "medium",
+      qualityGain: "high",
+      riskControl: "medium",
     },
   },
   {
     taskId: "structure",
-    scores: {
-      speedGain: 1,
-      qualityGain: 3,
-      riskControl: 2,
+    levels: {
+      speedGain: "medium",
+      qualityGain: "high",
+      riskControl: "medium",
     },
   },
   {
     taskId: "explore",
-    scores: {
-      speedGain: 2,
-      qualityGain: 3,
-      riskControl: 2,
+    levels: {
+      speedGain: "high",
+      qualityGain: "high",
+      riskControl: "medium",
     },
   },
   {
     taskId: "prototype",
-    scores: {
-      speedGain: 5,
-      qualityGain: 3,
-      riskControl: 4,
+    levels: {
+      speedGain: "high",
+      qualityGain: "medium",
+      riskControl: "medium",
     },
   },
   {
     taskId: "evaluate",
-    scores: {
-      speedGain: 3,
-      qualityGain: 4,
-      riskControl: 3,
+    levels: {
+      speedGain: "medium",
+      qualityGain: "high",
+      riskControl: "medium",
     },
   },
   {
     taskId: "decide",
-    scores: {
-      speedGain: 3,
-      qualityGain: 2,
-      riskControl: 2,
+    levels: {
+      speedGain: "medium",
+      qualityGain: "high",
+      riskControl: "medium",
     },
   },
   {
     taskId: "document",
-    scores: {
-      speedGain: 4,
-      qualityGain: 4,
-      riskControl: 4,
+    levels: {
+      speedGain: "high",
+      qualityGain: "high",
+      riskControl: "high",
     },
   },
   {
     taskId: "communicate",
-    scores: {
-      speedGain: 2,
-      qualityGain: 3,
-      riskControl: 3,
+    levels: {
+      speedGain: "medium",
+      qualityGain: "medium",
+      riskControl: "medium",
     },
   },
   {
     taskId: "produce",
-    scores: {
-      speedGain: 3,
-      qualityGain: 0,
-      riskControl: 0,
+    levels: {
+      speedGain: "low",
+      qualityGain: "low",
+      riskControl: "low",
     },
   },
   {
     taskId: "polish",
-    scores: {
-      speedGain: 2,
-      qualityGain: 0,
-      riskControl: 0,
+    levels: {
+      speedGain: "low",
+      qualityGain: "low",
+      riskControl: "low",
     },
   },
 ];
-
-export const getAiImpactScoreTotal = (score: AiImpactScore): number =>
-  Object.values(score.scores).reduce((total, value) => total + value, 0);
-
-export const AI_IMPACT_SCORES_SORTED = [...AI_IMPACT_SCORES].sort(
-  (left, right) => getAiImpactScoreTotal(right) - getAiImpactScoreTotal(left),
-);
